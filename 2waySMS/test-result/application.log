@@ -1,0 +1,7 @@
+12 Apr 2013 13:59:42,243 INFO  ~ Starting C:\Users\rrajamani\workspace\2waySMS
+12 Apr 2013 13:59:42,520 WARN  ~ Declaring modules in application.conf is deprecated. Use dependencies.yml instead (module.gae)
+12 Apr 2013 13:59:42,520 ERROR ~ Module gae will not be loaded because C:\play-1.2.5\modules\gae does not exist
+12 Apr 2013 13:59:44,391 WARN  ~ You're running Play! in DEV mode
+12 Apr 2013 13:59:44,773 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+12 Apr 2013 14:00:12,648 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+12 Apr 2013 14:00:12,796 INFO  ~ Application '2waySMS' is now started !

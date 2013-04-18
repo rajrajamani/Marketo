@@ -1,0 +1,8 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+	#{form @Application.index()}
+	<input type="text" name="url" id="url"
+		placeholder="URL of settings page" maxlength="200" size="100" style="font-size:30px"/>
+	<br />
+	<input type="submit" value="Submit" /> #{/form}
