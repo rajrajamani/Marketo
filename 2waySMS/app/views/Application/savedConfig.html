@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<table class="center">
+<thead>
+<tr>
+	<th>Campaign Id</th>
+	<th>Campaign URL</th>
+	<th>Messages Sent</th>
+	<th>Messages Recvd</th>
+	<th>Status</th>
+</tr>
+</thead>
+<tbody>
+
+%{ 
+	for (campaign in allCampaigns) {
+}%
+<tr>
+	<td>${campaign.id}</td>
+	<td>${campaign.campaignURL}</td>
+	<td>${campaign.numSent}</td>
+	<td>${campaign.numRecvd}</td>
+	<td>${campaign.status} | <a href="/cancelCampaign?id=${campaign.id}">Cancel</a></td>
+</tr>	
+%{
+	}
+}%
+
+</tbody>
+</table>

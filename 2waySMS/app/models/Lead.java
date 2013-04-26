@@ -10,5 +10,6 @@ public class Lead extends Model {
 	public Integer leadId;
 	public String email;
 	public String phoneNumber;
+	public String country;
 	public boolean unsubscribed;
 }

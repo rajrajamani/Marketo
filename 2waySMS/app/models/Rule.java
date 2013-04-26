@@ -20,4 +20,10 @@ public class Rule extends Model {
 		inRule = in;
 		outRule = out;
 	}
+
+	public Rule(Rule rule) {
+		sc = null;
+		inRule = rule.inRule;
+		outRule = rule.outRule;
+	}
 }

@@ -1,12 +1,12 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import jobs.ProcessInboundMessage;
 import jobs.SyncListAndRunFirstCampaign;
-import models.Rule;
 import models.SMSCampaign;
 import play.Logger;
 import play.mvc.Controller;
@@ -25,13 +25,18 @@ public class Application extends Controller {
 		} else {
 			Logger.info("Looking up campaignURL %s", url);
 			// Check to see if this has been configured previously
-			List<SMSCampaign> msExisting = SMSCampaign.find("campaignURL = ?",
-					url).fetch();
+			List<SMSCampaign> msExisting = SMSCampaign.find(
+					"campaignURL = ? and status = ?", url,
+					Constants.SMSCAMPAIGN_STATUS_ACTIVE).fetch();
 			if (msExisting.size() == 1) {
 				SMSCampaign ms = msExisting.get(0);
 				Logger.info("campaign[%d] was configured previously", ms.id);
-				renderText("This campaign has been configured previously for account :"
-						+ ms.munchkinAccountId);
+				/*
+				 * renderText(
+				 * "This campaign has been configured previously for account :"
+				 * + ms.munchkinAccountId);
+				 */
+				savedConfig(ms.id);
 			}
 
 			MarketoUtility mu = new MarketoUtility();
@@ -39,16 +44,18 @@ public class Application extends Controller {
 			if (sc == null) {
 				Logger.info("Unable to read settings from %s", url);
 				renderText("Unable to read settings from %s", url);
-			} else if (sc.munchkinAccountId == null) {
+			} else if (sc.munchkinAccountId.equals("null")) {
 				Logger.info("campaign[%d] does not have a valid munchkin id",
 						sc.id);
 				renderText("Please provide the correct munchkin account id");
-			} else if (sc.smsGatewayID == null || sc.smsGatewayPassword == null) {
+			} else if (sc.smsGatewayID.equals("null")
+					|| sc.smsGatewayPassword.equals("null")) {
 				Logger.info(
 						"campaign[%d] does not have the sms Gateway id or password",
 						sc.id);
 				renderText("Please configure a valid twilio Account ID and Secret in your program my tokens");
-			} else if (sc.soapUserId == null || sc.soapEncKey == null) {
+			} else if (sc.soapUserId.equals("null")
+					|| sc.soapEncKey.equals("null")) {
 				Logger.info(
 						"campaign[%d] does not have the Marketo soap credentials",
 						sc.id);
@@ -57,11 +64,11 @@ public class Application extends Controller {
 				Logger.info("campaign[%d] does not have any campaign rules",
 						sc.id);
 				renderText("Please provide rules for the SMS campaign");
-			} else if (sc.leadListWithPhoneNumbers == null) {
+			} else if (sc.leadListWithPhoneNumbers.equals("null")) {
 				Logger.info("campaign[%d] does not lead list set", sc.id);
 				renderText("Please provide a static list from with leads whose phone numbers are known");
 			}
-
+			sc.status = Constants.SMSCAMPAIGN_STATUS_ACTIVE;
 			sc.save();
 			Logger.debug("campaign[%d] has been saved", sc.id);
 
@@ -101,19 +108,20 @@ public class Application extends Controller {
 					sc.id);
 			new SyncListAndRunFirstCampaign(sc).in(2);
 
-			savedConfig(url, true);
+			savedConfig(sc.id);
 		}
 	}
 
-	public static void savedConfig(String url, boolean ms) {
-		String returnValue = "Cannot read " + url;
-		if (ms == false) {
-			render(returnValue);
-		} else {
-
-			returnValue = "Successfully configured new campaign";
+	public static void savedConfig(Long scId) {
+		SMSCampaign sc = SMSCampaign.findById(scId);
+		List<SMSCampaign> allCampaigns = new ArrayList<SMSCampaign>();
+		if (sc != null) {
+			allCampaigns = SMSCampaign.find(
+					"munchkinAccountId = ? and status = ?",
+					sc.munchkinAccountId, Constants.SMSCAMPAIGN_STATUS_ACTIVE)
+					.fetch();
 		}
-		render(returnValue);
+		render(allCampaigns);
 	}
 
 	public static void smsCallback(String campaignId, String SmsSid,
@@ -121,12 +129,26 @@ public class Application extends Controller {
 		// look up application in database - if not present, ignore message
 		SMSCampaign sc = SMSCampaign.findById(Long.valueOf(campaignId));
 		if (sc == null) {
-			Logger.fatal("campaign[%s] does not exist",
-					campaignId);
+			Logger.fatal("campaign[%s] does not exist", campaignId);
 			renderText("Sorry, we do not know anything about this campaign");
 		}
+		sc.numRecvd++;
+		sc.save();
 		new ProcessInboundMessage(sc, AccountSid, From, Body).in(2);
 		renderHtml("I just received an SMS" + campaignId);
+	}
+
+	public static void cancelCampaign(String id) {
+		SMSCampaign sc = SMSCampaign.findById(Long.valueOf(id));
+		if (sc != null) {
+			Logger.info("About to cancel campaign [%s]", id);
+		}
+		TwilioUtility.deleteApplication(sc.smsGatewayID, sc.smsGatewayPassword,
+				sc.smsGatewayApplicationId);
+		sc.status = Constants.SMSCAMPAIGN_STATUS_CANCELED;
+		sc.save();
+		Logger.info("Canceled campaign [%s]", id);
+		renderHtml("Canceled campaign successfully");
 	}
 
 }

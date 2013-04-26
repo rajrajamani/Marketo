@@ -42,6 +42,9 @@ public class SyncListAndRunFirstCampaign extends Job {
 	}
 
 	private void runCampaign(MarketoUtility mu, Rule rule, List<Lead> leadList) {
-		mu.performOutRule(sc, rule, leadList);
+		int numSent = mu.performOutRule(sc, rule, leadList);
+		SMSCampaign toSave = SMSCampaign.findById(sc.id);
+		toSave.numSent += numSent;
+		toSave.save();
 	}
 }

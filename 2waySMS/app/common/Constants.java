@@ -11,4 +11,9 @@ public class Constants {
 	public static final String OUTBOUND_CAMP = "LogOutboundSMS";
 	public static final String PROG_NAME = "RajExportableProgram";
 	public static final int BATCH_SIZE = 100;
+	public static final int SMS_MAX_LEN = 160;
+	public static final String UNSUB_FIELD_NAME = "smsUnsubscribed";
+	public static final String SMSCAMPAIGN_STATUS_ACTIVE = "active";
+	public static final String SMSCAMPAIGN_STATUS_CANCELED = "canceled";
+	public static final String COUNTRY_FIELD_NAME = "Country";
 }

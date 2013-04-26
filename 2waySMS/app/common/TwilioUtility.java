@@ -45,14 +45,18 @@ public class TwilioUtility {
 	 * @throws TwilioRestException
 	 */
 	public static void sendSMS(String sid, String aToken, String from,
-			String to, String payload) throws TwilioRestException {
+			String to, String recipientCountry, String payload)
+			throws TwilioRestException {
 		Logger.debug("Connecting to twilio %s:%s", sid, aToken);
 		TwilioRestClient client = new TwilioRestClient(sid, aToken);
 		String e164FormattedPhoneNumber = to;
 		PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
 		try {
-			PhoneNumber usPhone = phoneUtil.parse(to, "US");
-			e164FormattedPhoneNumber = phoneUtil.format(usPhone,
+			String countryCode = CountryUtil.getCountryCode(recipientCountry);
+			Logger.debug("Country code for country %s is %s.  ",
+					recipientCountry, countryCode);
+			PhoneNumber phoneNumber = phoneUtil.parse(to, countryCode);
+			e164FormattedPhoneNumber = phoneUtil.format(phoneNumber,
 					PhoneNumberFormat.E164);
 		} catch (NumberParseException e) {
 			Logger.error("NumberParseException was thrown: %s", e.toString());
@@ -125,6 +129,23 @@ public class TwilioUtility {
 		ApplicationList appList = client.getAccount().getApplications();
 		for (com.twilio.sdk.resource.instance.Application app : appList) {
 			app.delete();
+		}
+	}
+	
+	public static void deleteApplication(String sid, String aToken, String appId) {
+		TwilioRestClient client = new TwilioRestClient(sid, aToken);
+		ApplicationList appList = client.getAccount().getApplications();
+		for (com.twilio.sdk.resource.instance.Application app : appList) {
+			if (app.getSid().equals(appId)) {
+				try {
+					Logger.info("Deleting application with id:%s",
+							app.getSid());
+					app.delete();
+					Logger.info("Application successfully deleted");
+				} catch (TwilioRestException e) {
+					Logger.info("Could not delete Application [%s]", e.getMessage());
+				}
+			}
 		}
 	}
 

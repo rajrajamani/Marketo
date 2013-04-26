@@ -1,10 +1,12 @@
 package common;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import models.Lead;
 import models.Rule;
@@ -155,7 +157,8 @@ public class MarketoUtility {
 		List<String> leadAttrs = new ArrayList<String>();
 		leadAttrs.add("Email");
 		leadAttrs.add("Phone");
-		leadAttrs.add("Unsubscribed");
+		leadAttrs.add(Constants.UNSUB_FIELD_NAME);
+		leadAttrs.add(Constants.COUNTRY_FIELD_NAME);
 
 		try {
 			MktowsClient client = makeSoapConnection(sc.id, sc.soapUserId,
@@ -165,8 +168,8 @@ public class MarketoUtility {
 						sc.id, sc.leadListWithPhoneNumbers);
 				String listName = sc.programName + "."
 						+ sc.leadListWithPhoneNumbers;
-				leadRecords = client.getMultipleLeads(Constants.BATCH_SIZE, listName, posHolder,
-						leadAttrs);
+				leadRecords = client.getMultipleLeads(Constants.BATCH_SIZE,
+						listName, posHolder, leadAttrs);
 				for (LeadRecord item : leadRecords) {
 					Lead newLead = new Lead();
 					newLead.munchkinId = sc.munchkinAccountId;
@@ -187,9 +190,22 @@ public class MarketoUtility {
 										"lead with id : %d has phone number %s",
 										newLead.leadId, newLead.phoneNumber);
 							}
-							if (keySet.contains("Unsubscribed")) {
-								String unsubValue = attrMap.get("Unsubscribed")
+							if (keySet.contains(Constants.COUNTRY_FIELD_NAME)) {
+								newLead.country = attrMap.get(
+										Constants.COUNTRY_FIELD_NAME)
 										.toString();
+								Logger.debug(
+										"lead with id : %d has country %s",
+										newLead.leadId, newLead.country);
+							} else {
+								newLead.country = "USA";
+								Logger.debug(
+										"lead with id : %d does not have country.  Using USA",
+										newLead.leadId);
+							}
+							if (keySet.contains(Constants.UNSUB_FIELD_NAME)) {
+								String unsubValue = attrMap.get(
+										Constants.UNSUB_FIELD_NAME).toString();
 								if (unsubValue.equals("1")) {
 									newLead.unsubscribed = true;
 								} else {
@@ -200,7 +216,7 @@ public class MarketoUtility {
 								newLead.unsubscribed = false;
 							}
 							Logger.debug(
-									"lead with id : %d has unsubscribed set to %s",
+									"lead with id : %d has sms unsubscribed set to %s",
 									newLead.leadId,
 									String.valueOf(newLead.unsubscribed));
 						}
@@ -319,7 +335,7 @@ public class MarketoUtility {
 		if (leadList != null) {
 			for (Lead ld : leadList) {
 				HashMap<String, String> attrs = new HashMap<String, String>();
-				attrs.put("Unsubscribed", value);
+				attrs.put(Constants.UNSUB_FIELD_NAME, value);
 				LeadRecord leadRec = MktowsUtil.newLeadRecord(leadId, null,
 						null, null, attrs);
 
@@ -327,7 +343,7 @@ public class MarketoUtility {
 						sc.soapEncKey, sc.munchkinAccountId);
 				try {
 					Logger.info(
-							"campaign[%d] - Setting unsubscribed:%s for lead:",
+							"campaign[%d] - Setting sms unsubscribed:%s for lead:",
 							sc.id, value, leadId);
 					client.syncLead(leadRec, null, true);
 				} catch (MktowsClientException e) {
@@ -371,8 +387,10 @@ public class MarketoUtility {
 	 * @param rule
 	 * @param from
 	 */
-	public void performOutRule(SMSCampaign sc, Rule rule, List<Lead> leadList) {
+	public int performOutRule(SMSCampaign sc, Rule rule, List<Lead> leadList) {
 		Boolean operationalCampaign = false;
+		Boolean multiByteString = false;
+		int numSent = 0;
 		if (rule.outRule != null) {
 			String payload = null;
 			if (rule.outRule.startsWith("operational(")) {
@@ -385,13 +403,20 @@ public class MarketoUtility {
 				payload = rule.outRule;
 				Logger.debug("campaign[%d] - payload is %s", sc.id, payload);
 			}
+			multiByteString = isPayloadMultiByte(payload);
+			Logger.debug(
+					"campaign[%d] - payload is using multi-byte string = [%s]",
+					sc.id, String.valueOf(multiByteString));
 			if (sc.smsFooter != null) {
 				payload = payload.concat(sc.smsFooter);
-				if (payload.length() > 160) {
-					payload = payload.substring(0, 160); // max SMS length
+				int maxlen = (multiByteString ? Constants.SMS_MAX_LEN / 2
+						: Constants.SMS_MAX_LEN);
+				if (payload.length() > maxlen) {
+					payload = payload.substring(0, maxlen); // max SMS length
 				}
-				Logger.debug("campaign[%d] - payload with footer is %s", sc.id,
-						payload);
+				Logger.debug(
+						"campaign[%d] - payload with footer is %s.  Length [%d] is less than max [%d]",
+						sc.id, payload, payload.length(), maxlen);
 			}
 			try {
 				for (Lead ld : leadList) {
@@ -402,7 +427,7 @@ public class MarketoUtility {
 						TwilioUtility.sendSMS(sc.smsGatewayID,
 								sc.smsGatewayPassword,
 								sc.smsGatewayPhoneNumber, ld.phoneNumber,
-								payload);
+								ld.country, payload);
 						MarketoUtility mu = new MarketoUtility();
 						Logger.debug(
 								"campaign[%d] - Requesting campaign %s for lead with id %d",
@@ -414,6 +439,7 @@ public class MarketoUtility {
 						Logger.debug(
 								"campaign[%d] - Request campaign %s succeeded",
 								sc.id, sc.campaignToLogOutgoingRequests);
+						numSent++;
 					} else {
 						Logger.info(
 								"campaign[%d] - Not sending message to %s because lead has unsubscribed",
@@ -425,6 +451,34 @@ public class MarketoUtility {
 						sc.id, e.getMessage());
 			}
 		}
+		return numSent;
 	}
 
+	private Boolean isPayloadMultiByte(String str) {
+		char[] c_array;
+		String c_string;
+		byte[] c_byte_array;
+		Boolean result = false;
+
+		c_array = str.toCharArray();
+		result = false;
+		for (char c : c_array) {
+			c_string = Character.toString(c);
+			try {
+				c_byte_array = c_string.getBytes("UTF-8");
+				if (c_byte_array.length > 1) {
+					Logger.debug(
+							"Detected a multibyte character in payload [%s]",
+							str);
+					result = true;
+					break;
+				}
+			} catch (UnsupportedEncodingException e) {
+				Logger.error(
+						"Unable to detect multibyte character due to exception [%s]",
+						e.getMessage());
+			}
+		}
+		return result;
+	}
 }

@@ -13,6 +13,33 @@ import play.db.jpa.Model;
 
 @Entity
 public class SMSCampaign extends Model {
+	public SMSCampaign(SMSCampaign ms) {
+		campaignURL = ms.campaignURL;
+		smsGatewayApplicationId = ms.smsGatewayApplicationId;
+		munchkinAccountId = ms.munchkinAccountId;
+		soapUserId = ms.soapUserId;
+		soapEncKey = ms.soapEncKey;
+		programName = ms.programName;
+		campaignToLogIncomingRequests = ms.campaignToLogIncomingRequests;
+		campaignToLogOutgoingRequests = ms.campaignToLogOutgoingRequests;
+		leadListWithPhoneNumbers = ms.leadListWithPhoneNumbers;
+		smsGatewayID = ms.smsGatewayID;
+		smsGatewayPassword = ms.smsGatewayPassword;
+		smsGatewayPhoneNumber = ms.smsGatewayPhoneNumber;
+		smsFooter = ms.smsFooter;
+		smsCampaignDefinition = ms.smsCampaignDefinition;
+		status = ms.status;
+		numSent = ms.numSent;
+		numRecvd = ms.numRecvd;
+		
+		for (Rule rule: ms.rules) {
+			rules.add(new Rule(rule));
+		}
+	}
+
+	public SMSCampaign() {
+	}
+
 	public static final int MAX_RULES = 25;
 
 	public String campaignURL; // provided by marketer
@@ -30,6 +57,9 @@ public class SMSCampaign extends Model {
 	public String smsFooter; // from token
 	@Column(length=1000) 
 	public String smsCampaignDefinition; // from token
+	public String status;
+	public int numSent;
+	public int numRecvd;
 
 	@OneToMany (cascade=CascadeType.ALL, mappedBy="sc", fetch=FetchType.EAGER)
 	public List<Rule> rules = new ArrayList<Rule>();

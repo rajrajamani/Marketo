@@ -11,6 +11,7 @@ import play.jobs.Job;
 
 import com.marketo.mktows.wsdl.ResultSyncLead;
 import common.Constants;
+import common.CountryUtil;
 import common.MarketoUtility;
 
 public class ProcessInboundMessage extends Job {
@@ -52,16 +53,18 @@ public class ProcessInboundMessage extends Job {
 					sc.id, from);
 			ResultSyncLead leadCreated = mu.createNewLead(sc, from);
 			if (leadCreated != null) {
+				// TODO - set country
 				Lead newLead = new Lead();
 				newLead.munchkinId = sc.munchkinAccountId;
 				newLead.phoneNumber = from;
 				newLead.leadId = leadCreated.getLeadId();
 				newLead.unsubscribed = false;
+				newLead.country = CountryUtil.inferCountryFromPhoneNumber(from);
 				newLead.save();
 				ld = newLead;
 				Logger.debug(
-						"campaign[%d] - created new lead with lead id: %d",
-						sc.id, newLead.leadId);
+						"campaign[%d] - created new lead with lead id: %d and country: %s",
+						sc.id, newLead.leadId, newLead.country);
 			}
 		} else {
 			ld = leadList.get(0);
@@ -95,7 +98,8 @@ public class ProcessInboundMessage extends Job {
 					sc.id, from, payload);
 			mu.setLeadUnsubscribed(sc, lead.leadId, "true");
 		}
-		if (payload.equalsIgnoreCase("optin") || payload.equalsIgnoreCase("start")) {
+		if (payload.equalsIgnoreCase("optin")
+				|| payload.equalsIgnoreCase("start")) {
 			Logger.info("campaign[%d] - lead %s subscribed with message %s",
 					sc.id, from, payload);
 			mu.setLeadUnsubscribed(sc, lead.leadId, "false");
@@ -122,7 +126,10 @@ public class ProcessInboundMessage extends Job {
 						Logger.debug("campaign[%d] - %s Matched rule # %d:%s",
 								sc.id, payload, cnt++, rule.inRule);
 						// perform outrule
-						mu.performOutRule(sc, rule, ldList);
+						int numSent = mu.performOutRule(sc, rule, ldList);
+						SMSCampaign toSave = SMSCampaign.findById(sc.id);
+						toSave.numSent += numSent;
+						toSave.save();
 						processed = true;
 						break;
 					}
@@ -137,23 +144,30 @@ public class ProcessInboundMessage extends Job {
 					Logger.debug("campaign[%d] - %s Matched rule # %d:%s",
 							sc.id, payload, cnt++, rule.inRule);
 					// perform outrule
-					mu.performOutRule(sc, rule, ldList);
+					int numSent = mu.performOutRule(sc, rule, ldList);
+					SMSCampaign toSave = SMSCampaign.findById(sc.id);
+					toSave.numSent += numSent;
+					toSave.save();
 					processed = true;
 					break;
 				}
 			}
 
 			if (rule.inRule.equals("*")) {
-				Logger.debug("campaign[%d] - %s Matched rule # %d:%s",
-						sc.id, payload, cnt++, rule.inRule);
+				Logger.debug("campaign[%d] - %s Matched rule # %d:%s", sc.id,
+						payload, cnt++, rule.inRule);
 				// perform outrule
-				mu.performOutRule(sc, rule, ldList);
+				int numSent = mu.performOutRule(sc, rule, ldList);
+				SMSCampaign toSave = SMSCampaign.findById(sc.id);
+				toSave.numSent += numSent;
+				toSave.save();
 				processed = true;
 				break;
 			}
 		}
 		if (processed == false) {
-			Logger.info("campaign[%d] - %s did not match any rule", sc.id, payload);
+			Logger.info("campaign[%d] - %s did not match any rule", sc.id,
+					payload);
 		}
 	}
 }
