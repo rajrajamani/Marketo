@@ -5,10 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.marketo.mktows.wsdl.MktowsPort;
+import com.marketo.mktows.wsdl.ResultSyncLead;
+import com.twilio.sdk.resource.list.AccountList;
+
 import jobs.ProcessInboundMessage;
 import jobs.SyncListAndRunFirstCampaign;
 import models.SMSCampaign;
 import play.Logger;
+import play.Play;
 import play.mvc.Controller;
 import play.mvc.Router;
 
@@ -68,6 +73,25 @@ public class Application extends Controller {
 				Logger.info("campaign[%d] does not lead list set", sc.id);
 				renderText("Please provide a static list from with leads whose phone numbers are known");
 			}
+
+			ResultSyncLead dummyLead = mu.createNewLead(sc, "+1smstesting");
+			if (dummyLead == null) {
+				/* Insufficient - must make a call */
+				Logger.info("Cannot connect with soap credentials [%s:%s]",
+						sc.soapUserId, sc.soapEncKey);
+				renderText("The SOAP credentials you provided are invalid");
+			} else {
+				mu.deleteLead(sc, dummyLead);
+			}
+
+			AccountList accounts = TwilioUtility.getAccounts(sc.smsGatewayID,
+					sc.smsGatewayPassword);
+			if (accounts == null || accounts.getTotal() == 0) {
+				Logger.info("No accounts set up with SMS gateway [%s:%s]",
+						sc.smsGatewayID, sc.smsGatewayPassword);
+				renderText("Please setup the SMS gateway account and retry");
+			}
+
 			sc.status = Constants.SMSCAMPAIGN_STATUS_ACTIVE;
 			sc.save();
 			Logger.debug("campaign[%d] has been saved", sc.id);
@@ -75,23 +99,34 @@ public class Application extends Controller {
 			Map<String, Object> map = new HashMap();
 			// Generate URL to listen for inbound SMS
 			map.put("campaignId", sc.id);
-			String callBackurl = Constants.PUBLIC_URL
+			String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
+			String callBackurl = urlBase
 					+ Router.reverse("Application.smsCallback", map).url;
 			Logger.debug("campaign[%d] - callback URL is %s", sc.id,
 					callBackurl);
 
 			// create Twilio application and save appId in database
 			try {
-				Logger.info(
-						"campaign[%d] - creating new SMS gateway application",
-						sc.id, callBackurl);
-				String appId = TwilioUtility.createApplication(sc.smsGatewayID,
-						sc.smsGatewayPassword, "SMSSubscriber", callBackurl,
-						"GET");
-				sc.smsGatewayApplicationId = appId;
-				Logger.info(
-						"campaign[%d] - New SMS gateway application [%s] created successfully",
-						sc.id, appId);
+//				Logger.info(
+//						"campaign[%d] - creating new SMS gateway application",
+//						sc.id, callBackurl);
+//				String appId = TwilioUtility.createApplication(sc.smsGatewayID,
+//						sc.smsGatewayPassword, "SMSSubscriber", callBackurl,
+//						"GET");
+//				sc.smsGatewayApplicationId = appId;
+//				Logger.info(
+//						"campaign[%d] - New SMS gateway application [%s] created successfully",
+//						sc.id, appId);
+				boolean setApp = TwilioUtility.setCallbackUrl(sc.smsGatewayID,
+						sc.smsGatewayPassword, callBackurl,
+						sc.smsGatewayPhoneNumber);
+				if (setApp) {
+					Logger.info(
+							"campaign[%d] - SMS application will now respond to inbound msgs");
+				} else {
+					Logger.info(
+							"campaign[%d] - SMS application will NOT respond to inbound msgs");
+				}
 				sc.save();
 			} catch (Exception e) {
 				// Log this properly

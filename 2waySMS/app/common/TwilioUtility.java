@@ -14,9 +14,11 @@ import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.ApplicationFactory;
 import com.twilio.sdk.resource.factory.SmsFactory;
 import com.twilio.sdk.resource.instance.Account;
+import com.twilio.sdk.resource.instance.IncomingPhoneNumber;
 import com.twilio.sdk.resource.instance.Sms;
 import com.twilio.sdk.resource.list.AccountList;
 import com.twilio.sdk.resource.list.ApplicationList;
+import com.twilio.sdk.resource.list.IncomingPhoneNumberList;
 
 public class TwilioUtility {
 	// Find your Account Sid and Token at twilio.com/user/account
@@ -76,18 +78,25 @@ public class TwilioUtility {
 				e164FormattedPhoneNumber, message.getSid());
 	}
 
-	public static void getAccounts(String sid, String aToken) {
-		TwilioRestClient client = new TwilioRestClient(sid, aToken);
+	public static AccountList getAccounts(String sid, String aToken) {
+		AccountList accounts = null;
+		try {
+			TwilioRestClient client = new TwilioRestClient(sid, aToken);
 
-		// Build a filter for the AccountList
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("Status", "active");
-		AccountList accounts = client.getAccounts(params);
+			// Build a filter for the AccountList
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("Status", "active");
+			accounts = client.getAccounts(params);
 
-		// Loop over accounts and print out a property
-		for (Account account : accounts) {
-			System.out.println(account.getFriendlyName());
+			// Loop over accounts and print out a property
+			for (Account account : accounts) {
+				System.out.println(account.getFriendlyName());
+			}
+		} catch (Exception e) {
+			return null;
 		}
+
+		return accounts;
 	}
 
 	/**
@@ -119,7 +128,7 @@ public class TwilioUtility {
 				.create(params);
 		Logger.debug("Successfully created a new application with id:%s",
 				app.getSid());
-		// System.out.println(app.getSid());
+
 		return app.getSid();
 	}
 
@@ -131,22 +140,52 @@ public class TwilioUtility {
 			app.delete();
 		}
 	}
-	
+
 	public static void deleteApplication(String sid, String aToken, String appId) {
 		TwilioRestClient client = new TwilioRestClient(sid, aToken);
 		ApplicationList appList = client.getAccount().getApplications();
 		for (com.twilio.sdk.resource.instance.Application app : appList) {
 			if (app.getSid().equals(appId)) {
 				try {
-					Logger.info("Deleting application with id:%s",
-							app.getSid());
+					Logger.info("Deleting application with id:%s", app.getSid());
 					app.delete();
 					Logger.info("Application successfully deleted");
 				} catch (TwilioRestException e) {
-					Logger.info("Could not delete Application [%s]", e.getMessage());
+					Logger.info("Could not delete Application [%s]",
+							e.getMessage());
 				}
 			}
 		}
+	}
+
+	public static boolean setCallbackUrl(String sid, String aToken,
+			String callbackUrl, String smsGatewayPhoneNumber) {
+		TwilioRestClient client = new TwilioRestClient(sid, aToken);
+
+		IncomingPhoneNumberList numbers = client.getAccount()
+				.getIncomingPhoneNumbers();
+		for (IncomingPhoneNumber number : numbers) {
+			Logger.debug("Found number %s", number.getPhoneNumber());
+			if (number.getPhoneNumber().equals(smsGatewayPhoneNumber)) {
+				Logger.info("Found matching number %s", number.getPhoneNumber());
+
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("SmsUrl", callbackUrl);
+				try {
+					number.update(params);
+				} catch (TwilioRestException e) {
+					Logger.error("Unable to configure callback Url : %s",
+							e.getMessage());
+					return false;
+				}
+
+				Logger.info(
+						"Inbound msgs to number %s will be forwarded to %s",
+						number.getPhoneNumber(), callbackUrl);
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

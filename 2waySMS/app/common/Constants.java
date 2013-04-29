@@ -2,7 +2,6 @@ package common;
 
 public class Constants {
 	public static final String ACCOUNT_URL = "http://go.kokopop.com/sms_settings.html";
-	public static final String PUBLIC_URL = "http://localhost:9000";
 	public static final Integer SMS_INBOUND = 1;
 	public static final Integer SMS_OUTBOUND = 2;
 	public static final String MUNCHKINID = "100-AEK-913";

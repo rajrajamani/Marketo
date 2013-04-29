@@ -261,16 +261,20 @@ public class MarketoUtility {
 		} catch (MktowsClientException e) {
 			Logger.error("campaign[%d] - Exception occurred: %s", sc.id,
 					e.getMessage());
-			return result;
+			return null;
 		} catch (MktServiceException e) {
 			Logger.error("campaign[%d] - Exception occurred: %s", sc.id,
 					e.getLongMessage());
-			return result;
+			return null;
 		}
 		return result;
 	}
+	
+	public void deleteLead(SMSCampaign sc, ResultSyncLead dummyLead) {
+		
+	}
 
-	private MktowsClient makeSoapConnection(Long scid, String soapUserId,
+	public MktowsClient makeSoapConnection(Long scid, String soapUserId,
 			String soapEncKey, String munchkinAccountId) {
 		Logger.debug(
 				"campaign[%d] - making soap connection user:%s encKey:%s munchId:%s",
@@ -481,4 +485,6 @@ public class MarketoUtility {
 		}
 		return result;
 	}
+
+
 }
