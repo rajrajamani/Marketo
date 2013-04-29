@@ -120,9 +120,14 @@ public class ProcessInboundMessage extends Job {
 				int idx1 = rule.inRule.indexOf("(");
 				int idx2 = rule.inRule.indexOf(")");
 				String keylist = rule.inRule.substring(idx1 + 1, idx2);
+				Logger.debug("Found keyword contains : %s", keylist);
 				String[] keywords = keylist.split(",");
 				for (String word : keywords) {
-					if (payload.contains(word)) {
+					word = word.trim();
+					Logger.debug(
+							"Checking contains keyword :%s: in payload :%s:",
+							word, payload);
+					if (payload.indexOf(word) != -1) {
 						Logger.debug("campaign[%d] - %s Matched rule # %d:%s",
 								sc.id, payload, cnt++, rule.inRule);
 						// perform outrule

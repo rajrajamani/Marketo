@@ -178,8 +178,8 @@ public class Application extends Controller {
 		if (sc != null) {
 			Logger.info("About to cancel campaign [%s]", id);
 		}
-		TwilioUtility.deleteApplication(sc.smsGatewayID, sc.smsGatewayPassword,
-				sc.smsGatewayApplicationId);
+//		TwilioUtility.deleteApplication(sc.smsGatewayID, sc.smsGatewayPassword,
+//				sc.smsGatewayApplicationId);
 		sc.status = Constants.SMSCAMPAIGN_STATUS_CANCELED;
 		sc.save();
 		Logger.info("Canceled campaign [%s]", id);
