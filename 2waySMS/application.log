@@ -323,3 +323,1349 @@
 15:54:44,908 INFO  ~ campaign[168] - Not sending message to 6506915076 because lead has unsubscribed
 15:54:44,908 INFO  ~ campaign[168] - Not sending message to 6506915076 because lead has unsubscribed
 15:54:44,916 INFO  ~ campaign[168] - Finished running outbound campaign 这是一个市场营销信息
+16:25:53,779 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:25:54,261 WARN  ~ You're running Play! in DEV mode
+16:25:54,327 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:26:39,022 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+16:26:39,228 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:26:39,751 INFO  ~ Application '2waySMS' is now started !
+16:26:39,854 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+16:26:40,039 INFO  ~ campaign[168] was configured previously
+16:26:46,215 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+16:26:46,219 INFO  ~ campaign[168] was configured previously
+16:27:06,203 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:27:06,203 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:27:06,210 DEBUG ~ campaign[1] - Did not find lead with phone number *6506915076
+16:27:06,211 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:27:07,685 DEBUG ~ campaign[1] - calling sync lead on lead with phone number *6506915076
+16:27:10,696 DEBUG ~ campaign[1] - created new lead with lead id: 1088487 and country: USA
+16:27:10,696 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088487
+16:27:10,697 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:27:11,583 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:27:12,190 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:27:12,191 INFO  ~ campaign[1] - Parsing message votes for 1 from phoneNumber *6506915076
+16:27:12,191 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:27:12,192 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:27:12,192 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:27:12,192 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:27:12,193 DEBUG ~ campaign[1] - votes for 1 Matched rule # 4:matches(votes for 1)
+16:27:12,194 DEBUG ~ campaign[1] - payload is you voted for choice 1
+16:27:12,194 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:27:12,195 DEBUG ~ campaign[1] - payload with footer is you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:27:12,195 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:27:12,198 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:27:12,262 DEBUG ~ Country code for country USA is US.  
+16:27:12,269 DEBUG ~ Trying to send message you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:27:14,049 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM9813850cc69cd4e996394db80c9fd4cb
+16:27:14,049 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088487
+16:27:14,049 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:27:14,942 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:27:15,279 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:27:15,279 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:27:27,105 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:27:27,105 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:27:27,115 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088487
+16:27:27,115 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:27:28,037 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:27:28,384 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:27:28,384 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:27:28,385 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:27:28,385 DEBUG ~ campaign[1] - Fetching lead with id:1088487
+16:27:28,397 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:27:29,319 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:27:31,065 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:27:31,065 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:27:31,065 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:27:31,066 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:27:31,066 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:27:31,066 DEBUG ~ campaign[1] - Start Matched rule # 5:*
+16:27:31,067 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:27:31,067 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:27:31,067 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:27:31,067 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:27:31,067 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:27:31,078 DEBUG ~ Country code for country USA is US.  
+16:27:31,078 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:27:32,646 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM6ea7a2d80d57e15a4ef08ccc72abdb4e
+16:27:32,646 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088487
+16:27:32,647 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:27:33,484 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:27:33,815 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:27:33,815 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:29:36,967 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:29:39,076 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:29:39,076 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:29:39,080 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088487
+16:29:39,081 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:29:40,008 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:29:40,364 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:29:40,364 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:29:40,364 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:29:40,365 DEBUG ~ campaign[1] - Fetching lead with id:1088487
+16:29:40,373 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:29:41,250 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:29:43,001 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:29:43,002 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:29:43,002 DEBUG ~ Found keyword contains : stop,unsub
+16:29:43,003 DEBUG ~ Checking contains keyword : stop
+16:29:43,004 DEBUG ~ Checking contains keyword : unsub
+16:29:43,004 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:29:43,004 DEBUG ~ Found keyword contains : optin, start
+16:29:43,005 DEBUG ~ Checking contains keyword : optin
+16:29:43,005 DEBUG ~ Checking contains keyword :  start
+16:29:43,005 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:29:43,006 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:29:43,006 DEBUG ~ campaign[1] - Start Matched rule # 5:*
+16:29:43,007 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:29:43,007 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:29:43,008 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:29:43,008 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:29:43,009 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:29:43,022 DEBUG ~ Country code for country USA is US.  
+16:29:43,023 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:29:44,445 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM9a01a45e20d48377fe5ca57d8d97634a
+16:29:44,445 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088487
+16:29:44,445 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:29:45,288 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:29:45,615 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:29:45,615 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:30:28,271 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:30:28,271 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:30:28,272 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088487
+16:30:28,272 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:30:29,155 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:30:29,526 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:30:29,526 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:30:29,527 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:30:29,527 DEBUG ~ campaign[1] - Fetching lead with id:1088487
+16:30:29,528 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:30:30,431 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:30:32,295 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:30:32,295 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:30:32,296 DEBUG ~ Found keyword contains : stop,unsub
+16:30:32,296 DEBUG ~ Checking contains keyword : stop in payload Start
+16:30:32,296 DEBUG ~ Checking contains keyword : unsub in payload Start
+16:30:32,296 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:30:32,297 DEBUG ~ Found keyword contains : optin, start
+16:30:32,297 DEBUG ~ Checking contains keyword : optin in payload Start
+16:30:32,297 DEBUG ~ Checking contains keyword :  start in payload Start
+16:30:32,297 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:30:32,297 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:30:32,298 DEBUG ~ campaign[1] - Start Matched rule # 5:*
+16:30:32,298 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:30:32,298 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:30:32,298 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:30:32,299 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:30:32,299 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:30:32,310 DEBUG ~ Country code for country USA is US.  
+16:30:32,311 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:30:33,973 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM0a1efbafbc664c4c7678baf136f48240
+16:30:33,973 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088487
+16:30:33,973 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:30:34,876 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:30:35,219 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:30:35,219 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:30:54,523 INFO  ~ About to cancel campaign [168]
+16:30:55,472 INFO  ~ Canceled campaign [168]
+16:30:57,990 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+16:30:58,717 DEBUG ~ campaign[null] - outRule[0] 这是一个市场营销信息
+16:30:58,717 DEBUG ~ campaign[null] - inRule[1] contains(stop,unsub)
+16:30:58,717 DEBUG ~ campaign[null] - outRule[1] operational(we have unsubscribed you)
+16:30:58,717 DEBUG ~ campaign[null] - inRule[2] contains(Optin, Start, optin, start)
+16:30:58,718 DEBUG ~ campaign[null] - outRule[2] you are now subscribed
+16:30:58,718 DEBUG ~ campaign[null] - inRule[3] matches(votes for 1)
+16:30:58,718 DEBUG ~ campaign[null] - outRule[3] you voted for choice 1
+16:30:58,718 DEBUG ~ campaign[null] - inRule[4] *
+16:30:58,718 DEBUG ~ campaign[null] - outRule[4] this is a default mesg
+16:30:58,718 INFO  ~ campaign[null] - parsed 5 rules.  accepted 5
+16:30:58,718 DEBUG ~ campaign[null] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:30:59,749 DEBUG ~ campaign[null] - calling sync lead on lead with phone number +1smstesting
+16:31:04,240 DEBUG ~ campaign[193] has been saved
+16:31:04,241 DEBUG ~ campaign[193] - callback URL is http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=193
+16:31:05,522 DEBUG ~ Found number +16505675735
+16:31:05,522 INFO  ~ Found matching number +16505675735
+16:31:06,840 INFO  ~ Inbound msgs to number +16505675735 will be forwarded to http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=193
+16:31:06,840 INFO  ~ campaign[%d] - SMS application will now respond to inbound msgs
+16:31:06,844 INFO  ~ campaign[193] - Kicking off background task to fetch lead list
+16:31:08,885 INFO  ~ campaign[193] - Fetching leads from static list listForTesting
+16:31:08,885 INFO  ~ campaign[193] - trying to fetch leads from list listForTesting
+16:31:08,885 DEBUG ~ campaign[193] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:31:09,998 DEBUG ~ campaign[193] - get multiple leads from list :listForTesting
+16:31:12,031 DEBUG ~ processing lead with id : 2
+16:31:12,032 DEBUG ~ lead with id : 2 has phone number +16506915076
+16:31:12,032 DEBUG ~ lead with id : 2 has country USA
+16:31:12,032 DEBUG ~ lead with id : 2 has sms unsubscribed set to false
+16:31:12,037 DEBUG ~ processing lead with id : 7
+16:31:12,038 DEBUG ~ lead with id : 7 has phone number 6506915076
+16:31:12,038 DEBUG ~ lead with id : 7 has country USA
+16:31:12,038 DEBUG ~ lead with id : 7 has sms unsubscribed set to true
+16:31:12,039 DEBUG ~ processing lead with id : 8
+16:31:12,040 DEBUG ~ lead with id : 8 has phone number 6506915076
+16:31:12,040 DEBUG ~ lead with id : 8 has country USA
+16:31:12,040 DEBUG ~ lead with id : 8 has sms unsubscribed set to true
+16:31:12,041 DEBUG ~ processing lead with id : 9
+16:31:12,042 DEBUG ~ lead with id : 9 has phone number 6506915076
+16:31:12,042 DEBUG ~ lead with id : 9 has country MEXICO
+16:31:12,042 DEBUG ~ lead with id : 9 has sms unsubscribed set to true
+16:31:12,044 DEBUG ~ processing lead with id : 10
+16:31:12,044 DEBUG ~ lead with id : 10 has phone number 6506915076
+16:31:12,044 DEBUG ~ lead with id : 10 has country MEXICO
+16:31:12,044 DEBUG ~ lead with id : 10 has sms unsubscribed set to true
+16:31:12,046 DEBUG ~ processing lead with id : 11
+16:31:12,046 DEBUG ~ lead with id : 11 has phone number 6506915076
+16:31:12,046 DEBUG ~ lead with id : 11 has country Canada
+16:31:12,047 DEBUG ~ lead with id : 11 has sms unsubscribed set to true
+16:31:12,048 DEBUG ~ processing lead with id : 35
+16:31:12,048 DEBUG ~ lead with id : 35 has phone number 6506915076
+16:31:12,049 DEBUG ~ lead with id : 35 has country Canada
+16:31:12,049 DEBUG ~ lead with id : 35 has sms unsubscribed set to true
+16:31:12,050 DEBUG ~ campaign[193] - retrieved and parsed 7 leads
+16:31:12,050 DEBUG ~ campaign[193] - get multiple leads from list :listForTesting
+16:31:12,499 DEBUG ~ campaign[193] - retrieved and parsed 0 leads
+16:31:12,499 DEBUG ~ campaign[193] - returning 7 leads
+16:31:12,500 INFO  ~ campaign[193] - Finished fetching leads from static list listForTesting
+16:31:12,500 INFO  ~ campaign[193] - Running outbound campaign for campaign 这是一个市场营销信息
+16:31:12,500 DEBUG ~ campaign[193] - payload is 这是一个市场营销信息
+16:31:12,500 DEBUG ~ Detected a multibyte character in payload [这是一个市场营销信息]
+16:31:12,501 DEBUG ~ campaign[193] - payload is using multi-byte string = [true]
+16:31:12,501 DEBUG ~ campaign[193] - payload with footer is 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app.  Length [80] is less than max [80]
+16:31:12,501 DEBUG ~ campaign[193] - Sending message to +16506915076 : payload 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app
+16:31:12,501 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:31:12,512 DEBUG ~ Country code for country USA is US.  
+16:31:12,512 DEBUG ~ Trying to send message 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app to +16506915076.  
+16:31:14,059 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM98eeaaf0a6ff0d7a1f7f50c4a14fb72f
+16:31:14,060 DEBUG ~ campaign[193] - Requesting campaign LogOutboundSMS for lead with id 2
+16:31:14,060 DEBUG ~ campaign[193] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:31:14,921 DEBUG ~ campaign[193] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:31:16,169 INFO  ~ campaign[193] - Lead 2 added to campaign LogOutboundSMS
+16:31:16,169 DEBUG ~ campaign[193] - Request campaign LogOutboundSMS succeeded
+16:31:16,170 INFO  ~ campaign[193] - Not sending message to 6506915076 because lead has unsubscribed
+16:31:16,170 INFO  ~ campaign[193] - Not sending message to 6506915076 because lead has unsubscribed
+16:31:16,170 INFO  ~ campaign[193] - Not sending message to 6506915076 because lead has unsubscribed
+16:31:16,170 INFO  ~ campaign[193] - Not sending message to 6506915076 because lead has unsubscribed
+16:31:16,171 INFO  ~ campaign[193] - Not sending message to 6506915076 because lead has unsubscribed
+16:31:16,171 INFO  ~ campaign[193] - Not sending message to 6506915076 because lead has unsubscribed
+16:31:16,179 INFO  ~ campaign[193] - Finished running outbound campaign 这是一个市场营销信息
+16:31:29,956 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:31:32,077 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:31:32,077 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:31:32,090 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088487
+16:31:32,091 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:31:33,120 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:31:33,463 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:31:33,463 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:31:33,463 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:31:33,464 DEBUG ~ campaign[1] - Fetching lead with id:1088487
+16:31:33,471 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:31:34,475 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:31:36,281 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:31:36,282 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:31:36,282 DEBUG ~ Found keyword contains : stop,unsub
+16:31:36,282 DEBUG ~ Checking contains keyword : stop in payload Start
+16:31:36,283 DEBUG ~ Checking contains keyword : unsub in payload Start
+16:31:36,283 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:31:36,283 DEBUG ~ Found keyword contains : optin, start
+16:31:36,283 DEBUG ~ Checking contains keyword : optin in payload Start
+16:31:36,283 DEBUG ~ Checking contains keyword :  start in payload Start
+16:31:36,284 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:31:36,285 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:31:36,285 DEBUG ~ campaign[1] - Start Matched rule # 5:*
+16:31:36,285 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:31:36,286 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:31:36,286 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:31:36,286 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:31:36,287 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:31:36,300 DEBUG ~ Country code for country USA is US.  
+16:31:36,301 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:31:37,949 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SMbae436aa3a0274eab5e37494cb941f94
+16:31:37,949 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088487
+16:31:37,950 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:31:38,910 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:31:39,256 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:31:39,256 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:32:56,973 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:32:56,973 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:32:56,974 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088487
+16:32:56,974 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:32:57,980 DEBUG ~ campaign[1] - calling requestCampaign prog:RajExportableProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:32:58,335 ERROR ~ campaign[1] - Exception occurred: 20136 - Program not found, caused by mktServiceExceptionInvalid programName: RajExportableProgram (20136)20136: [detail: null]
+16:32:58,336 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:32:58,336 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:32:58,336 DEBUG ~ campaign[1] - Fetching lead with id:1088487
+16:32:58,337 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:32:59,281 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:33:01,118 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:33:01,118 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:33:07,375 DEBUG ~ Found keyword contains : stop,unsub
+16:33:14,655 DEBUG ~ Checking contains keyword : stop in payload Start
+16:33:16,751 DEBUG ~ Checking contains keyword : unsub in payload Start
+16:33:22,720 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:33:25,614 DEBUG ~ Found keyword contains : optin, start
+16:35:16,481 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:35:16,957 WARN  ~ You're running Play! in DEV mode
+16:35:17,024 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:35:25,876 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+16:35:26,100 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:35:26,677 INFO  ~ Application '2waySMS' is now started !
+16:35:26,786 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+16:35:27,596 DEBUG ~ campaign[null] - outRule[0] 这是一个市场营销信息
+16:35:27,597 DEBUG ~ campaign[null] - inRule[1] contains(stop,unsub)
+16:35:27,597 DEBUG ~ campaign[null] - outRule[1] operational(we have unsubscribed you)
+16:35:27,597 DEBUG ~ campaign[null] - inRule[2] contains(Optin, Start, optin, start)
+16:35:27,597 DEBUG ~ campaign[null] - outRule[2] you are now subscribed
+16:35:27,597 DEBUG ~ campaign[null] - inRule[3] matches(votes for 1)
+16:35:27,597 DEBUG ~ campaign[null] - outRule[3] you voted for choice 1
+16:35:27,597 DEBUG ~ campaign[null] - inRule[4] *
+16:35:27,597 DEBUG ~ campaign[null] - outRule[4] this is a default mesg
+16:35:27,597 INFO  ~ campaign[null] - parsed 5 rules.  accepted 5
+16:35:27,599 DEBUG ~ campaign[null] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:35:28,941 DEBUG ~ campaign[null] - calling sync lead on lead with phone number +1smstesting
+16:35:33,696 DEBUG ~ campaign[1] has been saved
+16:35:33,697 DEBUG ~ campaign[1] - callback URL is http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=1
+16:35:35,055 DEBUG ~ Found number +16505675735
+16:35:35,055 INFO  ~ Found matching number +16505675735
+16:35:44,473 INFO  ~ Inbound msgs to number +16505675735 will be forwarded to http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=1
+16:35:44,474 INFO  ~ campaign[%d] - SMS application will now respond to inbound msgs
+16:35:44,479 INFO  ~ campaign[1] - Kicking off background task to fetch lead list
+16:35:46,527 INFO  ~ campaign[1] - Fetching leads from static list listForTesting
+16:35:46,527 INFO  ~ campaign[1] - trying to fetch leads from list listForTesting
+16:35:46,535 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:35:47,993 DEBUG ~ campaign[1] - get multiple leads from list :listForTesting
+16:35:50,020 DEBUG ~ processing lead with id : 2
+16:35:50,020 DEBUG ~ lead with id : 2 has phone number +16506915076
+16:35:50,021 DEBUG ~ lead with id : 2 has country USA
+16:35:50,021 DEBUG ~ lead with id : 2 has sms unsubscribed set to false
+16:35:50,028 DEBUG ~ processing lead with id : 7
+16:35:50,028 DEBUG ~ lead with id : 7 has phone number 6506915076
+16:35:50,028 DEBUG ~ lead with id : 7 has country USA
+16:35:50,029 DEBUG ~ lead with id : 7 has sms unsubscribed set to true
+16:35:50,031 DEBUG ~ processing lead with id : 8
+16:35:50,031 DEBUG ~ lead with id : 8 has phone number 6506915076
+16:35:50,031 DEBUG ~ lead with id : 8 has country USA
+16:35:50,031 DEBUG ~ lead with id : 8 has sms unsubscribed set to true
+16:35:50,034 DEBUG ~ processing lead with id : 9
+16:35:50,034 DEBUG ~ lead with id : 9 has phone number 6506915076
+16:35:50,034 DEBUG ~ lead with id : 9 has country MEXICO
+16:35:50,035 DEBUG ~ lead with id : 9 has sms unsubscribed set to true
+16:35:50,037 DEBUG ~ processing lead with id : 10
+16:35:50,038 DEBUG ~ lead with id : 10 has phone number 6506915076
+16:35:50,038 DEBUG ~ lead with id : 10 has country MEXICO
+16:35:50,038 DEBUG ~ lead with id : 10 has sms unsubscribed set to true
+16:35:50,040 DEBUG ~ processing lead with id : 11
+16:35:50,041 DEBUG ~ lead with id : 11 has phone number 6506915076
+16:35:50,041 DEBUG ~ lead with id : 11 has country Canada
+16:35:50,041 DEBUG ~ lead with id : 11 has sms unsubscribed set to true
+16:35:50,043 DEBUG ~ processing lead with id : 35
+16:35:50,044 DEBUG ~ lead with id : 35 has phone number 6506915076
+16:35:50,044 DEBUG ~ lead with id : 35 has country Canada
+16:35:50,044 DEBUG ~ lead with id : 35 has sms unsubscribed set to true
+16:35:50,046 DEBUG ~ campaign[1] - retrieved and parsed 7 leads
+16:35:50,047 DEBUG ~ campaign[1] - get multiple leads from list :listForTesting
+16:35:50,516 DEBUG ~ campaign[1] - retrieved and parsed 0 leads
+16:35:50,516 DEBUG ~ campaign[1] - returning 7 leads
+16:35:50,516 INFO  ~ campaign[1] - Finished fetching leads from static list listForTesting
+16:35:50,516 INFO  ~ campaign[1] - Running outbound campaign for campaign 这是一个市场营销信息
+16:35:50,516 DEBUG ~ campaign[1] - payload is 这是一个市场营销信息
+16:35:50,517 DEBUG ~ Detected a multibyte character in payload [这是一个市场营销信息]
+16:35:50,517 DEBUG ~ campaign[1] - payload is using multi-byte string = [true]
+16:35:50,517 DEBUG ~ campaign[1] - payload with footer is 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app.  Length [80] is less than max [80]
+16:35:50,517 DEBUG ~ campaign[1] - Sending message to +16506915076 : payload 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app
+16:35:50,517 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:35:50,536 DEBUG ~ Country code for country USA is US.  
+16:35:50,546 DEBUG ~ Trying to send message 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app to +16506915076.  
+16:35:52,502 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM7d28558ca159c3d84df8c0947201bafc
+16:35:52,503 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 2
+16:35:52,503 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:35:53,814 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:35:55,881 INFO  ~ campaign[1] - Lead 2 added to campaign LogOutboundSMS
+16:35:55,882 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:35:55,882 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+16:35:55,882 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+16:35:55,882 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+16:35:55,883 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+16:35:55,883 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+16:35:55,883 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+16:35:55,905 INFO  ~ campaign[1] - Finished running outbound campaign 这是一个市场营销信息
+16:35:58,975 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:35:58,975 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:35:58,978 DEBUG ~ campaign[1] - Did not find lead with phone number *6506915076
+16:35:58,978 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:36:00,502 DEBUG ~ campaign[1] - calling sync lead on lead with phone number *6506915076
+16:36:12,547 DEBUG ~ campaign[1] - created new lead with lead id: 1088490 and country: USA
+16:36:12,548 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+16:36:12,549 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:36:14,150 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:36:15,505 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+16:36:15,505 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:36:15,505 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:36:15,506 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+16:36:15,514 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:36:17,109 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:36:19,026 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:36:19,026 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:36:21,986 DEBUG ~ Found keyword contains : stop,unsub
+16:36:27,586 DEBUG ~ Checking contains keyword : stop in payload Start
+16:36:29,074 DEBUG ~ Checking contains keyword : unsub in payload Start
+16:36:32,163 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:36:38,465 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+16:36:40,737 DEBUG ~ Checking contains keyword : Optin in payload Start
+16:36:43,409 DEBUG ~ Checking contains keyword :  Start in payload Start
+16:36:45,953 DEBUG ~ Checking contains keyword :  optin in payload Start
+16:36:49,585 DEBUG ~ Checking contains keyword :  start in payload Start
+16:37:30,509 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:37:30,510 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:37:30,510 DEBUG ~ campaign[1] - Start Matched rule # 5:*
+16:37:30,510 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:37:30,512 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:37:30,512 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:37:30,513 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:37:30,514 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:37:30,525 DEBUG ~ Country code for country USA is US.  
+16:37:30,525 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:37:32,719 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM57f3d9aa436f227f6fce4833fc3c99f1
+16:37:32,720 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+16:37:32,720 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:37:34,174 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:37:35,473 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+16:37:35,474 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:37:52,298 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:37:52,298 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:37:52,300 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+16:37:52,300 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:37:53,457 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:37:54,731 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+16:37:54,731 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:37:54,732 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:37:54,732 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+16:37:54,732 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:37:55,927 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:37:57,905 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:37:57,905 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:38:03,421 DEBUG ~ Found keyword contains : stop,unsub
+16:38:05,324 DEBUG ~ Checking contains keyword : stop in payload Start
+16:38:06,572 DEBUG ~ Checking contains keyword : unsub in payload Start
+16:38:08,590 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:38:13,501 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+16:38:17,150 DEBUG ~ Checking contains keyword : Optin in payload Start
+16:38:27,067 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:38:27,068 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:38:27,070 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+16:38:27,097 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:38:29,287 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:38:31,207 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:38:31,208 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:38:32,954 DEBUG ~ Found keyword contains : stop,unsub
+16:38:34,329 DEBUG ~ Checking contains keyword : stop in payload Start
+16:38:35,578 DEBUG ~ Checking contains keyword : unsub in payload Start
+16:38:37,963 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:38:39,898 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+16:38:42,137 DEBUG ~ Checking contains keyword : Optin in payload Start
+16:38:46,232 DEBUG ~ Checking contains keyword :  Start in payload Start
+16:38:46,232 DEBUG ~ Checking contains keyword :  optin in payload Start
+16:38:46,232 DEBUG ~ Checking contains keyword :  start in payload Start
+16:38:46,232 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:38:46,233 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:38:46,233 DEBUG ~ campaign[1] - Start Matched rule # 5:*
+16:38:46,233 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:38:46,233 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:38:46,234 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:38:46,234 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:38:46,235 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:38:46,247 DEBUG ~ Country code for country USA is US.  
+16:38:46,247 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:38:47,708 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SMcc4f0373599798c92d8e2f0f3d7a97b5
+16:38:47,708 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+16:38:47,708 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:38:48,571 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:38:49,705 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+16:38:49,705 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:38:50,499 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:38:52,634 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:38:52,634 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:38:52,638 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+16:38:52,639 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:38:53,786 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:38:55,006 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+16:38:55,007 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:38:55,007 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:38:55,007 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+16:38:55,016 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:38:55,890 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:38:57,786 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:38:57,787 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:39:02,417 DEBUG ~ Found keyword contains : stop,unsub
+16:39:05,449 DEBUG ~ Checking contains keyword :stop: in payload :Start:
+16:39:07,481 DEBUG ~ Checking contains keyword :unsub: in payload :Start:
+16:39:09,625 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:39:11,013 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+16:39:14,280 DEBUG ~ Checking contains keyword :Optin: in payload :Start:
+16:39:20,423 DEBUG ~ Checking contains keyword : Start: in payload :Start:
+16:40:46,210 DEBUG ~ Checking contains keyword : optin: in payload :Start:
+16:40:49,105 DEBUG ~ Checking contains keyword : start: in payload :Start:
+16:41:13,534 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:41:13,536 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:41:13,536 DEBUG ~ campaign[1] - start Matched rule # 5:*
+16:41:13,536 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:41:13,537 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:41:13,537 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:41:13,538 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:41:13,555 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:41:13,562 DEBUG ~ Country code for country USA is US.  
+16:41:13,562 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:41:14,986 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM1ef2bd26b3b0415a5ccafea7d86aaf39
+16:41:14,986 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+16:41:14,987 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:41:15,899 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:41:17,065 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+16:41:17,065 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:41:25,889 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:41:25,889 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:41:25,889 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+16:41:25,890 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:41:26,839 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:41:28,024 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+16:41:28,024 INFO  ~ campaign[1] - Parsing message votes for 1 from phoneNumber *6506915076
+16:41:28,025 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:41:28,025 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:41:32,463 DEBUG ~ Found keyword contains : stop,unsub
+16:41:34,511 DEBUG ~ Checking contains keyword :stop: in payload :votes for 1:
+16:41:35,631 DEBUG ~ Checking contains keyword :unsub: in payload :votes for 1:
+16:41:39,023 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:41:41,182 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+16:41:42,414 DEBUG ~ Checking contains keyword :Optin: in payload :votes for 1:
+16:41:43,902 DEBUG ~ Checking contains keyword : Start: in payload :votes for 1:
+16:41:45,566 DEBUG ~ Checking contains keyword : optin: in payload :votes for 1:
+16:41:46,653 DEBUG ~ Checking contains keyword : start: in payload :votes for 1:
+16:41:48,703 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:42:02,381 DEBUG ~ campaign[1] - votes for 1 Matched rule # 4:matches(votes for 1)
+16:42:03,998 DEBUG ~ campaign[1] - payload is you voted for choice 1
+16:42:04,000 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:42:04,002 DEBUG ~ campaign[1] - payload with footer is you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:42:04,004 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:42:04,005 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:42:04,030 DEBUG ~ Country code for country USA is US.  
+16:42:04,032 DEBUG ~ Trying to send message you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:42:05,665 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM51a2fe08fcac4a930074b1226c76a823
+16:42:05,665 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+16:42:05,666 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:42:07,878 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:42:09,122 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+16:42:09,124 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:44:14,089 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:44:14,089 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:44:14,091 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+16:44:14,091 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:44:15,098 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:44:16,313 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+16:44:16,314 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:44:16,314 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:44:16,314 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+16:44:16,316 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:44:17,272 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:44:19,184 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:44:19,184 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:44:19,184 DEBUG ~ Found keyword contains : stop,unsub
+16:44:19,184 DEBUG ~ Checking contains keyword :stop: in payload :Start:
+16:44:19,184 DEBUG ~ Checking contains keyword :unsub: in payload :Start:
+16:44:19,185 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:44:19,185 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+16:44:19,185 DEBUG ~ Checking contains keyword :Optin: in payload :Start:
+16:44:19,185 DEBUG ~ Checking contains keyword : Start: in payload :Start:
+16:44:19,185 DEBUG ~ Checking contains keyword : optin: in payload :Start:
+16:44:19,185 DEBUG ~ Checking contains keyword : start: in payload :Start:
+16:44:19,186 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:44:19,186 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:44:19,186 DEBUG ~ campaign[1] - Start Matched rule # 5:*
+16:44:19,186 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:44:19,187 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:44:19,187 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:44:19,187 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:44:19,187 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:44:19,199 DEBUG ~ Country code for country USA is US.  
+16:44:19,200 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:44:20,429 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SMfd785bea2eb937ea805a4a50942bfbcc
+16:44:20,430 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+16:44:20,431 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:44:21,294 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:44:22,546 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+16:44:22,546 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:44:37,849 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:44:38,325 WARN  ~ You're running Play! in DEV mode
+16:44:38,391 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:44:45,547 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+16:44:45,759 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:44:46,310 INFO  ~ Application '2waySMS' is now started !
+16:44:48,527 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:44:48,528 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:44:48,642 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+16:44:48,644 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:44:50,001 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:44:51,133 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+16:44:51,133 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:44:51,134 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:44:51,134 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+16:44:51,149 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:44:52,025 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:44:53,838 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:44:53,839 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:44:57,184 DEBUG ~ Found keyword contains : stop,unsub
+16:44:57,185 DEBUG ~ Checking contains keyword :stop: in payload :Start:
+16:44:57,185 DEBUG ~ Checking contains keyword :unsub: in payload :Start:
+16:44:57,185 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:45:00,865 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+16:45:02,881 DEBUG ~ Checking contains keyword :Optin: in payload :Start:
+16:45:05,713 DEBUG ~ Checking contains keyword : Start: in payload :Start:
+16:45:09,557 DEBUG ~ Checking contains keyword : optin: in payload :Start:
+16:45:33,073 DEBUG ~ Checking contains keyword : start: in payload :Start:
+16:45:33,074 DEBUG ~ campaign[1] - Evaluating rule # : 3
+16:45:33,076 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:45:33,076 DEBUG ~ campaign[1] - Start Matched rule # 5:*
+16:45:33,076 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:45:33,077 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:45:33,077 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:45:33,078 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:45:33,104 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:45:33,174 DEBUG ~ Country code for country USA is US.  
+16:45:33,180 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:45:34,675 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM2a55a51d1c185580da453728a6992b8d
+16:45:34,675 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+16:45:34,675 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:45:35,536 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:45:36,775 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+16:45:36,775 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:45:59,206 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:46:01,630 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+16:46:01,630 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+16:46:01,636 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+16:46:01,637 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:46:02,642 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+16:46:06,311 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+16:46:06,311 INFO  ~ campaign[1] - Parsing message Start from phoneNumber *6506915076
+16:46:06,311 INFO  ~ campaign[1] - lead *6506915076 subscribed with message Start
+16:46:06,312 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+16:46:06,326 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:46:07,312 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+16:46:09,086 DEBUG ~ campaign[1] - Evaluating rule # : 0
+16:46:09,086 DEBUG ~ campaign[1] - Evaluating rule # : 1
+16:46:17,275 DEBUG ~ Found keyword contains : stop,unsub
+16:46:17,275 DEBUG ~ Checking contains keyword :stop: in payload :Start:
+16:46:17,276 DEBUG ~ Checking contains keyword :unsub: in payload :Start:
+16:46:17,276 DEBUG ~ campaign[1] - Evaluating rule # : 2
+16:46:18,155 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+16:46:18,155 DEBUG ~ Checking contains keyword :Optin: in payload :Start:
+16:46:18,155 DEBUG ~ Checking contains keyword :Start: in payload :Start:
+16:46:18,155 DEBUG ~ campaign[1] - Start Matched rule # 3:contains(Optin, Start, optin, start)
+16:46:18,156 DEBUG ~ campaign[1] - payload is you are now subscribed
+16:46:18,158 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:46:18,158 DEBUG ~ campaign[1] - payload with footer is you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:46:18,158 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:46:18,178 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:46:18,192 DEBUG ~ Country code for country USA is US.  
+16:46:18,192 DEBUG ~ Trying to send message you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:46:19,533 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SMab30aa2a14563d5b1b929780d3a62c67
+16:46:19,534 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+16:46:19,534 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:46:20,508 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:46:21,630 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+16:46:21,630 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+16:46:21,643 DEBUG ~ campaign[1] - Evaluating rule # : 4
+16:46:21,643 DEBUG ~ campaign[1] - Evaluating rule # : 5
+16:46:21,643 DEBUG ~ campaign[1] - Start Matched rule # 6:*
+16:46:21,644 DEBUG ~ campaign[1] - payload is this is a default mesg
+16:46:21,644 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+16:46:21,644 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+16:46:21,644 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+16:46:21,645 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+16:46:21,654 DEBUG ~ Country code for country USA is US.  
+16:46:21,655 DEBUG ~ Trying to send message this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+16:46:22,851 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM9f50dcdcdd1585a4762643756a19d667
+16:46:22,852 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+16:46:22,852 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:46:23,735 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+16:46:24,905 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+16:46:24,905 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:28:06,702 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:28:07,208 WARN  ~ You're running Play! in DEV mode
+11:28:07,276 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:28:25,630 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:28:25,875 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:28:26,417 INFO  ~ Application '2waySMS' is now started !
+11:28:26,522 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+11:28:27,708 DEBUG ~ campaign[null] - outRule[0] 这是一个市场营销信息
+11:28:27,708 DEBUG ~ campaign[null] - inRule[1] contains(stop,unsub)
+11:28:27,708 DEBUG ~ campaign[null] - outRule[1] mktUnsubscribe::operational(we have unsubscribed you)
+11:28:27,708 DEBUG ~ campaign[null] - inRule[2] contains(Optin, Start, optin, start)
+11:28:27,708 DEBUG ~ campaign[null] - outRule[2] you are now subscribed
+11:28:27,708 DEBUG ~ campaign[null] - inRule[3] matches(votes for 1)
+11:28:27,709 DEBUG ~ campaign[null] - outRule[3] you voted for choice 1
+11:28:27,709 DEBUG ~ campaign[null] - inRule[4] *
+11:28:27,709 DEBUG ~ campaign[null] - outRule[4] this is a default mesg
+11:28:27,709 INFO  ~ campaign[null] - parsed 5 rules.  accepted 5
+11:28:27,711 DEBUG ~ campaign[null] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:28:29,380 DEBUG ~ campaign[null] - calling sync lead on lead with phone number +1smstesting
+11:28:36,047 DEBUG ~ campaign[1] has been saved
+11:28:36,048 DEBUG ~ campaign[1] - callback URL is http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=1
+11:28:37,857 DEBUG ~ Found number +16505675735
+11:28:37,858 INFO  ~ Found matching number +16505675735
+11:28:39,668 INFO  ~ Inbound msgs to number +16505675735 will be forwarded to http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=1
+11:28:39,668 INFO  ~ campaign[%d] - SMS application will now respond to inbound msgs
+11:28:39,673 INFO  ~ campaign[1] - Kicking off background task to fetch lead list
+11:28:41,715 INFO  ~ campaign[1] - Fetching leads from static list listForTesting
+11:28:41,716 INFO  ~ campaign[1] - trying to fetch leads from list listForTesting
+11:28:41,724 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:28:42,853 DEBUG ~ campaign[1] - get multiple leads from list :listForTesting
+11:28:45,421 DEBUG ~ processing lead with id : 2
+11:28:45,422 DEBUG ~ lead with id : 2 has phone number +16506915076
+11:28:45,422 DEBUG ~ lead with id : 2 has country USA
+11:28:45,423 DEBUG ~ lead with id : 2 has sms unsubscribed set to false
+11:28:45,429 DEBUG ~ processing lead with id : 7
+11:28:45,429 DEBUG ~ lead with id : 7 has phone number 6506915076
+11:28:45,429 DEBUG ~ lead with id : 7 has country USA
+11:28:45,429 DEBUG ~ lead with id : 7 has sms unsubscribed set to true
+11:28:45,431 DEBUG ~ processing lead with id : 8
+11:28:45,431 DEBUG ~ lead with id : 8 has phone number 6506915076
+11:28:45,431 DEBUG ~ lead with id : 8 has country USA
+11:28:45,432 DEBUG ~ lead with id : 8 has sms unsubscribed set to true
+11:28:45,433 DEBUG ~ processing lead with id : 9
+11:28:45,433 DEBUG ~ lead with id : 9 has phone number 6506915076
+11:28:45,434 DEBUG ~ lead with id : 9 has country MEXICO
+11:28:45,435 DEBUG ~ lead with id : 9 has sms unsubscribed set to true
+11:28:45,436 DEBUG ~ processing lead with id : 10
+11:28:45,436 DEBUG ~ lead with id : 10 has phone number 6506915076
+11:28:45,437 DEBUG ~ lead with id : 10 has country MEXICO
+11:28:45,437 DEBUG ~ lead with id : 10 has sms unsubscribed set to true
+11:28:45,438 DEBUG ~ processing lead with id : 11
+11:28:45,439 DEBUG ~ lead with id : 11 has phone number 6506915076
+11:28:45,439 DEBUG ~ lead with id : 11 has country Canada
+11:28:45,439 DEBUG ~ lead with id : 11 has sms unsubscribed set to true
+11:28:45,441 DEBUG ~ processing lead with id : 35
+11:28:45,441 DEBUG ~ lead with id : 35 has phone number 6506915076
+11:28:45,441 DEBUG ~ lead with id : 35 has country Canada
+11:28:45,441 DEBUG ~ lead with id : 35 has sms unsubscribed set to true
+11:28:45,443 DEBUG ~ processing lead with id : 1088490
+11:28:45,443 DEBUG ~ lead with id : 1088490 has phone number *6506915076
+11:28:45,444 DEBUG ~ lead with id : 1088490 does not have country.  Using USA
+11:28:45,444 DEBUG ~ lead with id : 1088490 has sms unsubscribed set to false
+11:28:45,446 DEBUG ~ campaign[1] - retrieved and parsed 8 leads
+11:28:45,446 DEBUG ~ campaign[1] - get multiple leads from list :listForTesting
+11:28:45,777 DEBUG ~ campaign[1] - retrieved and parsed 0 leads
+11:28:45,778 DEBUG ~ campaign[1] - returning 8 leads
+11:28:45,778 INFO  ~ campaign[1] - Finished fetching leads from static list listForTesting
+11:28:45,779 INFO  ~ campaign[1] - Running outbound campaign for campaign 这是一个市场营销信息
+11:28:45,779 DEBUG ~ campaign[1] - payload is 这是一个市场营销信息
+11:28:45,780 DEBUG ~ Detected a multibyte character in payload [这是一个市场营销信息]
+11:28:45,780 DEBUG ~ campaign[1] - payload is using multi-byte string = [true]
+11:28:45,780 DEBUG ~ campaign[1] - payload with footer is 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app.  Length [80] is less than max [80]
+11:28:45,780 DEBUG ~ campaign[1] - Sending message to +16506915076 : payload 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app
+11:28:45,781 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:28:45,799 DEBUG ~ Country code for country USA is US.  
+11:28:45,805 DEBUG ~ Trying to send message 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app to +16506915076.  
+11:28:52,146 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM8e88b860964d557a5df6d8403b6c420d
+11:28:52,146 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 2
+11:28:52,147 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:28:53,659 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:28:55,260 INFO  ~ campaign[1] - Lead 2 added to campaign LogOutboundSMS
+11:28:55,260 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:28:55,261 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:28:55,261 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:28:55,261 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:28:55,261 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:28:55,261 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:28:55,262 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:28:55,263 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app
+11:28:55,263 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:28:55,274 DEBUG ~ Country code for country USA is US.  
+11:28:55,274 DEBUG ~ Trying to send message 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app to +16506915076.  
+11:28:58,982 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM4f0eb30dfef54777655d6309e608e8ae
+11:28:58,982 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+11:28:58,983 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:28:59,937 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:29:01,093 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *16506915076
+11:29:01,093 DEBUG ~ campaign[1] - Looking up lead with phone number *16506915076
+11:29:01,288 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+11:29:01,288 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:29:01,302 INFO  ~ campaign[1] - Finished running outbound campaign 这是一个市场营销信息
+11:29:01,306 DEBUG ~ campaign[1] - Did not find lead with phone number *16506915076
+11:29:01,307 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:29:02,364 DEBUG ~ campaign[1] - calling sync lead on lead with phone number *16506915076
+11:29:05,688 DEBUG ~ campaign[1] - created new lead with lead id: 1088493 and country: USA
+11:29:05,688 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088493
+11:29:05,688 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:29:07,610 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:29:09,444 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogInboundSMS
+11:29:09,444 INFO  ~ campaign[1] - Parsing message stop from phoneNumber *16506915076
+11:29:09,445 INFO  ~ campaign[1] - lead *16506915076 unsubscribed with message stop
+11:29:09,445 DEBUG ~ campaign[1] - Fetching lead with id:1088493
+11:29:09,455 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:29:11,385 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:29:14,371 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:29:14,372 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:29:14,372 DEBUG ~ Found keyword contains : stop,unsub
+11:29:14,372 DEBUG ~ Checking contains keyword :stop: in payload :stop:
+11:29:14,372 DEBUG ~ campaign[1] - stop Matched rule # 2:contains(stop,unsub)
+11:29:14,373 DEBUG ~ campaign[1] - payload is mktUnsubscribe::operational(we have unsubscribed you)
+11:29:14,373 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:29:14,373 DEBUG ~ campaign[1] - payload with footer is mktUnsubscribe::operational(we have unsubscribed you)Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [125] is less than max [160]
+11:29:14,373 DEBUG ~ campaign[1] - Unsubscribing user with phone *16506915076
+11:29:14,374 DEBUG ~ campaign[1] - Fetching lead with id:1088493
+11:29:14,376 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:29:16,558 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:29:18,776 INFO  ~ campaign[1] - Not sending message to *16506915076 because lead has unsubscribed
+11:29:18,776 DEBUG ~ campaign[1] - mktUnsubscribe::operational(we have unsubscribed you) is an operational rule
+11:29:18,777 DEBUG ~ campaign[1] - payload is we have unsubscribed you
+11:29:18,777 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:29:18,777 DEBUG ~ campaign[1] - payload with footer is we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [96] is less than max [160]
+11:29:18,777 DEBUG ~ campaign[1] - Unsubscribing user with phone *16506915076
+11:29:18,777 DEBUG ~ campaign[1] - Fetching lead with id:1088493
+11:29:18,780 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:29:20,511 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:29:22,756 DEBUG ~ campaign[1] - Sending message to *16506915076 : payload we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+11:29:22,756 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:29:22,769 DEBUG ~ Country code for country USA is US.  
+11:29:22,770 DEBUG ~ Trying to send message we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+11:29:26,812 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM80e9dc214f50500d5e43fb9bec352c7d
+11:29:26,812 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088493
+11:29:26,813 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:29:27,718 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:29:29,544 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogOutboundSMS
+11:29:29,545 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:29:29,556 DEBUG ~ campaign[1] - Evaluating rule # : 3
+11:29:29,557 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:29:29,557 DEBUG ~ Checking contains keyword :Optin: in payload :stop:
+11:29:29,557 DEBUG ~ Checking contains keyword :Start: in payload :stop:
+11:29:29,557 DEBUG ~ Checking contains keyword :optin: in payload :stop:
+11:29:29,557 DEBUG ~ Checking contains keyword :start: in payload :stop:
+11:29:29,558 DEBUG ~ campaign[1] - Evaluating rule # : 4
+11:29:29,558 DEBUG ~ campaign[1] - Evaluating rule # : 5
+11:29:29,558 DEBUG ~ campaign[1] - stop Matched rule # 6:*
+11:29:29,559 DEBUG ~ campaign[1] - payload is this is a default mesg
+11:29:29,559 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:29:29,559 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+11:29:29,560 INFO  ~ campaign[1] - Not sending message to *16506915076 because lead has unsubscribed
+11:30:51,732 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *16506915076
+11:30:51,732 DEBUG ~ campaign[1] - Looking up lead with phone number *16506915076
+11:30:51,734 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088493
+11:30:51,734 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:30:55,350 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:30:57,725 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogInboundSMS
+11:30:57,725 INFO  ~ campaign[1] - Parsing message stop from phoneNumber *16506915076
+11:30:57,725 INFO  ~ campaign[1] - lead *16506915076 unsubscribed with message stop
+11:30:57,726 DEBUG ~ campaign[1] - Fetching lead with id:1088493
+11:30:57,728 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:31:04,919 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:31:07,985 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:31:07,986 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:31:07,986 DEBUG ~ Found keyword contains : stop,unsub
+11:31:07,986 DEBUG ~ Checking contains keyword :stop: in payload :stop:
+11:31:07,986 DEBUG ~ campaign[1] - stop Matched rule # 2:contains(stop,unsub)
+11:31:07,987 DEBUG ~ campaign[1] - payload is mktUnsubscribe::operational(we have unsubscribed you)
+11:31:07,987 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:31:07,987 DEBUG ~ campaign[1] - payload with footer is mktUnsubscribe::operational(we have unsubscribed you)Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [125] is less than max [160]
+11:31:07,987 DEBUG ~ campaign[1] - Unsubscribing user with phone *16506915076
+11:31:07,988 DEBUG ~ campaign[1] - Fetching lead with id:1088493
+11:31:07,993 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:31:15,787 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:31:17,752 INFO  ~ campaign[1] - Not sending message to *16506915076 because lead has unsubscribed
+11:31:17,752 DEBUG ~ campaign[1] - mktUnsubscribe::operational(we have unsubscribed you) is an operational rule
+11:31:17,752 DEBUG ~ campaign[1] - payload is we have unsubscribed you
+11:31:17,752 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:31:17,753 DEBUG ~ campaign[1] - payload with footer is we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [96] is less than max [160]
+11:31:17,753 DEBUG ~ campaign[1] - Unsubscribing user with phone *16506915076
+11:31:17,753 DEBUG ~ campaign[1] - Fetching lead with id:1088493
+11:31:17,755 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:31:21,626 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:31:24,732 DEBUG ~ campaign[1] - Sending message to *16506915076 : payload we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+11:31:24,732 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:31:24,747 DEBUG ~ Country code for country USA is US.  
+11:31:24,748 DEBUG ~ Trying to send message we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+11:31:29,543 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SMc69289c5661c894937074866672a34ce
+11:31:29,543 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088493
+11:31:29,544 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:31:31,968 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:31:33,950 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogOutboundSMS
+11:31:33,950 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:31:33,961 DEBUG ~ campaign[1] - Evaluating rule # : 3
+11:31:33,961 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:31:33,961 DEBUG ~ Checking contains keyword :Optin: in payload :stop:
+11:31:33,961 DEBUG ~ Checking contains keyword :Start: in payload :stop:
+11:31:33,961 DEBUG ~ Checking contains keyword :optin: in payload :stop:
+11:31:33,962 DEBUG ~ Checking contains keyword :start: in payload :stop:
+11:31:33,962 DEBUG ~ campaign[1] - Evaluating rule # : 4
+11:31:33,962 DEBUG ~ campaign[1] - Evaluating rule # : 5
+11:31:33,963 DEBUG ~ campaign[1] - stop Matched rule # 6:*
+11:31:33,963 DEBUG ~ campaign[1] - payload is this is a default mesg
+11:31:33,963 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:31:33,963 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+11:31:33,964 INFO  ~ campaign[1] - Not sending message to *16506915076 because lead has unsubscribed
+11:33:09,721 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:33:11,843 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *16506915076
+11:33:11,843 DEBUG ~ campaign[1] - Looking up lead with phone number *16506915076
+11:33:11,848 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088493
+11:33:11,849 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:33:13,065 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:33:14,280 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogInboundSMS
+11:33:14,280 INFO  ~ campaign[1] - Parsing message stop from phoneNumber *16506915076
+11:33:14,281 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:33:14,281 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:33:14,282 DEBUG ~ Found keyword contains : stop,unsub
+11:33:14,282 DEBUG ~ Checking contains keyword :stop: in payload :stop:
+11:33:14,282 DEBUG ~ campaign[1] - stop Matched rule # 2:contains(stop,unsub)
+11:33:14,283 DEBUG ~ campaign[1] - will unsubscribe user
+11:33:14,283 DEBUG ~ campaign[1] - payload is mktUnsubscribe::operational(we have unsubscribed you)
+11:33:14,283 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:33:14,284 DEBUG ~ campaign[1] - payload with footer is mktUnsubscribe::operational(we have unsubscribed you)Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [125] is less than max [160]
+11:33:14,284 DEBUG ~ campaign[1] - mktUnsubscribe::operational(we have unsubscribed you) is an operational rule
+11:33:14,284 DEBUG ~ campaign[1] - payload is we have unsubscribed you
+11:33:14,284 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:33:14,285 DEBUG ~ campaign[1] - payload with footer is we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [96] is less than max [160]
+11:33:14,285 DEBUG ~ campaign[1] - Unsubscribing user with phone *16506915076
+11:33:14,285 DEBUG ~ campaign[1] - Fetching lead with id:1088493
+11:33:14,293 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:33:15,680 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:33:17,650 DEBUG ~ campaign[1] - Sending message to *16506915076 : payload we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+11:33:17,651 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:33:17,664 DEBUG ~ Country code for country USA is US.  
+11:33:17,665 DEBUG ~ Trying to send message we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+11:33:20,667 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM93bdef3aed8c63e25ec9d90e010c6d63
+11:33:20,667 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088493
+11:33:20,667 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:33:22,061 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:33:23,762 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogOutboundSMS
+11:33:23,762 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:33:23,770 DEBUG ~ campaign[1] - Evaluating rule # : 3
+11:33:23,771 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:33:23,771 DEBUG ~ Checking contains keyword :Optin: in payload :stop:
+11:33:23,771 DEBUG ~ Checking contains keyword :Start: in payload :stop:
+11:33:23,772 DEBUG ~ Checking contains keyword :optin: in payload :stop:
+11:33:23,772 DEBUG ~ Checking contains keyword :start: in payload :stop:
+11:33:23,773 DEBUG ~ campaign[1] - Evaluating rule # : 4
+11:33:23,773 DEBUG ~ campaign[1] - Evaluating rule # : 5
+11:33:23,774 DEBUG ~ campaign[1] - stop Matched rule # 6:*
+11:33:23,774 DEBUG ~ campaign[1] - payload is this is a default mesg
+11:33:23,774 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:33:23,774 DEBUG ~ campaign[1] - payload with footer is this is a default mesgReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+11:33:23,775 INFO  ~ campaign[1] - Not sending message to *16506915076 because lead has unsubscribed
+11:36:33,965 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *16506915076
+11:36:33,965 DEBUG ~ campaign[1] - Looking up lead with phone number *16506915076
+11:36:33,966 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088493
+11:36:33,966 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:36:35,637 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:36:37,300 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogInboundSMS
+11:36:37,300 INFO  ~ campaign[1] - Parsing message stop from phoneNumber *16506915076
+11:36:37,301 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:36:37,301 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:36:37,301 DEBUG ~ Found keyword contains : stop,unsub
+11:36:37,302 DEBUG ~ Checking contains keyword :stop: in payload :stop:
+11:36:37,302 DEBUG ~ campaign[1] - stop Matched rule # 2:contains(stop,unsub)
+11:36:37,302 DEBUG ~ campaign[1] - will unsubscribe user
+11:36:37,302 DEBUG ~ campaign[1] - payload is mktUnsubscribe::operational(we have unsubscribed you)
+11:36:37,303 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:36:37,303 DEBUG ~ campaign[1] - payload with footer is mktUnsubscribe::operational(we have unsubscribed you)Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [125] is less than max [160]
+11:36:37,303 DEBUG ~ campaign[1] - mktUnsubscribe::operational(we have unsubscribed you) is an operational rule
+11:36:37,303 DEBUG ~ campaign[1] - payload is we have unsubscribed you
+11:36:37,303 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:36:37,304 DEBUG ~ campaign[1] - payload with footer is we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [96] is less than max [160]
+11:36:37,304 DEBUG ~ campaign[1] - Unsubscribing user with phone *16506915076
+11:36:37,304 DEBUG ~ campaign[1] - Fetching lead with id:1088493
+11:36:37,306 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:36:38,866 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:36:40,868 DEBUG ~ campaign[1] - Sending message to *16506915076 : payload we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+11:36:40,868 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:36:40,894 DEBUG ~ Country code for country USA is US.  
+11:36:40,895 DEBUG ~ Trying to send message we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+11:36:44,180 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM442d288076c53541d42c5e4a855c03ac
+11:36:44,181 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088493
+11:36:44,181 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:36:45,382 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:36:46,714 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogOutboundSMS
+11:36:46,714 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:37:44,888 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *16506915076
+11:37:44,888 DEBUG ~ campaign[1] - Looking up lead with phone number *16506915076
+11:37:44,889 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088493
+11:37:44,889 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:37:45,630 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:37:47,030 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogInboundSMS
+11:37:47,030 INFO  ~ campaign[1] - Parsing message optin from phoneNumber *16506915076
+11:37:47,030 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:37:47,030 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:37:47,030 DEBUG ~ Found keyword contains : stop,unsub
+11:37:47,030 DEBUG ~ Checking contains keyword :stop: in payload :optin:
+11:37:47,030 DEBUG ~ Checking contains keyword :unsub: in payload :optin:
+11:37:47,030 DEBUG ~ campaign[1] - Evaluating rule # : 2
+11:37:47,031 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:37:47,031 DEBUG ~ Checking contains keyword :Optin: in payload :optin:
+11:37:47,031 DEBUG ~ Checking contains keyword :Start: in payload :optin:
+11:37:47,031 DEBUG ~ Checking contains keyword :optin: in payload :optin:
+11:37:47,031 DEBUG ~ campaign[1] - optin Matched rule # 3:contains(Optin, Start, optin, start)
+11:37:47,031 DEBUG ~ campaign[1] - payload is you are now subscribed
+11:37:47,031 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:37:47,031 DEBUG ~ campaign[1] - payload with footer is you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+11:37:47,032 INFO  ~ campaign[1] - Not sending message to *16506915076 because lead has unsubscribed
+11:39:02,019 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *16506915076
+11:39:02,019 DEBUG ~ campaign[1] - Looking up lead with phone number *16506915076
+11:39:02,020 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088493
+11:39:02,020 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:39:03,144 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:39:04,531 INFO  ~ campaign[1] - Lead 1088493 added to campaign LogInboundSMS
+11:39:04,532 INFO  ~ campaign[1] - Parsing message optin from phoneNumber *16506915076
+11:39:04,532 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:39:04,532 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:39:04,533 DEBUG ~ Found keyword contains : stop,unsub
+11:39:04,533 DEBUG ~ Checking contains keyword :stop: in payload :optin:
+11:39:04,533 DEBUG ~ Checking contains keyword :unsub: in payload :optin:
+11:39:04,533 DEBUG ~ campaign[1] - Evaluating rule # : 2
+11:39:04,533 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:39:04,533 DEBUG ~ Checking contains keyword :Optin: in payload :optin:
+11:39:04,534 DEBUG ~ Checking contains keyword :Start: in payload :optin:
+11:39:04,534 DEBUG ~ Checking contains keyword :optin: in payload :optin:
+11:39:04,534 DEBUG ~ campaign[1] - optin Matched rule # 3:contains(Optin, Start, optin, start)
+11:39:04,534 DEBUG ~ campaign[1] - payload is you are now subscribed
+11:39:04,535 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:39:04,535 DEBUG ~ campaign[1] - payload with footer is you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+11:39:04,535 INFO  ~ campaign[1] - Not sending message to *16506915076 because lead has unsubscribed
+11:40:23,485 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:40:23,964 WARN  ~ You're running Play! in DEV mode
+11:40:24,031 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:40:28,727 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:40:28,937 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:40:29,459 INFO  ~ Application '2waySMS' is now started !
+11:40:29,565 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+11:40:31,423 DEBUG ~ campaign[null] - outRule[0] 这是一个市场营销信息
+11:40:31,424 DEBUG ~ campaign[null] - inRule[1] contains(stop,unsub)
+11:40:31,424 DEBUG ~ campaign[null] - outRule[1] mktUnsubscribe::operational(we have unsubscribed you)
+11:40:31,424 DEBUG ~ campaign[null] - inRule[2] contains(Optin, Start, optin, start)
+11:40:31,424 DEBUG ~ campaign[null] - outRule[2] mktSubscribe::you are now subscribed
+11:40:31,424 DEBUG ~ campaign[null] - inRule[3] matches(votes for 1)
+11:40:31,424 DEBUG ~ campaign[null] - outRule[3] you voted for choice 1
+11:40:31,424 DEBUG ~ campaign[null] - inRule[4] *
+11:40:31,424 DEBUG ~ campaign[null] - outRule[4] this is a default mesg
+11:40:31,425 INFO  ~ campaign[null] - parsed 5 rules.  accepted 5
+11:40:31,426 DEBUG ~ campaign[null] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:40:33,011 DEBUG ~ campaign[null] - calling sync lead on lead with phone number +1smstesting
+11:40:41,954 DEBUG ~ campaign[1] has been saved
+11:40:41,955 DEBUG ~ campaign[1] - callback URL is http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=1
+11:40:45,289 DEBUG ~ Found number +16505675735
+11:40:45,289 INFO  ~ Found matching number +16505675735
+11:40:47,208 INFO  ~ Inbound msgs to number +16505675735 will be forwarded to http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=1
+11:40:47,208 INFO  ~ campaign[%d] - SMS application will now respond to inbound msgs
+11:40:47,213 INFO  ~ campaign[1] - Kicking off background task to fetch lead list
+11:40:49,270 INFO  ~ campaign[1] - Fetching leads from static list listForTesting
+11:40:49,270 INFO  ~ campaign[1] - trying to fetch leads from list listForTesting
+11:40:49,270 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:40:49,297 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+11:40:49,297 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+11:40:49,301 DEBUG ~ campaign[1] - Did not find lead with phone number *6506915076
+11:40:49,302 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:40:50,634 DEBUG ~ campaign[1] - get multiple leads from list :listForTesting
+11:40:50,686 DEBUG ~ campaign[1] - calling sync lead on lead with phone number *6506915076
+11:40:53,163 DEBUG ~ processing lead with id : 2
+11:40:53,164 DEBUG ~ lead with id : 2 has phone number +16506915076
+11:40:53,164 DEBUG ~ lead with id : 2 has country USA
+11:40:53,164 DEBUG ~ lead with id : 2 has sms unsubscribed set to false
+11:40:53,170 DEBUG ~ processing lead with id : 7
+11:40:53,171 DEBUG ~ lead with id : 7 has phone number 6506915076
+11:40:53,171 DEBUG ~ lead with id : 7 has country USA
+11:40:53,171 DEBUG ~ lead with id : 7 has sms unsubscribed set to true
+11:40:53,173 DEBUG ~ processing lead with id : 8
+11:40:53,173 DEBUG ~ lead with id : 8 has phone number 6506915076
+11:40:53,173 DEBUG ~ lead with id : 8 has country USA
+11:40:53,173 DEBUG ~ lead with id : 8 has sms unsubscribed set to true
+11:40:53,175 DEBUG ~ processing lead with id : 9
+11:40:53,175 DEBUG ~ lead with id : 9 has phone number 6506915076
+11:40:53,175 DEBUG ~ lead with id : 9 has country MEXICO
+11:40:53,176 DEBUG ~ lead with id : 9 has sms unsubscribed set to true
+11:40:53,178 DEBUG ~ processing lead with id : 10
+11:40:53,178 DEBUG ~ lead with id : 10 has phone number 6506915076
+11:40:53,178 DEBUG ~ lead with id : 10 has country MEXICO
+11:40:53,179 DEBUG ~ lead with id : 10 has sms unsubscribed set to true
+11:40:53,180 DEBUG ~ processing lead with id : 11
+11:40:53,180 DEBUG ~ lead with id : 11 has phone number 6506915076
+11:40:53,181 DEBUG ~ lead with id : 11 has country Canada
+11:40:53,181 DEBUG ~ lead with id : 11 has sms unsubscribed set to true
+11:40:53,183 DEBUG ~ processing lead with id : 35
+11:40:53,183 DEBUG ~ lead with id : 35 has phone number 6506915076
+11:40:53,183 DEBUG ~ lead with id : 35 has country Canada
+11:40:53,183 DEBUG ~ lead with id : 35 has sms unsubscribed set to true
+11:40:53,185 DEBUG ~ processing lead with id : 1088490
+11:40:53,185 DEBUG ~ lead with id : 1088490 has phone number *6506915076
+11:40:53,186 DEBUG ~ lead with id : 1088490 does not have country.  Using USA
+11:40:53,186 DEBUG ~ lead with id : 1088490 has sms unsubscribed set to false
+11:40:53,188 DEBUG ~ processing lead with id : 1088493
+11:40:53,188 DEBUG ~ lead with id : 1088493 has phone number *16506915076
+11:40:53,188 DEBUG ~ lead with id : 1088493 does not have country.  Using USA
+11:40:53,189 DEBUG ~ lead with id : 1088493 has sms unsubscribed set to true
+11:40:53,191 DEBUG ~ campaign[1] - retrieved and parsed 9 leads
+11:40:53,191 DEBUG ~ campaign[1] - get multiple leads from list :listForTesting
+11:40:53,563 DEBUG ~ campaign[1] - retrieved and parsed 0 leads
+11:40:53,563 DEBUG ~ campaign[1] - returning 9 leads
+11:40:53,563 INFO  ~ campaign[1] - Finished fetching leads from static list listForTesting
+11:40:53,564 INFO  ~ campaign[1] - Running outbound campaign for campaign 这是一个市场营销信息
+11:40:53,564 DEBUG ~ campaign[1] - payload is 这是一个市场营销信息
+11:40:53,565 DEBUG ~ Detected a multibyte character in payload [这是一个市场营销信息]
+11:40:53,565 DEBUG ~ campaign[1] - payload is using multi-byte string = [true]
+11:40:53,565 DEBUG ~ campaign[1] - payload with footer is 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app.  Length [80] is less than max [80]
+11:40:53,566 DEBUG ~ campaign[1] - Sending message to +16506915076 : payload 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app
+11:40:53,566 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:40:53,595 DEBUG ~ Country code for country USA is US.  
+11:40:53,601 DEBUG ~ Trying to send message 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app to +16506915076.  
+11:40:55,790 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM6a172392fd9cc1b730d96fdf70cf5073
+11:40:55,790 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 2
+11:40:55,791 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:40:56,087 ERROR ~ Timeout trying to lock table "LEAD"; SQL statement:
+insert into Lead (id, country, email, leadId, munchkinId, phoneNumber, unsubscribed) values (null, ?, ?, ?, ?, ?, ?) [50200-166]
+11:40:56,094 ERROR ~ 
+
+@6e6766le9
+Error during job execution (jobs.ProcessInboundMessage)
+
+Execution exception (In /app/jobs/ProcessInboundMessage.java around line 63)
+PersistenceException occured : org.hibernate.exception.GenericJDBCException: could not insert: [models.Lead]
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.GenericJDBCException: could not insert: [models.Lead]
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.GenericJDBCException: could not insert: [models.Lead]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1389)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1317)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1323)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:845)
+	at play.db.jpa.JPABase._save(JPABase.java:31)
+	at play.db.jpa.GenericModel.save(GenericModel.java:204)
+	at jobs.ProcessInboundMessage.doJob(ProcessInboundMessage.java:63)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+Caused by: org.hibernate.exception.GenericJDBCException: could not insert: [models.Lead]
+	at org.hibernate.exception.SQLStateConverter.handledNonSpecificException(SQLStateConverter.java:140)
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:128)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:63)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2346)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2853)
+	at org.hibernate.action.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:71)
+	at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:273)
+	at org.hibernate.event.def.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:320)
+	at org.hibernate.event.def.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:203)
+	at org.hibernate.event.def.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:129)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:69)
+	at org.hibernate.event.def.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:201)
+	at org.hibernate.event.def.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:147)
+	at org.hibernate.event.def.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:71)
+	at org.hibernate.impl.SessionImpl.firePersist(SessionImpl.java:808)
+	at org.hibernate.impl.SessionImpl.persist(SessionImpl.java:782)
+	at org.hibernate.impl.SessionImpl.persist(SessionImpl.java:786)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:839)
+	... 13 more
+Caused by: org.h2.jdbc.JdbcSQLException: Timeout trying to lock table "LEAD"; SQL statement:
+insert into Lead (id, country, email, leadId, munchkinId, phoneNumber, unsubscribed) values (null, ?, ?, ?, ?, ?, ?) [50200-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.table.RegularTable.doLock(RegularTable.java:500)
+	at org.h2.table.RegularTable.lock(RegularTable.java:434)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:123)
+	at org.h2.command.dml.Insert.update(Insert.java:84)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:143)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:129)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:93)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:56)
+	... 28 more
+11:40:56,804 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:40:58,207 INFO  ~ campaign[1] - Lead 2 added to campaign LogOutboundSMS
+11:40:58,208 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:40:58,208 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:40:58,208 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:40:58,208 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:40:58,209 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:40:58,209 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:40:58,210 INFO  ~ campaign[1] - Not sending message to 6506915076 because lead has unsubscribed
+11:40:58,210 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app
+11:40:58,211 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:40:58,221 DEBUG ~ Country code for country USA is US.  
+11:40:58,222 DEBUG ~ Trying to send message 这是一个市场营销信息Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may app to +16506915076.  
+11:41:01,595 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM99b9f3582197e79fd5cf76af7b69bbd5
+11:41:01,596 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+11:41:01,596 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:41:02,604 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:41:04,740 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+11:41:04,741 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:41:04,741 INFO  ~ campaign[1] - Not sending message to *16506915076 because lead has unsubscribed
+11:41:04,752 INFO  ~ campaign[1] - Finished running outbound campaign 这是一个市场营销信息
+11:41:18,278 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+11:41:18,279 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+11:41:18,281 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+11:41:18,281 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:41:19,311 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:41:21,019 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+11:41:21,020 INFO  ~ campaign[1] - Parsing message optin from phoneNumber *6506915076
+11:41:21,020 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:41:21,020 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:41:21,021 DEBUG ~ Found keyword contains : stop,unsub
+11:41:21,021 DEBUG ~ Checking contains keyword :stop: in payload :optin:
+11:41:21,021 DEBUG ~ Checking contains keyword :unsub: in payload :optin:
+11:41:21,021 DEBUG ~ campaign[1] - Evaluating rule # : 2
+11:41:21,021 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:41:21,022 DEBUG ~ Checking contains keyword :Optin: in payload :optin:
+11:41:21,022 DEBUG ~ Checking contains keyword :Start: in payload :optin:
+11:41:21,022 DEBUG ~ Checking contains keyword :optin: in payload :optin:
+11:41:21,022 DEBUG ~ campaign[1] - optin Matched rule # 3:contains(Optin, Start, optin, start)
+11:41:21,022 DEBUG ~ campaign[1] - will subscribe user
+11:41:21,023 DEBUG ~ campaign[1] - payload is mktSubscribe::you are now subscribed
+11:41:21,023 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:41:21,023 DEBUG ~ campaign[1] - payload with footer is mktSubscribe::you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [108] is less than max [160]
+11:41:21,023 DEBUG ~ campaign[1] - payload is mktSubscribe::you are now subscribed
+11:41:21,023 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:41:21,024 DEBUG ~ campaign[1] - payload with footer is mktSubscribe::you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [108] is less than max [160]
+11:41:21,024 DEBUG ~ campaign[1] - Subscribing user with phone *6506915076
+11:41:21,024 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+11:41:21,034 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:41:21,923 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+11:41:24,166 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload mktSubscribe::you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+11:41:24,166 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:41:24,178 DEBUG ~ Country code for country USA is US.  
+11:41:24,179 DEBUG ~ Trying to send message mktSubscribe::you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+11:41:28,083 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM26eeab57e6cdba6c6f46637c78e17b26
+11:41:28,083 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+11:41:28,084 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:41:29,109 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:41:30,562 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+11:41:30,562 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:41:43,572 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+11:41:43,572 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+11:41:43,574 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+11:41:43,574 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:41:44,900 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:41:46,233 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+11:41:46,233 INFO  ~ campaign[1] - Parsing message stop from phoneNumber *6506915076
+11:41:46,233 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:41:46,234 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:41:46,234 DEBUG ~ Found keyword contains : stop,unsub
+11:41:46,234 DEBUG ~ Checking contains keyword :stop: in payload :stop:
+11:41:46,234 DEBUG ~ campaign[1] - stop Matched rule # 2:contains(stop,unsub)
+11:41:46,235 DEBUG ~ campaign[1] - will unsubscribe user
+11:41:46,235 DEBUG ~ campaign[1] - payload is mktUnsubscribe::operational(we have unsubscribed you)
+11:41:46,235 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:41:46,235 DEBUG ~ campaign[1] - payload with footer is mktUnsubscribe::operational(we have unsubscribed you)Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [125] is less than max [160]
+11:41:46,236 DEBUG ~ campaign[1] - mktUnsubscribe::operational(we have unsubscribed you) is an operational rule
+11:41:46,236 DEBUG ~ campaign[1] - payload is we have unsubscribed you
+11:41:46,236 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:41:46,236 DEBUG ~ campaign[1] - payload with footer is we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [96] is less than max [160]
+11:41:46,237 DEBUG ~ campaign[1] - Unsubscribing user with phone *6506915076
+11:41:46,237 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+11:41:46,239 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:41:48,138 INFO  ~ campaign[1] - Setting sms unsubscribed:true for lead:
+11:41:51,520 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+11:41:51,520 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:41:51,531 DEBUG ~ Country code for country USA is US.  
+11:41:51,531 DEBUG ~ Trying to send message we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+11:41:53,879 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SM77f622cbd8ae56981846f3f2eeed6e6f
+11:41:53,879 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+11:41:53,879 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:41:55,192 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:41:57,445 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+11:41:57,446 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:42:04,304 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+11:42:04,304 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+11:42:04,305 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+11:42:04,305 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:42:05,934 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:42:07,814 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+11:42:07,814 INFO  ~ campaign[1] - Parsing message votes for 1 from phoneNumber *6506915076
+11:42:07,814 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:42:07,814 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:42:07,815 DEBUG ~ Found keyword contains : stop,unsub
+11:42:07,815 DEBUG ~ Checking contains keyword :stop: in payload :votes for 1:
+11:42:07,815 DEBUG ~ Checking contains keyword :unsub: in payload :votes for 1:
+11:42:07,815 DEBUG ~ campaign[1] - Evaluating rule # : 2
+11:42:07,815 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:42:07,815 DEBUG ~ Checking contains keyword :Optin: in payload :votes for 1:
+11:42:07,816 DEBUG ~ Checking contains keyword :Start: in payload :votes for 1:
+11:42:07,816 DEBUG ~ Checking contains keyword :optin: in payload :votes for 1:
+11:42:07,816 DEBUG ~ Checking contains keyword :start: in payload :votes for 1:
+11:42:07,816 DEBUG ~ campaign[1] - Evaluating rule # : 3
+11:42:07,816 DEBUG ~ campaign[1] - votes for 1 Matched rule # 4:matches(votes for 1)
+11:42:07,817 DEBUG ~ campaign[1] - payload is you voted for choice 1
+11:42:07,817 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:42:07,818 DEBUG ~ campaign[1] - payload with footer is you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+11:42:07,818 INFO  ~ campaign[1] - Not sending message to *6506915076 because lead has unsubscribed
+11:42:15,433 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+11:42:15,434 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+11:42:15,435 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+11:42:15,435 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:42:16,603 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:42:18,012 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+11:42:18,013 INFO  ~ campaign[1] - Parsing message optin from phoneNumber *6506915076
+11:42:18,013 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:42:18,013 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:42:18,013 DEBUG ~ Found keyword contains : stop,unsub
+11:42:18,013 DEBUG ~ Checking contains keyword :stop: in payload :optin:
+11:42:18,013 DEBUG ~ Checking contains keyword :unsub: in payload :optin:
+11:42:18,014 DEBUG ~ campaign[1] - Evaluating rule # : 2
+11:42:18,014 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:42:18,014 DEBUG ~ Checking contains keyword :Optin: in payload :optin:
+11:42:18,014 DEBUG ~ Checking contains keyword :Start: in payload :optin:
+11:42:18,014 DEBUG ~ Checking contains keyword :optin: in payload :optin:
+11:42:18,014 DEBUG ~ campaign[1] - optin Matched rule # 3:contains(Optin, Start, optin, start)
+11:42:18,015 DEBUG ~ campaign[1] - will subscribe user
+11:42:18,015 DEBUG ~ campaign[1] - payload is mktSubscribe::you are now subscribed
+11:42:18,015 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:42:18,015 DEBUG ~ campaign[1] - payload with footer is mktSubscribe::you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [108] is less than max [160]
+11:42:18,015 DEBUG ~ campaign[1] - payload is mktSubscribe::you are now subscribed
+11:42:18,016 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:42:18,016 DEBUG ~ campaign[1] - payload with footer is mktSubscribe::you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [108] is less than max [160]
+11:42:18,016 DEBUG ~ campaign[1] - Subscribing user with phone *6506915076
+11:42:18,016 DEBUG ~ campaign[1] - Fetching lead with id:1088490
+11:42:18,018 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:42:19,194 INFO  ~ campaign[1] - Setting sms unsubscribed:false for lead:
+11:42:22,382 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload mktSubscribe::you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+11:42:22,382 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:42:22,393 DEBUG ~ Country code for country USA is US.  
+11:42:22,393 DEBUG ~ Trying to send message mktSubscribe::you are now subscribedReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+11:42:25,307 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SMcff747d87eac855921491b073777fe90
+11:42:25,308 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+11:42:25,309 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:42:26,516 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:42:27,921 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+11:42:27,921 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded
+11:42:33,104 INFO  ~ campaign[1] - Processing inbound message from phoneNumber *6506915076
+11:42:33,104 DEBUG ~ campaign[1] - Looking up lead with phone number *6506915076
+11:42:33,105 INFO  ~ campaign[1] - Requesting campaign LogInboundSMS with lead id 1088490
+11:42:33,105 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:42:34,374 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogInboundSMS #leads:1 token:my.inboundSMSText
+11:42:35,606 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogInboundSMS
+11:42:35,607 INFO  ~ campaign[1] - Parsing message votes for 1 from phoneNumber *6506915076
+11:42:35,607 DEBUG ~ campaign[1] - Evaluating rule # : 0
+11:42:35,607 DEBUG ~ campaign[1] - Evaluating rule # : 1
+11:42:35,607 DEBUG ~ Found keyword contains : stop,unsub
+11:42:35,607 DEBUG ~ Checking contains keyword :stop: in payload :votes for 1:
+11:42:35,607 DEBUG ~ Checking contains keyword :unsub: in payload :votes for 1:
+11:42:35,608 DEBUG ~ campaign[1] - Evaluating rule # : 2
+11:42:35,608 DEBUG ~ Found keyword contains : Optin, Start, optin, start
+11:42:35,608 DEBUG ~ Checking contains keyword :Optin: in payload :votes for 1:
+11:42:35,608 DEBUG ~ Checking contains keyword :Start: in payload :votes for 1:
+11:42:35,608 DEBUG ~ Checking contains keyword :optin: in payload :votes for 1:
+11:42:35,608 DEBUG ~ Checking contains keyword :start: in payload :votes for 1:
+11:42:35,609 DEBUG ~ campaign[1] - Evaluating rule # : 3
+11:42:35,609 DEBUG ~ campaign[1] - votes for 1 Matched rule # 4:matches(votes for 1)
+11:42:35,609 DEBUG ~ campaign[1] - payload is you voted for choice 1
+11:42:35,609 DEBUG ~ campaign[1] - payload is using multi-byte string = [false]
+11:42:35,609 DEBUG ~ campaign[1] - payload with footer is you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply.  Length [94] is less than max [160]
+11:42:35,610 DEBUG ~ campaign[1] - Sending message to *6506915076 : payload you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply
+11:42:35,610 DEBUG ~ Connecting to twilio AC09e767fc3f77c6570adc1b5608166a16:0139de0591840e8839a109412daa506f
+11:42:35,620 DEBUG ~ Country code for country USA is US.  
+11:42:35,620 DEBUG ~ Trying to send message you voted for choice 1Reply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +16506915076.  
+11:42:38,672 DEBUG ~ Successfully sent message to +16506915076.  SMS id : SMceaf71d5cf1d1c43d81d2a61107e0e68
+11:42:38,672 DEBUG ~ campaign[1] - Requesting campaign LogOutboundSMS for lead with id 1088490
+11:42:38,673 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:42:39,784 DEBUG ~ campaign[1] - calling requestCampaign prog:SMSProgram campaign:LogOutboundSMS #leads:1 token:my.outboundSMSText
+11:42:40,943 INFO  ~ campaign[1] - Lead 1088490 added to campaign LogOutboundSMS
+11:42:40,944 DEBUG ~ campaign[1] - Request campaign LogOutboundSMS succeeded

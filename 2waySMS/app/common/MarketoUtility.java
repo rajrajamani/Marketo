@@ -269,9 +269,9 @@ public class MarketoUtility {
 		}
 		return result;
 	}
-	
+
 	public void deleteLead(SMSCampaign sc, ResultSyncLead dummyLead) {
-		
+
 	}
 
 	public MktowsClient makeSoapConnection(Long scid, String soapUserId,
@@ -392,38 +392,73 @@ public class MarketoUtility {
 	 * @param from
 	 */
 	public int performOutRule(SMSCampaign sc, Rule rule, List<Lead> leadList) {
+		Boolean subscribeUser = false;
+		Boolean unsubscribeUser = false;
 		Boolean operationalCampaign = false;
 		Boolean multiByteString = false;
 		int numSent = 0;
 		if (rule.outRule != null) {
 			String payload = null;
-			if (rule.outRule.startsWith("operational(")) {
-				operationalCampaign = true;
-				Logger.debug("campaign[%d] - %s is an operational rule", sc.id,
-						rule.outRule);
-				payload = rule.outRule.substring(12, rule.outRule.length() - 1);
-				Logger.debug("campaign[%d] - payload is %s", sc.id, payload);
-			} else {
-				payload = rule.outRule;
-				Logger.debug("campaign[%d] - payload is %s", sc.id, payload);
-			}
-			multiByteString = isPayloadMultiByte(payload);
-			Logger.debug(
-					"campaign[%d] - payload is using multi-byte string = [%s]",
-					sc.id, String.valueOf(multiByteString));
-			if (sc.smsFooter != null) {
-				payload = payload.concat(sc.smsFooter);
-				int maxlen = (multiByteString ? Constants.SMS_MAX_LEN / 2
-						: Constants.SMS_MAX_LEN);
-				if (payload.length() > maxlen) {
-					payload = payload.substring(0, maxlen); // max SMS length
+			String[] keywords = rule.outRule.split("::");
+			for (String word : keywords) {
+				if (word.equals("mktUnsubscribe")) {
+					Logger.debug("campaign[%d] - will unsubscribe user", sc.id);
+					unsubscribeUser = true;
 				}
+				if (word.equals("mktSubscribe")) {
+					Logger.debug("campaign[%d] - will subscribe user", sc.id);
+					subscribeUser = true;
+				}
+				
+				if (word.startsWith("operational(")) {
+					int idxEndingParanthesis = word.lastIndexOf(")");
+					if (idxEndingParanthesis == -1) {
+						Logger.error(
+								"campaign[%d] - no ending paranthesis for rule %s",
+								sc.id, word);
+					}
+					operationalCampaign = true;
+					Logger.debug("campaign[%d] - %s is an operational rule",
+							sc.id, rule.outRule);
+					payload = word.substring(12, idxEndingParanthesis);
+					Logger.debug("campaign[%d] - payload is %s", sc.id, payload);
+				} else {
+					payload = rule.outRule;
+					Logger.debug("campaign[%d] - payload is %s", sc.id, payload);
+				}
+				multiByteString = isPayloadMultiByte(payload);
 				Logger.debug(
-						"campaign[%d] - payload with footer is %s.  Length [%d] is less than max [%d]",
-						sc.id, payload, payload.length(), maxlen);
+						"campaign[%d] - payload is using multi-byte string = [%s]",
+						sc.id, String.valueOf(multiByteString));
+				if (sc.smsFooter != null && !sc.smsFooter.equals("null")) {
+					payload = payload.concat(sc.smsFooter);
+					int maxlen = (multiByteString ? Constants.SMS_MAX_LEN / 2
+							: Constants.SMS_MAX_LEN);
+					if (payload.length() > maxlen) {
+						payload = payload.substring(0, maxlen); // max SMS
+																// length
+					}
+					Logger.debug(
+							"campaign[%d] - payload with footer is %s.  Length [%d] is less than max [%d]",
+							sc.id, payload, payload.length(), maxlen);
+				}
 			}
 			try {
 				for (Lead ld : leadList) {
+					if (unsubscribeUser) {
+						Logger.debug(
+								"campaign[%d] - Unsubscribing user with phone %s",
+								sc.id, ld.phoneNumber);
+						setLeadUnsubscribed(sc, ld.leadId, "true");
+						ld.unsubscribed = true;
+					}
+					if (subscribeUser) {
+						Logger.debug(
+								"campaign[%d] - Subscribing user with phone %s",
+								sc.id, ld.phoneNumber);
+						setLeadUnsubscribed(sc, ld.leadId, "false");
+						ld.unsubscribed = false;
+					}
 					if (operationalCampaign || ld.unsubscribed == false) {
 						Logger.debug(
 								"campaign[%d] - Sending message to %s : payload %s",
@@ -454,6 +489,7 @@ public class MarketoUtility {
 				Logger.error("campaign[%d] - Error talking to Twilio %s",
 						sc.id, e.getMessage());
 			}
+
 		}
 		return numSent;
 	}
@@ -485,6 +521,5 @@ public class MarketoUtility {
 		}
 		return result;
 	}
-
 
 }

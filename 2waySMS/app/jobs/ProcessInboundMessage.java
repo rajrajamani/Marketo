@@ -92,6 +92,7 @@ public class ProcessInboundMessage extends Job {
 			return;
 
 		/* special cases */
+		/*
 		if (payload.equalsIgnoreCase("stop")
 				|| payload.equalsIgnoreCase("unsubscribe")) {
 			Logger.info("campaign[%d] - lead %s unsubscribed with message %s",
@@ -104,6 +105,7 @@ public class ProcessInboundMessage extends Job {
 					sc.id, from, payload);
 			mu.setLeadUnsubscribed(sc, lead.leadId, "false");
 		}
+		*/
 
 		List<Lead> ldList = new ArrayList<Lead>();
 		ldList.add(lead);
@@ -136,7 +138,7 @@ public class ProcessInboundMessage extends Job {
 						toSave.numSent += numSent;
 						toSave.save();
 						processed = true;
-						break;
+						return;
 					}
 				}
 			}
@@ -154,7 +156,7 @@ public class ProcessInboundMessage extends Job {
 					toSave.numSent += numSent;
 					toSave.save();
 					processed = true;
-					break;
+					return;
 				}
 			}
 
@@ -167,7 +169,7 @@ public class ProcessInboundMessage extends Job {
 				toSave.numSent += numSent;
 				toSave.save();
 				processed = true;
-				break;
+				return;
 			}
 		}
 		if (processed == false) {
