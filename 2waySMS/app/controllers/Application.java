@@ -72,6 +72,9 @@ public class Application extends Controller {
 			} else if (sc.leadListWithPhoneNumbers.equals("null")) {
 				Logger.info("campaign[%d] does not lead list set", sc.id);
 				renderText("Please provide a static list from with leads whose phone numbers are known");
+			} else if (sc.phoneNumFieldApiName.equals("null")) {
+				Logger.info("campaign[%d] does not have a phoneNumFieldApiName.  Using Phone instead", sc.id);
+				sc.phoneNumFieldApiName = Constants.DEFAULT_PHONE_FIELD_API_NAME;
 			}
 
 			ResultSyncLead dummyLead = mu.createNewLead(sc, "+1smstesting");

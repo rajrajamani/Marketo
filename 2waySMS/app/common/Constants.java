@@ -15,4 +15,5 @@ public class Constants {
 	public static final String SMSCAMPAIGN_STATUS_ACTIVE = "active";
 	public static final String SMSCAMPAIGN_STATUS_CANCELED = "canceled";
 	public static final String COUNTRY_FIELD_NAME = "Country";
+	public static final String DEFAULT_PHONE_FIELD_API_NAME = "Phone";
 }

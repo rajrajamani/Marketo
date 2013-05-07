@@ -156,7 +156,7 @@ public class MarketoUtility {
 		List<Lead> leadList = new ArrayList<Lead>();
 		List<String> leadAttrs = new ArrayList<String>();
 		leadAttrs.add("Email");
-		leadAttrs.add("Phone");
+		leadAttrs.add(sc.phoneNumFieldApiName);
 		leadAttrs.add(Constants.UNSUB_FIELD_NAME);
 		leadAttrs.add(Constants.COUNTRY_FIELD_NAME);
 
@@ -183,12 +183,14 @@ public class MarketoUtility {
 						attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);
 						if (attrMap != null && !attrMap.isEmpty()) {
 							Set<String> keySet = attrMap.keySet();
-							if (keySet.contains("Phone")) {
-								newLead.phoneNumber = attrMap.get("Phone")
-										.toString();
+							if (keySet.contains(sc.phoneNumFieldApiName)) {
+								newLead.phoneNumber = attrMap.get(
+										sc.phoneNumFieldApiName).toString();
 								Logger.debug(
-										"lead with id : %d has phone number %s",
-										newLead.leadId, newLead.phoneNumber);
+										"lead with id : %d has %s set to %s",
+										newLead.leadId,
+										sc.phoneNumFieldApiName,
+										newLead.phoneNumber);
 							}
 							if (keySet.contains(Constants.COUNTRY_FIELD_NAME)) {
 								newLead.country = attrMap.get(
@@ -247,7 +249,7 @@ public class MarketoUtility {
 		ResultSyncLead result = null;
 		try {
 			HashMap<String, String> attrs = new HashMap<String, String>();
-			attrs.put("Phone", from);
+			attrs.put(sc.phoneNumFieldApiName, from);
 			LeadRecord leadRec = MktowsUtil.newLeadRecord(null, null, null,
 					null, attrs);
 
@@ -409,7 +411,7 @@ public class MarketoUtility {
 					Logger.debug("campaign[%d] - will subscribe user", sc.id);
 					subscribeUser = true;
 				}
-				
+
 				if (word.startsWith("operational(")) {
 					int idxEndingParanthesis = word.lastIndexOf(")");
 					if (idxEndingParanthesis == -1) {

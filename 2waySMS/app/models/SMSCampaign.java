@@ -28,6 +28,7 @@ public class SMSCampaign extends Model {
 		smsGatewayPhoneNumber = ms.smsGatewayPhoneNumber;
 		smsFooter = ms.smsFooter;
 		smsCampaignDefinition = ms.smsCampaignDefinition;
+		phoneNumFieldApiName = ms.phoneNumFieldApiName;
 		status = ms.status;
 		numSent = ms.numSent;
 		numRecvd = ms.numRecvd;
@@ -57,6 +58,7 @@ public class SMSCampaign extends Model {
 	public String smsFooter; // from token
 	@Column(length=1000) 
 	public String smsCampaignDefinition; // from token
+	public String phoneNumFieldApiName; // from token
 	public String status;
 	public int numSent;
 	public int numRecvd;
