@@ -8,6 +8,8 @@ public class CountryUtil {
 				|| name.equals("USA")
 				|| name.equals("United States of America")) {
 			countryCode = "US";
+		} else if (name.equals("Canada")) {
+			countryCode = "CA";
 		} else if (name.equals("China")
 				|| name.equals("CHN")) {
 			countryCode = "CN";

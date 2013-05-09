@@ -73,7 +73,9 @@ public class Application extends Controller {
 				Logger.info("campaign[%d] does not lead list set", sc.id);
 				renderText("Please provide a static list from with leads whose phone numbers are known");
 			} else if (sc.phoneNumFieldApiName.equals("null")) {
-				Logger.info("campaign[%d] does not have a phoneNumFieldApiName.  Using Phone instead", sc.id);
+				Logger.info(
+						"campaign[%d] does not have a phoneNumFieldApiName.  Using Phone instead",
+						sc.id);
 				sc.phoneNumFieldApiName = Constants.DEFAULT_PHONE_FIELD_API_NAME;
 			}
 
@@ -110,25 +112,24 @@ public class Application extends Controller {
 
 			// create Twilio application and save appId in database
 			try {
-//				Logger.info(
-//						"campaign[%d] - creating new SMS gateway application",
-//						sc.id, callBackurl);
-//				String appId = TwilioUtility.createApplication(sc.smsGatewayID,
-//						sc.smsGatewayPassword, "SMSSubscriber", callBackurl,
-//						"GET");
-//				sc.smsGatewayApplicationId = appId;
-//				Logger.info(
-//						"campaign[%d] - New SMS gateway application [%s] created successfully",
-//						sc.id, appId);
+				// Logger.info(
+				// "campaign[%d] - creating new SMS gateway application",
+				// sc.id, callBackurl);
+				// String appId =
+				// TwilioUtility.createApplication(sc.smsGatewayID,
+				// sc.smsGatewayPassword, "SMSSubscriber", callBackurl,
+				// "GET");
+				// sc.smsGatewayApplicationId = appId;
+				// Logger.info(
+				// "campaign[%d] - New SMS gateway application [%s] created successfully",
+				// sc.id, appId);
 				boolean setApp = TwilioUtility.setCallbackUrl(sc.smsGatewayID,
 						sc.smsGatewayPassword, callBackurl,
 						sc.smsGatewayPhoneNumber);
 				if (setApp) {
-					Logger.info(
-							"campaign[%d] - SMS application will now respond to inbound msgs");
+					Logger.info("campaign[%d] - SMS application will now respond to inbound msgs");
 				} else {
-					Logger.info(
-							"campaign[%d] - SMS application will NOT respond to inbound msgs");
+					Logger.info("campaign[%d] - SMS application will NOT respond to inbound msgs");
 				}
 				sc.save();
 			} catch (Exception e) {
@@ -163,7 +164,8 @@ public class Application extends Controller {
 	}
 
 	public static void smsCallback(String campaignId, String SmsSid,
-			String AccountSid, String From, String To, String Body) {
+			String AccountSid, String From, String To, String Body,
+			String FromCountry) {
 		// look up application in database - if not present, ignore message
 		SMSCampaign sc = SMSCampaign.findById(Long.valueOf(campaignId));
 		if (sc == null) {
@@ -172,7 +174,11 @@ public class Application extends Controller {
 		}
 		sc.numRecvd++;
 		sc.save();
-		new ProcessInboundMessage(sc, AccountSid, From, Body).in(2);
+		Logger.debug(
+				"campaign [%s] received inbound sms from %s in country %s",
+				sc.id, From, FromCountry);
+		new ProcessInboundMessage(sc, AccountSid, From, Body, FromCountry)
+				.in(2);
 		renderHtml("I just received an SMS" + campaignId);
 	}
 
@@ -181,8 +187,9 @@ public class Application extends Controller {
 		if (sc != null) {
 			Logger.info("About to cancel campaign [%s]", id);
 		}
-//		TwilioUtility.deleteApplication(sc.smsGatewayID, sc.smsGatewayPassword,
-//				sc.smsGatewayApplicationId);
+		// TwilioUtility.deleteApplication(sc.smsGatewayID,
+		// sc.smsGatewayPassword,
+		// sc.smsGatewayApplicationId);
 		sc.status = Constants.SMSCAMPAIGN_STATUS_CANCELED;
 		sc.save();
 		Logger.info("Canceled campaign [%s]", id);

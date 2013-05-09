@@ -20,6 +20,7 @@ public class ProcessInboundMessage extends Job {
 	private String from;
 	private String body;
 	private String accountSid;
+	private String fromCountry;
 
 	/**
 	 * 
@@ -29,11 +30,16 @@ public class ProcessInboundMessage extends Job {
 	 * @param body
 	 */
 	public ProcessInboundMessage(SMSCampaign sc, String accountsSid,
-			String from, String body) {
+			String from, String body, String fromCountry) {
 		this.sc = sc;
 		this.from = from;
 		this.body = body;
 		this.accountSid = accountsSid;
+		if (fromCountry != null && !"".equals(fromCountry)) {
+			this.fromCountry = fromCountry;
+		} else {
+			this.fromCountry = null;
+		}
 	}
 
 	public void doJob() {
@@ -59,7 +65,11 @@ public class ProcessInboundMessage extends Job {
 				newLead.phoneNumber = from;
 				newLead.leadId = leadCreated.getLeadId();
 				newLead.unsubscribed = false;
-				newLead.country = CountryUtil.inferCountryFromPhoneNumber(from);
+				if (fromCountry == null) {
+					newLead.country = CountryUtil.inferCountryFromPhoneNumber(from);
+				} else {
+					newLead.country = fromCountry;
+				}
 				newLead.save();
 				ld = newLead;
 				Logger.debug(
