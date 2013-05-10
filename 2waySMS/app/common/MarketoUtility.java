@@ -465,18 +465,18 @@ public class MarketoUtility {
 						Logger.debug(
 								"campaign[%d] - Sending message to %s : payload %s",
 								sc.id, ld.phoneNumber, payload);
-						TwilioUtility.sendSMS(sc.smsGatewayID,
+						String status = TwilioUtility.sendSMS(sc.smsGatewayID,
 								sc.smsGatewayPassword,
 								sc.smsGatewayPhoneNumber, ld.phoneNumber,
 								ld.country, payload);
 						MarketoUtility mu = new MarketoUtility();
 						Logger.debug(
-								"campaign[%d] - Requesting campaign %s for lead with id %d",
+								"campaign[%d] - Requesting campaign %s for lead with id %d.  Status %s",
 								sc.id, sc.campaignToLogOutgoingRequests,
-								ld.leadId);
+								ld.leadId, status);
 						mu.requestCampaign(sc,
 								sc.campaignToLogOutgoingRequests, ld.leadId,
-								Constants.SMS_OUTBOUND, payload);
+								Constants.SMS_OUTBOUND, payload + ":" + status);
 						Logger.debug(
 								"campaign[%d] - Request campaign %s succeeded",
 								sc.id, sc.campaignToLogOutgoingRequests);

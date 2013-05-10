@@ -46,7 +46,7 @@ public class TwilioUtility {
 	 * @param payload
 	 * @throws TwilioRestException
 	 */
-	public static void sendSMS(String sid, String aToken, String from,
+	public static String sendSMS(String sid, String aToken, String from,
 			String to, String recipientCountry, String payload)
 			throws TwilioRestException {
 		Logger.debug("Connecting to twilio %s:%s", sid, aToken);
@@ -69,13 +69,22 @@ public class TwilioUtility {
 		params.put("Body", payload);
 		params.put("To", to);
 		params.put("From", from);
+		/* perform additional check on phone number to see if it can receive SMS */
+		params.put("ForceDelivery", "false");
 
 		Logger.debug("Trying to send message %s to %s.  ", payload,
 				e164FormattedPhoneNumber);
-		SmsFactory messageFactory = client.getAccount().getSmsFactory();
-		Sms message = messageFactory.create(params);
-		Logger.debug("Successfully sent message to %s.  SMS id : %s",
-				e164FormattedPhoneNumber, message.getSid());
+		try {
+			SmsFactory messageFactory = client.getAccount().getSmsFactory();
+			Sms message = messageFactory.create(params);
+			Logger.debug("Successfully sent message to %s.  SMS id : %s",
+					e164FormattedPhoneNumber, message.getSid());
+			return message.getStatus();
+		} catch (TwilioRestException te) {
+			Logger.error("Unable to send message to %s",
+					e164FormattedPhoneNumber);
+			return "error : " + te.getErrorMessage();
+		}
 	}
 
 	public static AccountList getAccounts(String sid, String aToken) {

@@ -11,10 +11,12 @@ public class CountryUtil {
 		} else if (name.equals("Canada")) {
 			countryCode = "CA";
 		} else if (name.equals("China")
-				|| name.equals("CHN")) {
+				|| name.equals("CHN")
+				|| name.equals("CN")) {
 			countryCode = "CN";
 		} else if (name.equals("Hong Kong")
-				|| name.equals("HKG")) {
+				|| name.equals("HKG")
+				|| name.equals("HK")) {
 			countryCode = "HK";
 		} else {
 			countryCode = "US";
