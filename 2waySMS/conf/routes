@@ -5,8 +5,10 @@
 # Home page
 GET     /                                       Application.index
 GET		/savedConfig							Application.savedConfig
+GET		/showConversionFiles					Application.showConversionFiles
 *       /smsCallback							Application.smsCallback
 GET		/cancelCampaign							Application.cancelCampaign
+GET     /addGCLID								Application.addGCLID
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

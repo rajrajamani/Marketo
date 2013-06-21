@@ -1,7 +1,54 @@
-12 Apr 2013 13:59:42,243 INFO  ~ Starting C:\Users\rrajamani\workspace\2waySMS
-12 Apr 2013 13:59:42,520 WARN  ~ Declaring modules in application.conf is deprecated. Use dependencies.yml instead (module.gae)
-12 Apr 2013 13:59:42,520 ERROR ~ Module gae will not be loaded because C:\play-1.2.5\modules\gae does not exist
-12 Apr 2013 13:59:44,391 WARN  ~ You're running Play! in DEV mode
-12 Apr 2013 13:59:44,773 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-12 Apr 2013 14:00:12,648 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
-12 Apr 2013 14:00:12,796 INFO  ~ Application '2waySMS' is now started !
+21 Jun 2013 09:40:29,130 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+21 Jun 2013 09:40:40,898 WARN  ~ You're running Play! in DEV mode
+21 Jun 2013 09:40:45,279 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+21 Jun 2013 09:41:50,164 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+21 Jun 2013 09:41:56,992 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+21 Jun 2013 09:42:06,427 INFO  ~ Application '2waySMS' is now started !
+21 Jun 2013 09:42:45,767 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+21 Jun 2013 09:43:18,708 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+21 Jun 2013 09:43:23,460 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:43:34,582 DEBUG ~ Writing "Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ "Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time"; to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+21 Jun 2013 09:43:45,734 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:50:50,160 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+21 Jun 2013 09:50:55,172 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+21 Jun 2013 09:50:55,173 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+21 Jun 2013 09:50:55,173 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:50:55,173 DEBUG ~ Writing "Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ "Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time"; to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+21 Jun 2013 09:50:55,176 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:51:21,773 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+21 Jun 2013 09:51:25,251 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+21 Jun 2013 09:51:25,251 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+21 Jun 2013 09:51:25,251 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:51:37,732 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+21 Jun 2013 09:51:37,732 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+21 Jun 2013 09:51:37,732 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:51:37,732 DEBUG ~ Writing "Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ "Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time 
+"; to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+21 Jun 2013 09:51:37,733 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:52:50,970 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+21 Jun 2013 09:52:53,784 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+21 Jun 2013 09:52:53,785 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+21 Jun 2013 09:52:53,785 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:52:53,786 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+21 Jun 2013 09:52:53,788 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:54:07,403 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+21 Jun 2013 09:54:07,493 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+21 Jun 2013 09:54:07,493 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+21 Jun 2013 09:54:07,493 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:54:07,493 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+21 Jun 2013 09:54:07,494 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:55:22,672 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+21 Jun 2013 09:55:22,672 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+21 Jun 2013 09:55:22,672 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 09:55:23,477 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+21 Jun 2013 09:55:23,477 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+21 Jun 2013 09:55:23,477 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+21 Jun 2013 10:15:06,431 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl

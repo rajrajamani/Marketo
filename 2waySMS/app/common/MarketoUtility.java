@@ -6,12 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 
+import models.GoogleCampaign;
 import models.Lead;
 import models.Rule;
 import models.SMSCampaign;
 import play.Logger;
+import play.db.jpa.Model;
 import play.libs.WS;
 
 import com.google.gson.Gson;
@@ -42,7 +43,7 @@ public class MarketoUtility {
 
 	}
 
-	public SMSCampaign readSettings(String targetUrl) {
+	public Model readSettings(String targetUrl, int campaignType) {
 		play.libs.WS.HttpResponse res = WS.url(targetUrl).get();
 		int status = res.getStatus();
 		if (status != 200) {
@@ -52,21 +53,32 @@ public class MarketoUtility {
 		}
 		String retVal = res.getString();
 		SMSCampaign sc = null;
+		GoogleCampaign gc = null;
 		try {
 			Gson gson = new GsonBuilder().create();
-			sc = gson.fromJson(retVal, SMSCampaign.class);
-			sc.campaignURL = targetUrl;
+			switch (campaignType) {
+			case Constants.CAMPAIGN_SMS:
+				sc = gson.fromJson(retVal, SMSCampaign.class);
+				sc.campaignURL = targetUrl;
+				List<Rule> ruleList = extractRules(sc);
+				if (ruleList.size() == 0) {
+					Logger.error("Unable to extract rules from json");
+					return null;
+				}
+				return sc;
+
+			case Constants.CAMPAIGN_GOOG:
+				gc = gson.fromJson(retVal, GoogleCampaign.class);
+				gc.campaignURL = targetUrl;
+				return gc;
+			}
+
 		} catch (Exception e) {
 			Logger.error("Unable to parse %s into json", retVal);
 			Logger.error("Exception is %s", e.getMessage());
-			return sc;
-		}
-		List<Rule> ruleList = extractRules(sc);
-		if (ruleList.size() == 0) {
-			Logger.error("Unable to extract rules from json");
 			return null;
 		}
-		return sc;
+		return null;
 	}
 
 	/*

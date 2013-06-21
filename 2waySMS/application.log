@@ -1839,3 +1839,497 @@ insert into Lead (id, country, email, leadId, munchkinId, phoneNumber, unsubscri
 10:35:41,631 DEBUG ~ Country code for country USA is US.  
 10:35:41,632 DEBUG ~ Trying to send message we have unsubscribed youReply HELP for help. Reply STOP to unsubscribe. Msg&Data rates may apply to +12504915076.  
 10:35:42,976 ERROR ~ campaign[1] - Error talking to Twilio The number +12504915076 is unverified. Trial accounts cannot send messages to unverified numbers; verify +12504915076 at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.
+09:40:29,130 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:40:40,898 WARN  ~ You're running Play! in DEV mode
+09:40:45,279 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:41:50,164 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+09:41:56,992 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:42:06,427 INFO  ~ Application '2waySMS' is now started !
+09:42:45,767 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+09:43:18,708 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+09:43:23,460 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:43:34,582 DEBUG ~ Writing "Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ "Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time"; to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+09:43:45,734 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:50:50,160 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:50:55,172 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+09:50:55,173 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+09:50:55,173 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:50:55,173 DEBUG ~ Writing "Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ "Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time"; to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+09:50:55,176 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:51:21,773 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:51:25,251 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+09:51:25,251 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+09:51:25,251 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:51:37,732 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+09:51:37,732 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+09:51:37,732 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:51:37,732 DEBUG ~ Writing "Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ "Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time 
+"; to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+09:51:37,733 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:52:50,970 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:52:53,784 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+09:52:53,785 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+09:52:53,785 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:52:53,786 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+09:52:53,788 DEBUG ~ Writing add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:54:07,403 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:54:07,493 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+09:54:07,493 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+09:54:07,493 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:54:07,493 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time to file : C:\Users\rrajamani\git\repos\2waySMS\google\1234\latest.csv 
+09:54:07,494 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:55:22,672 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+09:55:22,672 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+09:55:22,672 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+09:55:23,477 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/google/1234
+09:55:23,477 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv exists
+09:55:23,477 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/google/1234/latest.csv 
+10:15:06,431 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:16:45,017 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:16:45,499 WARN  ~ You're running Play! in DEV mode
+10:16:45,566 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:17:32,161 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+10:17:32,405 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:17:33,064 INFO  ~ Application '2waySMS' is now started !
+10:23:28,529 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:23:28,768 ERROR ~ 
+
+@6ekkphi9p
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fgoogle_settings.html
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.List, at table: GoogleCampaign, for columns: [org.hibernate.mapping.Column(files)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:269)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:642)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.List, at table: GoogleCampaign, for columns: [org.hibernate.mapping.Column(files)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:243)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1362)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1865)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:906)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:267)
+	... 5 more
+10:24:16,509 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:24:16,998 WARN  ~ You're running Play! in DEV mode
+10:24:17,068 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:24:26,487 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+10:24:26,739 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:24:27,663 ERROR ~ 
+
+@6ekkpl0k4
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.List, at table: GoogleCampaign, for columns: [org.hibernate.mapping.Column(files)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:269)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.List, at table: GoogleCampaign, for columns: [org.hibernate.mapping.Column(files)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:243)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1362)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1865)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:906)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:267)
+	... 5 more
+10:32:20,888 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:32:21,205 INFO  ~ Application '2waySMS' is now started !
+10:34:03,289 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:34:03,775 WARN  ~ You're running Play! in DEV mode
+10:34:03,841 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:34:14,692 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+10:34:14,926 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:34:15,564 INFO  ~ Application '2waySMS' is now started !
+10:41:57,636 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:44:57,089 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:45:05,718 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234
+10:45:05,724 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv exists
+10:45:05,724 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
+10:45:05,724 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time to file : C:\Users\rrajamani\git\repos\2waySMS\public\google\1234\latest.csv 
+10:45:05,726 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
+10:46:01,464 INFO  ~ Looking up campaignURL http://lp.stylesight.com/sms_settings.html
+10:46:02,263 DEBUG ~ campaign[null] - outRule[0] Test of the marketo SMS functionality. 
+10:46:02,264 DEBUG ~ campaign[null] - inRule[1] contains(stop,unsub)
+10:46:02,264 DEBUG ~ campaign[null] - outRule[1] mktUnsubscribe::operational(we have unsubscribed you )
+10:46:02,264 DEBUG ~ campaign[null] - inRule[2] contains(Optin, Start, optin, start)
+10:46:02,265 DEBUG ~ campaign[null] - outRule[2] mktSubscribe::you are now subscribed 
+10:46:02,265 DEBUG ~ campaign[null] - inRule[3] matches(votes for 1)
+10:46:02,265 DEBUG ~ campaign[null] - outRule[3] you voted for choice 1 
+10:46:02,265 DEBUG ~ campaign[null] - inRule[4] *
+10:46:02,266 DEBUG ~ campaign[null] - outRule[4] this is a default mesg 
+10:46:02,266 INFO  ~ campaign[null] - parsed 5 rules.  accepted 5
+10:46:02,270 DEBUG ~ campaign[null] - making soap connection user:stylesight1_2739054850CF639D850423 encKey:84723593636337605500CCFF663399EF885534304393 munchId:948-BWZ-312
+10:46:04,229 DEBUG ~ campaign[null] - calling sync lead on lead with phone number +1smstesting
+10:46:08,367 DEBUG ~ campaign[33] has been saved
+10:46:08,368 DEBUG ~ campaign[33] - callback URL is http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/smsCallback?campaignId=33
+10:46:09,821 DEBUG ~ Found number +13473446075
+10:46:09,821 INFO  ~ Found matching number +13473446075
+10:46:38,103 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:46:38,578 WARN  ~ You're running Play! in DEV mode
+10:46:38,648 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:46:49,838 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+10:46:50,056 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:46:50,629 INFO  ~ Application '2waySMS' is now started !
+10:46:59,809 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+10:46:59,981 INFO  ~ campaign[1] was configured previously
+10:47:19,503 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+10:47:19,506 INFO  ~ campaign[1] was configured previously
+10:48:04,940 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:50:44,437 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+10:50:44,443 INFO  ~ campaign[1] was configured previously
+10:54:05,254 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:54:05,798 DEBUG ~ File name is : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest - Copy - Copy.csv
+10:54:05,798 DEBUG ~ File name is : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest - Copy.csv
+10:54:05,798 DEBUG ~ File name is : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv
+10:55:51,153 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:55:51,747 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/1234/latest - Copy - Copy.csv
+10:55:51,748 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/1234/latest - Copy.csv
+10:55:51,748 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/1234/latest.csv
+10:57:23,796 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+10:57:23,796 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+10:57:23,796 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:01:34,958 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:01:34,958 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:01:34,958 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:01:51,901 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:01:51,902 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:01:51,903 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:02:37,884 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:02:37,884 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:02:37,884 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:03:11,119 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:03:11,119 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:03:11,120 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:03:11,314 ERROR ~ 
+
+@6ekl4n6m7
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fgoogle_settings.html
+
+Template not found (In /app/controllers/Application.java around line 187)
+The template showConversionFiles does not exist.
+
+play.exceptions.TemplateNotFoundException: Template not found : showConversionFiles
+	at play.mvc.Controller.renderTemplate(Controller.java:668)
+	at play.mvc.Controller.renderTemplate(Controller.java:641)
+	at controllers.Application.showConversionFiles(Application.java:187)
+	at controllers.Application.index(Application.java:168)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	at Invocation.HTTP Request(Play!)
+11:03:23,622 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:03:23,622 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:03:23,622 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:03:23,641 ERROR ~ 
+
+@6ekl4n6m9
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fgoogle_settings.html
+
+Template not found (In /app/controllers/Application.java around line 187)
+The template Application/showConversionFiles does not exist.
+
+play.exceptions.TemplateNotFoundException: Template not found : Application/showConversionFiles
+	at play.mvc.Controller.renderTemplate(Controller.java:668)
+	at play.mvc.Controller.renderTemplate(Controller.java:641)
+	at controllers.Application.showConversionFiles(Application.java:187)
+	at controllers.Application.index(Application.java:168)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	at Invocation.HTTP Request(Play!)
+11:04:14,695 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:04:14,696 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:04:14,696 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:04:14,703 ERROR ~ 
+
+@6ekl4n6mb
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fgoogle_settings.html
+
+Template not found (In /app/controllers/Application.java around line 187)
+The template showConversionFiles does not exist.
+
+play.exceptions.TemplateNotFoundException: Template not found : showConversionFiles
+	at play.mvc.Controller.renderTemplate(Controller.java:668)
+	at play.mvc.Controller.renderTemplate(Controller.java:641)
+	at controllers.Application.showConversionFiles(Application.java:187)
+	at controllers.Application.index(Application.java:168)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	at Invocation.HTTP Request(Play!)
+11:04:53,013 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:04:53,992 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:04:53,992 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:04:53,992 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:05:30,211 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:05:30,211 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:05:30,211 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:06:08,594 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy - Copy.csv
+11:06:08,594 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest - Copy.csv
+11:06:08,594 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/1234/latest.csv
+11:30:13,630 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:30:13,758 ERROR ~ 
+
+@6ekl4n6mc
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fgoogle_settings.html
+
+Oops: ParseException
+An unexpected error occured caused by exception ParseException: Month values must be between 1 and 12
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:222)
+	at play.jobs.JobsPlugin.afterApplicationStart(JobsPlugin.java:155)
+	at play.plugins.PluginCollection.afterApplicationStart(PluginCollection.java:531)
+	at play.Play.start(Play.java:547)
+	at play.Play.detectChanges(Play.java:642)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.text.ParseException: Month values must be between 1 and 12
+	at play.libs.Time$CronExpression.addToSet(Time.java:965)
+	at play.libs.Time$CronExpression.storeExpressionVals(Time.java:686)
+	at play.libs.Time$CronExpression.buildExpression(Time.java:504)
+	at play.libs.Time$CronExpression.<init>(Time.java:330)
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:206)
+	... 6 more
+11:44:36,042 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:44:36,530 WARN  ~ You're running Play! in DEV mode
+11:44:36,598 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:44:49,603 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:44:49,817 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:44:50,361 INFO  ~ Application '2waySMS' is now started !
+11:44:51,030 ERROR ~ 
+
+@6ekla9bp1
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fgoogle_settings.html
+
+Oops: ParseException
+An unexpected error occured caused by exception ParseException: Day-of-Week values must be between 1 and 7
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:222)
+	at play.jobs.JobsPlugin.afterApplicationStart(JobsPlugin.java:155)
+	at play.plugins.PluginCollection.afterApplicationStart(PluginCollection.java:531)
+	at play.Play.start(Play.java:547)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.text.ParseException: Day-of-Week values must be between 1 and 7
+	at play.libs.Time$CronExpression.addToSet(Time.java:970)
+	at play.libs.Time$CronExpression.storeExpressionVals(Time.java:686)
+	at play.libs.Time$CronExpression.buildExpression(Time.java:504)
+	at play.libs.Time$CronExpression.<init>(Time.java:330)
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:206)
+	... 6 more
+11:47:06,204 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:47:06,696 WARN  ~ You're running Play! in DEV mode
+11:47:06,767 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:47:16,532 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:47:16,741 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:47:17,284 INFO  ~ Application '2waySMS' is now started !
+11:47:17,937 ERROR ~ 
+
+@6eklahl7p
+Internal Server Error (500) for request GET /
+
+Oops: UnsupportedOperationException
+An unexpected error occured caused by exception UnsupportedOperationException: Support for specifying both a day-of-week AND a day-of-month parameter is not implemented.
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:222)
+	at play.jobs.JobsPlugin.afterApplicationStart(JobsPlugin.java:155)
+	at play.plugins.PluginCollection.afterApplicationStart(PluginCollection.java:531)
+	at play.Play.start(Play.java:547)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.UnsupportedOperationException: Support for specifying both a day-of-week AND a day-of-month parameter is not implemented.
+	at play.libs.Time$CronExpression.getTimeAfter(Time.java:1421)
+	at play.libs.Time$CronExpression.getNextValidTimeAfter(Time.java:364)
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:207)
+	... 6 more
+11:47:42,629 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:47:43,134 WARN  ~ You're running Play! in DEV mode
+11:47:43,219 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:47:55,916 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:47:56,124 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:47:56,677 INFO  ~ Application '2waySMS' is now started !
+11:47:57,335 ERROR ~ 
+
+@6eklak1f1
+Internal Server Error (500) for request GET /
+
+Oops: ParseException
+An unexpected error occured caused by exception ParseException: Unexpected end of expression.
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:222)
+	at play.jobs.JobsPlugin.afterApplicationStart(JobsPlugin.java:155)
+	at play.plugins.PluginCollection.afterApplicationStart(PluginCollection.java:531)
+	at play.Play.start(Play.java:547)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.text.ParseException: Unexpected end of expression.
+	at play.libs.Time$CronExpression.buildExpression(Time.java:511)
+	at play.libs.Time$CronExpression.<init>(Time.java:330)
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:206)
+	... 6 more
+11:48:50,299 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:48:50,809 WARN  ~ You're running Play! in DEV mode
+11:48:50,877 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:48:58,422 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:48:58,638 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:48:59,189 INFO  ~ Application '2waySMS' is now started !
+11:48:59,870 ERROR ~ 
+
+@6eklang1a
+Internal Server Error (500) for request GET /
+
+Oops: UnsupportedOperationException
+An unexpected error occured caused by exception UnsupportedOperationException: Support for specifying both a day-of-week AND a day-of-month parameter is not implemented.
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:222)
+	at play.jobs.JobsPlugin.afterApplicationStart(JobsPlugin.java:155)
+	at play.plugins.PluginCollection.afterApplicationStart(PluginCollection.java:531)
+	at play.Play.start(Play.java:547)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.UnsupportedOperationException: Support for specifying both a day-of-week AND a day-of-month parameter is not implemented.
+	at play.libs.Time$CronExpression.getTimeAfter(Time.java:1421)
+	at play.libs.Time$CronExpression.getNextValidTimeAfter(Time.java:364)
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:207)
+	... 6 more
+11:49:38,072 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:49:38,568 WARN  ~ You're running Play! in DEV mode
+11:49:38,636 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:49:43,814 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:49:44,023 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:49:44,569 INFO  ~ Application '2waySMS' is now started !
+11:49:45,228 ERROR ~ 
+
+@6eklb054k
+Internal Server Error (500) for request GET /
+
+Oops: UnsupportedOperationException
+An unexpected error occured caused by exception UnsupportedOperationException: Support for specifying both a day-of-week AND a day-of-month parameter is not implemented.
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:222)
+	at play.jobs.JobsPlugin.afterApplicationStart(JobsPlugin.java:155)
+	at play.plugins.PluginCollection.afterApplicationStart(PluginCollection.java:531)
+	at play.Play.start(Play.java:547)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.UnsupportedOperationException: Support for specifying both a day-of-week AND a day-of-month parameter is not implemented.
+	at play.libs.Time$CronExpression.getTimeAfter(Time.java:1421)
+	at play.libs.Time$CronExpression.getNextValidTimeAfter(Time.java:364)
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:207)
+	... 6 more
+11:50:45,304 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:50:45,793 WARN  ~ You're running Play! in DEV mode
+11:50:45,866 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:50:57,656 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:50:57,886 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:50:58,422 INFO  ~ Application '2waySMS' is now started !
+11:50:59,097 ERROR ~ 
+
+@6eklb4abe
+Internal Server Error (500) for request GET /
+
+Oops: UnsupportedOperationException
+An unexpected error occured caused by exception UnsupportedOperationException: Support for specifying both a day-of-week AND a day-of-month parameter is not implemented.
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:222)
+	at play.jobs.JobsPlugin.afterApplicationStart(JobsPlugin.java:155)
+	at play.plugins.PluginCollection.afterApplicationStart(PluginCollection.java:531)
+	at play.Play.start(Play.java:547)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.UnsupportedOperationException: Support for specifying both a day-of-week AND a day-of-month parameter is not implemented.
+	at play.libs.Time$CronExpression.getTimeAfter(Time.java:1421)
+	at play.libs.Time$CronExpression.getNextValidTimeAfter(Time.java:364)
+	at play.jobs.JobsPlugin.scheduleForCRON(JobsPlugin.java:207)
+	... 6 more
+11:51:20,062 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:51:20,550 WARN  ~ You're running Play! in DEV mode
+11:51:20,616 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:51:25,176 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:51:25,393 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:51:25,930 INFO  ~ Application '2waySMS' is now started !
+11:51:45,134 ERROR ~ 
+
+@6eklb71a2
+Internal Server Error (500) for request GET /showConversionFiles?gc.campaignURL=http%3A%2F%2Fgo.kokopop.com%2Fgoogle_settings.html&gc.timezone=-0800&gc.munchkinAccountId=100-AEK-913&campaignGoog=1002
+
+Execution exception (In /app/controllers/Application.java around line 181)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at controllers.Application.showConversionFiles(Application.java:181)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+11:53:02,896 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:53:03,036 ERROR ~ 
+
+@6eklb71a4
+Internal Server Error (500) for request GET /showConversionFiles?gc.campaignURL=http%3A%2F%2Fgo.kokopop.com%2Fgoogle_settings.html&gc.timezone=-0800&gc.munchkinAccountId=100-AEK-913&campaignGoog=1002
+
+Template not found (In /app/controllers/Application.java around line 190)
+The template No files available for this account does not exist.
+
+play.exceptions.TemplateNotFoundException: Template not found : No files available for this account
+	at play.mvc.Controller.renderTemplate(Controller.java:668)
+	at play.mvc.Controller.renderTemplate(Controller.java:641)
+	at play.mvc.Controller.render(Controller.java:696)
+	at controllers.Application.showConversionFiles(Application.java:190)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	at Invocation.HTTP Request(Play!)
