@@ -36,7 +36,9 @@ import com.marketo.mktows.wsdl.LeadSyncStatus;
 import com.marketo.mktows.wsdl.MObjCriteria;
 import com.marketo.mktows.wsdl.MObject;
 import com.marketo.mktows.wsdl.MergeStatus;
+import com.marketo.mktows.wsdl.ParamsDescribeMObject;
 import com.marketo.mktows.wsdl.ResultSyncLead;
+import com.marketo.mktows.wsdl.SuccessDescribeMObject;
 import com.marketo.mktows.wsdl.SyncStatus;
 import common.MktowsClient;
 import common.StreamPostionHolder;
@@ -51,9 +53,9 @@ public class TestMktows {
 				TestMktows.HOST_NAME);
 	}
 
-	public static final String HOST_NAME = "100-AEK-913.mktoapi.com";
-	public static final String ACCESS_KEY = "demo17_1_809934544BFABAE58E5D27";
-	public static final String SECRET_KEY = "27272727aa";
+	public static final String HOST_NAME = "996-JZO-772.mktoapi.com";
+	public static final String ACCESS_KEY = "EktaSocial1_5007424350730563CDC4B0";
+	public static final String SECRET_KEY = "54044015708175565500773300556645CCEE4BEC9497";
 
 	/**
 	 * @param args
@@ -61,8 +63,13 @@ public class TestMktows {
 	public static void main(String[] args) {
 
 		TestMktows tester = new TestMktows();
-		tester.testGetMultipleLeadsStaticList();
-		// tester.testGetLead();
+		//tester.testGetMultipleLeadsStaticList();
+		tester.testGetLead();
+		//tester.testGetLeadActivity();
+		//tester.testGetLeadChanges();
+		//tester.testGetMObjects();
+		//tester.testListMObjects();
+		//tester.testDescMObjects();
 	}
 
 	public void testGetCampaignsForSource() {
@@ -89,8 +96,8 @@ public class TestMktows {
 
 		List<LeadRecord> leadRecords = null;
 		try {
-			leadRecords = this.client.getLead(LeadKeyRef.EMAIL,
-					"raj@marketo.com");
+			leadRecords = this.client.getLead(LeadKeyRef.IDNUM,
+					"6");
 		} catch (MktowsClientException e) {
 			System.out.println("Exception occurred: " + e.getMessage());
 			return;
@@ -124,15 +131,15 @@ public class TestMktows {
 
 		List<MObjCriteria> listMObjCriteria = new ArrayList<MObjCriteria>();
 		MObjCriteria c = MktowsUtil.objectFactory.createMObjCriteria();
-		c.setAttrName("Role");
-		c.setComparison(ComparisonEnum.EQ);
-		c.setAttrValue("Bigger Cheese");
-		listMObjCriteria.add(c);
+		//c.setAttrName("Role");
+		//c.setComparison(ComparisonEnum.EQ);
+		//c.setAttrValue("Admin");
+		//listMObjCriteria.add(c);
 		StreamPostionHolder posHolder = new StreamPostionHolder();
 		List<MObject> listMObjects = null;
 		try {
-			listMObjects = this.client.getMObjects("OpportunityPersonRole",
-					null, null, listMObjCriteria, null, posHolder);
+			listMObjects = this.client.getMObjects("Opportunity",
+					null, null, null, null, posHolder);
 		} catch (MktowsClientException e) {
 			System.out.println("Exception occurred: " + e.getMessage());
 			return;
@@ -146,6 +153,17 @@ public class TestMktows {
 		}
 	}
 
+	public void testDescMObjects() {
+
+		List<MObjCriteria> listMObjCriteria = new ArrayList<MObjCriteria>();
+		ParamsDescribeMObject c = MktowsUtil.objectFactory.createParamsDescribeMObject();
+		c.setObjectName("Opportunity");
+		//listMObjCriteria.add(c);
+		StreamPostionHolder posHolder = new StreamPostionHolder();
+		SuccessDescribeMObject listMObjects = null;
+		listMObjects = this.client.describeMObject(c);
+		System.out.println("Received DescMobj output");
+	}
 	public void testRequestCampaign() {
 
 		final String myCampName = "Product Seminar - Summer";
@@ -334,7 +352,7 @@ public class TestMktows {
 		List<ActivityRecord> activityRecords = null;
 		try {
 			activityRecords = this.client.getLeadActivity(LeadKeyRef.IDNUM,
-					"24", 10, lastestCreatedAt, null, filter, posHolder);
+					"84618", 10, lastestCreatedAt, null, filter, posHolder);
 		} catch (MktowsClientException e) {
 			System.out.println("Exception occurred: " + e.getMessage());
 			return;

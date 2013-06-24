@@ -21,7 +21,7 @@ public class renameFiles extends Job {
 			for (File dir : dirs) {
 				File latestFile = new File(dir + "/latest.csv");
 				Date dt = new Date();
-				String newFileName = dt.toString() + ".csv";
+				String newFileName = dt.toString().substring(0, 9) + ".csv";
 				File newFile = new File(dir.getAbsolutePath() + "/"
 						+ newFileName);
 				if (latestFile.exists()) {

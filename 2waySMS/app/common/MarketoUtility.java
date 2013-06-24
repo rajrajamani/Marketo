@@ -17,6 +17,7 @@ import play.libs.WS;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.marketo.mktows.client.MktServiceException;
 import com.marketo.mktows.client.MktowsClientException;
 import com.marketo.mktows.client.MktowsUtil;
@@ -51,7 +52,7 @@ public class MarketoUtility {
 					targetUrl, status);
 			return null;
 		}
-		String retVal = res.getString();
+		JsonElement retVal = res.getJson();
 		SMSCampaign sc = null;
 		GoogleCampaign gc = null;
 		try {
