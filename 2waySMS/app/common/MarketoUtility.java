@@ -11,6 +11,9 @@ import models.GoogleCampaign;
 import models.Lead;
 import models.Rule;
 import models.SMSCampaign;
+
+import org.apache.commons.lang.StringEscapeUtils;
+
 import play.Logger;
 import play.db.jpa.Model;
 import play.libs.WS;
@@ -70,6 +73,9 @@ public class MarketoUtility {
 
 			case Constants.CAMPAIGN_GOOG:
 				gc = gson.fromJson(retVal, GoogleCampaign.class);
+				gc.munchkinId = StringEscapeUtils.unescapeHtml(gc.munchkinId);
+				Logger.debug("Read values from settings file : munchkinId[%s]",
+						 gc.munchkinId);
 				gc.campaignURL = targetUrl;
 				return gc;
 			}

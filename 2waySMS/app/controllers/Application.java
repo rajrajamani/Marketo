@@ -174,14 +174,14 @@ public class Application extends Controller {
 	public static void showConversionFiles(int campaignGoog, GoogleCampaign gc) {
 		String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
 		String dirBase = Play.configuration.getProperty("mkto.googBaseDir");
-		String dirName = dirBase + gc.munchkinAccountId;
+		String dirName = dirBase + gc.munchkinId;
 		List<String> allConversionFiles = new ArrayList<String>();
 		File dirFile = new File(dirName);
 		File[] listOfFiles = dirFile.listFiles();
 		if (listOfFiles != null) {
 			for (File f : listOfFiles) {
 				String fqFileName = urlBase + "/public/google/"
-						+ gc.munchkinAccountId + "/" + f.getName();
+						+ gc.munchkinId + "/" + f.getName();
 				Logger.debug("File name is : %s", fqFileName);
 				allConversionFiles.add(fqFileName);
 			}

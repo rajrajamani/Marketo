@@ -15,7 +15,7 @@ import play.db.jpa.Model;
 public class GoogleCampaign extends Model {
 	public GoogleCampaign(GoogleCampaign ms) {
 		campaignURL = ms.campaignURL;
-		munchkinAccountId = ms.munchkinAccountId;
+		munchkinId = ms.munchkinId;
 		timezone = ms.timezone;
 		
 	}
@@ -26,6 +26,6 @@ public class GoogleCampaign extends Model {
 	public static final int MAX_RULES = 25;
 
 	public String campaignURL; // provided by marketer
-	public String munchkinAccountId; // from token
+	public String munchkinId; // from token
 	public String timezone;
 }

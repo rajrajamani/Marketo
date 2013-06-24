@@ -1,10 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Conversion Files' /}
 
-
-<ul>
-    #{list items:allConversionFiles, as:'file' }
-        <li style="float:left"><a href="${file}" style="display:inline">${file}</a></li>
-    #{/list}
-</ul>
+#{list items:allConversionFiles, as:'file' }
+        <a href="${file}" style="float:left">${file}</a><br>
+#{/list}
 
