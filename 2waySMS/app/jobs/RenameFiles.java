@@ -10,7 +10,7 @@ import play.jobs.On;
 
 //sec min hr dayofmonth month dayofweek
 @On("0 0 0 ? 1-12 SUN")
-public class renameFiles extends Job {
+public class RenameFiles extends Job {
 
 	public void doJob() {
 		Logger.info("Renaming google conversion files");
@@ -21,7 +21,7 @@ public class renameFiles extends Job {
 			for (File dir : dirs) {
 				File latestFile = new File(dir + "/latest.csv");
 				Date dt = new Date();
-				String newFileName = dt.toString().substring(0, 9) + ".csv";
+				String newFileName = dt.toString().substring(0, 10) + ".csv";
 				File newFile = new File(dir.getAbsolutePath() + "/"
 						+ newFileName);
 				if (latestFile.exists()) {
