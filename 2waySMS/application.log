@@ -2333,3 +2333,37 @@ play.exceptions.TemplateNotFoundException: Template not found : No files availab
 	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
 	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
 	at Invocation.HTTP Request(Play!)
+10:36:18,285 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:36:18,965 WARN  ~ You're running Play! in DEV mode
+10:36:19,035 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:36:38,152 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+10:36:38,740 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:36:40,797 INFO  ~ Application '2waySMS' is now started !
+10:59:12,159 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:59:12,632 WARN  ~ You're running Play! in DEV mode
+10:59:12,698 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:59:24,010 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+10:59:24,224 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:59:24,787 INFO  ~ Application '2waySMS' is now started !
+10:59:30,993 INFO  ~ Looking up campaignURL http://go.kokopop.com/sms_settings.html
+10:59:31,261 INFO  ~ campaign[1] was configured previously
+11:28:11,035 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:28:11,530 WARN  ~ You're running Play! in DEV mode
+11:28:11,613 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:28:20,962 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:28:21,174 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:28:21,712 INFO  ~ Application '2waySMS' is now started !
+11:28:28,052 DEBUG ~ Read values from settings file : &#49;&#48;&#48;&#45;&#65;&#69;&#75;&#45;&#57;&#49;&#51; -0800
+11:31:10,531 DEBUG ~ Read values from settings file : &#49;&#48;&#48;&#45;&#65;&#69;&#75;&#45;&#57;&#49;&#51; -0800
+11:33:33,475 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:33:38,336 DEBUG ~ Read values from settings file : munchkinAccountId[&#49;&#48;&#48;&#45;&#65;&#69;&#75;&#45;&#57;&#49;&#51;] munchkinId[100-AEK-913]
+15:36:21,089 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+15:36:21,566 WARN  ~ You're running Play! in DEV mode
+15:36:21,633 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+15:37:53,516 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+15:37:53,785 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:37:54,354 INFO  ~ Application '2waySMS' is now started !
+15:38:00,219 DEBUG ~ Read values from settings file : munchkinAccountId[100-AEK-913] munchkinId[&#49;&#48;&#48;&#45;&#65;&#69;&#75;&#45;&#57;&#49;&#51;]
+15:38:26,832 DEBUG ~ Read values from settings file : munchkinAccountId[100-AEK-913] munchkinId[100-AEK-913]
+15:40:31,133 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:40:31,652 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]

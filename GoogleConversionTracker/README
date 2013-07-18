@@ -1,0 +1,24 @@
+This is a version of the GoogleConversionTracker service that Marketo is 
+hosting.  We are making this available to you so that you can host it 
+yourself.  
+
+HOW IT WORKS
+============
+This service listens for inbound webhook calls from Marketo.  It parses
+the info sent by Webhook and appends it to a file.  The files get rolled
+over every sunday (at midnight).  
+
+WHAT YOU NEED TO DO
+===================
+1. Download and install Java 5 (or higher) 
+2. Download and Install Play framework 1.2.5.  You can get the package 
+from http://downloads.typesafe.com/releases/play-1.2.5.zip.  Instructions
+to install are at http://www.playframework.com/documentation/1.2.5/install
+3. Download the GoogleConversionTracker project from github 
+https://github.com/rajrajamani/MarketoSamples/tree/master/GoogleConversionTracker
+2. Edit the following settings in 
+GoogleConversionTracker/conf/application.conf
+   a. mkto.serviceUrl should point to your server where this
+   service will run
+   b. Change the timezone info in mkto.googFileHeader.  Default
+   is set to -0800 (pacific time) 
