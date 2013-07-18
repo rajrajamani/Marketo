@@ -16,7 +16,7 @@ import play.Play;
 import play.mvc.Controller;
 
 import common.Constants;
-import common.MarketoUtility;
+
 
 public class Application extends Controller {
 
