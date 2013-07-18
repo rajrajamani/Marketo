@@ -16,9 +16,24 @@ from http://downloads.typesafe.com/releases/play-1.2.5.zip.  Instructions
 to install are at http://www.playframework.com/documentation/1.2.5/install
 3. Download the GoogleConversionTracker project from github 
 https://github.com/rajrajamani/MarketoSamples/tree/master/GoogleConversionTracker
-2. Edit the following settings in 
+4. Edit the following settings in 
 GoogleConversionTracker/conf/application.conf
    a. mkto.serviceUrl should point to your server where this
    service will run
    b. Change the timezone info in mkto.googFileHeader.  Default
    is set to -0800 (pacific time) 
+5. Start the application -
+	cd GoogleConversionTracker
+	play start
+6. Navigate to the server url from your browser.  Default port is 9000.  When 
+running on my localhost, the address is http://localhost:9000.  You should 
+see a page titled "Marketo Campaign Service" which prompts you for your 
+Munchkin account id
+7. Configure webhooks to send your offline conversion data to this service.
+Instructions are provided in the document titled 
+"Integrating Conversion Import with Marketo" 
+8. Enter your munchkin account Id in the default field.  You can get your 
+munchkin account id by going to Marketo Admin->Munchkin page.
+9. You will see a list of CSV files for your subscription (if there are any).
+When no data has been sent to this service by the webhook, you will see an
+empty page
