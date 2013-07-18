@@ -1,0 +1,35 @@
+15:39:08,914 INFO  ~ Starting C:\Users\rrajamani\workspace\GoogleConversionTracker
+15:39:09,343 WARN  ~ You're running Play! in DEV mode
+15:39:09,411 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+15:39:19,350 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\workspace\GoogleConversionTracker\db\h2\play;MODE=MYSQL
+15:39:20,583 INFO  ~ Application '2waySMS' is now started !
+15:39:43,356 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:40:10,018 DEBUG ~ Trying to create directory : C:\Users\rrajamani\workspace\GoogleConversionTracker/public/google/1234
+15:40:10,044 DEBUG ~ Checking if file : C:\Users\rrajamani\workspace\GoogleConversionTracker/public/google/1234/latest.csv exists
+15:40:10,044 DEBUG ~ About to create file : C:\Users\rrajamani\workspace\GoogleConversionTracker/public/google/1234/latest.csv 
+15:40:10,044 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time to file : C:\Users\rrajamani\workspace\GoogleConversionTracker\public\google\1234\latest.csv 
+15:40:10,047 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\workspace\GoogleConversionTracker/public/google/1234/latest.csv 
+15:40:26,458 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:40:56,421 DEBUG ~ Trying to create directory : C:\Users\rrajamani\workspace\GoogleConversionTracker/public/google/100-AEK-913
+15:40:56,421 DEBUG ~ Checking if file : C:\Users\rrajamani\workspace\GoogleConversionTracker/public/google/100-AEK-913/latest.csv exists
+15:40:56,421 DEBUG ~ About to create file : C:\Users\rrajamani\workspace\GoogleConversionTracker/public/google/100-AEK-913/latest.csv 
+15:40:56,421 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+ Action, Google Click Id, Conversion Name, Conversion Value, Conversion Time to file : C:\Users\rrajamani\workspace\GoogleConversionTracker\public\google\100-AEK-913\latest.csv 
+15:40:56,422 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,2013-06-21 12:40:03 to file : C:\Users\rrajamani\workspace\GoogleConversionTracker/public/google/100-AEK-913/latest.csv 
+15:40:59,122 DEBUG ~ File name is : http://ec2-54-244-75-158.us-west-2.compute.amazonaws.com:9000/public/google/100-AEK-913/latest.csv
+15:41:26,334 DEBUG ~ File name is : http://localhost:9000/public/google/100-AEK-913/latest.csv
+09:42:07,095 INFO  ~ Starting C:\Users\rrajamani\workspace\GoogleConversionTracker
+09:42:08,010 WARN  ~ You're running Play! in DEV mode
+09:42:08,690 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:42:13,323 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\workspace\GoogleConversionTracker\db\h2\play;MODE=MYSQL
+09:42:14,442 INFO  ~ Application 'GoogleConversionTracking' is now started !
+09:43:15,776 DEBUG ~ File name is : http://localhost:9000/public/google/100-AEK-913/latest.csv
+09:47:27,680 INFO  ~ Starting C:\Users\rrajamani\workspace\GoogleConversionTracker
+09:47:27,748 INFO  ~ Precompiling ...
+09:47:32,923 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\workspace\GoogleConversionTracker\db\h2\play;MODE=MYSQL
+09:47:33,499 INFO  ~ Application 'GoogleConversionTracking' is now started !
+09:47:33,559 INFO  ~ Listening for HTTP on port 9000 ...
+09:47:41,262 DEBUG ~ File name is : http://localhost:9000/public/google/100-AEK-913/latest.csv
