@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javassist.CannotCompileException;
+import javassist.CtClass;
+import models.FormulaCampaign;
 import models.GoogleCampaign;
 import models.Lead;
 import models.Rule;
@@ -58,6 +61,7 @@ public class MarketoUtility {
 		JsonElement retVal = res.getJson();
 		SMSCampaign sc = null;
 		GoogleCampaign gc = null;
+		FormulaCampaign fc = null;
 		try {
 			Gson gson = new GsonBuilder().create();
 			switch (campaignType) {
@@ -75,9 +79,21 @@ public class MarketoUtility {
 				gc = gson.fromJson(retVal, GoogleCampaign.class);
 				gc.munchkinId = StringEscapeUtils.unescapeHtml(gc.munchkinId);
 				Logger.debug("Read values from settings file : munchkinId[%s]",
-						 gc.munchkinId);
+						gc.munchkinId);
 				gc.campaignURL = targetUrl;
 				return gc;
+
+			case Constants.CAMPAIGN_FORMULA:
+				fc = gson.fromJson(retVal, FormulaCampaign.class);
+				fc.soapUserId = StringEscapeUtils.unescapeHtml(fc.soapUserId);
+				fc.soapEncKey = StringEscapeUtils.unescapeHtml(fc.soapEncKey);
+				fc.munchkinAccountId = StringEscapeUtils
+						.unescapeHtml(fc.munchkinAccountId);
+				Logger.debug("Read values from settings file : munchkinId[%s]",
+						fc.munchkinAccountId);
+				fc.campaignURL = targetUrl;
+				return fc;
+
 			}
 
 		} catch (Exception e) {
@@ -167,7 +183,84 @@ public class MarketoUtility {
 		return retVal;
 	}
 
-	public List<Lead> getLeadsFromStaticList(SMSCampaign sc) {
+	public List<LeadRecord> fetchFromStaticList(String soapUserId,
+			String soapEncKey, String munchkinAccountId, Long campaignId,
+			String programName, String staticListName) {
+		Logger.info("campaign[%d] - trying to fetch leads from list %s.%s",
+				campaignId, programName, staticListName);
+		StreamPostionHolder posHolder = new StreamPostionHolder();
+		List<LeadRecord> leadRecords = null;
+
+		try {
+			MktowsClient client = makeSoapConnection(campaignId, soapUserId,
+					soapEncKey, munchkinAccountId);
+
+			Logger.debug("campaign[%d] - get multiple leads from list :%s",
+					campaignId, staticListName);
+			String listName = programName + "." + staticListName;
+			leadRecords = client.getMultipleLeads(Constants.BATCH_SIZE,
+					listName, posHolder, null);
+			return leadRecords;
+			/*
+			 * for (LeadRecord item : leadRecords) { Lead newLead = new Lead();
+			 * newLead.munchkinId = munchkinAccountId; newLead.leadId =
+			 * item.getId(); newLead.email = item.getEmail();
+			 * Logger.debug("processing lead with id : %d", newLead.leadId);
+			 * 
+			 * newLead.save(); leadList.add(newLead); }
+			 * 
+			 * Logger.debug("campaign[%d] - retrieved and parsed %d leads",
+			 * campaignId, leadRecords.size());
+			 */
+		} catch (MktowsClientException e) {
+			Logger.error(
+					"campaign[%d] - Exception occurred while fetching leads from list: %s",
+					campaignId, e.getMessage());
+			return leadRecords;
+		} catch (MktServiceException e) {
+			Logger.error("campaign[%d] - Exception occurred: %s", campaignId,
+					e.getLongMessage());
+			return leadRecords;
+		}
+	}
+
+	public List<LeadRecord> executeFunctionInSandBox(String soapUserId,
+			String soapEncKey, String munchkinAccountId, Long campaignId,
+			String formula, List<LeadRecord> leadList) {
+		Logger.debug("campaign[%d] - In executeFormula for command set %s",
+				campaignId, formula);
+		List<LeadRecord> inflightList = leadList;
+		List<LeadRecord> processedLeadList = new ArrayList<LeadRecord>();
+		CodeSandbox csb = new CodeSandbox(soapUserId, soapEncKey,
+				munchkinAccountId, campaignId);
+
+		processedLeadList = new ArrayList<LeadRecord>();
+		Logger.debug("campaign[%d] - executing command %s", campaignId, formula);
+		if (formula.equalsIgnoreCase("mktoCapitalizeName();")) {
+			processedLeadList = csb.mktoCapitalizeName(inflightList, false);
+			// do sync multiple leads now
+			csb.syncMultipleLeads(processedLeadList, true);
+		} else { // custom code
+			String className = "MarketoSandBox" + campaignId;
+			CtClass mktoClass = csb.createClass("MarketoSandBox" + campaignId);
+			String methodName = csb.getMethodName();
+			if (!csb.methodExists(mktoClass, methodName)) {
+				csb.addMethod(mktoClass, formula);
+			}
+			try {
+				processedLeadList = csb.executeMethod(mktoClass.toClass(),
+						methodName, inflightList);
+			} catch (CannotCompileException e) {
+				Logger.error("Unable to execute method %s", methodName);
+				return null;
+			}
+			mktoClass.detach();
+
+		}
+		return processedLeadList;
+	}
+
+	public List<Lead> getLeadsFromStaticListForSms(SMSCampaign sc) {
 		Logger.info("campaign[%d] - trying to fetch leads from list %s", sc.id,
 				sc.leadListWithPhoneNumbers);
 		StreamPostionHolder posHolder = new StreamPostionHolder();

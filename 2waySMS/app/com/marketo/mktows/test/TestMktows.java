@@ -11,9 +11,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javassist.CannotCompileException;
+import javassist.CtClass;
+
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import play.Logger;
 
 import com.marketo.mktows.client.MktServiceException;
 import com.marketo.mktows.client.MktowsClientException;
@@ -24,7 +29,6 @@ import com.marketo.mktows.wsdl.ArrayOfAttribute;
 import com.marketo.mktows.wsdl.Attrib;
 import com.marketo.mktows.wsdl.Attribute;
 import com.marketo.mktows.wsdl.CampaignRecord;
-import com.marketo.mktows.wsdl.ComparisonEnum;
 import com.marketo.mktows.wsdl.ImportToListModeEnum;
 import com.marketo.mktows.wsdl.ImportToListStatusEnum;
 import com.marketo.mktows.wsdl.LeadChangeRecord;
@@ -40,6 +44,7 @@ import com.marketo.mktows.wsdl.ParamsDescribeMObject;
 import com.marketo.mktows.wsdl.ResultSyncLead;
 import com.marketo.mktows.wsdl.SuccessDescribeMObject;
 import com.marketo.mktows.wsdl.SyncStatus;
+import common.CodeSandbox;
 import common.MktowsClient;
 import common.StreamPostionHolder;
 
@@ -53,23 +58,128 @@ public class TestMktows {
 				TestMktows.HOST_NAME);
 	}
 
-	public static final String HOST_NAME = "996-JZO-772.mktoapi.com";
-	public static final String ACCESS_KEY = "EktaSocial1_5007424350730563CDC4B0";
-	public static final String SECRET_KEY = "54044015708175565500773300556645CCEE4BEC9497";
-
+	public static final String MUNCH_ACCT_ID = "100-AEK-913";
+	public static final String HOST_NAME = "100-AEK-913.mktoapi.com";
+	public static final String ACCESS_KEY = "demo17_1_809934544BFABAE58E5D27";
+	public static final String SECRET_KEY = "27272727aa";
+	public static final String TEST_CODE_SANDBOX = "System.out.println(\"Lead id is : \" + leadRecord.getEmail());  return leadRecord; ";
+	public static final String TEST_CODE_SANDBOX2 = "Map attrMap = null;		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList();		if (aoAttribute != null) {			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);			if (attrMap != null && !attrMap.isEmpty()) {				Set keySet = attrMap.keySet();String ds = attrMap.get(\"DemographicScore\").toString();String bs = attrMap.get(\"BehaviorScore\").toString();Integer dsi = Integer.valueOf(ds); Integer bsi = Integer.valueOf(bs); Integer nsi = dsi + bsi;/* String nScore = new String(String.valueOf(ns));*/System.out.println(nsi); }		}		return null;";
+	public static final String TEST_CODE_SANDBOX3 = "Integer dsi = new Integer(15); Integer bsi = new Integer(99); Integer nsi = dsi + bsi;System.out.println(nsi);	return null;";
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
 		TestMktows tester = new TestMktows();
-		//tester.testGetMultipleLeadsStaticList();
-		tester.testGetLead();
-		//tester.testGetLeadActivity();
-		//tester.testGetLeadChanges();
-		//tester.testGetMObjects();
-		//tester.testListMObjects();
-		//tester.testDescMObjects();
+		// tester.testGetMultipleLeadsStaticList();
+		// tester.testGetLead();
+		// tester.testGetLeadActivity();
+		// tester.testGetLeadChanges();
+		// tester.testGetMObjects();
+		// tester.testListMObjects();
+		// tester.testDescMObjects();
+		tester.testRandomFunctionEval();
+		// tester.testCapitalizeName();
+	}
+
+	private void testCapitalizeName() {
+		List<LeadRecord> leadRecords = null;
+		try {
+			leadRecords = this.client.getLead(LeadKeyRef.IDNUM, "1090177");
+			if (leadRecords.size() == 1) {
+				LeadRecord leadRecord = leadRecords.get(0);
+				CodeSandbox csb = new CodeSandbox(ACCESS_KEY, SECRET_KEY,
+						MUNCH_ACCT_ID, 12L);
+				leadRecord = csb.mktoCapitalizeName(leadRecord, true);
+			}
+		} catch (MktowsClientException e) {
+			System.out.println("Exception occurred: " + e.getMessage());
+			return;
+		} catch (MktServiceException e) {
+			System.out.println("Exception occurred: " + e.getLongMessage());
+			return;
+		}
+	}
+
+	public void testRandomFunctionEval() {
+		List<LeadRecord> leadRecords = null;
+		try {
+			leadRecords = this.client.getLead(LeadKeyRef.EMAIL,
+					"rrajamani@marketo.com");
+			CodeSandbox csb = new CodeSandbox(ACCESS_KEY, SECRET_KEY,
+					MUNCH_ACCT_ID, 1L);
+
+			CtClass mktoClass = csb.createClass("Marketo");
+			String mName = csb.addMethod(mktoClass, TEST_CODE_SANDBOX3);
+			csb.executeMethod(mktoClass.toClass(), mName, leadRecords.get(0));
+
+		} catch (MktowsClientException e) {
+			System.out.println("Exception occurred: " + e.getMessage());
+			return;
+		} catch (MktServiceException e) {
+			System.out.println("Exception occurred: " + e.getLongMessage());
+			return;
+		} catch (CannotCompileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public LeadRecord eval100_AEK_9133(LeadRecord leadRecord) {
+		Map<String, Object> attrMap = null;
+		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList();
+		if (aoAttribute != null) {
+			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);
+			if (attrMap != null && !attrMap.isEmpty()) {
+				String ds = attrMap.get("DemographicScore").toString();
+				String bs = attrMap.get("BehaviorScore").toString();
+				int dsi = Integer.valueOf(ds);
+				String newScore = String.valueOf(ds + bs);
+				HashMap<String, String> newAttrs = new HashMap<String, String>();
+				newAttrs.put("MyNewScore", newScore);
+				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord(
+						leadRecord.getId(), null, null, null, newAttrs);
+				try {
+					client.syncLead(newLeadRecord, null, false);
+				} catch (MktowsClientException e) {
+					Logger.error("Unable to sync lead with new score :%s",
+							e.getMessage());
+				} catch (MktServiceException e) {
+					Logger.error("Unable to sync lead with new score:%s",
+							e.getMessage());
+				}
+			}
+		}
+		return leadRecord;
+	}
+
+	public LeadRecord testAddLeadScores(LeadRecord leadRecord) {
+		Map attrMap = null;
+		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList();
+		if (aoAttribute != null) {
+			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);
+			if (attrMap != null && !attrMap.isEmpty()) {
+				Set keySet = attrMap.keySet();
+				String ds = attrMap.get("DemographicStore").toString();
+				String bs = attrMap.get("BehaviorScore").toString();
+				Float dsF = 0F;
+				Float bsF = 0F;
+				if (ds != null) {
+					dsF = Float.valueOf(ds);
+				}
+				if (bs != null) {
+					bsF = Float.valueOf(bs);
+				}
+				String newScore = String.valueOf(dsF + bsF);
+				HashMap newAttrs = new HashMap();
+				newAttrs.put("MyNewScore", newScore);
+
+				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord(
+						leadRecord.getId(), null, null, null, newAttrs);
+				return newLeadRecord;
+			}
+		}
+		return null;
 	}
 
 	public void testGetCampaignsForSource() {
@@ -96,8 +206,7 @@ public class TestMktows {
 
 		List<LeadRecord> leadRecords = null;
 		try {
-			leadRecords = this.client.getLead(LeadKeyRef.IDNUM,
-					"6");
+			leadRecords = this.client.getLead(LeadKeyRef.IDNUM, "6");
 		} catch (MktowsClientException e) {
 			System.out.println("Exception occurred: " + e.getMessage());
 			return;
@@ -131,15 +240,15 @@ public class TestMktows {
 
 		List<MObjCriteria> listMObjCriteria = new ArrayList<MObjCriteria>();
 		MObjCriteria c = MktowsUtil.objectFactory.createMObjCriteria();
-		//c.setAttrName("Role");
-		//c.setComparison(ComparisonEnum.EQ);
-		//c.setAttrValue("Admin");
-		//listMObjCriteria.add(c);
+		// c.setAttrName("Role");
+		// c.setComparison(ComparisonEnum.EQ);
+		// c.setAttrValue("Admin");
+		// listMObjCriteria.add(c);
 		StreamPostionHolder posHolder = new StreamPostionHolder();
 		List<MObject> listMObjects = null;
 		try {
-			listMObjects = this.client.getMObjects("Opportunity",
-					null, null, null, null, posHolder);
+			listMObjects = this.client.getMObjects("Opportunity", null, null,
+					null, null, posHolder);
 		} catch (MktowsClientException e) {
 			System.out.println("Exception occurred: " + e.getMessage());
 			return;
@@ -156,14 +265,16 @@ public class TestMktows {
 	public void testDescMObjects() {
 
 		List<MObjCriteria> listMObjCriteria = new ArrayList<MObjCriteria>();
-		ParamsDescribeMObject c = MktowsUtil.objectFactory.createParamsDescribeMObject();
+		ParamsDescribeMObject c = MktowsUtil.objectFactory
+				.createParamsDescribeMObject();
 		c.setObjectName("Opportunity");
-		//listMObjCriteria.add(c);
+		// listMObjCriteria.add(c);
 		StreamPostionHolder posHolder = new StreamPostionHolder();
 		SuccessDescribeMObject listMObjects = null;
 		listMObjects = this.client.describeMObject(c);
 		System.out.println("Received DescMobj output");
 	}
+
 	public void testRequestCampaign() {
 
 		final String myCampName = "Product Seminar - Summer";
@@ -485,8 +596,7 @@ public class TestMktows {
 		try {
 			do {
 				leadRecords = this.client.getMultipleLeads(2,
-						"RajExportableProgram.listForTesting",
-						posHolder, null);
+						"RajExportableProgram.listForTesting", posHolder, null);
 				System.out
 						.println("Retrieved " + leadRecords.size() + " leads");
 			} while (leadRecords.size() != 0);
@@ -730,5 +840,5 @@ public class TestMktows {
 			System.out.println("Import failed");
 		}
 	}
-	
+
 }

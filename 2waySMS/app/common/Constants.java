@@ -19,4 +19,5 @@ public class Constants {
 
 	public static final int CAMPAIGN_SMS = 1001;
 	public static final int CAMPAIGN_GOOG = 1002;
+	public static final int CAMPAIGN_FORMULA = 1003;
 }

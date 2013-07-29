@@ -4,13 +4,18 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import jobs.ProcessInboundMessage;
+import jobs.SyncListAndExecCodeInSandbox;
 import jobs.SyncListAndRunFirstCampaign;
+import models.FormulaCampaign;
 import models.GoogleCampaign;
 import models.SMSCampaign;
 
@@ -160,14 +165,25 @@ public class Application extends Controller {
 			GoogleCampaign gc = (GoogleCampaign) mu.readSettings(url,
 					Constants.CAMPAIGN_GOOG);
 			// gc.munchkinAccountId = "1234";
-			//gc.save();
+			// gc.save();
 
 			// addGCLID("1234", "idnum", "add", "hsd84jk", "marketo target",
 			// "null", "2013-06-21 12:40:03");
 
 			showConversionFiles(Constants.CAMPAIGN_GOOG, gc);
+		} else if (url.endsWith("formula_settings.html")) {
+			MarketoUtility mu = new MarketoUtility();
+			FormulaCampaign fc = (FormulaCampaign) mu.readSettings(url,
+					Constants.CAMPAIGN_FORMULA);
+			fc.save();
+			Logger.info(
+					"campaign[%d] - Kicking off background task to fetch lead list",
+					fc.id);
+			new SyncListAndExecCodeInSandbox(fc).in(2);
+
 		} else {
-			renderHtml("Campaign url must be sms_settings.html or google_settings.html");
+			renderHtml("Campaign url must be sms_settings.html"
+					+ " or google_settings.html" + " or formula_settings.html");
 		}
 	}
 
@@ -180,8 +196,8 @@ public class Application extends Controller {
 		File[] listOfFiles = dirFile.listFiles();
 		if (listOfFiles != null) {
 			for (File f : listOfFiles) {
-				String fqFileName = urlBase + "/public/google/"
-						+ gc.munchkinId + "/" + f.getName();
+				String fqFileName = urlBase + "/public/google/" + gc.munchkinId
+						+ "/" + f.getName();
 				Logger.debug("File name is : %s", fqFileName);
 				allConversionFiles.add(fqFileName);
 			}
@@ -237,13 +253,20 @@ public class Application extends Controller {
 				Logger.debug("About to create file : %s ", fileName);
 				createGoogleConversionFile(latestFile);
 			}
+			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+					.parse(convTime);
+			String newDateString = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a")
+					.format(date); // 9:00
 			String payload = "\n" + action + "," + gclid + "," + convName + ","
-					+ convValue + "," + convTime;
+					+ convValue + "," + newDateString;
 			Logger.debug("Writing %s to file : %s ", payload, fileName);
 			appendToFile(fileName, payload);
 		} catch (IOException e) {
 			Logger.fatal("Unable to create directory/write to file : %s",
 					e.getMessage());
+			e.printStackTrace();
+		} catch (ParseException e) {
+			Logger.fatal("Unable to parse date : %s", e.getMessage());
 			e.printStackTrace();
 		}
 	}

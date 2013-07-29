@@ -22,7 +22,7 @@ public class SyncListAndRunFirstCampaign extends Job {
 		MarketoUtility mu = new MarketoUtility();
 		Logger.info("campaign[%d] - Fetching leads from static list %s", sc.id,
 				sc.leadListWithPhoneNumbers);
-		List<Lead> leadList = mu.getLeadsFromStaticList(sc);
+		List<Lead> leadList = mu.getLeadsFromStaticListForSms(sc);
 		Logger.info(
 				"campaign[%d] - Finished fetching leads from static list %s",
 				sc.id, sc.leadListWithPhoneNumbers);

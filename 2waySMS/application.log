@@ -2367,3 +2367,1390 @@ play.exceptions.TemplateNotFoundException: Template not found : No files availab
 15:38:26,832 DEBUG ~ Read values from settings file : munchkinAccountId[100-AEK-913] munchkinId[100-AEK-913]
 15:40:31,133 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
 15:40:31,652 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:34:38,025 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:34:39,744 WARN  ~ You're running Play! in DEV mode
+10:34:40,117 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:36:16,795 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+10:36:17,598 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:36:18,722 INFO  ~ Application '2waySMS' is now started !
+10:37:56,865 ERROR ~ Bad JSON: 
+{
+"munchkinAccountId":"&#49;&#48;&#48;&#45;&#65;&#69;&#75;&#45;&#57;&#49;&#51;",
+"soapEncKey":"&#50;&#55;&#50;&#55;&#50;&#55;&#50;&#55;&#97;&#97;",
+"soapUserId":"&#100;&#101;&#109;&#111;&#49;&#55;&#95;&#49;&#95;&#56;&#48;&#57;&#57;&#51;&#52;&#53;&#52;&#52;&#66;&#70;&#65;&#66;&#65;&#69;&#53;&#56;&#69;&#53;&#68;&#50;&#55;",
+"programName":"CustomFormula",
+"formula":"System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());",
+"leadList":"listOfLeads"
+}
+
+10:37:56,994 ERROR ~ 
+
+@6f3jjkdh6
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fformula_settings.html
+
+Execution exception (In /app/common/MarketoUtility.java around line 60)
+RuntimeException occured : Cannot parse JSON (check logs)
+
+play.exceptions.JavaExecutionException: Cannot parse JSON (check logs)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.RuntimeException: Cannot parse JSON (check logs)
+	at play.libs.WS$HttpResponse.getJson(WS.java:668)
+	at common.MarketoUtility.readSettings(MarketoUtility.java:60)
+	at controllers.Application.index(Application.java:173)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+Caused by: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Unterminated object at line 6 column 33
+	at com.google.gson.internal.Streams.parse(Streams.java:55)
+	at com.google.gson.JsonParser.parse(JsonParser.java:84)
+	at com.google.gson.JsonParser.parse(JsonParser.java:59)
+	at com.google.gson.JsonParser.parse(JsonParser.java:45)
+	at play.libs.WS$HttpResponse.getJson(WS.java:665)
+	... 8 more
+Caused by: com.google.gson.stream.MalformedJsonException: Unterminated object at line 6 column 33
+	at com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1310)
+	at com.google.gson.stream.JsonReader.nextInObject(JsonReader.java:722)
+	at com.google.gson.stream.JsonReader.peek(JsonReader.java:382)
+	at com.google.gson.stream.JsonReader.hasNext(JsonReader.java:349)
+	at com.google.gson.internal.bind.TypeAdapters$25.read(TypeAdapters.java:657)
+	at com.google.gson.internal.bind.TypeAdapters$25.read(TypeAdapters.java:633)
+	at com.google.gson.internal.Streams.parse(Streams.java:44)
+	... 12 more
+10:39:44,520 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:39:44,589 INFO  ~ campaign[1] - Kicking off background task to fetch lead list
+10:39:46,647 INFO  ~ campaign[1] - Fetching leads from static list listOfLeads
+10:39:46,647 INFO  ~ campaign[1] - trying to fetch leads from list listOfLeads
+10:39:46,647 DEBUG ~ campaign[1] - making soap connection user:&#100;&#101;&#109;&#111;&#49;&#55;&#95;&#49;&#95;&#56;&#48;&#57;&#57;&#51;&#52;&#53;&#52;&#52;&#66;&#70;&#65;&#66;&#65;&#69;&#53;&#56;&#69;&#53;&#68;&#50;&#55; encKey:&#50;&#55;&#50;&#55;&#50;&#55;&#50;&#55;&#97;&#97; munchId:100-AEK-913
+10:39:48,195 DEBUG ~ campaign[1] - get multiple leads from list :listOfLeads
+10:39:48,827 ERROR ~ campaign[1] - Exception occurred: 20014 - Authentication failed, caused by mktServiceExceptionAuthentication failed (20014)20014: [detail: null]
+10:39:48,828 ERROR ~ 
+
+@6f3jjkdh7
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/jobs/SyncListAndExecCodeInSandbox.java around line 28)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.NullPointerException
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:28)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+10:41:34,544 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:41:34,546 INFO  ~ campaign[2] - Kicking off background task to fetch lead list
+10:41:36,594 INFO  ~ campaign[2] - Fetching leads from static list listOfLeads
+10:41:36,594 INFO  ~ campaign[2] - trying to fetch leads from list listOfLeads
+10:41:36,594 DEBUG ~ campaign[2] - making soap connection user:&#100;&#101;&#109;&#111;&#49;&#55;&#95;&#49;&#95;&#56;&#48;&#57;&#57;&#51;&#52;&#53;&#52;&#52;&#66;&#70;&#65;&#66;&#65;&#69;&#53;&#56;&#69;&#53;&#68;&#50;&#55; encKey:&#50;&#55;&#50;&#55;&#50;&#55;&#50;&#55;&#97;&#97; munchId:100-AEK-913
+10:41:37,834 DEBUG ~ campaign[2] - get multiple leads from list :listOfLeads
+10:41:38,284 ERROR ~ campaign[2] - Exception occurred: 20014 - Authentication failed, caused by mktServiceExceptionAuthentication failed (20014)20014: [detail: null]
+10:41:38,286 ERROR ~ 
+
+@6f3jjkdh8
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/jobs/SyncListAndExecCodeInSandbox.java around line 28)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.NullPointerException
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:28)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+10:43:59,974 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:43:59,976 INFO  ~ campaign[3] - Kicking off background task to fetch lead list
+10:44:02,018 INFO  ~ campaign[3] - Fetching leads from static list listOfLeads
+10:44:02,018 INFO  ~ campaign[3] - trying to fetch leads from list listOfLeads
+10:44:02,018 DEBUG ~ campaign[3] - making soap connection user:&#100;&#101;&#109;&#111;&#49;&#55;&#95;&#49;&#95;&#56;&#48;&#57;&#57;&#51;&#52;&#53;&#52;&#52;&#66;&#70;&#65;&#66;&#65;&#69;&#53;&#56;&#69;&#53;&#68;&#50;&#55; encKey:&#50;&#55;&#50;&#55;&#50;&#55;&#50;&#55;&#97;&#97; munchId:100-AEK-913
+10:44:03,229 DEBUG ~ campaign[3] - get multiple leads from list :listOfLeads
+10:44:03,597 ERROR ~ campaign[3] - Exception occurred: 20014 - Authentication failed, caused by mktServiceExceptionAuthentication failed (20014)20014: [detail: null]
+10:44:03,598 ERROR ~ 
+
+@6f3jjkdh9
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/jobs/SyncListAndExecCodeInSandbox.java around line 28)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.NullPointerException
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:28)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+10:45:21,864 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:45:21,865 INFO  ~ campaign[4] - Kicking off background task to fetch lead list
+10:45:23,894 INFO  ~ campaign[4] - Fetching leads from static list listOfLeads
+10:45:23,894 INFO  ~ campaign[4] - trying to fetch leads from list CustomFormula.listOfLeads
+10:45:23,894 DEBUG ~ campaign[4] - making soap connection user:&#100;&#101;&#109;&#111;&#49;&#55;&#95;&#49;&#95;&#56;&#48;&#57;&#57;&#51;&#52;&#53;&#52;&#52;&#66;&#70;&#65;&#66;&#65;&#69;&#53;&#56;&#69;&#53;&#68;&#50;&#55; encKey:&#50;&#55;&#50;&#55;&#50;&#55;&#50;&#55;&#97;&#97; munchId:100-AEK-913
+10:45:25,216 DEBUG ~ campaign[4] - get multiple leads from list :listOfLeads
+10:45:25,732 ERROR ~ campaign[4] - Exception occurred: 20014 - Authentication failed, caused by mktServiceExceptionAuthentication failed (20014)20014: [detail: null]
+10:45:25,734 ERROR ~ 
+
+@6f3jjkdha
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/jobs/SyncListAndExecCodeInSandbox.java around line 28)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.NullPointerException
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:28)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+10:46:39,475 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:46:39,479 INFO  ~ campaign[5] - Kicking off background task to fetch lead list
+10:46:41,507 INFO  ~ campaign[5] - Fetching leads from static list listOfLeads
+10:47:18,460 INFO  ~ campaign[5] - trying to fetch leads from list CustomFormula.listOfLeads
+10:47:18,460 DEBUG ~ campaign[5] - making soap connection user:&#100;&#101;&#109;&#111;&#49;&#55;&#95;&#49;&#95;&#56;&#48;&#57;&#57;&#51;&#52;&#53;&#52;&#52;&#66;&#70;&#65;&#66;&#65;&#69;&#53;&#56;&#69;&#53;&#68;&#50;&#55; encKey:&#50;&#55;&#50;&#55;&#50;&#55;&#50;&#55;&#97;&#97; munchId:100-AEK-913
+10:47:20,191 DEBUG ~ campaign[5] - get multiple leads from list :listOfLeads
+10:47:20,627 ERROR ~ campaign[5] - Exception occurred: 20014 - Authentication failed, caused by mktServiceExceptionAuthentication failed (20014)20014: [detail: null]
+10:47:20,628 ERROR ~ 
+
+@6f3jjkdhb
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/jobs/SyncListAndExecCodeInSandbox.java around line 28)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.NullPointerException
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:28)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+10:48:29,126 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:48:29,128 INFO  ~ campaign[6] - Kicking off background task to fetch lead list
+10:48:31,149 INFO  ~ campaign[6] - Fetching leads from static list listOfLeads
+10:48:31,149 INFO  ~ campaign[6] - trying to fetch leads from list CustomFormula.listOfLeads
+10:48:31,149 DEBUG ~ campaign[6] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:48:32,441 DEBUG ~ campaign[6] - get multiple leads from list :listOfLeads
+10:48:39,317 INFO  ~ campaign[6] - Finished fetching leads from static list.  8 leads retrieved
+10:48:39,317 DEBUG ~ campaign[6] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+10:48:41,449 DEBUG ~ campaign[6] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+10:48:59,016 DEBUG ~ campaign[6] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+10:49:05,056 ERROR ~ 
+
+@6f3jjkdhc
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 81)
+RuntimeException occured : Marketo: frozen class (cannot edit)
+
+play.exceptions.JavaExecutionException: Marketo: frozen class (cannot edit)
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: Marketo: frozen class (cannot edit)
+	at javassist.ClassPool.checkNotFrozen(ClassPool.java:568)
+	at javassist.ClassPool.makeClass(ClassPool.java:746)
+	at javassist.ClassPool.makeClass(ClassPool.java:731)
+	at common.CodeSandbox.createClass(CodeSandbox.java:81)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:245)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+10:54:59,511 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:55:00,292 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:55:00,296 INFO  ~ campaign[7] - Kicking off background task to fetch lead list
+10:55:02,339 INFO  ~ campaign[7] - Fetching leads from static list listOfLeads
+10:55:07,469 INFO  ~ campaign[7] - trying to fetch leads from list CustomFormula.listOfLeads
+10:55:07,470 DEBUG ~ campaign[7] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:55:09,456 DEBUG ~ campaign[7] - get multiple leads from list :listOfLeads
+10:55:16,393 INFO  ~ campaign[7] - Finished fetching leads from static list.  8 leads retrieved
+10:55:16,393 DEBUG ~ campaign[7] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+10:55:17,778 DEBUG ~ campaign[7] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+10:55:25,328 ERROR ~ 
+
+@6f3jjkdhd
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 81)
+RuntimeException occured : Marketo: frozen class (cannot edit)
+
+play.exceptions.JavaExecutionException: Marketo: frozen class (cannot edit)
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: Marketo: frozen class (cannot edit)
+	at javassist.ClassPool.checkNotFrozen(ClassPool.java:568)
+	at javassist.ClassPool.makeClass(ClassPool.java:746)
+	at javassist.ClassPool.makeClass(ClassPool.java:731)
+	at common.CodeSandbox.createClass(CodeSandbox.java:81)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:247)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+11:01:57,943 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:01:58,432 WARN  ~ You're running Play! in DEV mode
+11:01:58,501 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:02:11,449 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:02:11,702 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:02:12,240 INFO  ~ Application '2waySMS' is now started !
+11:02:13,292 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+11:02:13,321 INFO  ~ campaign[33] - Kicking off background task to fetch lead list
+11:02:15,377 INFO  ~ campaign[33] - Fetching leads from static list listOfLeads
+11:02:15,377 INFO  ~ campaign[33] - trying to fetch leads from list CustomFormula.listOfLeads
+11:02:15,377 DEBUG ~ campaign[33] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:02:17,006 DEBUG ~ campaign[33] - get multiple leads from list :listOfLeads
+11:02:20,520 INFO  ~ campaign[33] - Finished fetching leads from static list.  8 leads retrieved
+11:02:20,520 DEBUG ~ campaign[33] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+11:02:21,378 DEBUG ~ campaign[33] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+11:02:21,388 ERROR ~ No Such Method : Marketo.evalLine1(com.marketo.mktows.wsdl.LeadRecord)
+11:02:21,388 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+11:02:21,389 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+11:02:21,389 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+11:02:21,389 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+11:02:21,389 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+11:02:21,389 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+11:02:21,389 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+11:03:28,247 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:03:28,972 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+11:03:28,978 INFO  ~ campaign[34] - Kicking off background task to fetch lead list
+11:03:31,036 INFO  ~ campaign[34] - Fetching leads from static list listOfLeads
+11:03:31,037 INFO  ~ campaign[34] - trying to fetch leads from list CustomFormula.listOfLeads
+11:03:31,037 DEBUG ~ campaign[34] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:03:32,473 DEBUG ~ campaign[34] - get multiple leads from list :listOfLeads
+11:03:36,222 INFO  ~ campaign[34] - Finished fetching leads from static list.  8 leads retrieved
+11:03:36,222 DEBUG ~ campaign[34] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+11:03:36,222 DEBUG ~ campaign[34] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+11:03:40,446 ERROR ~ 
+
+@6f3jn491g
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 97)
+RuntimeException occured : Marketo: frozen class (cannot edit)
+
+play.exceptions.JavaExecutionException: Marketo: frozen class (cannot edit)
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: Marketo: frozen class (cannot edit)
+	at javassist.ClassPool.checkNotFrozen(ClassPool.java:568)
+	at javassist.ClassPool.makeClass(ClassPool.java:746)
+	at javassist.ClassPool.makeClass(ClassPool.java:731)
+	at common.CodeSandbox.createClass(CodeSandbox.java:97)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:247)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+13:41:53,022 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:41:53,547 WARN  ~ You're running Play! in DEV mode
+13:41:53,615 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:42:07,689 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+13:42:07,904 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:42:08,457 INFO  ~ Application '2waySMS' is now started !
+13:42:10,731 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+13:42:10,760 INFO  ~ campaign[65] - Kicking off background task to fetch lead list
+13:42:12,815 INFO  ~ campaign[65] - Fetching leads from static list listOfLeads
+13:42:12,815 INFO  ~ campaign[65] - trying to fetch leads from list CustomFormula.listOfLeads
+13:42:12,819 DEBUG ~ campaign[65] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+13:42:14,430 DEBUG ~ campaign[65] - get multiple leads from list :listOfLeads
+13:42:23,487 INFO  ~ campaign[65] - Finished fetching leads from static list.  8 leads retrieved
+13:42:23,488 DEBUG ~ campaign[65] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+13:42:23,488 DEBUG ~ campaign[65] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+13:42:24,562 ERROR ~ No Such Method : Marketo.evalLine1(com.marketo.mktows.wsdl.LeadRecord)
+13:42:24,562 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:42:24,562 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:42:24,562 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:42:24,562 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:42:24,563 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:42:24,563 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:42:24,563 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:43:38,161 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:43:39,136 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+13:43:39,140 INFO  ~ campaign[66] - Kicking off background task to fetch lead list
+13:43:41,188 INFO  ~ campaign[66] - Fetching leads from static list listOfLeads
+13:43:41,188 INFO  ~ campaign[66] - trying to fetch leads from list CustomFormula.listOfLeads
+13:43:41,194 DEBUG ~ campaign[66] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+13:43:42,194 DEBUG ~ campaign[66] - get multiple leads from list :listOfLeads
+13:43:48,629 INFO  ~ campaign[66] - Finished fetching leads from static list.  8 leads retrieved
+13:43:48,629 DEBUG ~ campaign[66] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+13:43:49,708 ERROR ~ 
+
+@6f3ki51og
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 96)
+RuntimeException occured : Marketo: frozen class (cannot edit)
+
+play.exceptions.JavaExecutionException: Marketo: frozen class (cannot edit)
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: Marketo: frozen class (cannot edit)
+	at javassist.ClassPool.checkNotFrozen(ClassPool.java:568)
+	at javassist.ClassPool.makeClass(ClassPool.java:746)
+	at javassist.ClassPool.makeClass(ClassPool.java:731)
+	at common.CodeSandbox.createClass(CodeSandbox.java:96)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:237)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+13:44:36,993 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:44:37,485 WARN  ~ You're running Play! in DEV mode
+13:44:37,556 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:44:42,748 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+13:44:42,970 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:44:43,527 INFO  ~ Application '2waySMS' is now started !
+13:44:44,581 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+13:44:44,617 INFO  ~ campaign[97] - Kicking off background task to fetch lead list
+13:44:46,672 INFO  ~ campaign[97] - Fetching leads from static list listOfLeads
+13:44:46,672 INFO  ~ campaign[97] - trying to fetch leads from list CustomFormula.listOfLeads
+13:44:46,672 DEBUG ~ campaign[97] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+13:44:48,161 DEBUG ~ campaign[97] - get multiple leads from list :listOfLeads
+13:44:51,932 INFO  ~ campaign[97] - Finished fetching leads from static list.  8 leads retrieved
+13:44:51,933 DEBUG ~ campaign[97] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+13:44:53,110 DEBUG ~ campaign[97] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+13:44:53,167 ERROR ~ No Such Method : Marketo.evalLine1(com.marketo.mktows.wsdl.LeadRecord)
+13:44:53,167 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:44:53,168 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:44:53,168 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:44:53,168 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:44:53,168 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:44:53,168 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+13:44:53,169 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "Marketo"
+14:19:32,891 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:19:34,167 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:19:34,172 INFO  ~ campaign[98] - Kicking off background task to fetch lead list
+14:19:36,228 INFO  ~ campaign[98] - Fetching leads from static list listOfLeads
+14:19:36,228 INFO  ~ campaign[98] - trying to fetch leads from list CustomFormula.listOfLeads
+14:19:36,228 DEBUG ~ campaign[98] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:19:39,837 DEBUG ~ campaign[98] - get multiple leads from list :listOfLeads
+14:19:44,815 INFO  ~ campaign[98] - Finished fetching leads from static list.  8 leads retrieved
+14:19:44,816 DEBUG ~ campaign[98] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:19:50,389 DEBUG ~ campaign[98] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:19:50,399 ERROR ~ 
+
+@6f3kmo062
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 112)
+RuntimeException occured : Marketo class is frozen
+
+play.exceptions.JavaExecutionException: Marketo class is frozen
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: Marketo class is frozen
+	at javassist.CtClassType.checkModify(CtClassType.java:286)
+	at javassist.CtBehavior.setModifiers(CtBehavior.java:144)
+	at javassist.CtMethod.<init>(CtMethod.java:55)
+	at javassist.compiler.Javac.compileMethod(Javac.java:164)
+	at javassist.compiler.Javac.compile(Javac.java:94)
+	at javassist.CtNewMethod.make(CtNewMethod.java:73)
+	at javassist.CtNewMethod.make(CtNewMethod.java:44)
+	at common.CodeSandbox.addMethod(CodeSandbox.java:112)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:247)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+14:20:51,628 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:20:51,631 INFO  ~ campaign[99] - Kicking off background task to fetch lead list
+14:20:53,687 INFO  ~ campaign[99] - Fetching leads from static list listOfLeads
+14:20:53,687 INFO  ~ campaign[99] - trying to fetch leads from list CustomFormula.listOfLeads
+14:20:53,688 DEBUG ~ campaign[99] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:21:05,378 DEBUG ~ campaign[99] - get multiple leads from list :listOfLeads
+14:21:12,592 INFO  ~ campaign[99] - Finished fetching leads from static list.  8 leads retrieved
+14:21:12,592 DEBUG ~ campaign[99] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:21:30,234 DEBUG ~ Did not find class :MarketoSandBox.  Will create new one
+14:21:30,234 DEBUG ~ campaign[99] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:21:30,243 ERROR ~ No Such Method : MarketoSandBox.evalLine1(com.marketo.mktows.wsdl.LeadRecord)
+14:21:30,244 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:21:30,244 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:21:30,244 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:21:30,244 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:21:30,244 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:21:30,245 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:21:30,245 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:21:46,310 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+14:21:46,790 WARN  ~ You're running Play! in DEV mode
+14:21:46,857 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+14:21:55,622 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+14:21:55,840 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:21:56,418 INFO  ~ Application '2waySMS' is now started !
+14:21:57,300 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:21:57,338 INFO  ~ campaign[129] - Kicking off background task to fetch lead list
+14:21:59,374 INFO  ~ campaign[129] - Fetching leads from static list listOfLeads
+14:21:59,374 INFO  ~ campaign[129] - trying to fetch leads from list CustomFormula.listOfLeads
+14:21:59,374 DEBUG ~ campaign[129] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:22:12,647 DEBUG ~ campaign[129] - get multiple leads from list :listOfLeads
+14:22:16,641 INFO  ~ campaign[129] - Finished fetching leads from static list.  8 leads retrieved
+14:22:16,641 DEBUG ~ campaign[129] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:22:24,305 DEBUG ~ Did not find class :MarketoSandBox.  Will create new one
+14:22:31,425 DEBUG ~ campaign[129] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:22:31,506 ERROR ~ No Such Method : MarketoSandBox.evalLine1(com.marketo.mktows.wsdl.LeadRecord)
+14:22:31,508 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:22:31,508 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:22:31,509 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:22:31,509 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:22:31,510 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:22:31,511 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:22:31,511 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:23:08,334 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:23:08,336 INFO  ~ campaign[130] - Kicking off background task to fetch lead list
+14:23:10,383 INFO  ~ campaign[130] - Fetching leads from static list listOfLeads
+14:23:10,383 INFO  ~ campaign[130] - trying to fetch leads from list CustomFormula.listOfLeads
+14:23:10,383 DEBUG ~ campaign[130] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:23:31,420 DEBUG ~ campaign[130] - get multiple leads from list :listOfLeads
+14:23:42,727 INFO  ~ campaign[130] - Finished fetching leads from static list.  8 leads retrieved
+14:23:42,728 DEBUG ~ campaign[130] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:23:58,836 DEBUG ~ campaign[130] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:24:07,615 ERROR ~ 
+
+@6f3kncgio
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 112)
+RuntimeException occured : MarketoSandBox class is frozen
+
+play.exceptions.JavaExecutionException: MarketoSandBox class is frozen
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: MarketoSandBox class is frozen
+	at javassist.CtClassType.checkModify(CtClassType.java:286)
+	at javassist.CtBehavior.setModifiers(CtBehavior.java:144)
+	at javassist.CtMethod.<init>(CtMethod.java:55)
+	at javassist.compiler.Javac.compileMethod(Javac.java:164)
+	at javassist.compiler.Javac.compile(Javac.java:94)
+	at javassist.CtNewMethod.make(CtNewMethod.java:73)
+	at javassist.CtNewMethod.make(CtNewMethod.java:44)
+	at common.CodeSandbox.addMethod(CodeSandbox.java:112)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:247)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+14:24:29,518 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:24:34,434 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:24:34,439 INFO  ~ campaign[131] - Kicking off background task to fetch lead list
+14:24:36,487 INFO  ~ campaign[131] - Fetching leads from static list listOfLeads
+14:24:36,487 INFO  ~ campaign[131] - trying to fetch leads from list CustomFormula.listOfLeads
+14:24:36,487 DEBUG ~ campaign[131] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:24:38,229 DEBUG ~ campaign[131] - get multiple leads from list :listOfLeads
+14:24:44,425 INFO  ~ campaign[131] - Finished fetching leads from static list.  8 leads retrieved
+14:24:44,425 DEBUG ~ campaign[131] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:24:47,049 DEBUG ~ campaign[131] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:24:52,191 ERROR ~ 
+
+@6f3kncgip
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 112)
+RuntimeException occured : MarketoSandBox class is frozen
+
+play.exceptions.JavaExecutionException: MarketoSandBox class is frozen
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: MarketoSandBox class is frozen
+	at javassist.CtClassType.checkModify(CtClassType.java:286)
+	at javassist.CtBehavior.setModifiers(CtBehavior.java:144)
+	at javassist.CtMethod.<init>(CtMethod.java:55)
+	at javassist.compiler.Javac.compileMethod(Javac.java:164)
+	at javassist.compiler.Javac.compile(Javac.java:94)
+	at javassist.CtNewMethod.make(CtNewMethod.java:73)
+	at javassist.CtNewMethod.make(CtNewMethod.java:44)
+	at common.CodeSandbox.addMethod(CodeSandbox.java:112)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:247)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+14:26:21,787 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:26:22,804 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:26:22,809 INFO  ~ campaign[132] - Kicking off background task to fetch lead list
+14:26:24,850 INFO  ~ campaign[132] - Fetching leads from static list listOfLeads
+14:26:24,850 INFO  ~ campaign[132] - trying to fetch leads from list CustomFormula.listOfLeads
+14:26:24,850 DEBUG ~ campaign[132] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:26:42,799 DEBUG ~ campaign[132] - get multiple leads from list :listOfLeads
+14:26:47,003 INFO  ~ campaign[132] - Finished fetching leads from static list.  8 leads retrieved
+14:26:47,003 DEBUG ~ campaign[132] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:26:54,032 DEBUG ~ campaign[132] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:26:54,033 ERROR ~ 
+
+@6f3kncgj0
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 120)
+RuntimeException occured : MarketoSandBox class is frozen
+
+play.exceptions.JavaExecutionException: MarketoSandBox class is frozen
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: MarketoSandBox class is frozen
+	at javassist.CtClassType.checkModify(CtClassType.java:286)
+	at javassist.CtBehavior.setModifiers(CtBehavior.java:144)
+	at javassist.CtMethod.<init>(CtMethod.java:55)
+	at javassist.compiler.Javac.compileMethod(Javac.java:164)
+	at javassist.compiler.Javac.compile(Javac.java:94)
+	at javassist.CtNewMethod.make(CtNewMethod.java:73)
+	at javassist.CtNewMethod.make(CtNewMethod.java:44)
+	at common.CodeSandbox.addMethod(CodeSandbox.java:120)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:247)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+14:27:06,383 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:27:06,386 INFO  ~ campaign[133] - Kicking off background task to fetch lead list
+14:27:08,436 INFO  ~ campaign[133] - Fetching leads from static list listOfLeads
+14:27:08,436 INFO  ~ campaign[133] - trying to fetch leads from list CustomFormula.listOfLeads
+14:27:08,436 DEBUG ~ campaign[133] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:27:13,463 DEBUG ~ campaign[133] - get multiple leads from list :listOfLeads
+14:27:34,658 INFO  ~ campaign[133] - Finished fetching leads from static list.  8 leads retrieved
+14:27:34,659 DEBUG ~ campaign[133] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:27:42,560 DEBUG ~ campaign[133] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:27:42,561 ERROR ~ 
+
+@6f3kncgj1
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Execution exception (In /app/common/CodeSandbox.java around line 121)
+RuntimeException occured : MarketoSandBox class is frozen
+
+play.exceptions.JavaExecutionException: MarketoSandBox class is frozen
+	at play.jobs.Job.call(Job.java:155)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: MarketoSandBox class is frozen
+	at javassist.CtClassType.checkModify(CtClassType.java:286)
+	at javassist.CtBehavior.setModifiers(CtBehavior.java:144)
+	at javassist.CtMethod.<init>(CtMethod.java:55)
+	at javassist.compiler.Javac.compileMethod(Javac.java:164)
+	at javassist.compiler.Javac.compile(Javac.java:94)
+	at javassist.CtNewMethod.make(CtNewMethod.java:73)
+	at javassist.CtNewMethod.make(CtNewMethod.java:44)
+	at common.CodeSandbox.addMethod(CodeSandbox.java:121)
+	at common.MarketoUtility.executeFormula(MarketoUtility.java:247)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+14:27:54,818 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+14:27:55,301 WARN  ~ You're running Play! in DEV mode
+14:27:55,369 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+14:28:02,182 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+14:28:02,425 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:28:03,033 INFO  ~ Application '2waySMS' is now started !
+14:28:04,404 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:28:04,441 INFO  ~ campaign[161] - Kicking off background task to fetch lead list
+14:28:06,500 INFO  ~ campaign[161] - Fetching leads from static list listOfLeads
+14:28:06,501 INFO  ~ campaign[161] - trying to fetch leads from list CustomFormula.listOfLeads
+14:28:06,501 DEBUG ~ campaign[161] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:28:12,689 DEBUG ~ campaign[161] - get multiple leads from list :listOfLeads
+14:28:19,708 INFO  ~ campaign[161] - Finished fetching leads from static list.  8 leads retrieved
+14:28:19,709 DEBUG ~ campaign[161] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:28:30,535 DEBUG ~ Did not find class :MarketoSandBox.  Will create new one
+14:28:30,535 DEBUG ~ campaign[161] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:28:57,578 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:28:57,580 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:28:57,581 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:28:57,582 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:28:57,584 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:28:57,585 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:28:57,587 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:29:23,574 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:29:23,576 INFO  ~ campaign[162] - Kicking off background task to fetch lead list
+14:29:25,633 INFO  ~ campaign[162] - Fetching leads from static list listOfLeads
+14:29:25,633 INFO  ~ campaign[162] - trying to fetch leads from list CustomFormula.listOfLeads
+14:29:25,633 DEBUG ~ campaign[162] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:29:35,185 DEBUG ~ campaign[162] - get multiple leads from list :listOfLeads
+14:29:39,202 INFO  ~ campaign[162] - Finished fetching leads from static list.  8 leads retrieved
+14:29:39,202 DEBUG ~ campaign[162] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:29:40,486 DEBUG ~ campaign[162] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:29:52,332 DEBUG ~ Found method evalLine1 in class
+14:29:52,335 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:29:52,360 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:29:52,361 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:29:52,361 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:29:52,362 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:29:52,363 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:29:52,363 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:29:52,364 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:32:36,236 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:32:37,496 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:32:37,501 INFO  ~ campaign[163] - Kicking off background task to fetch lead list
+14:32:39,560 INFO  ~ campaign[163] - Fetching leads from static list listOfLeads
+14:32:39,560 INFO  ~ campaign[163] - trying to fetch leads from list CustomFormula.listOfLeads
+14:32:39,560 DEBUG ~ campaign[163] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:32:42,905 DEBUG ~ campaign[163] - get multiple leads from list :listOfLeads
+14:32:49,450 INFO  ~ campaign[163] - Finished fetching leads from static list.  8 leads retrieved
+14:32:49,450 DEBUG ~ campaign[163] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:32:51,706 DEBUG ~ campaign[163] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:32:51,707 DEBUG ~ Found method evalLine1 in class
+14:32:51,851 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:32:51,851 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:32:51,852 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:32:51,852 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:32:51,853 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:32:51,853 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:32:51,853 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:32:59,425 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:32:59,428 INFO  ~ campaign[164] - Kicking off background task to fetch lead list
+14:33:01,450 INFO  ~ campaign[164] - Fetching leads from static list listOfLeads
+14:33:01,450 INFO  ~ campaign[164] - trying to fetch leads from list CustomFormula.listOfLeads
+14:33:01,450 DEBUG ~ campaign[164] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:33:03,046 DEBUG ~ campaign[164] - get multiple leads from list :listOfLeads
+14:33:06,397 INFO  ~ campaign[164] - Finished fetching leads from static list.  8 leads retrieved
+14:33:06,398 DEBUG ~ campaign[164] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:33:07,747 DEBUG ~ campaign[164] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:33:07,747 DEBUG ~ Found method evalLine1 in class
+14:33:07,747 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:33:07,748 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:33:07,748 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:33:07,749 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:33:07,749 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:33:07,750 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:33:07,750 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:33:07,751 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:31,701 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:34:31,703 INFO  ~ campaign[165] - Kicking off background task to fetch lead list
+14:34:33,748 INFO  ~ campaign[165] - Fetching leads from static list listOfLeads
+14:34:33,749 INFO  ~ campaign[165] - trying to fetch leads from list CustomFormula.listOfLeads
+14:34:33,749 DEBUG ~ campaign[165] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:34:35,807 DEBUG ~ campaign[165] - get multiple leads from list :listOfLeads
+14:34:48,829 INFO  ~ campaign[165] - Finished fetching leads from static list.  8 leads retrieved
+14:34:48,829 DEBUG ~ campaign[165] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:34:51,201 DEBUG ~ campaign[165] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:34:51,202 DEBUG ~ Found method evalLine1 in class
+14:34:51,203 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:51,203 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:51,204 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:51,204 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:51,205 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:51,205 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:51,206 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:51,206 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:34:59,913 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:34:59,915 INFO  ~ campaign[166] - Kicking off background task to fetch lead list
+14:35:01,973 INFO  ~ campaign[166] - Fetching leads from static list listOfLeads
+14:35:01,973 INFO  ~ campaign[166] - trying to fetch leads from list CustomFormula.listOfLeads
+14:35:01,973 DEBUG ~ campaign[166] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:35:03,650 DEBUG ~ campaign[166] - get multiple leads from list :listOfLeads
+14:35:07,760 INFO  ~ campaign[166] - Finished fetching leads from static list.  8 leads retrieved
+14:35:07,762 DEBUG ~ campaign[166] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:35:08,826 DEBUG ~ campaign[166] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:35:08,827 DEBUG ~ Found method evalLine1 in class
+14:37:44,442 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:37:47,464 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:37:48,121 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:37:48,714 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:37:48,969 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:37:49,191 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:37:49,386 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:37:49,590 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:37:52,313 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:37:53,678 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:37:53,683 INFO  ~ campaign[167] - Kicking off background task to fetch lead list
+14:37:55,734 INFO  ~ campaign[167] - Fetching leads from static list listOfLeads
+14:37:55,734 INFO  ~ campaign[167] - trying to fetch leads from list CustomFormula.listOfLeads
+14:37:55,735 DEBUG ~ campaign[167] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:37:58,255 DEBUG ~ campaign[167] - get multiple leads from list :listOfLeads
+14:38:04,586 INFO  ~ campaign[167] - Finished fetching leads from static list.  8 leads retrieved
+14:38:04,586 DEBUG ~ campaign[167] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:38:05,980 DEBUG ~ campaign[167] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:38:05,980 DEBUG ~ Found method evalLine1 in class
+14:38:28,729 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:38:29,399 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:38:29,895 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:38:30,182 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:38:30,404 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:38:30,611 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:38:30,820 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:42:45,863 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:42:45,866 INFO  ~ campaign[168] - Kicking off background task to fetch lead list
+14:42:47,915 INFO  ~ campaign[168] - Fetching leads from static list listOfLeads
+14:42:47,915 INFO  ~ campaign[168] - trying to fetch leads from list CustomFormula.listOfLeads
+14:42:47,915 DEBUG ~ campaign[168] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:42:50,258 DEBUG ~ campaign[168] - get multiple leads from list :listOfLeads
+14:42:54,097 INFO  ~ campaign[168] - Finished fetching leads from static list.  8 leads retrieved
+14:42:54,097 DEBUG ~ campaign[168] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:42:55,309 DEBUG ~ campaign[168] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:42:55,310 DEBUG ~ Found method evalLine1 in class
+14:42:55,311 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:42:55,312 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:42:55,312 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:42:55,313 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:42:55,313 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:42:55,313 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:42:55,314 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:42:55,314 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox"
+14:50:10,338 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+14:50:10,822 WARN  ~ You're running Play! in DEV mode
+14:50:10,890 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+14:50:17,416 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+14:50:17,659 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:50:18,217 INFO  ~ Application '2waySMS' is now started !
+14:50:19,275 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:50:19,304 INFO  ~ campaign[193] - Kicking off background task to fetch lead list
+14:50:21,345 INFO  ~ campaign[193] - Fetching leads from static list listOfLeads
+14:50:21,345 INFO  ~ campaign[193] - trying to fetch leads from list CustomFormula.listOfLeads
+14:50:21,345 DEBUG ~ campaign[193] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:50:28,221 DEBUG ~ campaign[193] - get multiple leads from list :listOfLeads
+14:50:34,717 INFO  ~ campaign[193] - Finished fetching leads from static list.  8 leads retrieved
+14:50:34,717 DEBUG ~ campaign[193] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:50:35,803 DEBUG ~ campaign[193] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:50:35,803 DEBUG ~ Did not find class :MarketoSandBox193.  Will create new one
+14:50:35,815 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox193"
+14:50:35,815 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox193"
+14:50:35,815 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox193"
+14:50:35,815 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox193"
+14:50:35,815 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox193"
+14:50:35,816 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox193"
+14:50:35,816 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox193"
+14:50:47,855 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:50:47,857 INFO  ~ campaign[194] - Kicking off background task to fetch lead list
+14:50:49,904 INFO  ~ campaign[194] - Fetching leads from static list listOfLeads
+14:50:49,904 INFO  ~ campaign[194] - trying to fetch leads from list CustomFormula.listOfLeads
+14:50:49,904 DEBUG ~ campaign[194] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:50:51,255 DEBUG ~ campaign[194] - get multiple leads from list :listOfLeads
+14:50:59,397 INFO  ~ campaign[194] - Finished fetching leads from static list.  8 leads retrieved
+14:50:59,397 DEBUG ~ campaign[194] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:51:05,889 DEBUG ~ campaign[194] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:51:05,889 DEBUG ~ Did not find class :MarketoSandBox194.  Will create new one
+14:51:05,897 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox194"
+14:51:05,897 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox194"
+14:51:05,897 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox194"
+14:51:05,897 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox194"
+14:51:05,897 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox194"
+14:51:05,897 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox194"
+14:51:05,898 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox194"
+14:55:10,902 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:55:19,053 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:55:19,058 INFO  ~ campaign[195] - Kicking off background task to fetch lead list
+14:55:21,109 INFO  ~ campaign[195] - Fetching leads from static list listOfLeads
+14:55:21,109 INFO  ~ campaign[195] - trying to fetch leads from list CustomFormula.listOfLeads
+14:55:21,110 DEBUG ~ campaign[195] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:55:24,105 DEBUG ~ campaign[195] - get multiple leads from list :listOfLeads
+14:55:29,140 INFO  ~ campaign[195] - Finished fetching leads from static list.  8 leads retrieved
+14:55:29,140 DEBUG ~ campaign[195] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:55:30,545 DEBUG ~ campaign[195] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:55:30,545 DEBUG ~ Did not find class :MarketoSandBox195.  Will create new one
+14:55:30,546 ERROR ~ Unable to find class : MarketoSandBox195
+14:55:30,546 ERROR ~ Unable to find class : MarketoSandBox195
+14:55:30,546 ERROR ~ Unable to find class : MarketoSandBox195
+14:55:30,546 ERROR ~ Unable to find class : MarketoSandBox195
+14:55:30,547 ERROR ~ Unable to find class : MarketoSandBox195
+14:55:30,547 ERROR ~ Unable to find class : MarketoSandBox195
+14:55:30,547 ERROR ~ Unable to find class : MarketoSandBox195
+14:55:30,547 ERROR ~ Unable to find class : MarketoSandBox195
+14:56:36,514 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+14:56:36,518 INFO  ~ campaign[196] - Kicking off background task to fetch lead list
+14:56:38,571 INFO  ~ campaign[196] - Fetching leads from static list listOfLeads
+14:56:38,571 INFO  ~ campaign[196] - trying to fetch leads from list CustomFormula.listOfLeads
+14:56:38,571 DEBUG ~ campaign[196] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+14:56:42,788 DEBUG ~ campaign[196] - get multiple leads from list :listOfLeads
+14:56:49,710 INFO  ~ campaign[196] - Finished fetching leads from static list.  8 leads retrieved
+14:56:49,710 DEBUG ~ campaign[196] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+14:56:51,213 DEBUG ~ campaign[196] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+14:56:51,213 DEBUG ~ Did not find class :MarketoSandBox196.  Will create new one
+14:56:51,216 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox196"
+14:56:51,216 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox196"
+14:56:51,217 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox196"
+14:56:51,217 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox196"
+14:56:51,217 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox196"
+14:56:51,217 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox196"
+14:56:51,217 ERROR ~ Cannot compile : by java.lang.LinkageError: loader (instance of  play/classloading/ApplicationClassloader): attempted  duplicate class definition for name: "MarketoSandBox196"
+15:01:17,391 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+15:01:17,869 WARN  ~ You're running Play! in DEV mode
+15:01:17,937 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+15:01:23,111 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+15:01:23,355 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:01:23,861 INFO  ~ Application '2waySMS' is now started !
+15:01:24,795 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:01:24,824 INFO  ~ campaign[225] - Kicking off background task to fetch lead list
+15:01:26,882 INFO  ~ campaign[225] - Fetching leads from static list listOfLeads
+15:01:26,882 INFO  ~ campaign[225] - trying to fetch leads from list CustomFormula.listOfLeads
+15:01:26,883 DEBUG ~ campaign[225] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+15:01:57,785 DEBUG ~ campaign[225] - get multiple leads from list :listOfLeads
+15:02:01,951 INFO  ~ campaign[225] - Finished fetching leads from static list.  8 leads retrieved
+15:02:01,951 DEBUG ~ campaign[225] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+15:02:12,978 DEBUG ~ campaign[225] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+15:02:12,979 DEBUG ~ Did not find class :MarketoSandBox225.  Will create new one
+15:06:22,092 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:06:22,093 INFO  ~ campaign[226] - Kicking off background task to fetch lead list
+15:06:24,141 INFO  ~ campaign[226] - Fetching leads from static list listOfLeads
+15:06:24,141 INFO  ~ campaign[226] - trying to fetch leads from list CustomFormula.listOfLeads
+15:06:24,141 DEBUG ~ campaign[226] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+15:06:25,098 DEBUG ~ campaign[226] - get multiple leads from list :listOfLeads
+15:06:28,404 INFO  ~ campaign[226] - Finished fetching leads from static list.  8 leads retrieved
+15:06:28,405 DEBUG ~ campaign[226] - In executeFormula for command set System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail());
+15:06:29,261 DEBUG ~ campaign[226] - executing command System.out.println("Lead id: " + leadRecord.getId() + " : email is :" + leadRecord.getEmail())
+15:06:29,262 DEBUG ~ Did not find class :MarketoSandBox226.  Will create new one
+15:07:04,911 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:07:04,912 INFO  ~ campaign[227] - Kicking off background task to fetch lead list
+15:07:06,954 INFO  ~ campaign[227] - Fetching leads from static list listOfLeads
+15:07:06,954 INFO  ~ campaign[227] - trying to fetch leads from list CustomFormula.listOfLeads
+15:07:06,954 DEBUG ~ campaign[227] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+15:07:07,814 DEBUG ~ campaign[227] - get multiple leads from list :listOfLeads
+15:07:11,293 INFO  ~ campaign[227] - Finished fetching leads from static list.  8 leads retrieved
+15:07:11,294 DEBUG ~ campaign[227] - In executeFormula for command set System.out.println("Lead: email is :" + leadRecord.getEmail());
+15:07:12,222 DEBUG ~ campaign[227] - executing command System.out.println("Lead: email is :" + leadRecord.getEmail())
+15:07:12,222 DEBUG ~ Did not find class :MarketoSandBox227.  Will create new one
+10:15:10,096 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:15:10,689 WARN  ~ You're running Play! in DEV mode
+10:15:11,000 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:18:09,988 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+10:18:10,236 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:18:10,743 INFO  ~ Application '2waySMS' is now started !
+10:18:29,544 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:18:29,573 INFO  ~ campaign[257] - Kicking off background task to fetch lead list
+10:18:31,608 INFO  ~ campaign[257] - Fetching leads from static list listOfLeads
+10:18:31,609 INFO  ~ campaign[257] - trying to fetch leads from list CustomFormula.listOfLeads
+10:18:31,609 DEBUG ~ campaign[257] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:18:33,457 DEBUG ~ campaign[257] - get multiple leads from list :listOfLeads
+10:18:38,715 INFO  ~ campaign[257] - Finished fetching leads from static list.  8 leads retrieved
+10:18:38,715 DEBUG ~ campaign[257] - In executeFormula for command set mktoCapitalizeName();
+10:18:39,771 DEBUG ~ campaign[257] - executing command mktoCapitalizeName();
+10:18:39,772 DEBUG ~ Did not find class :MarketoSandBox257.  Will create new one
+10:18:39,780 ERROR ~ Unable to compile : [source error] mktoCapitalizeName() not found in MarketoSandBox257
+10:19:49,655 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:19:49,659 INFO  ~ campaign[258] - Kicking off background task to fetch lead list
+10:19:51,705 INFO  ~ campaign[258] - Fetching leads from static list listOfLeads
+10:19:51,705 INFO  ~ campaign[258] - trying to fetch leads from list CustomFormula.listOfLeads
+10:19:51,706 DEBUG ~ campaign[258] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:19:52,725 DEBUG ~ campaign[258] - get multiple leads from list :listOfLeads
+10:19:58,669 INFO  ~ campaign[258] - Finished fetching leads from static list.  8 leads retrieved
+10:19:58,669 DEBUG ~ campaign[258] - In executeFormula for command set mktoCapitalizeName();
+10:19:59,551 DEBUG ~ campaign[258] - executing command mktoCapitalizeName();
+10:19:59,551 DEBUG ~ Capitalizing First Name to : Norm
+10:19:59,551 DEBUG ~ Capitalizing Last Name to : May
+10:19:59,551 DEBUG ~ Capitalizing First Name to : Pat
+10:19:59,552 DEBUG ~ Capitalizing Last Name to : Stumuller
+10:19:59,552 DEBUG ~ Capitalizing First Name to : Andy
+10:19:59,552 DEBUG ~ Capitalizing Last Name to : Young
+10:19:59,552 DEBUG ~ Capitalizing First Name to : Phyllis
+10:19:59,552 DEBUG ~ Capitalizing Last Name to : Cotton
+10:19:59,552 DEBUG ~ Capitalizing First Name to : David
+10:19:59,552 DEBUG ~ Capitalizing Last Name to : Monaco
+10:19:59,552 DEBUG ~ Capitalizing First Name to : Carolyn
+10:19:59,552 DEBUG ~ Capitalizing Last Name to : Crenshaw
+10:19:59,552 DEBUG ~ Capitalizing First Name to : Jack
+10:19:59,552 DEBUG ~ Capitalizing Last Name to : Rogers
+10:19:59,552 DEBUG ~ Capitalizing First Name to : Bill
+10:19:59,552 DEBUG ~ Capitalizing Last Name to : Dadio Jr
+10:19:59,552 DEBUG ~ About to sync 8 leads
+10:20:03,288 DEBUG ~ Finished sync-ing 8 leads
+10:23:37,176 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:23:37,178 INFO  ~ campaign[259] - Kicking off background task to fetch lead list
+10:23:39,211 INFO  ~ campaign[259] - Fetching leads from static list listOfLeads
+10:23:39,211 INFO  ~ campaign[259] - trying to fetch leads from list CustomFormula.listOfLeads
+10:23:39,211 DEBUG ~ campaign[259] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:23:40,249 DEBUG ~ campaign[259] - get multiple leads from list :listOfLeads
+10:23:44,838 INFO  ~ campaign[259] - Finished fetching leads from static list.  8 leads retrieved
+10:23:44,838 DEBUG ~ campaign[259] - In executeFormula for command set mktoCapitalizeName();
+10:23:45,877 DEBUG ~ campaign[259] - executing command mktoCapitalizeName();
+10:23:45,878 DEBUG ~ Capitalizing First Name to : Norm
+10:23:45,878 DEBUG ~ Capitalizing Last Name to : May
+10:23:45,878 DEBUG ~ Capitalizing First Name to : Pat
+10:23:45,878 DEBUG ~ Capitalizing Last Name to : Stumuller
+10:23:45,878 DEBUG ~ Capitalizing First Name to : Andy
+10:23:45,878 DEBUG ~ Capitalizing Last Name to : Young
+10:23:45,878 DEBUG ~ Capitalizing First Name to : Phyllis
+10:23:45,878 DEBUG ~ Capitalizing Last Name to : Cotton
+10:23:45,878 DEBUG ~ Capitalizing First Name to : David
+10:23:45,878 DEBUG ~ Capitalizing Last Name to : Monaco
+10:23:45,878 DEBUG ~ Capitalizing First Name to : Carolyn
+10:23:45,878 DEBUG ~ Capitalizing Last Name to : Crenshaw
+10:23:45,878 DEBUG ~ Capitalizing First Name to : Jack
+10:23:45,878 DEBUG ~ Capitalizing Last Name to : Rogers
+10:23:45,878 DEBUG ~ Capitalizing First Name to : Bill
+10:23:45,878 DEBUG ~ Capitalizing Last Name to : Dadio Jr
+10:23:45,878 DEBUG ~ About to sync 8 leads
+10:23:49,503 DEBUG ~ Finished sync-ing 8 leads
+15:34:01,634 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:34:03,065 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:34:03,084 ERROR ~ Value too long for column "FORMULA VARCHAR(255)": "STRINGDECODE('\t\tMap<String, Object> attrMap = null; \t\tArrayOfAttribute aoAttribute = item.getLeadAttributeList(); \t\tif (ao... (1157)"; SQL statement:
+insert into FormulaCampaign (id, campaignURL, formula, leadList, munchkinAccountId, programName, soapEncKey, soapUserId) values (null, ?, ?, ?, ?, ?, ?, ?) [22001-166]
+15:34:03,515 ERROR ~ 
+
+@6f42dj3i8
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fformula_settings.html
+
+Execution exception (In /app/controllers/Application.java around line 175)
+PersistenceException occured : org.hibernate.exception.DataException: could not insert: [models.FormulaCampaign]
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.DataException: could not insert: [models.FormulaCampaign]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.DataException: could not insert: [models.FormulaCampaign]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1389)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1317)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1323)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:845)
+	at play.db.jpa.JPABase._save(JPABase.java:31)
+	at play.db.jpa.GenericModel.save(GenericModel.java:204)
+	at controllers.Application.index(Application.java:175)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+Caused by: org.hibernate.exception.DataException: could not insert: [models.FormulaCampaign]
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:102)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:63)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2346)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2853)
+	at org.hibernate.action.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:71)
+	at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:273)
+	at org.hibernate.event.def.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:320)
+	at org.hibernate.event.def.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:203)
+	at org.hibernate.event.def.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:129)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:69)
+	at org.hibernate.event.def.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:201)
+	at org.hibernate.event.def.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:147)
+	at org.hibernate.event.def.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:71)
+	at org.hibernate.impl.SessionImpl.firePersist(SessionImpl.java:808)
+	at org.hibernate.impl.SessionImpl.persist(SessionImpl.java:782)
+	at org.hibernate.impl.SessionImpl.persist(SessionImpl.java:786)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:839)
+	... 9 more
+Caused by: org.h2.jdbc.JdbcSQLException: Value too long for column "FORMULA VARCHAR(255)": "STRINGDECODE('\t\tMap<String, Object> attrMap = null; \t\tArrayOfAttribute aoAttribute = item.getLeadAttributeList(); \t\tif (ao... (1157)"; SQL statement:
+insert into FormulaCampaign (id, campaignURL, formula, leadList, munchkinAccountId, programName, soapEncKey, soapUserId) values (null, ?, ?, ?, ?, ?, ?, ?) [22001-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:315)
+	at org.h2.table.Table.validateConvertUpdateSequence(Table.java:680)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:120)
+	at org.h2.command.dml.Insert.update(Insert.java:84)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:143)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:129)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:93)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:56)
+	... 24 more
+15:35:32,834 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+15:35:33,331 WARN  ~ You're running Play! in DEV mode
+15:35:33,401 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+15:35:46,384 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+15:35:46,584 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:35:47,129 INFO  ~ Application '2waySMS' is now started !
+15:35:47,908 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:35:47,935 ERROR ~ Value too long for column "FORMULA VARCHAR(255)": "STRINGDECODE('\t\tMap<String, Object> attrMap = null; \t\tArrayOfAttribute aoAttribute = item.getLeadAttributeList(); \t\tif (ao... (1157)"; SQL statement:
+insert into FormulaCampaign (id, campaignURL, formula, leadList, munchkinAccountId, programName, soapEncKey, soapUserId) values (null, ?, ?, ?, ?, ?, ?, ?) [22001-166]
+15:35:48,613 ERROR ~ 
+
+@6f42dp2kp
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fformula_settings.html
+
+Execution exception (In /app/controllers/Application.java around line 175)
+PersistenceException occured : org.hibernate.exception.DataException: could not insert: [models.FormulaCampaign]
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.DataException: could not insert: [models.FormulaCampaign]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.DataException: could not insert: [models.FormulaCampaign]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1389)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1317)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1323)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:845)
+	at play.db.jpa.JPABase._save(JPABase.java:31)
+	at play.db.jpa.GenericModel.save(GenericModel.java:204)
+	at controllers.Application.index(Application.java:175)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+Caused by: org.hibernate.exception.DataException: could not insert: [models.FormulaCampaign]
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:102)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:63)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2346)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2853)
+	at org.hibernate.action.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:71)
+	at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:273)
+	at org.hibernate.event.def.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:320)
+	at org.hibernate.event.def.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:203)
+	at org.hibernate.event.def.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:129)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:69)
+	at org.hibernate.event.def.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:201)
+	at org.hibernate.event.def.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:147)
+	at org.hibernate.event.def.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:71)
+	at org.hibernate.impl.SessionImpl.firePersist(SessionImpl.java:808)
+	at org.hibernate.impl.SessionImpl.persist(SessionImpl.java:782)
+	at org.hibernate.impl.SessionImpl.persist(SessionImpl.java:786)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:839)
+	... 9 more
+Caused by: org.h2.jdbc.JdbcSQLException: Value too long for column "FORMULA VARCHAR(255)": "STRINGDECODE('\t\tMap<String, Object> attrMap = null; \t\tArrayOfAttribute aoAttribute = item.getLeadAttributeList(); \t\tif (ao... (1157)"; SQL statement:
+insert into FormulaCampaign (id, campaignURL, formula, leadList, munchkinAccountId, programName, soapEncKey, soapUserId) values (null, ?, ?, ?, ?, ?, ?, ?) [22001-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:315)
+	at org.h2.table.Table.validateConvertUpdateSequence(Table.java:680)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:120)
+	at org.h2.command.dml.Insert.update(Insert.java:84)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:143)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:129)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:93)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:56)
+	... 24 more
+15:36:28,505 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+15:36:28,987 WARN  ~ You're running Play! in DEV mode
+15:36:29,052 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+15:36:31,497 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+15:36:31,706 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:36:32,247 INFO  ~ Application '2waySMS' is now started !
+15:36:33,000 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:36:33,034 INFO  ~ campaign[1] - Kicking off background task to fetch lead list
+15:36:35,073 INFO  ~ campaign[1] - Fetching leads from static list listOfLeads
+15:36:35,073 INFO  ~ campaign[1] - trying to fetch leads from list CustomFormula.listOfLeads
+15:36:35,073 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+15:36:36,613 DEBUG ~ campaign[1] - get multiple leads from list :listOfLeads
+15:36:41,134 INFO  ~ campaign[1] - Finished fetching leads from static list.  8 leads retrieved
+15:36:41,135 DEBUG ~ campaign[1] - In executeFormula for command set 		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = item.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						item.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		}
+15:36:42,190 DEBUG ~ campaign[1] - executing command 		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = item.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						item.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		}
+15:36:42,197 DEBUG ~ Did not find class :MarketoSandBox1.  Will create new one
+15:36:42,201 DEBUG ~ Adding new method to class:public LeadRecord eval100_AEK_9131(LeadRecord leadRecord) {		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = item.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						item.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		}}
+15:36:42,227 ERROR ~ Unable to compile : [source error] ; is missing
+15:36:42,229 ERROR ~ No Such Method : MarketoSandBox1.eval100_AEK_9131(com.marketo.mktows.wsdl.LeadRecord)
+15:36:42,229 ERROR ~ No Such Method : MarketoSandBox1.eval100_AEK_9131(com.marketo.mktows.wsdl.LeadRecord)
+15:36:42,229 ERROR ~ No Such Method : MarketoSandBox1.eval100_AEK_9131(com.marketo.mktows.wsdl.LeadRecord)
+15:36:42,229 ERROR ~ No Such Method : MarketoSandBox1.eval100_AEK_9131(com.marketo.mktows.wsdl.LeadRecord)
+15:36:42,229 ERROR ~ No Such Method : MarketoSandBox1.eval100_AEK_9131(com.marketo.mktows.wsdl.LeadRecord)
+15:36:42,229 ERROR ~ No Such Method : MarketoSandBox1.eval100_AEK_9131(com.marketo.mktows.wsdl.LeadRecord)
+15:36:42,229 ERROR ~ No Such Method : MarketoSandBox1.eval100_AEK_9131(com.marketo.mktows.wsdl.LeadRecord)
+15:36:42,229 ERROR ~ No Such Method : MarketoSandBox1.eval100_AEK_9131(com.marketo.mktows.wsdl.LeadRecord)
+15:39:04,390 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:39:04,977 ERROR ~ Bad JSON: 
+{
+"munchkinAccountId":"&#49;&#48;&#48;&#45;&#65;&#69;&#75;&#45;&#57;&#49;&#51;",
+"soapEncKey":"&#50;&#55;&#50;&#55;&#50;&#55;&#50;&#55;&#97;&#97;",
+"soapUserId":"&#100;&#101;&#109;&#111;&#49;&#55;&#95;&#49;&#95;&#56;&#48;&#57;&#57;&#51;&#52;&#53;&#52;&#52;&#66;&#70;&#65;&#66;&#65;&#69;&#53;&#56;&#69;&#53;&#68;&#50;&#55;",
+"programName":"CustomFormula",
+"formula":"		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		}",
+"leadList":"listOfLeads"
+}
+
+15:39:05,708 ERROR ~ 
+
+@6f42ea87e
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fformula_settings.html
+
+Execution exception (In /app/common/MarketoUtility.java around line 61)
+RuntimeException occured : Cannot parse JSON (check logs)
+
+play.exceptions.JavaExecutionException: Cannot parse JSON (check logs)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.RuntimeException: Cannot parse JSON (check logs)
+	at play.libs.WS$HttpResponse.getJson(WS.java:668)
+	at common.MarketoUtility.readSettings(MarketoUtility.java:61)
+	at controllers.Application.index(Application.java:173)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+Caused by: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Unterminated object at line 6 column 326
+	at com.google.gson.internal.Streams.parse(Streams.java:55)
+	at com.google.gson.JsonParser.parse(JsonParser.java:84)
+	at com.google.gson.JsonParser.parse(JsonParser.java:59)
+	at com.google.gson.JsonParser.parse(JsonParser.java:45)
+	at play.libs.WS$HttpResponse.getJson(WS.java:665)
+	... 8 more
+Caused by: com.google.gson.stream.MalformedJsonException: Unterminated object at line 6 column 326
+	at com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1310)
+	at com.google.gson.stream.JsonReader.nextInObject(JsonReader.java:722)
+	at com.google.gson.stream.JsonReader.peek(JsonReader.java:382)
+	at com.google.gson.stream.JsonReader.hasNext(JsonReader.java:349)
+	at com.google.gson.internal.bind.TypeAdapters$25.read(TypeAdapters.java:657)
+	at com.google.gson.internal.bind.TypeAdapters$25.read(TypeAdapters.java:633)
+	at com.google.gson.internal.Streams.parse(Streams.java:44)
+	... 12 more
+15:39:45,334 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:39:45,340 INFO  ~ campaign[2] - Kicking off background task to fetch lead list
+15:39:47,378 INFO  ~ campaign[2] - Fetching leads from static list listOfLeads
+15:39:47,378 INFO  ~ campaign[2] - trying to fetch leads from list CustomFormula.listOfLeads
+15:39:47,378 DEBUG ~ campaign[2] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+15:39:48,426 DEBUG ~ campaign[2] - get multiple leads from list :listOfLeads
+15:39:52,178 INFO  ~ campaign[2] - Finished fetching leads from static list.  8 leads retrieved
+15:39:52,179 DEBUG ~ campaign[2] - In executeFormula for command set 		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		}
+15:39:53,159 DEBUG ~ campaign[2] - executing command 		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		}
+15:39:53,160 DEBUG ~ Did not find class :MarketoSandBox2.  Will create new one
+15:39:53,160 DEBUG ~ Adding new method to class:public LeadRecord eval100_AEK_9132(LeadRecord leadRecord) {		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		}}
+15:39:53,160 ERROR ~ Unable to compile : [source error] ; is missing
+15:39:53,168 ERROR ~ No Such Method : MarketoSandBox2.eval100_AEK_9132(com.marketo.mktows.wsdl.LeadRecord)
+15:39:53,168 ERROR ~ No Such Method : MarketoSandBox2.eval100_AEK_9132(com.marketo.mktows.wsdl.LeadRecord)
+15:39:53,168 ERROR ~ No Such Method : MarketoSandBox2.eval100_AEK_9132(com.marketo.mktows.wsdl.LeadRecord)
+15:39:53,168 ERROR ~ No Such Method : MarketoSandBox2.eval100_AEK_9132(com.marketo.mktows.wsdl.LeadRecord)
+15:39:53,168 ERROR ~ No Such Method : MarketoSandBox2.eval100_AEK_9132(com.marketo.mktows.wsdl.LeadRecord)
+15:39:53,168 ERROR ~ No Such Method : MarketoSandBox2.eval100_AEK_9132(com.marketo.mktows.wsdl.LeadRecord)
+15:39:53,169 ERROR ~ No Such Method : MarketoSandBox2.eval100_AEK_9132(com.marketo.mktows.wsdl.LeadRecord)
+15:39:53,169 ERROR ~ No Such Method : MarketoSandBox2.eval100_AEK_9132(com.marketo.mktows.wsdl.LeadRecord)
+15:41:28,809 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:41:29,952 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:41:29,957 INFO  ~ campaign[3] - Kicking off background task to fetch lead list
+15:41:31,994 INFO  ~ campaign[3] - Fetching leads from static list listOfLeads
+15:41:31,994 INFO  ~ campaign[3] - trying to fetch leads from list CustomFormula.listOfLeads
+15:41:31,995 DEBUG ~ campaign[3] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+15:41:33,030 DEBUG ~ campaign[3] - get multiple leads from list :listOfLeads
+15:41:36,674 INFO  ~ campaign[3] - Finished fetching leads from static list.  8 leads retrieved
+15:41:36,675 DEBUG ~ campaign[3] - In executeFormula for command set 		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		} 		return leadRecord;
+15:41:37,944 DEBUG ~ campaign[3] - executing command 		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		} 		return leadRecord;
+15:41:37,944 DEBUG ~ Did not find class :MarketoSandBox3.  Will create new one
+15:41:37,945 DEBUG ~ Adding new method to class:public LeadRecord eval100_AEK_9133(LeadRecord leadRecord) {		Map<String, Object> attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set<String> keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicStore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs!=null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap<String, String> newAttrs = new HashMap<String, String>(); 				newAttrs.put("MyNewScore", newScore); 				 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				try { 						client.syncLead(newLeadRecord, null, false); 				} catch (MktowsClientException e) { 					Logger.error( 							"Unable to sync lead with new score :%s", 							e.getMessage()); 				} catch (MktServiceException e) { 					Logger.error( 							"Unable to sync lead with new score:%s", 							e.getMessage()); 				} 			} 		} 		return leadRecord;}
+15:41:37,945 ERROR ~ Unable to compile : [source error] ; is missing
+15:41:37,954 ERROR ~ No Such Method : MarketoSandBox3.eval100_AEK_9133(com.marketo.mktows.wsdl.LeadRecord)
+15:41:37,954 ERROR ~ No Such Method : MarketoSandBox3.eval100_AEK_9133(com.marketo.mktows.wsdl.LeadRecord)
+15:41:37,954 ERROR ~ No Such Method : MarketoSandBox3.eval100_AEK_9133(com.marketo.mktows.wsdl.LeadRecord)
+15:41:37,954 ERROR ~ No Such Method : MarketoSandBox3.eval100_AEK_9133(com.marketo.mktows.wsdl.LeadRecord)
+15:41:37,954 ERROR ~ No Such Method : MarketoSandBox3.eval100_AEK_9133(com.marketo.mktows.wsdl.LeadRecord)
+15:41:37,954 ERROR ~ No Such Method : MarketoSandBox3.eval100_AEK_9133(com.marketo.mktows.wsdl.LeadRecord)
+15:41:37,954 ERROR ~ No Such Method : MarketoSandBox3.eval100_AEK_9133(com.marketo.mktows.wsdl.LeadRecord)
+15:41:37,954 ERROR ~ No Such Method : MarketoSandBox3.eval100_AEK_9133(com.marketo.mktows.wsdl.LeadRecord)
+18:23:47,337 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+18:23:47,820 WARN  ~ You're running Play! in DEV mode
+18:23:47,885 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+18:23:56,135 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+18:23:56,346 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+18:23:56,887 INFO  ~ Application '2waySMS' is now started !
+18:23:58,516 ERROR ~ Bad JSON: 
+{
+"munchkinAccountId":"&#49;&#48;&#48;&#45;&#65;&#69;&#75;&#45;&#57;&#49;&#51;",
+"soapEncKey":"&#50;&#55;&#50;&#55;&#50;&#55;&#50;&#55;&#97;&#97;",
+"soapUserId":"&#100;&#101;&#109;&#111;&#49;&#55;&#95;&#49;&#95;&#56;&#48;&#57;&#57;&#51;&#52;&#53;&#52;&#52;&#66;&#70;&#65;&#66;&#65;&#69;&#53;&#56;&#69;&#53;&#68;&#50;&#55;",
+"programName":"CustomFormula",
+"formula":"		Map attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicScore\").toString(); 				String bs = attrMap.get(\"BehaviorScore\").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs != null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap newAttrs = new HashMap(); 				newAttrs.put(\"MyNewScore\", newScore);  				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				return newLeadRecord; 			} 		} 		return null;",
+"leadList":"listOfLeads"
+}
+
+18:23:59,195 ERROR ~ 
+
+@6f43a15i8
+Internal Server Error (500) for request GET /?url=http%3A%2F%2Fgo.kokopop.com%2Fformula_settings.html
+
+Execution exception (In /app/common/MarketoUtility.java around line 61)
+RuntimeException occured : Cannot parse JSON (check logs)
+
+play.exceptions.JavaExecutionException: Cannot parse JSON (check logs)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.RuntimeException: Cannot parse JSON (check logs)
+	at play.libs.WS$HttpResponse.getJson(WS.java:668)
+	at common.MarketoUtility.readSettings(MarketoUtility.java:61)
+	at controllers.Application.index(Application.java:173)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+Caused by: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Unterminated object at line 6 column 302
+	at com.google.gson.internal.Streams.parse(Streams.java:55)
+	at com.google.gson.JsonParser.parse(JsonParser.java:84)
+	at com.google.gson.JsonParser.parse(JsonParser.java:59)
+	at com.google.gson.JsonParser.parse(JsonParser.java:45)
+	at play.libs.WS$HttpResponse.getJson(WS.java:665)
+	... 8 more
+Caused by: com.google.gson.stream.MalformedJsonException: Unterminated object at line 6 column 302
+	at com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1310)
+	at com.google.gson.stream.JsonReader.nextInObject(JsonReader.java:722)
+	at com.google.gson.stream.JsonReader.peek(JsonReader.java:382)
+	at com.google.gson.stream.JsonReader.hasNext(JsonReader.java:349)
+	at com.google.gson.internal.bind.TypeAdapters$25.read(TypeAdapters.java:657)
+	at com.google.gson.internal.bind.TypeAdapters$25.read(TypeAdapters.java:633)
+	at com.google.gson.internal.Streams.parse(Streams.java:44)
+	... 12 more
+18:25:28,596 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+18:25:28,625 INFO  ~ campaign[33] - Kicking off background task to fetch lead list
+18:25:30,665 INFO  ~ campaign[33] - Fetching leads from static list listOfLeads
+18:25:30,665 INFO  ~ campaign[33] - trying to fetch leads from list CustomFormula.listOfLeads
+18:25:30,666 DEBUG ~ campaign[33] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+18:25:32,495 DEBUG ~ campaign[33] - get multiple leads from list :listOfLeads
+18:25:36,378 INFO  ~ campaign[33] - Finished fetching leads from static list.  8 leads retrieved
+18:25:36,379 DEBUG ~ campaign[33] - In executeFormula for command set mktoCapitalizeName();
+18:25:37,839 DEBUG ~ campaign[33] - executing command mktoCapitalizeName();
+18:25:37,840 DEBUG ~ Capitalizing First Name to : Norm
+18:25:37,840 DEBUG ~ Capitalizing Last Name to : May
+18:25:37,840 DEBUG ~ Capitalizing First Name to : Pat
+18:25:37,840 DEBUG ~ Capitalizing Last Name to : Stumuller
+18:25:37,840 DEBUG ~ Capitalizing First Name to : Andy
+18:25:37,840 DEBUG ~ Capitalizing Last Name to : Young
+18:25:37,840 DEBUG ~ Capitalizing First Name to : Phyllis
+18:25:37,840 DEBUG ~ Capitalizing Last Name to : Cotton
+18:25:37,840 DEBUG ~ Capitalizing First Name to : David
+18:25:37,840 DEBUG ~ Capitalizing Last Name to : Monaco
+18:25:37,841 DEBUG ~ Capitalizing First Name to : Carolyn
+18:25:37,841 DEBUG ~ Capitalizing Last Name to : Crenshaw
+18:25:37,841 DEBUG ~ Capitalizing First Name to : Jack
+18:25:37,841 DEBUG ~ Capitalizing Last Name to : Rogers
+18:25:37,841 DEBUG ~ Capitalizing First Name to : Bill
+18:25:37,841 DEBUG ~ Capitalizing Last Name to : Dadio Jr
+18:25:37,841 DEBUG ~ About to sync 8 leads
+18:25:39,513 DEBUG ~ Finished sync-ing 8 leads
+18:26:33,716 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+18:26:33,719 INFO  ~ campaign[34] - Kicking off background task to fetch lead list
+18:26:35,760 INFO  ~ campaign[34] - Fetching leads from static list listOfLeads
+18:26:35,761 INFO  ~ campaign[34] - trying to fetch leads from list CustomFormula.listOfLeads
+18:26:35,761 DEBUG ~ campaign[34] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+18:26:37,238 DEBUG ~ campaign[34] - get multiple leads from list :listOfLeads
+18:26:40,898 INFO  ~ campaign[34] - Finished fetching leads from static list.  8 leads retrieved
+18:26:40,898 DEBUG ~ campaign[34] - In executeFormula for command set Map attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicScore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs != null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap newAttrs = new HashMap(); 				newAttrs.put("MyNewScore", newScore);  				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				return newLeadRecord; 			} 		} 		return null;
+18:26:42,374 DEBUG ~ campaign[34] - executing command Map attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicScore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs != null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap newAttrs = new HashMap(); 				newAttrs.put("MyNewScore", newScore);  				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				return newLeadRecord; 			} 		} 		return null;
+18:26:42,380 DEBUG ~ Did not find class :MarketoSandBox34.  Will create new one
+18:26:42,381 DEBUG ~ Adding new method to class:public LeadRecord eval100_AEK_91334(LeadRecord leadRecord) {Map attrMap = null; 		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList(); 		if (aoAttribute != null) { 			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute); 			if (attrMap != null && !attrMap.isEmpty()) { 				Set keySet = attrMap.keySet(); 				String ds = attrMap.get("DemographicScore").toString(); 				String bs = attrMap.get("BehaviorScore").toString(); 				Float dsF = 0F; 				Float bsF = 0F; 				if (ds != null) { 					dsF = Float.valueOf(ds); 				} 				if (bs != null) { 					bsF = Float.valueOf(bs); 				} 				String newScore = String.valueOf(dsF + bsF); 				HashMap newAttrs = new HashMap(); 				newAttrs.put("MyNewScore", newScore);  				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord( 						leadRecord.getId(), null, null, null, newAttrs); 				return newLeadRecord; 			} 		} 		return null;}
+18:26:42,391 ERROR ~ 
+
+@6f43a15i9
+Error during job execution (jobs.SyncListAndExecCodeInSandbox)
+
+Oops: VerifyError
+An unexpected error occured caused by exception VerifyError: (class: MarketoSandBox34, method: eval100_AEK_91334 signature: (Lcom/marketo/mktows/wsdl/LeadRecord;)Lcom/marketo/mktows/wsdl/LeadRecord;) Expecting to find object/array on stack
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.Invoker$Invocation.onException(Invoker.java:244)
+	at play.jobs.Job.onException(Job.java:124)
+	at play.jobs.Job.call(Job.java:163)
+	at play.jobs.Job$2.call(Job.java:94)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.VerifyError: (class: MarketoSandBox34, method: eval100_AEK_91334 signature: (Lcom/marketo/mktows/wsdl/LeadRecord;)Lcom/marketo/mktows/wsdl/LeadRecord;) Expecting to find object/array on stack
+	at java.lang.Class.getDeclaredConstructors0(Native Method)
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source)
+	at java.lang.Class.getConstructor0(Unknown Source)
+	at java.lang.Class.newInstance0(Unknown Source)
+	at java.lang.Class.newInstance(Unknown Source)
+	at common.CodeSandbox.executeMethod(CodeSandbox.java:160)
+	at common.CodeSandbox.executeMethod(CodeSandbox.java:149)
+	at common.MarketoUtility.executeFunctionInSandBox(MarketoUtility.java:251)
+	at jobs.SyncListAndExecCodeInSandbox.doJob(SyncListAndExecCodeInSandbox.java:30)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 8 more
+11:54:37,776 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:54:38,734 WARN  ~ You're running Play! in DEV mode
+11:54:39,139 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:55:09,655 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+11:55:10,083 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:55:10,863 INFO  ~ Application '2waySMS' is now started !
+11:55:11,254 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234
+11:55:11,277 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv exists
+11:55:11,278 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
