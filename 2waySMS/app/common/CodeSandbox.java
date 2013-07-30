@@ -81,7 +81,7 @@ public class CodeSandbox {
 				}
 				nfv = fch + remainder;
 				newAttrs.put(fld, nfv);
-				Logger.debug("Capitalizing %s to : %s", fld, fv);
+				Logger.debug("Capitalizing %s to : %s", fld, nfv);
 				if (!fv.equals(nfv)) {
 					Logger.debug("Value changed for lead id :%d",
 							leadRecord.getId());
