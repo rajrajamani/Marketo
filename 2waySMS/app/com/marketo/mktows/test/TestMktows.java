@@ -65,6 +65,7 @@ public class TestMktows {
 	public static final String TEST_CODE_SANDBOX = "System.out.println(\"Lead id is : \" + leadRecord.getEmail());  return leadRecord; ";
 	public static final String TEST_CODE_SANDBOX2 = "Map attrMap = null;		ArrayOfAttribute aoAttribute = leadRecord.getLeadAttributeList();		if (aoAttribute != null) {			attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);			if (attrMap != null && !attrMap.isEmpty()) {				Set keySet = attrMap.keySet();String ds = attrMap.get(\"DemographicScore\").toString();String bs = attrMap.get(\"BehaviorScore\").toString();Integer dsi = Integer.valueOf(ds); Integer bsi = Integer.valueOf(bs); Integer nsi = dsi + bsi;/* String nScore = new String(String.valueOf(ns));*/System.out.println(nsi); }		}		return null;";
 	public static final String TEST_CODE_SANDBOX3 = "Integer dsi = new Integer(15); Integer bsi = new Integer(99); Integer nsi = dsi + bsi;System.out.println(nsi);	return null;";
+
 	/**
 	 * @param args
 	 */
@@ -90,7 +91,8 @@ public class TestMktows {
 				LeadRecord leadRecord = leadRecords.get(0);
 				CodeSandbox csb = new CodeSandbox(ACCESS_KEY, SECRET_KEY,
 						MUNCH_ACCT_ID, 12L);
-				leadRecord = csb.mktoCapitalizeName(leadRecord, true);
+				leadRecord = csb.mktoCapitalizeName(leadRecord,
+						new String[] { "FirstName" }, true);
 			}
 		} catch (MktowsClientException e) {
 			System.out.println("Exception occurred: " + e.getMessage());

@@ -9,6 +9,7 @@ GET		/showConversionFiles					Application.showConversionFiles
 *       /smsCallback							Application.smsCallback
 GET		/cancelCampaign							Application.cancelCampaign
 *       /addGCLID								Application.addGCLID
+GET		/execFormulaStatus						Application.execFormulaStatus
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

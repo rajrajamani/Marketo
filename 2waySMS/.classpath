@@ -78,5 +78,6 @@
 	<classpathentry kind="lib" path="lib/twilio-java-sdk-3.3.14-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="lib/libphonenumber-5.4.jar"/>
 	<classpathentry kind="lib" path="C:/play-1.2.5/framework/lib/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/geocoder-2.8.jar"/>
 	<classpathentry kind="output" path="eclipse/classes"/>
 </classpath>

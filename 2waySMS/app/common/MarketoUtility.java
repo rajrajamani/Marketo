@@ -224,9 +224,10 @@ public class MarketoUtility {
 		}
 	}
 
-	public List<LeadRecord> executeFunctionInSandBox(String soapUserId,
+	public ExecStatus executeFunctionInSandBox(String soapUserId,
 			String soapEncKey, String munchkinAccountId, Long campaignId,
 			String formula, List<LeadRecord> leadList) {
+		boolean syncMultiple = false;
 		Logger.debug("campaign[%d] - In executeFormula for command set %s",
 				campaignId, formula);
 		List<LeadRecord> inflightList = leadList;
@@ -236,28 +237,71 @@ public class MarketoUtility {
 
 		processedLeadList = new ArrayList<LeadRecord>();
 		Logger.debug("campaign[%d] - executing command %s", campaignId, formula);
-		if (formula.equalsIgnoreCase("mktoCapitalizeName();")) {
-			processedLeadList = csb.mktoCapitalizeName(inflightList, false);
-			// do sync multiple leads now
-			csb.syncMultipleLeads(processedLeadList, true);
-		} else { // custom code
-			String className = "MarketoSandBox" + campaignId;
-			CtClass mktoClass = csb.createClass("MarketoSandBox" + campaignId);
-			String methodName = csb.getMethodName();
-			if (!csb.methodExists(mktoClass, methodName)) {
-				csb.addMethod(mktoClass, formula);
+		if (formula.startsWith(Constants.FORMULA_CAPITALIZE)) {
+			int length = Constants.FORMULA_CAPITALIZE.length();
+			String[] vars = formula.substring(length + 1).split("[(),]");
+			if (vars.length < 1) {
+				String errMsg = "Need at least one field name to capitalize.  Got " + vars.length + " parameters";
+				Logger.error(errMsg);
+				return new ExecStatus(errMsg, 0);
 			}
-			try {
-				processedLeadList = csb.executeMethod(mktoClass.toClass(),
-						methodName, inflightList);
-			} catch (CannotCompileException e) {
-				Logger.error("Unable to execute method %s", methodName);
-				return null;
-			}
-			mktoClass.detach();
+			processedLeadList = csb.mktoCapitalizeName(inflightList, vars,
+					false);
+			syncMultiple = true;
 
+		} else if (formula.startsWith(Constants.FORMULA_ADD)) {
+			int length = Constants.FORMULA_ADD.length();
+			String[] vars = formula.substring(length + 1).split("[(),]");
+			if (vars.length != 3) {
+				String errMsg = "Need 3 fields to add scores and write back.  Got " + vars.length + " parameters";
+				Logger.error(errMsg);
+				return new ExecStatus(errMsg, 0);
+			}
+			processedLeadList = csb.mktoAddScores(inflightList, vars[0].trim(),
+					vars[1].trim(), vars[2].trim());
+			syncMultiple = true;
+
+		} else if (formula.startsWith(Constants.FORMULA_GEOCODE_PHONE)) {
+			int length = Constants.FORMULA_GEOCODE_PHONE.length();
+			String[] vars = formula.substring(length + 1).split("[(),]");
+			if (vars.length != 2) {
+				String errMsg = "Need the phone number and region field names,   Got " + vars.length + " parameters";
+				Logger.error(errMsg);
+				return new ExecStatus(errMsg, 0);
+			}
+			processedLeadList = csb.mktoGeocodePhone(inflightList,
+					vars[0].trim(), vars[1].trim());
+			syncMultiple = true;
+
+		} else if (formula.startsWith(Constants.FORMULA_PHONE_FORMAT)) {
+			int length = Constants.FORMULA_PHONE_FORMAT.length();
+			String[] vars = formula.substring(length + 1).split("[(),]");
+			if (vars.length != 2) {
+				String errMsg = "Need the phone number and format type,   Got " + vars.length + " parameters";
+				Logger.error(errMsg);
+				return new ExecStatus(errMsg, 0);
+			}
+			processedLeadList = csb.mktoPhoneFormat(inflightList,
+					vars[0].trim(), vars[1].trim());
+			syncMultiple = true;
+		} else { // custom code
+			// no-op for now
+			/*
+			 * String className = "MarketoSandBox" + campaignId; CtClass
+			 * mktoClass = csb.createClass("MarketoSandBox" + campaignId);
+			 * String methodName = csb.getMethodName(); if
+			 * (!csb.methodExists(mktoClass, methodName)) {
+			 * csb.addMethod(mktoClass, formula); } try { processedLeadList =
+			 * csb.executeMethod(mktoClass.toClass(), methodName, inflightList);
+			 * } catch (CannotCompileException e) {
+			 * Logger.error("Unable to execute method %s", methodName); return
+			 * null; } mktoClass.detach();
+			 */
 		}
-		return processedLeadList;
+		if (syncMultiple) {
+			csb.syncMultipleLeads(processedLeadList, true);
+		}
+		return new ExecStatus("All Done", processedLeadList.size());
 	}
 
 	public List<Lead> getLeadsFromStaticListForSms(SMSCampaign sc) {

@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<table class="center">
+<thead>
+<tr>
+	<th>Campaign Id</th>
+	<th>Campaign Formula</th>
+	<th>Status</th>
+	<th>Status Message</th>
+	<th>Number of Leads Synced</th>
+</tr>
+</thead>
+<tbody>
+
+%{ 
+	for (campaign in allCampaigns) {
+}%
+<tr>
+	<td>${campaign.id}</td>
+	<td>${campaign.formula}</td>
+	<td>${campaign.status} </td>
+	<td>${campaign.statusMessage}</td>
+	<td>${campaign.numLeadsSynced}</td>
+</tr>	
+%{
+	}
+}%
+
+</tbody>
+</table>

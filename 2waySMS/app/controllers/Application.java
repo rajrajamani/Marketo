@@ -43,7 +43,7 @@ public class Application extends Controller {
 			// Check to see if this has been configured previously
 			List<SMSCampaign> msExisting = SMSCampaign.find(
 					"campaignURL = ? and status = ?", url,
-					Constants.SMSCAMPAIGN_STATUS_ACTIVE).fetch();
+					Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
 			if (msExisting.size() == 1) {
 				SMSCampaign ms = msExisting.get(0);
 				Logger.info("campaign[%d] was configured previously", ms.id);
@@ -109,7 +109,7 @@ public class Application extends Controller {
 				renderText("Please setup the SMS gateway account and retry");
 			}
 
-			sc.status = Constants.SMSCAMPAIGN_STATUS_ACTIVE;
+			sc.status = Constants.CAMPAIGN_STATUS_ACTIVE;
 			sc.save();
 			Logger.debug("campaign[%d] has been saved", sc.id);
 
@@ -181,6 +181,8 @@ public class Application extends Controller {
 					fc.id);
 			new SyncListAndExecCodeInSandbox(fc).in(2);
 
+			execFormulaStatus(fc.id);
+
 		} else {
 			renderHtml("Campaign url must be sms_settings.html"
 					+ " or google_settings.html" + " or formula_settings.html");
@@ -211,7 +213,19 @@ public class Application extends Controller {
 		if (sc != null) {
 			allCampaigns = SMSCampaign.find(
 					"munchkinAccountId = ? and status = ?",
-					sc.munchkinAccountId, Constants.SMSCAMPAIGN_STATUS_ACTIVE)
+					sc.munchkinAccountId, Constants.CAMPAIGN_STATUS_ACTIVE)
+					.fetch();
+		}
+		render(allCampaigns);
+	}
+
+	public static void execFormulaStatus(Long campaignId) {
+		FormulaCampaign fc = FormulaCampaign.findById(campaignId);
+		List<FormulaCampaign> allCampaigns = new ArrayList<FormulaCampaign>();
+		if (fc != null) {
+			allCampaigns = FormulaCampaign.find(
+					"munchkinAccountId = ?",
+					fc.munchkinAccountId)
 					.fetch();
 		}
 		render(allCampaigns);
@@ -295,7 +309,7 @@ public class Application extends Controller {
 		// TwilioUtility.deleteApplication(sc.smsGatewayID,
 		// sc.smsGatewayPassword,
 		// sc.smsGatewayApplicationId);
-		sc.status = Constants.SMSCAMPAIGN_STATUS_CANCELED;
+		sc.status = Constants.CAMPAIGN_STATUS_CANCELED;
 		sc.save();
 		Logger.info("Canceled campaign [%s]", id);
 		renderHtml("Canceled campaign successfully");

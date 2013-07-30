@@ -20,5 +20,8 @@ public class FormulaCampaign extends Model {
 	public String formula;
 	public String leadList;
 	public String programName;
+	public String statusMessage;
+	public String status;
 
+	public int numLeadsSynced;
 }

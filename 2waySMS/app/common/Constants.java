@@ -12,12 +12,24 @@ public class Constants {
 	public static final int BATCH_SIZE = 100;
 	public static final int SMS_MAX_LEN = 160;
 	public static final String UNSUB_FIELD_NAME = "smsUnsubscribed";
-	public static final String SMSCAMPAIGN_STATUS_ACTIVE = "active";
-	public static final String SMSCAMPAIGN_STATUS_CANCELED = "canceled";
+	
+	public static final String CAMPAIGN_STATUS_ACTIVE = "active";
+	public static final String CAMPAIGN_STATUS_CANCELED = "canceled";
+	public static final String CAMPAIGN_STATUS_COMPLETED = "completed";
+	
 	public static final String COUNTRY_FIELD_NAME = "Country";
 	public static final String DEFAULT_PHONE_FIELD_API_NAME = "Phone";
 
 	public static final int CAMPAIGN_SMS = 1001;
 	public static final int CAMPAIGN_GOOG = 1002;
 	public static final int CAMPAIGN_FORMULA = 1003;
+	
+	public static final String FORMULA_CAPITALIZE = "mktoCapitalize";
+	public static final String FORMULA_ADD = "mktoAdd";
+	public static final String FORMULA_GEOCODE_PHONE = "mktoGeocodePhone";
+	public static final String FORMULA_PHONE_FORMAT="mktoPhoneFormat";
+	
+	public static final String PHONE_FORMAT_E164 = "E164";
+	public static final String PHONE_FORMAT_INTERNATIONAL = "International";
+	public static final String PHONE_FORMAT_NATIONAL = "National";
 }
