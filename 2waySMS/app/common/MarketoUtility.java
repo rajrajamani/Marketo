@@ -245,7 +245,7 @@ public class MarketoUtility {
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
-			processedLeadList = csb.mktoCapitalizeName(inflightList, vars,
+			processedLeadList = csb.mktoCapitalizeField(inflightList, vars,
 					false);
 			syncMultiple = true;
 

@@ -6394,3 +6394,9 @@ play.exceptions.CompilationException: Type mismatch: cannot convert from String 
 11:58:12,836 DEBUG ~ LastName field is set to Dadio jr
 11:58:12,836 DEBUG ~ Capitalizing LastName to : Dadio jr
 11:58:12,836 DEBUG ~ About to sync 0 leads
+11:59:39,221 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:00:01,352 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:00:18,157 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:00:34,724 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:00:40,490 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:00:51,607 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl

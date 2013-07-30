@@ -43,13 +43,13 @@ public class CodeSandbox {
 		client = new MktowsClient(accessKey, secretKey, hostName);
 	}
 
-	public List<LeadRecord> mktoCapitalizeName(List<LeadRecord> inflightList,
+	public List<LeadRecord> mktoCapitalizeField(List<LeadRecord> inflightList,
 			String[] fieldNames, boolean syncImmediate) {
 		List<LeadRecord> retList = new ArrayList<LeadRecord>();
 		LeadRecord retLead = null;
 		for (LeadRecord lr : inflightList) {
 			retLead = null;
-			retLead = mktoCapitalizeName(lr, fieldNames, syncImmediate);
+			retLead = mktoCapitalizeLeadField(lr, fieldNames, syncImmediate);
 			if (retLead != null) {
 				retList.add(retLead);
 			}
@@ -57,7 +57,7 @@ public class CodeSandbox {
 		return retList;
 	}
 
-	public LeadRecord mktoCapitalizeName(LeadRecord leadRecord,
+	public LeadRecord mktoCapitalizeLeadField(LeadRecord leadRecord,
 			String[] fieldNames, boolean syncImmediate) {
 		if (leadRecord == null) {
 			return null;
@@ -114,7 +114,7 @@ public class CodeSandbox {
 		LeadRecord retLead = null;
 		for (LeadRecord lr : inflightList) {
 			retLead = null;
-			retLead = mktoAddScores(lr, false, storeNewValue, score1, score2);
+			retLead = mktoAddLeadScores(lr, false, storeNewValue, score1, score2);
 			if (retLead != null) {
 				retList.add(retLead);
 			}
@@ -122,7 +122,7 @@ public class CodeSandbox {
 		return retList;
 	}
 
-	public LeadRecord mktoAddScores(LeadRecord leadRecord,
+	public LeadRecord mktoAddLeadScores(LeadRecord leadRecord,
 			boolean syncImmediate, String storeNewValue, String score1,
 			String score2) {
 		if (leadRecord == null) {
@@ -173,7 +173,7 @@ public class CodeSandbox {
 		LeadRecord retLead = null;
 		for (LeadRecord lr : inflightList) {
 			retLead = null;
-			retLead = mktoGeocodePhone(lr, false, phoneField, regionField);
+			retLead = mktoGeocodeLeadPhone(lr, false, phoneField, regionField);
 			if (retLead != null) {
 				retList.add(retLead);
 			}
@@ -181,7 +181,7 @@ public class CodeSandbox {
 		return retList;
 	}
 
-	private LeadRecord mktoGeocodePhone(LeadRecord leadRecord,
+	private LeadRecord mktoGeocodeLeadPhone(LeadRecord leadRecord,
 			boolean syncImmediate, String phoneField, String regionField) {
 		if (leadRecord == null) {
 			return null;
@@ -225,7 +225,7 @@ public class CodeSandbox {
 		LeadRecord retLead = null;
 		for (LeadRecord lr : inflightList) {
 			retLead = null;
-			retLead = mktoPhoneFormat(lr, false, phoneField, formatType);
+			retLead = mktoLeadPhoneFormat(lr, false, phoneField, formatType);
 			if (retLead != null) {
 				retList.add(retLead);
 			}
@@ -233,7 +233,7 @@ public class CodeSandbox {
 		return retList;
 	}
 
-	private LeadRecord mktoPhoneFormat(LeadRecord leadRecord,
+	private LeadRecord mktoLeadPhoneFormat(LeadRecord leadRecord,
 			boolean syncImmediate, String phoneField, String formatType) {
 		if (leadRecord == null) {
 			return null;

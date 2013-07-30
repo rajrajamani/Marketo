@@ -91,7 +91,7 @@ public class TestMktows {
 				LeadRecord leadRecord = leadRecords.get(0);
 				CodeSandbox csb = new CodeSandbox(ACCESS_KEY, SECRET_KEY,
 						MUNCH_ACCT_ID, 12L);
-				leadRecord = csb.mktoCapitalizeName(leadRecord,
+				leadRecord = csb.mktoCapitalizeLeadField(leadRecord,
 						new String[] { "FirstName" }, true);
 			}
 		} catch (MktowsClientException e) {
