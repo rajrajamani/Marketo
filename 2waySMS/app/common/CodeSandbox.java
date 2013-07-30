@@ -43,13 +43,20 @@ public class CodeSandbox {
 		client = new MktowsClient(accessKey, secretKey, hostName);
 	}
 
+	/**
+	 * Makes the first character uppercase
+	 * 
+	 * @param inflightList
+	 * @param fieldNames
+	 * @return
+	 */
 	public List<LeadRecord> mktoCapitalizeField(List<LeadRecord> inflightList,
-			String[] fieldNames, boolean syncImmediate) {
+			String[] fieldNames) {
 		List<LeadRecord> retList = new ArrayList<LeadRecord>();
 		LeadRecord retLead = null;
 		for (LeadRecord lr : inflightList) {
 			retLead = null;
-			retLead = mktoCapitalizeLeadField(lr, fieldNames, syncImmediate);
+			retLead = mktoCapitalizeLeadFields(lr, fieldNames, false);
 			if (retLead != null) {
 				retList.add(retLead);
 			}
@@ -57,7 +64,7 @@ public class CodeSandbox {
 		return retList;
 	}
 
-	public LeadRecord mktoCapitalizeLeadField(LeadRecord leadRecord,
+	public LeadRecord mktoCapitalizeLeadFields(LeadRecord leadRecord,
 			String[] fieldNames, boolean syncImmediate) {
 		if (leadRecord == null) {
 			return null;
@@ -108,13 +115,79 @@ public class CodeSandbox {
 		return null;
 	}
 
+	public List<LeadRecord> mktoCaseChange(List<LeadRecord> inflightList,
+			String formula, String[] fieldNames) {
+		List<LeadRecord> retList = new ArrayList<LeadRecord>();
+		LeadRecord retLead = null;
+		for (LeadRecord lr : inflightList) {
+			retLead = null;
+			retLead = mktoCaseChangeLeadFields(lr, formula, fieldNames, false);
+			if (retLead != null) {
+				retList.add(retLead);
+			}
+		}
+		return retList;
+	}
+
+	private LeadRecord mktoCaseChangeLeadFields(LeadRecord leadRecord,
+			String formula, String[] fieldNames, boolean syncImmediate) {
+		if (leadRecord == null) {
+			return null;
+		}
+		int toCase = Constants.UPPERCASE;
+		if (formula.startsWith(Constants.FORMULA_STRING_LOWER)) {
+			toCase = Constants.LOWERCASE;
+		}
+		HashMap<String, String> newAttrs = new HashMap<String, String>();
+		boolean valueChanged = false;
+
+		String fld;
+		for (int i = 0; i < fieldNames.length; i++) {
+			fld = fieldNames[i].trim();
+			String fv = extractAttributeValue(leadRecord, fld);
+			String nfv = "";
+			if (fv != null) {
+				if (toCase == Constants.UPPERCASE) {
+					nfv = fv.toUpperCase();
+				} else {
+					nfv = fv.toLowerCase();
+				}
+				newAttrs.put(fld, nfv);
+				Logger.debug("Changing %s to : %s", fld, nfv);
+				if (!fv.equals(nfv)) {
+					Logger.debug("Value changed for lead id :%d",
+							leadRecord.getId());
+					valueChanged = true;
+				}
+			}
+		}
+		if (valueChanged) {
+			LeadRecord newLeadRecord = MktowsUtil.newLeadRecord(
+					leadRecord.getId(), null, null, null, newAttrs);
+			try {
+				if (syncImmediate) {
+					client.syncLead(newLeadRecord, null, false);
+				}
+			} catch (MktowsClientException e) {
+				Logger.error("Unable to sync lead with case changed value:%s",
+						e.getMessage());
+			} catch (MktServiceException e) {
+				Logger.error("Unable to sync lead with case changed value:%s",
+						e.getMessage());
+			}
+			return newLeadRecord;
+		}
+		return null;
+	}
+
 	public List<LeadRecord> mktoAddScores(List<LeadRecord> inflightList,
 			String storeNewValue, String score1, String score2) {
 		List<LeadRecord> retList = new ArrayList<LeadRecord>();
 		LeadRecord retLead = null;
 		for (LeadRecord lr : inflightList) {
 			retLead = null;
-			retLead = mktoAddLeadScores(lr, false, storeNewValue, score1, score2);
+			retLead = mktoAddLeadScores(lr, false, storeNewValue, score1,
+					score2);
 			if (retLead != null) {
 				retList.add(retLead);
 			}
@@ -411,5 +484,4 @@ public class CodeSandbox {
 		return ("eval" + this.munchkinAccountId + this.campaignId).replace("-",
 				"_");
 	}
-
 }

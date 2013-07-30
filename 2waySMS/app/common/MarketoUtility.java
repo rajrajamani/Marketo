@@ -237,23 +237,42 @@ public class MarketoUtility {
 
 		processedLeadList = new ArrayList<LeadRecord>();
 		Logger.debug("campaign[%d] - executing command %s", campaignId, formula);
-		if (formula.startsWith(Constants.FORMULA_CAPITALIZE)) {
-			int length = Constants.FORMULA_CAPITALIZE.length();
+		if (formula.startsWith(Constants.FORMULA_STRING_PROPER)) {
+			int length = Constants.FORMULA_STRING_PROPER.length();
 			String[] vars = formula.substring(length + 1).split("[(),]");
 			if (vars.length < 1) {
-				String errMsg = "Need at least one field name to capitalize.  Got " + vars.length + " parameters";
+				String errMsg = "Need at least one field name to capitalize, Got "
+						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
-			processedLeadList = csb.mktoCapitalizeField(inflightList, vars,
-					false);
+			processedLeadList = csb.mktoCapitalizeField(inflightList, vars);
+			syncMultiple = true;
+
+		} else if (formula.startsWith(Constants.FORMULA_STRING_UPPER)
+				|| formula.startsWith(Constants.FORMULA_STRING_LOWER)) {
+			int length = 0;
+			if (formula.startsWith(Constants.FORMULA_STRING_UPPER)) {
+				length = Constants.FORMULA_STRING_UPPER.length();
+			} else if (formula.startsWith(Constants.FORMULA_STRING_LOWER)) {
+				length = Constants.FORMULA_STRING_LOWER.length();
+			}
+			String[] vars = formula.substring(length + 1).split("[(),]");
+			if (vars.length < 1) {
+				String errMsg = "Need at least one field name to capitalize, Got"
+						+ vars.length + " parameters";
+				Logger.error(errMsg);
+				return new ExecStatus(errMsg, 0);
+			}
+			processedLeadList = csb.mktoCaseChange(inflightList, formula, vars);
 			syncMultiple = true;
 
 		} else if (formula.startsWith(Constants.FORMULA_ADD)) {
 			int length = Constants.FORMULA_ADD.length();
 			String[] vars = formula.substring(length + 1).split("[(),]");
 			if (vars.length != 3) {
-				String errMsg = "Need 3 fields to add scores and write back.  Got " + vars.length + " parameters";
+				String errMsg = "Need 3 fields to add scores and write back.  Got "
+						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
@@ -265,7 +284,8 @@ public class MarketoUtility {
 			int length = Constants.FORMULA_GEOCODE_PHONE.length();
 			String[] vars = formula.substring(length + 1).split("[(),]");
 			if (vars.length != 2) {
-				String errMsg = "Need the phone number and region field names,   Got " + vars.length + " parameters";
+				String errMsg = "Need the phone number and region field names,   Got "
+						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
@@ -277,7 +297,8 @@ public class MarketoUtility {
 			int length = Constants.FORMULA_PHONE_FORMAT.length();
 			String[] vars = formula.substring(length + 1).split("[(),]");
 			if (vars.length != 2) {
-				String errMsg = "Need the phone number and format type,   Got " + vars.length + " parameters";
+				String errMsg = "Need the phone number and format type,   Got "
+						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}

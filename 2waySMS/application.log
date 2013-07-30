@@ -6400,3 +6400,429 @@ play.exceptions.CompilationException: Type mismatch: cannot convert from String 
 12:00:34,724 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
 12:00:40,490 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
 12:00:51,607 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:53:51,066 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+15:53:51,602 WARN  ~ You're running Play! in DEV mode
+15:53:51,677 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+15:54:03,588 INFO  ~ Connected to jdbc:h2:C:\Users\rrajamani\git\repos\2waySMS\db\h2\play;MODE=MYSQL
+15:54:03,839 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+15:54:04,396 INFO  ~ Application '2waySMS' is now started !
+15:54:25,654 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+15:54:25,695 INFO  ~ campaign[258] - Kicking off background task to fetch lead list
+15:54:27,726 INFO  ~ campaign[258] - Fetching leads from static list listOfLeads
+15:54:27,727 INFO  ~ campaign[258] - trying to fetch leads from list CustomFormula.listOfLeads
+15:54:27,727 DEBUG ~ campaign[258] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+15:54:29,737 DEBUG ~ campaign[258] - get multiple leads from list :listOfLeads
+15:54:34,465 INFO  ~ campaign[258] - Finished fetching leads from static list.  8 leads retrieved
+15:54:34,473 DEBUG ~ campaign[258] - In executeFormula for command set mktoProper(FirstName, LastName)
+15:54:35,999 DEBUG ~ campaign[258] - executing command mktoProper(FirstName, LastName)
+15:54:35,999 DEBUG ~ About to extract value of FirstName
+15:54:35,999 DEBUG ~ FirstName field is set to Norm
+15:54:35,999 DEBUG ~ Capitalizing FirstName to : Norm
+15:54:36,000 DEBUG ~ About to extract value of LastName
+15:54:36,000 DEBUG ~ LastName field is set to May
+15:54:36,000 DEBUG ~ Capitalizing LastName to : May
+15:54:36,000 DEBUG ~ About to extract value of FirstName
+15:54:36,000 DEBUG ~ FirstName field is set to Pat
+15:54:36,000 DEBUG ~ Capitalizing FirstName to : Pat
+15:54:36,000 DEBUG ~ About to extract value of LastName
+15:54:36,000 DEBUG ~ LastName field is set to Stumuller
+15:54:36,000 DEBUG ~ Capitalizing LastName to : Stumuller
+15:54:36,000 DEBUG ~ About to extract value of FirstName
+15:54:36,000 DEBUG ~ FirstName field is set to Andy
+15:54:36,000 DEBUG ~ Capitalizing FirstName to : Andy
+15:54:36,000 DEBUG ~ About to extract value of LastName
+15:54:36,000 DEBUG ~ LastName field is set to young
+15:54:36,000 DEBUG ~ Capitalizing LastName to : Young
+15:54:36,000 DEBUG ~ Value changed for lead id :15
+15:54:36,000 DEBUG ~ About to extract value of FirstName
+15:54:36,000 DEBUG ~ FirstName field is set to Phyllis
+15:54:36,001 DEBUG ~ Capitalizing FirstName to : Phyllis
+15:54:36,001 DEBUG ~ About to extract value of LastName
+15:54:36,001 DEBUG ~ LastName field is set to Cotton
+15:54:36,001 DEBUG ~ Capitalizing LastName to : Cotton
+15:54:36,001 DEBUG ~ About to extract value of FirstName
+15:54:36,001 DEBUG ~ FirstName field is set to David
+15:54:36,001 DEBUG ~ Capitalizing FirstName to : David
+15:54:36,001 DEBUG ~ About to extract value of LastName
+15:54:36,001 DEBUG ~ LastName field is set to Monaco
+15:54:36,001 DEBUG ~ Capitalizing LastName to : Monaco
+15:54:36,001 DEBUG ~ About to extract value of FirstName
+15:54:36,001 DEBUG ~ FirstName field is set to Carolyn
+15:54:36,001 DEBUG ~ Capitalizing FirstName to : Carolyn
+15:54:36,001 DEBUG ~ About to extract value of LastName
+15:54:36,001 DEBUG ~ LastName field is set to Crenshaw
+15:54:36,001 DEBUG ~ Capitalizing LastName to : Crenshaw
+15:54:36,001 DEBUG ~ About to extract value of FirstName
+15:54:36,001 DEBUG ~ FirstName field is set to Jack
+15:54:36,001 DEBUG ~ Capitalizing FirstName to : Jack
+15:54:36,001 DEBUG ~ About to extract value of LastName
+15:54:36,002 DEBUG ~ LastName field is set to Rogers
+15:54:36,002 DEBUG ~ Capitalizing LastName to : Rogers
+15:54:36,002 DEBUG ~ About to extract value of FirstName
+15:54:36,002 DEBUG ~ FirstName field is set to Bill
+15:54:36,002 DEBUG ~ Capitalizing FirstName to : Bill
+15:54:36,002 DEBUG ~ About to extract value of LastName
+15:54:36,002 DEBUG ~ LastName field is set to Dadio jr
+15:54:36,002 DEBUG ~ Capitalizing LastName to : Dadio jr
+15:54:36,002 DEBUG ~ About to sync 1 leads
+15:54:38,670 ERROR ~ Timeout trying to lock table "FORMULACAMPAIGN"; SQL statement:
+select formulacam0_.id as id2_0_, formulacam0_.campaignURL as campaign2_2_0_, formulacam0_.formula as formula2_0_, formulacam0_.leadList as leadList2_0_, formulacam0_.munchkinAccountId as munchkin5_2_0_, formulacam0_.numLeadsSynced as numLeads6_2_0_, formulacam0_.programName as programN7_2_0_, formulacam0_.soapEncKey as soapEncKey2_0_, formulacam0_.soapUserId as soapUserId2_0_, formulacam0_.status as status2_0_, formulacam0_.statusMessage as statusM11_2_0_ from FormulaCampaign formulacam0_ where formulacam0_.id=? [50200-166]
+15:54:38,764 ERROR ~ 
+
+@6f5k6m5a8
+Internal Server Error (500) for request GET /execFormulaStatus?campaignId=258
+
+Execution exception (In /app/controllers/Application.java around line 223)
+PersistenceException occured : org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#258]
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#258]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#258]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1389)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:802)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:756)
+	at play.db.jpa.JPQL.findById(JPQL.java:36)
+	at models.FormulaCampaign.findById(FormulaCampaign.java)
+	at controllers.Application.execFormulaStatus(Application.java:223)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+Caused by: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#258]
+	at org.hibernate.exception.SQLStateConverter.handledNonSpecificException(SQLStateConverter.java:140)
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:128)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.loadEntity(Loader.java:2041)
+	at org.hibernate.loader.entity.AbstractEntityLoader.load(AbstractEntityLoader.java:86)
+	at org.hibernate.loader.entity.AbstractEntityLoader.load(AbstractEntityLoader.java:76)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3294)
+	at org.hibernate.event.def.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:496)
+	at org.hibernate.event.def.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:477)
+	at org.hibernate.event.def.DefaultLoadEventListener.load(DefaultLoadEventListener.java:227)
+	at org.hibernate.event.def.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:285)
+	at org.hibernate.event.def.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:152)
+	at org.hibernate.impl.SessionImpl.fireLoad(SessionImpl.java:1090)
+	at org.hibernate.impl.SessionImpl.get(SessionImpl.java:1005)
+	at org.hibernate.impl.SessionImpl.get(SessionImpl.java:998)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:781)
+	... 10 more
+Caused by: org.h2.jdbc.JdbcSQLException: Timeout trying to lock table "FORMULACAMPAIGN"; SQL statement:
+select formulacam0_.id as id2_0_, formulacam0_.campaignURL as campaign2_2_0_, formulacam0_.formula as formula2_0_, formulacam0_.leadList as leadList2_0_, formulacam0_.munchkinAccountId as munchkin5_2_0_, formulacam0_.numLeadsSynced as numLeads6_2_0_, formulacam0_.programName as programN7_2_0_, formulacam0_.soapEncKey as soapEncKey2_0_, formulacam0_.soapUserId as soapUserId2_0_, formulacam0_.status as status2_0_, formulacam0_.statusMessage as statusM11_2_0_ from FormulaCampaign formulacam0_ where formulacam0_.id=? [50200-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.table.RegularTable.doLock(RegularTable.java:500)
+	at org.h2.table.RegularTable.lock(RegularTable.java:434)
+	at org.h2.table.TableFilter.lock(TableFilter.java:143)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:604)
+	at org.h2.command.dml.Query.query(Query.java:307)
+	at org.h2.command.dml.Query.query(Query.java:277)
+	at org.h2.command.dml.Query.query(Query.java:36)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:82)
+	at org.h2.command.Command.executeQuery(Command.java:187)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:96)
+	at org.hibernate.jdbc.AbstractBatcher.getResultSet(AbstractBatcher.java:208)
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:1953)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:802)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.loadEntity(Loader.java:2037)
+	... 22 more
+15:54:39,123 DEBUG ~ Finished sync-ing 1 leads
+15:55:31,080 ERROR ~ 
+
+@6f5k6m5a9
+Internal Server Error (500) for request GET /execFormulaStatus?campaignId=258
+
+Compilation error (In /app/common/MarketoUtility.java around line 240)
+The file /app/common/MarketoUtility.java could not be compiled. Error raised is : FORMULA_STRING_PROPER cannot be resolved or is not a field
+
+play.exceptions.CompilationException: FORMULA_STRING_PROPER cannot be resolved or is not a field
+	at play.classloading.ApplicationCompiler$2.acceptResult(ApplicationCompiler.java:246)
+	at org.eclipse.jdt.internal.compiler.Compiler.handleInternalException(Compiler.java:676)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:520)
+	at play.classloading.ApplicationCompiler.compile(ApplicationCompiler.java:282)
+	at play.classloading.ApplicationClasses$ApplicationClass.compile(ApplicationClasses.java:281)
+	at play.classloading.ApplicationClassloader.detectChanges(ApplicationClassloader.java:324)
+	at play.Play.detectChanges(Play.java:625)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+16:08:53,583 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:08:57,331 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+16:08:57,333 INFO  ~ campaign[259] - Kicking off background task to fetch lead list
+16:08:59,364 INFO  ~ campaign[259] - Fetching leads from static list listOfLeads
+16:08:59,364 INFO  ~ campaign[259] - trying to fetch leads from list CustomFormula.listOfLeads
+16:08:59,364 DEBUG ~ campaign[259] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:09:00,622 DEBUG ~ campaign[259] - get multiple leads from list :listOfLeads
+16:09:03,905 INFO  ~ campaign[259] - Finished fetching leads from static list.  8 leads retrieved
+16:09:03,909 DEBUG ~ campaign[259] - In executeFormula for command set mktoProper(FirstName, LastName)
+16:09:05,359 DEBUG ~ campaign[259] - executing command mktoProper(FirstName, LastName)
+16:09:05,359 DEBUG ~ About to extract value of FirstName
+16:09:05,360 DEBUG ~ FirstName field is set to Norm
+16:09:05,360 DEBUG ~ Capitalizing FirstName to : Norm
+16:09:05,360 DEBUG ~ About to extract value of LastName
+16:09:05,360 DEBUG ~ LastName field is set to May
+16:09:05,360 DEBUG ~ Capitalizing LastName to : May
+16:09:05,360 DEBUG ~ About to extract value of FirstName
+16:09:05,360 DEBUG ~ FirstName field is set to pat
+16:09:05,360 DEBUG ~ Capitalizing FirstName to : Pat
+16:09:05,360 DEBUG ~ Value changed for lead id :14
+16:09:05,360 DEBUG ~ About to extract value of LastName
+16:09:05,360 DEBUG ~ LastName field is set to Stumuller
+16:09:05,360 DEBUG ~ Capitalizing LastName to : Stumuller
+16:09:05,361 DEBUG ~ About to extract value of FirstName
+16:09:05,361 DEBUG ~ FirstName field is set to Andy
+16:09:05,361 DEBUG ~ Capitalizing FirstName to : Andy
+16:09:05,361 DEBUG ~ About to extract value of LastName
+16:09:05,361 DEBUG ~ LastName field is set to Young
+16:09:05,361 DEBUG ~ Capitalizing LastName to : Young
+16:09:05,361 DEBUG ~ About to extract value of FirstName
+16:09:05,361 DEBUG ~ FirstName field is set to Phyllis
+16:09:05,361 DEBUG ~ Capitalizing FirstName to : Phyllis
+16:09:05,361 DEBUG ~ About to extract value of LastName
+16:09:05,361 DEBUG ~ LastName field is set to Cotton
+16:09:05,361 DEBUG ~ Capitalizing LastName to : Cotton
+16:09:05,362 DEBUG ~ About to extract value of FirstName
+16:09:05,362 DEBUG ~ FirstName field is set to David
+16:09:05,362 DEBUG ~ Capitalizing FirstName to : David
+16:09:05,362 DEBUG ~ About to extract value of LastName
+16:09:05,362 DEBUG ~ LastName field is set to Monaco
+16:09:05,362 DEBUG ~ Capitalizing LastName to : Monaco
+16:09:05,362 DEBUG ~ About to extract value of FirstName
+16:09:05,362 DEBUG ~ FirstName field is set to Carolyn
+16:09:05,362 DEBUG ~ Capitalizing FirstName to : Carolyn
+16:09:05,362 DEBUG ~ About to extract value of LastName
+16:09:05,362 DEBUG ~ LastName field is set to Crenshaw
+16:09:05,362 DEBUG ~ Capitalizing LastName to : Crenshaw
+16:09:05,362 DEBUG ~ About to extract value of FirstName
+16:09:05,363 DEBUG ~ FirstName field is set to Jack
+16:09:05,363 DEBUG ~ Capitalizing FirstName to : Jack
+16:09:05,363 DEBUG ~ About to extract value of LastName
+16:09:05,363 DEBUG ~ LastName field is set to Rogers
+16:09:05,363 DEBUG ~ Capitalizing LastName to : Rogers
+16:09:05,363 DEBUG ~ About to extract value of FirstName
+16:09:05,363 DEBUG ~ FirstName field is set to Bill
+16:09:05,363 DEBUG ~ Capitalizing FirstName to : Bill
+16:09:05,363 DEBUG ~ About to extract value of LastName
+16:09:05,363 DEBUG ~ LastName field is set to Dadio jr
+16:09:05,363 DEBUG ~ Capitalizing LastName to : Dadio jr
+16:09:05,363 DEBUG ~ About to sync 1 leads
+16:09:08,144 DEBUG ~ Finished sync-ing 1 leads
+16:10:00,669 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+16:10:00,671 INFO  ~ campaign[260] - Kicking off background task to fetch lead list
+16:10:02,697 INFO  ~ campaign[260] - Fetching leads from static list listOfLeads
+16:10:02,698 INFO  ~ campaign[260] - trying to fetch leads from list CustomFormula.listOfLeads
+16:10:02,698 DEBUG ~ campaign[260] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:10:04,221 DEBUG ~ campaign[260] - get multiple leads from list :listOfLeads
+16:10:07,900 INFO  ~ campaign[260] - Finished fetching leads from static list.  8 leads retrieved
+16:10:07,905 DEBUG ~ campaign[260] - In executeFormula for command set mktoUpper(FirstName)
+16:10:09,011 DEBUG ~ campaign[260] - executing command mktoUpper(FirstName)
+16:10:09,011 DEBUG ~ About to extract value of FirstName
+16:10:09,011 DEBUG ~ FirstName field is set to Norm
+16:10:09,011 DEBUG ~ Changing FirstName to : NORM
+16:10:09,011 DEBUG ~ Value changed for lead id :13
+16:10:09,011 DEBUG ~ About to extract value of FirstName
+16:10:09,011 DEBUG ~ FirstName field is set to Pat
+16:10:09,011 DEBUG ~ Changing FirstName to : PAT
+16:10:09,011 DEBUG ~ Value changed for lead id :14
+16:10:09,011 DEBUG ~ About to extract value of FirstName
+16:10:09,011 DEBUG ~ FirstName field is set to Andy
+16:10:09,011 DEBUG ~ Changing FirstName to : ANDY
+16:10:09,011 DEBUG ~ Value changed for lead id :15
+16:10:09,011 DEBUG ~ About to extract value of FirstName
+16:10:09,011 DEBUG ~ FirstName field is set to Phyllis
+16:10:09,011 DEBUG ~ Changing FirstName to : PHYLLIS
+16:10:09,011 DEBUG ~ Value changed for lead id :16
+16:10:09,012 DEBUG ~ About to extract value of FirstName
+16:10:09,012 DEBUG ~ FirstName field is set to David
+16:10:09,012 DEBUG ~ Changing FirstName to : DAVID
+16:10:09,012 DEBUG ~ Value changed for lead id :17
+16:10:09,012 DEBUG ~ About to extract value of FirstName
+16:10:09,012 DEBUG ~ FirstName field is set to Carolyn
+16:10:09,012 DEBUG ~ Changing FirstName to : CAROLYN
+16:10:09,012 DEBUG ~ Value changed for lead id :18
+16:10:09,012 DEBUG ~ About to extract value of FirstName
+16:10:09,012 DEBUG ~ FirstName field is set to Jack
+16:10:09,012 DEBUG ~ Changing FirstName to : JACK
+16:10:09,012 DEBUG ~ Value changed for lead id :19
+16:10:09,012 DEBUG ~ About to extract value of FirstName
+16:10:09,012 DEBUG ~ FirstName field is set to Bill
+16:10:09,012 DEBUG ~ Changing FirstName to : BILL
+16:10:09,012 DEBUG ~ Value changed for lead id :20
+16:10:09,012 DEBUG ~ About to sync 8 leads
+16:10:13,578 ERROR ~ Timeout trying to lock table "FORMULACAMPAIGN"; SQL statement:
+select formulacam0_.id as id12_0_, formulacam0_.campaignURL as campaign2_12_0_, formulacam0_.formula as formula12_0_, formulacam0_.leadList as leadList12_0_, formulacam0_.munchkinAccountId as munchkin5_12_0_, formulacam0_.numLeadsSynced as numLeads6_12_0_, formulacam0_.programName as programN7_12_0_, formulacam0_.soapEncKey as soapEncKey12_0_, formulacam0_.soapUserId as soapUserId12_0_, formulacam0_.status as status12_0_, formulacam0_.statusMessage as statusM11_12_0_ from FormulaCampaign formulacam0_ where formulacam0_.id=? [50200-166]
+16:10:13,634 ERROR ~ 
+
+@6f5k6m5aa
+Internal Server Error (500) for request GET /execFormulaStatus?campaignId=260
+
+Execution exception (In /app/controllers/Application.java around line 223)
+PersistenceException occured : org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#260]
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#260]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#260]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1389)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:802)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:756)
+	at play.db.jpa.JPQL.findById(JPQL.java:36)
+	at models.FormulaCampaign.findById(FormulaCampaign.java)
+	at controllers.Application.execFormulaStatus(Application.java:223)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+Caused by: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#260]
+	at org.hibernate.exception.SQLStateConverter.handledNonSpecificException(SQLStateConverter.java:140)
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:128)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.loadEntity(Loader.java:2041)
+	at org.hibernate.loader.entity.AbstractEntityLoader.load(AbstractEntityLoader.java:86)
+	at org.hibernate.loader.entity.AbstractEntityLoader.load(AbstractEntityLoader.java:76)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3294)
+	at org.hibernate.event.def.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:496)
+	at org.hibernate.event.def.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:477)
+	at org.hibernate.event.def.DefaultLoadEventListener.load(DefaultLoadEventListener.java:227)
+	at org.hibernate.event.def.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:285)
+	at org.hibernate.event.def.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:152)
+	at org.hibernate.impl.SessionImpl.fireLoad(SessionImpl.java:1090)
+	at org.hibernate.impl.SessionImpl.get(SessionImpl.java:1005)
+	at org.hibernate.impl.SessionImpl.get(SessionImpl.java:998)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:781)
+	... 10 more
+Caused by: org.h2.jdbc.JdbcSQLException: Timeout trying to lock table "FORMULACAMPAIGN"; SQL statement:
+select formulacam0_.id as id12_0_, formulacam0_.campaignURL as campaign2_12_0_, formulacam0_.formula as formula12_0_, formulacam0_.leadList as leadList12_0_, formulacam0_.munchkinAccountId as munchkin5_12_0_, formulacam0_.numLeadsSynced as numLeads6_12_0_, formulacam0_.programName as programN7_12_0_, formulacam0_.soapEncKey as soapEncKey12_0_, formulacam0_.soapUserId as soapUserId12_0_, formulacam0_.status as status12_0_, formulacam0_.statusMessage as statusM11_12_0_ from FormulaCampaign formulacam0_ where formulacam0_.id=? [50200-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.table.RegularTable.doLock(RegularTable.java:500)
+	at org.h2.table.RegularTable.lock(RegularTable.java:434)
+	at org.h2.table.TableFilter.lock(TableFilter.java:143)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:604)
+	at org.h2.command.dml.Query.query(Query.java:307)
+	at org.h2.command.dml.Query.query(Query.java:277)
+	at org.h2.command.dml.Query.query(Query.java:36)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:82)
+	at org.h2.command.Command.executeQuery(Command.java:187)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:96)
+	at org.hibernate.jdbc.AbstractBatcher.getResultSet(AbstractBatcher.java:208)
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:1953)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:802)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.loadEntity(Loader.java:2037)
+	... 22 more
+16:10:16,146 DEBUG ~ Finished sync-ing 8 leads
+16:10:50,245 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+16:10:50,248 INFO  ~ campaign[261] - Kicking off background task to fetch lead list
+16:10:52,268 INFO  ~ campaign[261] - Fetching leads from static list listOfLeads
+16:10:52,268 INFO  ~ campaign[261] - trying to fetch leads from list CustomFormula.listOfLeads
+16:10:52,268 DEBUG ~ campaign[261] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+16:10:53,270 DEBUG ~ campaign[261] - get multiple leads from list :listOfLeads
+16:10:57,005 INFO  ~ campaign[261] - Finished fetching leads from static list.  8 leads retrieved
+16:10:57,008 DEBUG ~ campaign[261] - In executeFormula for command set mktoLower(FirstName)
+16:10:58,027 DEBUG ~ campaign[261] - executing command mktoLower(FirstName)
+16:10:58,027 DEBUG ~ About to extract value of FirstName
+16:10:58,027 DEBUG ~ FirstName field is set to NORM
+16:10:58,027 DEBUG ~ Changing FirstName to : norm
+16:10:58,028 DEBUG ~ Value changed for lead id :13
+16:10:58,028 DEBUG ~ About to extract value of FirstName
+16:10:58,028 DEBUG ~ FirstName field is set to PAT
+16:10:58,028 DEBUG ~ Changing FirstName to : pat
+16:10:58,028 DEBUG ~ Value changed for lead id :14
+16:10:58,028 DEBUG ~ About to extract value of FirstName
+16:10:58,028 DEBUG ~ FirstName field is set to ANDY
+16:10:58,028 DEBUG ~ Changing FirstName to : andy
+16:10:58,028 DEBUG ~ Value changed for lead id :15
+16:10:58,028 DEBUG ~ About to extract value of FirstName
+16:10:58,028 DEBUG ~ FirstName field is set to PHYLLIS
+16:10:58,028 DEBUG ~ Changing FirstName to : phyllis
+16:10:58,028 DEBUG ~ Value changed for lead id :16
+16:10:58,028 DEBUG ~ About to extract value of FirstName
+16:10:58,028 DEBUG ~ FirstName field is set to DAVID
+16:10:58,028 DEBUG ~ Changing FirstName to : david
+16:10:58,028 DEBUG ~ Value changed for lead id :17
+16:10:58,028 DEBUG ~ About to extract value of FirstName
+16:10:58,028 DEBUG ~ FirstName field is set to CAROLYN
+16:10:58,028 DEBUG ~ Changing FirstName to : carolyn
+16:10:58,028 DEBUG ~ Value changed for lead id :18
+16:10:58,029 DEBUG ~ About to extract value of FirstName
+16:10:58,029 DEBUG ~ FirstName field is set to JACK
+16:10:58,029 DEBUG ~ Changing FirstName to : jack
+16:10:58,029 DEBUG ~ Value changed for lead id :19
+16:10:58,029 DEBUG ~ About to extract value of FirstName
+16:10:58,029 DEBUG ~ FirstName field is set to BILL
+16:10:58,029 DEBUG ~ Changing FirstName to : bill
+16:10:58,029 DEBUG ~ Value changed for lead id :20
+16:10:58,029 DEBUG ~ About to sync 8 leads
+16:11:02,988 ERROR ~ Timeout trying to lock table "FORMULACAMPAIGN"; SQL statement:
+select formulacam0_.id as id12_0_, formulacam0_.campaignURL as campaign2_12_0_, formulacam0_.formula as formula12_0_, formulacam0_.leadList as leadList12_0_, formulacam0_.munchkinAccountId as munchkin5_12_0_, formulacam0_.numLeadsSynced as numLeads6_12_0_, formulacam0_.programName as programN7_12_0_, formulacam0_.soapEncKey as soapEncKey12_0_, formulacam0_.soapUserId as soapUserId12_0_, formulacam0_.status as status12_0_, formulacam0_.statusMessage as statusM11_12_0_ from FormulaCampaign formulacam0_ where formulacam0_.id=? [50200-166]
+16:11:03,001 ERROR ~ 
+
+@6f5k6m5ab
+Internal Server Error (500) for request GET /execFormulaStatus?campaignId=261
+
+Execution exception (In /app/controllers/Application.java around line 223)
+PersistenceException occured : org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#261]
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#261]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#261]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1389)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:802)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:756)
+	at play.db.jpa.JPQL.findById(JPQL.java:36)
+	at models.FormulaCampaign.findById(FormulaCampaign.java)
+	at controllers.Application.execFormulaStatus(Application.java:223)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+Caused by: org.hibernate.exception.GenericJDBCException: could not load an entity: [models.FormulaCampaign#261]
+	at org.hibernate.exception.SQLStateConverter.handledNonSpecificException(SQLStateConverter.java:140)
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:128)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+	at org.hibernate.loader.Loader.loadEntity(Loader.java:2041)
+	at org.hibernate.loader.entity.AbstractEntityLoader.load(AbstractEntityLoader.java:86)
+	at org.hibernate.loader.entity.AbstractEntityLoader.load(AbstractEntityLoader.java:76)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3294)
+	at org.hibernate.event.def.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:496)
+	at org.hibernate.event.def.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:477)
+	at org.hibernate.event.def.DefaultLoadEventListener.load(DefaultLoadEventListener.java:227)
+	at org.hibernate.event.def.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:285)
+	at org.hibernate.event.def.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:152)
+	at org.hibernate.impl.SessionImpl.fireLoad(SessionImpl.java:1090)
+	at org.hibernate.impl.SessionImpl.get(SessionImpl.java:1005)
+	at org.hibernate.impl.SessionImpl.get(SessionImpl.java:998)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:781)
+	... 10 more
+Caused by: org.h2.jdbc.JdbcSQLException: Timeout trying to lock table "FORMULACAMPAIGN"; SQL statement:
+select formulacam0_.id as id12_0_, formulacam0_.campaignURL as campaign2_12_0_, formulacam0_.formula as formula12_0_, formulacam0_.leadList as leadList12_0_, formulacam0_.munchkinAccountId as munchkin5_12_0_, formulacam0_.numLeadsSynced as numLeads6_12_0_, formulacam0_.programName as programN7_12_0_, formulacam0_.soapEncKey as soapEncKey12_0_, formulacam0_.soapUserId as soapUserId12_0_, formulacam0_.status as status12_0_, formulacam0_.statusMessage as statusM11_12_0_ from FormulaCampaign formulacam0_ where formulacam0_.id=? [50200-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.table.RegularTable.doLock(RegularTable.java:500)
+	at org.h2.table.RegularTable.lock(RegularTable.java:434)
+	at org.h2.table.TableFilter.lock(TableFilter.java:143)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:604)
+	at org.h2.command.dml.Query.query(Query.java:307)
+	at org.h2.command.dml.Query.query(Query.java:277)
+	at org.h2.command.dml.Query.query(Query.java:36)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:82)
+	at org.h2.command.Command.executeQuery(Command.java:187)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:96)
+	at org.hibernate.jdbc.AbstractBatcher.getResultSet(AbstractBatcher.java:208)
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:1953)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:802)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274)
+	at org.hibernate.loader.Loader.loadEntity(Loader.java:2037)
+	... 22 more
+16:11:04,615 DEBUG ~ Finished sync-ing 8 leads

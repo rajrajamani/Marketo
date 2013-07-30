@@ -12,6 +12,8 @@ public class Constants {
 	public static final int BATCH_SIZE = 100;
 	public static final int SMS_MAX_LEN = 160;
 	public static final String UNSUB_FIELD_NAME = "smsUnsubscribed";
+	public static final int UPPERCASE = 1001;
+	public static final int LOWERCASE = 1002;
 	
 	public static final String CAMPAIGN_STATUS_ACTIVE = "active";
 	public static final String CAMPAIGN_STATUS_CANCELED = "canceled";
@@ -24,8 +26,10 @@ public class Constants {
 	public static final int CAMPAIGN_GOOG = 1002;
 	public static final int CAMPAIGN_FORMULA = 1003;
 	
-	public static final String FORMULA_CAPITALIZE = "mktoCapitalize";
+	public static final String FORMULA_STRING_PROPER = "mktoProper";
 	public static final String FORMULA_ADD = "mktoAdd";
+	public static final String FORMULA_STRING_UPPER = "mktoUpper";
+	public static final String FORMULA_STRING_LOWER = "mktoLower";
 	public static final String FORMULA_GEOCODE_PHONE = "mktoGeocodePhone";
 	public static final String FORMULA_PHONE_FORMAT="mktoPhoneFormat";
 	
