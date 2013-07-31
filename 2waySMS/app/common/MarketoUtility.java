@@ -185,10 +185,12 @@ public class MarketoUtility {
 
 	public List<LeadRecord> fetchFromStaticList(String soapUserId,
 			String soapEncKey, String munchkinAccountId, Long campaignId,
-			String programName, String staticListName) {
+			String programName, String staticListName, String[] fields) {
 		Logger.info("campaign[%d] - trying to fetch leads from list %s.%s",
 				campaignId, programName, staticListName);
 		StreamPostionHolder posHolder = new StreamPostionHolder();
+		List<String> leadAttrs = new ArrayList<String>();
+
 		List<LeadRecord> leadRecords = null;
 
 		try {
@@ -198,8 +200,15 @@ public class MarketoUtility {
 			Logger.debug("campaign[%d] - get multiple leads from list :%s",
 					campaignId, staticListName);
 			String listName = programName + "." + staticListName;
+			String listFields = "";
+			for (int i = 0; i < fields.length; i++) {
+				leadAttrs.add(fields[i].trim());
+				listFields = fields[i] + ",";
+			}
+			Logger.debug("campaign[%d] - requesting attributes %s", campaignId,
+					listFields);
 			leadRecords = client.getMultipleLeads(Constants.BATCH_SIZE,
-					listName, posHolder, null);
+					listName, posHolder, leadAttrs);
 			return leadRecords;
 			/*
 			 * for (LeadRecord item : leadRecords) { Lead newLead = new Lead();
@@ -224,84 +233,105 @@ public class MarketoUtility {
 		}
 	}
 
-	public ExecStatus executeFunctionInSandBox(String soapUserId,
-			String soapEncKey, String munchkinAccountId, Long campaignId,
-			String formula, List<LeadRecord> leadList) {
+	public ExecStatus executeFunctionInSandBox(FormulaCampaign fc) {
 		boolean syncMultiple = false;
 		Logger.debug("campaign[%d] - In executeFormula for command set %s",
-				campaignId, formula);
-		List<LeadRecord> inflightList = leadList;
+				fc.id, fc.formula);
+
+		List<LeadRecord> inflightList = null;
 		List<LeadRecord> processedLeadList = new ArrayList<LeadRecord>();
-		CodeSandbox csb = new CodeSandbox(soapUserId, soapEncKey,
-				munchkinAccountId, campaignId);
+		MarketoUtility mu = new MarketoUtility();
+		CodeSandbox csb = new CodeSandbox(fc.soapUserId, fc.soapEncKey,
+				fc.munchkinAccountId, fc.id);
 
 		processedLeadList = new ArrayList<LeadRecord>();
-		Logger.debug("campaign[%d] - executing command %s", campaignId, formula);
-		if (formula.startsWith(Constants.FORMULA_STRING_PROPER)) {
+		Logger.debug("campaign[%d] - executing command %s", fc.id, fc.formula);
+		if (fc.formula.startsWith(Constants.FORMULA_STRING_PROPER)) {
 			int length = Constants.FORMULA_STRING_PROPER.length();
-			String[] vars = formula.substring(length + 1).split("[(),]");
+			String[] vars = fc.formula.substring(length + 1).split("[(),]");
 			if (vars.length < 1) {
 				String errMsg = "Need at least one field name to capitalize, Got "
 						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
-			processedLeadList = csb.mktoCapitalizeField(inflightList, vars);
+			inflightList = mu.fetchFromStaticList(fc.soapUserId, fc.soapEncKey,
+					fc.munchkinAccountId, fc.id, fc.programName, fc.leadList,
+					vars);
+
+			processedLeadList = csb.mktoProperCaseField(inflightList, vars);
 			syncMultiple = true;
 
-		} else if (formula.startsWith(Constants.FORMULA_STRING_UPPER)
-				|| formula.startsWith(Constants.FORMULA_STRING_LOWER)) {
+		} else if (fc.formula.startsWith(Constants.FORMULA_STRING_UPPER)
+				|| fc.formula.startsWith(Constants.FORMULA_STRING_LOWER)) {
 			int length = 0;
-			if (formula.startsWith(Constants.FORMULA_STRING_UPPER)) {
+			if (fc.formula.startsWith(Constants.FORMULA_STRING_UPPER)) {
 				length = Constants.FORMULA_STRING_UPPER.length();
-			} else if (formula.startsWith(Constants.FORMULA_STRING_LOWER)) {
+			} else if (fc.formula.startsWith(Constants.FORMULA_STRING_LOWER)) {
 				length = Constants.FORMULA_STRING_LOWER.length();
 			}
-			String[] vars = formula.substring(length + 1).split("[(),]");
+			String[] vars = fc.formula.substring(length + 1).split("[(),]");
 			if (vars.length < 1) {
 				String errMsg = "Need at least one field name to capitalize, Got"
 						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
-			processedLeadList = csb.mktoCaseChange(inflightList, formula, vars);
+			inflightList = mu.fetchFromStaticList(fc.soapUserId, fc.soapEncKey,
+					fc.munchkinAccountId, fc.id, fc.programName, fc.leadList,
+					vars);
+
+			processedLeadList = csb.mktoCaseChange(inflightList, fc.formula,
+					vars);
 			syncMultiple = true;
 
-		} else if (formula.startsWith(Constants.FORMULA_ADD)) {
+		} else if (fc.formula.startsWith(Constants.FORMULA_ADD)) {
 			int length = Constants.FORMULA_ADD.length();
-			String[] vars = formula.substring(length + 1).split("[(),]");
+			String[] vars = fc.formula.substring(length + 1).split("[(),]");
 			if (vars.length != 3) {
 				String errMsg = "Need 3 fields to add scores and write back.  Got "
 						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
+			inflightList = mu.fetchFromStaticList(fc.soapUserId, fc.soapEncKey,
+					fc.munchkinAccountId, fc.id, fc.programName, fc.leadList,
+					vars);
+
 			processedLeadList = csb.mktoAddScores(inflightList, vars[0].trim(),
 					vars[1].trim(), vars[2].trim());
 			syncMultiple = true;
 
-		} else if (formula.startsWith(Constants.FORMULA_GEOCODE_PHONE)) {
+		} else if (fc.formula.startsWith(Constants.FORMULA_GEOCODE_PHONE)) {
 			int length = Constants.FORMULA_GEOCODE_PHONE.length();
-			String[] vars = formula.substring(length + 1).split("[(),]");
+			String[] vars = fc.formula.substring(length + 1).split("[(),]");
 			if (vars.length != 2) {
 				String errMsg = "Need the phone number and region field names,   Got "
 						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
+			inflightList = mu.fetchFromStaticList(fc.soapUserId, fc.soapEncKey,
+					fc.munchkinAccountId, fc.id, fc.programName, fc.leadList,
+					vars);
+
 			processedLeadList = csb.mktoGeocodePhone(inflightList,
 					vars[0].trim(), vars[1].trim());
 			syncMultiple = true;
 
-		} else if (formula.startsWith(Constants.FORMULA_PHONE_FORMAT)) {
+		} else if (fc.formula.startsWith(Constants.FORMULA_PHONE_FORMAT)) {
 			int length = Constants.FORMULA_PHONE_FORMAT.length();
-			String[] vars = formula.substring(length + 1).split("[(),]");
+			String[] vars = fc.formula.substring(length + 1).split("[(),]");
 			if (vars.length != 2) {
 				String errMsg = "Need the phone number and format type,   Got "
 						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
 			}
+			inflightList = mu.fetchFromStaticList(fc.soapUserId, fc.soapEncKey,
+					fc.munchkinAccountId, fc.id, fc.programName, fc.leadList,
+					vars);
+
 			processedLeadList = csb.mktoPhoneFormat(inflightList,
 					vars[0].trim(), vars[1].trim());
 			syncMultiple = true;

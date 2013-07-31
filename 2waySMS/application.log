@@ -7318,3 +7318,552 @@ add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : C:\Users\rrajam
 add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
 10:04:33,441 INFO  ~ campaign[1] was configured previously
 10:06:25,661 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:14:04,651 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:14:05,137 WARN  ~ You're running Play! in DEV mode
+10:14:05,203 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:14:13,464 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+10:14:13,672 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:14:14,222 INFO  ~ Application '2waySMS' is now started !
+10:14:14,331 DEBUG ~ Trying to create directory : ~/public/google/1234
+10:14:14,336 DEBUG ~ Checking if file : ~/public/google/1234/latest.csv exists
+10:14:14,336 DEBUG ~ About to create file : ~/public/google/1234/latest.csv 
+10:14:14,336 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+Action,Google Click Id,Conversion Name,Conversion Value,Conversion Time to file : ~\public\google\1234\latest.csv 
+10:14:14,338 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : ~/public/google/1234/latest.csv 
+10:14:14,519 INFO  ~ campaign[1] was configured previously
+10:15:17,447 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:15:17,934 WARN  ~ You're running Play! in DEV mode
+10:15:18,000 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:15:23,957 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+10:15:24,171 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:15:24,730 INFO  ~ Application '2waySMS' is now started !
+10:15:24,841 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234
+10:15:24,845 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv exists
+10:15:24,845 DEBUG ~ About to create file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
+10:15:24,845 DEBUG ~ Writing Parameters:EntityType=OFFLINECONVERSION;TimeZone=-0800; 
+Action,Google Click Id,Conversion Name,Conversion Value,Conversion Time to file : C:\Users\rrajamani\git\repos\2waySMS\public\google\1234\latest.csv 
+10:15:24,847 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
+10:15:25,026 INFO  ~ campaign[1] was configured previously
+10:36:40,772 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:36:54,495 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:36:54,507 INFO  ~ campaign[1] - Kicking off background task to fetch lead list
+10:36:56,553 INFO  ~ campaign[1] - Fetching leads from static list listOfLeads
+10:36:56,555 DEBUG ~ campaign[1] - In executeFormula for command set mktoProper(FirstName, LastName)
+10:36:57,998 DEBUG ~ campaign[1] - executing command mktoProper(FirstName, LastName)
+10:36:57,998 INFO  ~ campaign[1] - trying to fetch leads from list CustomFormula.listOfLeads
+10:36:57,998 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:36:59,099 DEBUG ~ campaign[1] - get multiple leads from list :listOfLeads
+10:37:00,481 DEBUG ~ About to extract value of FirstName
+10:37:00,481 DEBUG ~ FirstName field is set to Norm
+10:37:00,481 DEBUG ~ Capitalizing FirstName to : Norm
+10:37:00,481 DEBUG ~ About to extract value of LastName
+10:37:00,481 DEBUG ~ About to extract value of FirstName
+10:37:00,481 DEBUG ~ FirstName field is set to Pat
+10:37:00,481 DEBUG ~ Capitalizing FirstName to : Pat
+10:37:00,481 DEBUG ~ About to extract value of LastName
+10:37:00,481 DEBUG ~ About to extract value of FirstName
+10:37:00,481 DEBUG ~ FirstName field is set to Andy
+10:37:00,481 DEBUG ~ Capitalizing FirstName to : Andy
+10:37:00,481 DEBUG ~ About to extract value of LastName
+10:37:00,481 DEBUG ~ About to extract value of FirstName
+10:37:00,482 DEBUG ~ FirstName field is set to Phyllis
+10:37:00,482 DEBUG ~ Capitalizing FirstName to : Phyllis
+10:37:00,482 DEBUG ~ About to extract value of LastName
+10:37:00,482 DEBUG ~ About to extract value of FirstName
+10:37:00,482 DEBUG ~ FirstName field is set to David
+10:37:00,482 DEBUG ~ Capitalizing FirstName to : David
+10:37:00,482 DEBUG ~ About to extract value of LastName
+10:37:00,482 DEBUG ~ About to extract value of FirstName
+10:37:00,482 DEBUG ~ FirstName field is set to Carolyn
+10:37:00,482 DEBUG ~ Capitalizing FirstName to : Carolyn
+10:37:00,482 DEBUG ~ About to extract value of LastName
+10:37:00,482 DEBUG ~ About to extract value of FirstName
+10:37:00,482 DEBUG ~ FirstName field is set to Jack
+10:37:00,482 DEBUG ~ Capitalizing FirstName to : Jack
+10:37:00,482 DEBUG ~ About to extract value of LastName
+10:37:00,482 DEBUG ~ About to extract value of FirstName
+10:37:00,482 DEBUG ~ FirstName field is set to Bill
+10:37:00,482 DEBUG ~ Capitalizing FirstName to : Bill
+10:37:00,482 DEBUG ~ About to extract value of LastName
+10:37:00,483 DEBUG ~ About to sync 0 leads
+10:40:50,675 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:40:50,678 INFO  ~ campaign[2] - Kicking off background task to fetch lead list
+10:40:52,722 INFO  ~ campaign[2] - Fetching leads from static list listOfLeads
+10:40:52,724 DEBUG ~ campaign[2] - In executeFormula for command set mktoProper(FirstName, LastName)
+10:40:53,655 DEBUG ~ campaign[2] - executing command mktoProper(FirstName, LastName)
+10:40:53,656 INFO  ~ campaign[2] - trying to fetch leads from list CustomFormula.listOfLeads
+10:40:53,656 DEBUG ~ campaign[2] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:40:54,670 DEBUG ~ campaign[2] - get multiple leads from list :listOfLeads
+10:40:55,887 DEBUG ~ About to extract value of FirstName
+10:40:55,887 DEBUG ~ FirstName field is set to NORM
+10:40:55,887 DEBUG ~ Capitalizing FirstName to : Norm
+10:40:55,887 DEBUG ~ Value changed for lead id :13
+10:40:55,887 DEBUG ~ About to extract value of LastName
+10:40:55,888 DEBUG ~ About to extract value of FirstName
+10:40:55,888 DEBUG ~ FirstName field is set to PAT
+10:40:55,888 DEBUG ~ Capitalizing FirstName to : Pat
+10:40:55,888 DEBUG ~ Value changed for lead id :14
+10:40:55,888 DEBUG ~ About to extract value of LastName
+10:40:55,888 DEBUG ~ About to extract value of FirstName
+10:40:55,889 DEBUG ~ FirstName field is set to ANDY
+10:40:55,889 DEBUG ~ Capitalizing FirstName to : Andy
+10:40:55,889 DEBUG ~ Value changed for lead id :15
+10:40:55,889 DEBUG ~ About to extract value of LastName
+10:40:55,889 DEBUG ~ About to extract value of FirstName
+10:40:55,889 DEBUG ~ FirstName field is set to PHYLLIS
+10:40:55,890 DEBUG ~ Capitalizing FirstName to : Phyllis
+10:40:55,890 DEBUG ~ Value changed for lead id :16
+10:40:55,890 DEBUG ~ About to extract value of LastName
+10:40:55,890 DEBUG ~ About to extract value of FirstName
+10:40:55,890 DEBUG ~ FirstName field is set to DAVID
+10:40:55,890 DEBUG ~ Capitalizing FirstName to : David
+10:40:55,890 DEBUG ~ Value changed for lead id :17
+10:40:55,890 DEBUG ~ About to extract value of LastName
+10:40:55,891 DEBUG ~ About to extract value of FirstName
+10:40:55,891 DEBUG ~ FirstName field is set to CAROLYN
+10:40:55,891 DEBUG ~ Capitalizing FirstName to : Carolyn
+10:40:55,891 DEBUG ~ Value changed for lead id :18
+10:40:55,891 DEBUG ~ About to extract value of LastName
+10:40:55,891 DEBUG ~ About to extract value of FirstName
+10:40:55,891 DEBUG ~ FirstName field is set to JACK
+10:40:55,892 DEBUG ~ Capitalizing FirstName to : Jack
+10:40:55,892 DEBUG ~ Value changed for lead id :19
+10:40:55,892 DEBUG ~ About to extract value of LastName
+10:40:55,892 DEBUG ~ About to extract value of FirstName
+10:40:55,892 DEBUG ~ FirstName field is set to BILL
+10:40:55,892 DEBUG ~ Capitalizing FirstName to : Bill
+10:40:55,893 DEBUG ~ Value changed for lead id :20
+10:40:55,893 DEBUG ~ About to extract value of LastName
+10:40:55,893 DEBUG ~ About to sync 8 leads
+10:41:04,637 DEBUG ~ Finished sync-ing 8 leads
+10:42:17,549 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:42:23,263 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:42:28,954 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:45:41,123 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:46:26,013 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:46:26,017 INFO  ~ campaign[3] - Kicking off background task to fetch lead list
+10:46:28,070 INFO  ~ campaign[3] - Fetching leads from static list listOfLeads
+10:46:28,074 DEBUG ~ campaign[3] - In executeFormula for command set mktoProper(FirstName, LastName)
+10:46:29,031 DEBUG ~ campaign[3] - executing command mktoProper(FirstName, LastName)
+10:46:29,031 INFO  ~ campaign[3] - trying to fetch leads from list CustomFormula.listOfLeads
+10:46:29,031 DEBUG ~ campaign[3] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:46:29,804 DEBUG ~ campaign[3] - get multiple leads from list :listOfLeads
+10:46:31,400 DEBUG ~ About to extract value of FirstName
+10:46:31,401 DEBUG ~ FirstName field is set to Norm
+10:46:31,403 DEBUG ~ Capitalizing FirstName to : Norm
+10:46:31,403 DEBUG ~ About to extract value of LastName
+10:46:31,403 DEBUG ~ About to extract value of FirstName
+10:46:31,404 DEBUG ~ FirstName field is set to Pat
+10:46:31,404 DEBUG ~ Capitalizing FirstName to : Pat
+10:46:31,404 DEBUG ~ About to extract value of LastName
+10:46:31,404 DEBUG ~ About to extract value of FirstName
+10:46:31,404 DEBUG ~ FirstName field is set to Andy
+10:46:31,404 DEBUG ~ Capitalizing FirstName to : Andy
+10:46:31,404 DEBUG ~ About to extract value of LastName
+10:46:31,405 DEBUG ~ About to extract value of FirstName
+10:46:31,405 DEBUG ~ FirstName field is set to Phyllis
+10:46:31,405 DEBUG ~ Capitalizing FirstName to : Phyllis
+10:46:31,405 DEBUG ~ About to extract value of LastName
+10:46:31,405 DEBUG ~ About to extract value of FirstName
+10:46:31,405 DEBUG ~ FirstName field is set to David
+10:46:31,405 DEBUG ~ Capitalizing FirstName to : David
+10:46:31,405 DEBUG ~ About to extract value of LastName
+10:46:31,406 DEBUG ~ About to extract value of FirstName
+10:46:31,406 DEBUG ~ FirstName field is set to Carolyn
+10:46:31,406 DEBUG ~ Capitalizing FirstName to : Carolyn
+10:46:31,406 DEBUG ~ About to extract value of LastName
+10:46:31,406 DEBUG ~ About to extract value of FirstName
+10:46:31,406 DEBUG ~ FirstName field is set to Jack
+10:46:31,406 DEBUG ~ Capitalizing FirstName to : Jack
+10:46:31,406 DEBUG ~ About to extract value of LastName
+10:46:31,407 DEBUG ~ About to extract value of FirstName
+10:46:31,407 DEBUG ~ FirstName field is set to Bill
+10:46:31,407 DEBUG ~ Capitalizing FirstName to : Bill
+10:46:31,407 DEBUG ~ About to extract value of LastName
+10:46:31,407 DEBUG ~ About to sync 0 leads
+10:48:04,596 ERROR ~ 
+
+@6f5pphbg1
+Internal Server Error (500) for request GET /execFormulaStatus?campaignId=3
+
+Compilation error (In /app/common/MarketoUtility.java around line 203)
+The file /app/common/MarketoUtility.java could not be compiled. Error raised is : Syntax error, insert ";" to complete Statement
+
+play.exceptions.CompilationException: Syntax error, insert ";" to complete Statement
+	at play.classloading.ApplicationCompiler$2.acceptResult(ApplicationCompiler.java:246)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:478)
+	at play.classloading.ApplicationCompiler.compile(ApplicationCompiler.java:282)
+	at play.classloading.ApplicationClasses$ApplicationClass.compile(ApplicationClasses.java:281)
+	at play.classloading.ApplicationClassloader.detectChanges(ApplicationClassloader.java:324)
+	at play.Play.detectChanges(Play.java:625)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+10:49:22,632 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:49:23,357 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:49:23,362 INFO  ~ campaign[4] - Kicking off background task to fetch lead list
+10:49:25,411 INFO  ~ campaign[4] - Fetching leads from static list listOfLeads
+10:49:25,413 DEBUG ~ campaign[4] - In executeFormula for command set mktoProper(FirstName, LastName)
+10:49:26,405 DEBUG ~ campaign[4] - executing command mktoProper(FirstName, LastName)
+10:49:26,406 INFO  ~ campaign[4] - trying to fetch leads from list CustomFormula.listOfLeads
+10:49:26,406 DEBUG ~ campaign[4] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:49:27,274 DEBUG ~ campaign[4] - get multiple leads from list :listOfLeads
+10:49:27,274 DEBUG ~ campaign[%d] - requesting attributes -%s
+10:49:29,240 DEBUG ~ About to extract value of FirstName
+10:49:29,240 DEBUG ~ FirstName field is set to Norm
+10:49:29,241 DEBUG ~ Capitalizing FirstName to : Norm
+10:49:29,241 DEBUG ~ About to extract value of LastName
+10:49:29,241 DEBUG ~ About to extract value of FirstName
+10:49:29,241 DEBUG ~ FirstName field is set to Pat
+10:49:29,241 DEBUG ~ Capitalizing FirstName to : Pat
+10:49:29,241 DEBUG ~ About to extract value of LastName
+10:49:29,241 DEBUG ~ About to extract value of FirstName
+10:49:29,241 DEBUG ~ FirstName field is set to Andy
+10:49:29,241 DEBUG ~ Capitalizing FirstName to : Andy
+10:49:29,241 DEBUG ~ About to extract value of LastName
+10:49:29,241 DEBUG ~ About to extract value of FirstName
+10:49:29,241 DEBUG ~ FirstName field is set to Phyllis
+10:49:29,241 DEBUG ~ Capitalizing FirstName to : Phyllis
+10:49:29,241 DEBUG ~ About to extract value of LastName
+10:49:29,241 DEBUG ~ About to extract value of FirstName
+10:49:29,241 DEBUG ~ FirstName field is set to David
+10:49:29,241 DEBUG ~ Capitalizing FirstName to : David
+10:49:29,241 DEBUG ~ About to extract value of LastName
+10:49:29,241 DEBUG ~ About to extract value of FirstName
+10:49:29,241 DEBUG ~ FirstName field is set to Carolyn
+10:49:29,241 DEBUG ~ Capitalizing FirstName to : Carolyn
+10:49:29,242 DEBUG ~ About to extract value of LastName
+10:49:29,242 DEBUG ~ About to extract value of FirstName
+10:49:29,242 DEBUG ~ FirstName field is set to Jack
+10:49:29,242 DEBUG ~ Capitalizing FirstName to : Jack
+10:49:29,242 DEBUG ~ About to extract value of LastName
+10:49:29,242 DEBUG ~ About to extract value of FirstName
+10:49:29,242 DEBUG ~ FirstName field is set to Bill
+10:49:29,242 DEBUG ~ Capitalizing FirstName to : Bill
+10:49:29,242 DEBUG ~ About to extract value of LastName
+10:49:29,242 DEBUG ~ About to sync 0 leads
+10:50:07,135 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:50:07,137 INFO  ~ campaign[5] - Kicking off background task to fetch lead list
+10:50:09,184 INFO  ~ campaign[5] - Fetching leads from static list listOfLeads
+10:50:09,186 DEBUG ~ campaign[5] - In executeFormula for command set mktoProper(FirstName, LastName)
+10:50:10,081 DEBUG ~ campaign[5] - executing command mktoProper(FirstName, LastName)
+10:50:10,081 INFO  ~ campaign[5] - trying to fetch leads from list CustomFormula.listOfLeads
+10:50:10,081 DEBUG ~ campaign[5] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:50:10,937 DEBUG ~ campaign[5] - get multiple leads from list :listOfLeads
+10:53:03,417 DEBUG ~ campaign[%d] - requesting attributes %s
+10:53:13,967 DEBUG ~ About to extract value of FirstName
+10:53:13,967 DEBUG ~ FirstName field is set to Norm
+10:53:13,968 DEBUG ~ Capitalizing FirstName to : Norm
+10:53:13,968 DEBUG ~ About to extract value of LastName
+10:53:13,968 DEBUG ~ About to extract value of FirstName
+10:53:13,968 DEBUG ~ FirstName field is set to Pat
+10:53:13,968 DEBUG ~ Capitalizing FirstName to : Pat
+10:53:13,968 DEBUG ~ About to extract value of LastName
+10:53:13,968 DEBUG ~ About to extract value of FirstName
+10:53:13,968 DEBUG ~ FirstName field is set to Andy
+10:53:13,969 DEBUG ~ Capitalizing FirstName to : Andy
+10:53:13,969 DEBUG ~ About to extract value of LastName
+10:53:13,969 DEBUG ~ About to extract value of FirstName
+10:53:13,969 DEBUG ~ FirstName field is set to Phyllis
+10:53:13,969 DEBUG ~ Capitalizing FirstName to : Phyllis
+10:53:13,969 DEBUG ~ About to extract value of LastName
+10:53:13,969 DEBUG ~ About to extract value of FirstName
+10:53:13,970 DEBUG ~ FirstName field is set to David
+10:53:13,970 DEBUG ~ Capitalizing FirstName to : David
+10:53:13,970 DEBUG ~ About to extract value of LastName
+10:53:13,970 DEBUG ~ About to extract value of FirstName
+10:53:13,970 DEBUG ~ FirstName field is set to Carolyn
+10:53:13,970 DEBUG ~ Capitalizing FirstName to : Carolyn
+10:53:13,970 DEBUG ~ About to extract value of LastName
+10:53:13,970 DEBUG ~ About to extract value of FirstName
+10:53:13,971 DEBUG ~ FirstName field is set to Jack
+10:53:13,971 DEBUG ~ Capitalizing FirstName to : Jack
+10:53:13,971 DEBUG ~ About to extract value of LastName
+10:53:13,971 DEBUG ~ About to extract value of FirstName
+10:53:13,971 DEBUG ~ FirstName field is set to Bill
+10:53:13,971 DEBUG ~ Capitalizing FirstName to : Bill
+10:53:13,971 DEBUG ~ About to extract value of LastName
+10:53:13,971 DEBUG ~ About to sync 0 leads
+10:53:25,121 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:53:25,124 INFO  ~ campaign[6] - Kicking off background task to fetch lead list
+10:53:27,165 INFO  ~ campaign[6] - Fetching leads from static list listOfLeads
+10:53:27,166 DEBUG ~ campaign[6] - In executeFormula for command set mktoProper(FirstName, LastName)
+10:53:28,183 DEBUG ~ campaign[6] - executing command mktoProper(FirstName, LastName)
+10:53:28,186 INFO  ~ campaign[6] - trying to fetch leads from list CustomFormula.listOfLeads
+10:53:28,186 DEBUG ~ campaign[6] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:53:29,075 DEBUG ~ campaign[6] - get multiple leads from list :listOfLeads
+10:53:29,075 DEBUG ~ campaign[6] - requesting attributes  LastName,
+10:53:31,694 DEBUG ~ About to extract value of FirstName
+10:53:31,695 DEBUG ~ FirstName field is set to Norm
+10:53:31,695 DEBUG ~ Capitalizing FirstName to : Norm
+10:53:31,695 DEBUG ~ About to extract value of LastName
+10:53:31,695 DEBUG ~ About to extract value of FirstName
+10:53:31,695 DEBUG ~ FirstName field is set to Pat
+10:53:31,695 DEBUG ~ Capitalizing FirstName to : Pat
+10:53:31,696 DEBUG ~ About to extract value of LastName
+10:53:31,696 DEBUG ~ About to extract value of FirstName
+10:53:31,696 DEBUG ~ FirstName field is set to Andy
+10:53:31,696 DEBUG ~ Capitalizing FirstName to : Andy
+10:53:31,696 DEBUG ~ About to extract value of LastName
+10:53:31,696 DEBUG ~ About to extract value of FirstName
+10:53:31,696 DEBUG ~ FirstName field is set to Phyllis
+10:53:31,696 DEBUG ~ Capitalizing FirstName to : Phyllis
+10:53:31,697 DEBUG ~ About to extract value of LastName
+10:53:31,697 DEBUG ~ About to extract value of FirstName
+10:53:31,697 DEBUG ~ FirstName field is set to David
+10:53:31,697 DEBUG ~ Capitalizing FirstName to : David
+10:53:31,697 DEBUG ~ About to extract value of LastName
+10:53:31,697 DEBUG ~ About to extract value of FirstName
+10:53:31,698 DEBUG ~ FirstName field is set to Carolyn
+10:53:31,698 DEBUG ~ Capitalizing FirstName to : Carolyn
+10:53:31,698 DEBUG ~ About to extract value of LastName
+10:53:31,698 DEBUG ~ About to extract value of FirstName
+10:53:31,698 DEBUG ~ FirstName field is set to Jack
+10:53:31,698 DEBUG ~ Capitalizing FirstName to : Jack
+10:53:31,698 DEBUG ~ About to extract value of LastName
+10:53:31,698 DEBUG ~ About to extract value of FirstName
+10:53:31,699 DEBUG ~ FirstName field is set to Bill
+10:53:31,699 DEBUG ~ Capitalizing FirstName to : Bill
+10:53:31,699 DEBUG ~ About to extract value of LastName
+10:53:31,699 DEBUG ~ About to sync 0 leads
+10:53:48,283 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+10:53:48,285 INFO  ~ campaign[7] - Kicking off background task to fetch lead list
+10:53:50,326 INFO  ~ campaign[7] - Fetching leads from static list listOfLeads
+10:53:50,327 DEBUG ~ campaign[7] - In executeFormula for command set mktoProper(FirstName, LastName)
+10:53:51,252 DEBUG ~ campaign[7] - executing command mktoProper(FirstName, LastName)
+10:53:51,253 INFO  ~ campaign[7] - trying to fetch leads from list CustomFormula.listOfLeads
+10:53:51,253 DEBUG ~ campaign[7] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+10:53:52,171 DEBUG ~ campaign[7] - get multiple leads from list :listOfLeads
+10:53:52,172 DEBUG ~ campaign[7] - requesting attributes  LastName,
+10:53:53,591 DEBUG ~ About to extract value of FirstName
+10:53:53,591 DEBUG ~ FirstName field is set to Norm
+10:53:53,591 DEBUG ~ Capitalizing FirstName to : Norm
+10:53:53,591 DEBUG ~ About to extract value of LastName
+10:53:53,591 DEBUG ~ LastName field is set to may june july
+10:53:53,591 DEBUG ~ Capitalizing LastName to : May June July
+10:53:53,592 DEBUG ~ Value changed for lead id :13
+10:58:04,191 DEBUG ~ About to extract value of FirstName
+10:58:04,191 DEBUG ~ FirstName field is set to Pat
+10:58:04,191 DEBUG ~ Capitalizing FirstName to : Pat
+10:58:04,191 DEBUG ~ About to extract value of LastName
+10:58:04,192 DEBUG ~ LastName field is set to Stumuller
+10:58:04,192 DEBUG ~ Capitalizing LastName to : Stumuller
+10:58:04,192 DEBUG ~ About to extract value of FirstName
+10:58:04,192 DEBUG ~ FirstName field is set to Andy
+10:58:04,192 DEBUG ~ Capitalizing FirstName to : Andy
+10:58:04,192 DEBUG ~ About to extract value of LastName
+10:58:04,192 DEBUG ~ LastName field is set to Young
+10:58:04,193 DEBUG ~ Capitalizing LastName to : Young
+10:58:04,193 DEBUG ~ About to extract value of FirstName
+10:58:04,193 DEBUG ~ FirstName field is set to Phyllis
+10:58:04,193 DEBUG ~ Capitalizing FirstName to : Phyllis
+10:58:04,193 DEBUG ~ About to extract value of LastName
+10:58:04,193 DEBUG ~ LastName field is set to Cotton
+10:58:04,193 DEBUG ~ Capitalizing LastName to : Cotton
+10:58:04,193 DEBUG ~ About to extract value of FirstName
+10:58:04,193 DEBUG ~ FirstName field is set to David
+10:58:04,194 DEBUG ~ Capitalizing FirstName to : David
+10:58:04,194 DEBUG ~ About to extract value of LastName
+10:58:04,194 DEBUG ~ LastName field is set to Monaco
+10:58:04,194 DEBUG ~ Capitalizing LastName to : Monaco
+10:58:04,194 DEBUG ~ About to extract value of FirstName
+10:58:04,194 DEBUG ~ FirstName field is set to Carolyn
+10:58:04,194 DEBUG ~ Capitalizing FirstName to : Carolyn
+10:58:04,194 DEBUG ~ About to extract value of LastName
+10:58:04,195 DEBUG ~ LastName field is set to Crenshaw
+10:58:04,195 DEBUG ~ Capitalizing LastName to : Crenshaw
+10:58:04,195 DEBUG ~ About to extract value of FirstName
+10:58:04,195 DEBUG ~ FirstName field is set to Jack
+10:58:04,195 DEBUG ~ Capitalizing FirstName to : Jack
+10:58:04,195 DEBUG ~ About to extract value of LastName
+10:58:04,195 DEBUG ~ LastName field is set to Rogers
+10:58:04,195 DEBUG ~ Capitalizing LastName to : Rogers
+10:58:04,196 DEBUG ~ About to extract value of FirstName
+10:58:04,196 DEBUG ~ FirstName field is set to Bill
+10:58:04,196 DEBUG ~ Capitalizing FirstName to : Bill
+10:58:04,196 DEBUG ~ About to extract value of LastName
+10:58:04,196 DEBUG ~ LastName field is set to Dadio jr
+10:58:04,196 DEBUG ~ Capitalizing LastName to : Dadio Jr
+10:58:04,196 DEBUG ~ Value changed for lead id :20
+10:58:04,197 DEBUG ~ About to sync 2 leads
+10:58:07,786 DEBUG ~ Finished sync-ing 2 leads
+11:03:34,760 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+11:03:34,762 INFO  ~ campaign[8] - Kicking off background task to fetch lead list
+11:03:36,813 INFO  ~ campaign[8] - Fetching leads from static list listOfLeads
+11:03:36,815 DEBUG ~ campaign[8] - In executeFormula for command set mktoPhoneFormat(Phone, International)
+11:03:38,582 DEBUG ~ campaign[8] - executing command mktoPhoneFormat(Phone, International)
+11:03:38,583 INFO  ~ campaign[8] - trying to fetch leads from list CustomFormula.listOfLeads
+11:03:38,583 DEBUG ~ campaign[8] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:03:42,261 DEBUG ~ campaign[8] - get multiple leads from list :listOfLeads
+11:03:42,261 DEBUG ~ campaign[8] - requesting attributes  International,
+11:03:43,866 DEBUG ~ About to format number in field Phone
+11:03:43,866 DEBUG ~ About to extract value of Phone
+11:03:43,866 DEBUG ~ Phone field is set to +14192893555
+11:03:43,866 DEBUG ~ Phone number is +14192893555
+11:03:43,887 DEBUG ~ Format for phone +14192893555 is +1 419-289-3555.
+11:03:43,887 DEBUG ~ About to format number in field Phone
+11:03:43,887 DEBUG ~ About to extract value of Phone
+11:03:43,887 DEBUG ~ Phone field is set to +133562156600
+11:03:43,887 DEBUG ~ Phone number is +133562156600
+11:03:43,887 DEBUG ~ Format for phone +133562156600 is +1 33562156600.
+11:03:43,887 DEBUG ~ About to format number in field Phone
+11:03:43,887 DEBUG ~ About to extract value of Phone
+11:03:43,887 DEBUG ~ Phone field is set to +16202416200
+11:03:43,887 DEBUG ~ Phone number is +16202416200
+11:03:43,888 DEBUG ~ Format for phone +16202416200 is +1 620-241-6200.
+11:03:43,888 DEBUG ~ About to format number in field Phone
+11:03:43,888 DEBUG ~ About to extract value of Phone
+11:03:43,888 DEBUG ~ Phone field is set to +17037571000
+11:03:43,888 DEBUG ~ Phone number is +17037571000
+11:03:43,888 DEBUG ~ Format for phone +17037571000 is +1 703-757-1000.
+11:03:43,888 DEBUG ~ About to format number in field Phone
+11:03:43,888 DEBUG ~ About to extract value of Phone
+11:03:43,888 DEBUG ~ Phone field is set to +10334521299
+11:03:43,888 DEBUG ~ Phone number is +10334521299
+11:03:43,888 DEBUG ~ Format for phone +10334521299 is +1 033-452-1299.
+11:03:43,888 DEBUG ~ About to format number in field Phone
+11:03:43,888 DEBUG ~ About to extract value of Phone
+11:03:43,888 DEBUG ~ Phone field is set to +12516792200
+11:03:43,888 DEBUG ~ Phone number is +12516792200
+11:03:43,889 DEBUG ~ Format for phone +12516792200 is +1 251-679-2200.
+11:03:43,889 DEBUG ~ About to format number in field Phone
+11:03:43,889 DEBUG ~ About to extract value of Phone
+11:03:43,889 DEBUG ~ Phone field is set to +13362227000
+11:03:43,889 DEBUG ~ Phone number is +13362227000
+11:03:43,889 DEBUG ~ Format for phone +13362227000 is +1 336-222-7000.
+11:03:43,889 DEBUG ~ About to format number in field Phone
+11:03:43,889 DEBUG ~ About to extract value of Phone
+11:03:43,889 DEBUG ~ Phone field is set to +16144315000
+11:03:43,889 DEBUG ~ Phone number is +16144315000
+11:03:43,889 DEBUG ~ Format for phone +16144315000 is +1 614-431-5000.
+11:03:43,889 DEBUG ~ About to sync 8 leads
+11:03:48,837 DEBUG ~ Finished sync-ing 8 leads
+11:07:17,874 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+11:07:17,876 INFO  ~ campaign[9] - Kicking off background task to fetch lead list
+11:07:19,913 INFO  ~ campaign[9] - Fetching leads from static list listOfLeads
+11:07:19,914 DEBUG ~ campaign[9] - In executeFormula for command set mktoGeocodePhone(Phone,City)
+11:07:20,927 DEBUG ~ campaign[9] - executing command mktoGeocodePhone(Phone,City)
+11:07:20,928 INFO  ~ campaign[9] - trying to fetch leads from list CustomFormula.listOfLeads
+11:07:20,928 DEBUG ~ campaign[9] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:07:21,953 DEBUG ~ campaign[9] - get multiple leads from list :listOfLeads
+11:07:21,954 DEBUG ~ campaign[9] - requesting attributes City,
+11:07:23,799 DEBUG ~ About to geolocate number in field Phone
+11:07:23,799 DEBUG ~ About to extract value of City
+11:07:23,799 DEBUG ~ City field is set to Ashland, OH
+11:07:23,800 DEBUG ~ About to extract value of Phone
+11:07:23,800 DEBUG ~ Phone field is set to +1 419-289-3555
+11:07:23,800 DEBUG ~ Phone number is +1 419-289-3555
+11:07:23,810 DEBUG ~ Region for phone +1 419-289-3555 is Ashland, OH.  old region is Ashland, OH
+11:07:23,810 DEBUG ~ About to geolocate number in field Phone
+11:07:23,810 DEBUG ~ About to extract value of City
+11:07:23,810 DEBUG ~ About to extract value of Phone
+11:07:23,810 DEBUG ~ Phone field is set to +1 33562156600
+11:07:23,811 DEBUG ~ Phone number is +1 33562156600
+11:07:23,833 DEBUG ~ Region for phone +1 33562156600 is .  old region is null
+11:07:23,833 DEBUG ~ About to geolocate number in field Phone
+11:07:23,833 DEBUG ~ About to extract value of City
+11:07:23,833 DEBUG ~ City field is set to McPherson, KS
+11:07:23,833 DEBUG ~ About to extract value of Phone
+11:07:23,833 DEBUG ~ Phone field is set to +1 620-241-6200
+11:07:23,834 DEBUG ~ Phone number is +1 620-241-6200
+11:07:23,835 DEBUG ~ Region for phone +1 620-241-6200 is McPherson, KS.  old region is McPherson, KS
+11:07:23,835 DEBUG ~ About to geolocate number in field Phone
+11:07:23,835 DEBUG ~ About to extract value of City
+11:07:23,835 DEBUG ~ City field is set to Virginia
+11:07:23,835 DEBUG ~ About to extract value of Phone
+11:07:23,835 DEBUG ~ Phone field is set to +1 703-757-1000
+11:07:23,835 DEBUG ~ Phone number is +1 703-757-1000
+11:07:23,836 DEBUG ~ Region for phone +1 703-757-1000 is Virginia.  old region is Virginia
+11:07:23,836 DEBUG ~ About to geolocate number in field Phone
+11:07:23,836 DEBUG ~ About to extract value of City
+11:07:23,836 DEBUG ~ About to extract value of Phone
+11:07:23,836 DEBUG ~ Phone field is set to +1 033-452-1299
+11:07:23,836 DEBUG ~ Phone number is +1 033-452-1299
+11:07:23,836 DEBUG ~ Region for phone +1 033-452-1299 is .  old region is null
+11:07:23,836 DEBUG ~ About to geolocate number in field Phone
+11:07:23,836 DEBUG ~ About to extract value of City
+11:07:23,836 DEBUG ~ City field is set to Alabama
+11:07:23,836 DEBUG ~ About to extract value of Phone
+11:07:23,836 DEBUG ~ Phone field is set to +1 251-679-2200
+11:07:23,836 DEBUG ~ Phone number is +1 251-679-2200
+11:07:23,837 DEBUG ~ Region for phone +1 251-679-2200 is Alabama.  old region is Alabama
+11:07:23,837 DEBUG ~ About to geolocate number in field Phone
+11:07:23,837 DEBUG ~ About to extract value of City
+11:07:23,837 DEBUG ~ City field is set to Burlington, NC
+11:07:23,837 DEBUG ~ About to extract value of Phone
+11:07:23,837 DEBUG ~ Phone field is set to +1 336-222-7000
+11:07:23,837 DEBUG ~ Phone number is +1 336-222-7000
+11:07:23,838 DEBUG ~ Region for phone +1 336-222-7000 is Burlington, NC.  old region is Burlington, NC
+11:07:23,838 DEBUG ~ About to geolocate number in field Phone
+11:07:23,838 DEBUG ~ About to extract value of City
+11:07:23,838 DEBUG ~ City field is set to Ohio
+11:07:23,838 DEBUG ~ About to extract value of Phone
+11:07:23,838 DEBUG ~ Phone field is set to +1 614-431-5000
+11:07:23,838 DEBUG ~ Phone number is +1 614-431-5000
+11:07:23,839 DEBUG ~ Region for phone +1 614-431-5000 is Ohio.  old region is Ohio
+11:07:23,839 DEBUG ~ About to sync 0 leads
+11:08:03,191 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+11:08:03,192 INFO  ~ campaign[10] - Kicking off background task to fetch lead list
+11:08:05,221 INFO  ~ campaign[10] - Fetching leads from static list listOfLeads
+11:08:05,222 DEBUG ~ campaign[10] - In executeFormula for command set mktoAdd(MyNewScore,DemographicScore, BehaviorScore)
+11:08:11,682 DEBUG ~ campaign[10] - executing command mktoAdd(MyNewScore,DemographicScore, BehaviorScore)
+11:08:11,683 INFO  ~ campaign[10] - trying to fetch leads from list CustomFormula.listOfLeads
+11:08:11,683 DEBUG ~ campaign[10] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+11:08:12,834 DEBUG ~ campaign[10] - get multiple leads from list :listOfLeads
+11:08:12,834 DEBUG ~ campaign[10] - requesting attributes  BehaviorScore,
+11:08:16,172 DEBUG ~ About to add scores DemographicScore and BehaviorScore and store it in MyNewScore
+11:08:16,172 DEBUG ~ About to extract value of DemographicScore
+11:08:16,172 DEBUG ~ About to extract value of BehaviorScore
+11:08:16,172 DEBUG ~ About to extract value of MyNewScore
+11:08:16,172 DEBUG ~ MyNewScore field is set to 0
+11:08:24,276 DEBUG ~ New score is 0.000000
+11:08:24,276 DEBUG ~ About to add scores DemographicScore and BehaviorScore and store it in MyNewScore
+11:08:24,276 DEBUG ~ About to extract value of DemographicScore
+11:08:24,276 DEBUG ~ About to extract value of BehaviorScore
+11:08:24,276 DEBUG ~ About to extract value of MyNewScore
+11:08:24,276 DEBUG ~ MyNewScore field is set to 0
+11:08:24,276 DEBUG ~ New score is 0.000000
+11:08:24,276 DEBUG ~ About to add scores DemographicScore and BehaviorScore and store it in MyNewScore
+11:08:24,276 DEBUG ~ About to extract value of DemographicScore
+11:08:24,276 DEBUG ~ About to extract value of BehaviorScore
+11:08:24,276 DEBUG ~ About to extract value of MyNewScore
+11:08:24,276 DEBUG ~ MyNewScore field is set to 0
+11:08:24,276 DEBUG ~ New score is 0.000000
+11:08:24,276 DEBUG ~ About to add scores DemographicScore and BehaviorScore and store it in MyNewScore
+11:08:24,276 DEBUG ~ About to extract value of DemographicScore
+11:08:24,276 DEBUG ~ About to extract value of BehaviorScore
+11:08:24,276 DEBUG ~ About to extract value of MyNewScore
+11:08:24,276 DEBUG ~ MyNewScore field is set to 0
+11:08:24,276 DEBUG ~ New score is 0.000000
+11:08:24,276 DEBUG ~ About to add scores DemographicScore and BehaviorScore and store it in MyNewScore
+11:08:24,277 DEBUG ~ About to extract value of DemographicScore
+11:08:24,277 DEBUG ~ About to extract value of BehaviorScore
+11:08:24,277 DEBUG ~ About to extract value of MyNewScore
+11:08:24,277 DEBUG ~ MyNewScore field is set to 0
+11:08:24,277 DEBUG ~ New score is 0.000000
+11:08:24,277 DEBUG ~ About to add scores DemographicScore and BehaviorScore and store it in MyNewScore
+11:08:24,277 DEBUG ~ About to extract value of DemographicScore
+11:08:24,277 DEBUG ~ DemographicScore field is set to 97
+11:08:24,277 DEBUG ~ About to extract value of BehaviorScore
+11:08:24,277 DEBUG ~ About to extract value of MyNewScore
+11:08:24,277 DEBUG ~ MyNewScore field is set to 97
+11:08:24,277 DEBUG ~ value of DemographicScore is 97
+11:08:24,277 DEBUG ~ New score is 97.000000
+11:08:24,277 DEBUG ~ About to add scores DemographicScore and BehaviorScore and store it in MyNewScore
+11:08:24,277 DEBUG ~ About to extract value of DemographicScore
+11:08:24,277 DEBUG ~ About to extract value of BehaviorScore
+11:08:24,277 DEBUG ~ About to extract value of MyNewScore
+11:08:24,277 DEBUG ~ MyNewScore field is set to 0
+11:08:24,277 DEBUG ~ New score is 0.000000
+11:08:24,277 DEBUG ~ About to add scores DemographicScore and BehaviorScore and store it in MyNewScore
+11:08:24,277 DEBUG ~ About to extract value of DemographicScore
+11:08:24,277 DEBUG ~ DemographicScore field is set to 26
+11:08:24,277 DEBUG ~ About to extract value of BehaviorScore
+11:08:24,278 DEBUG ~ BehaviorScore field is set to 18
+11:08:24,278 DEBUG ~ About to extract value of MyNewScore
+11:08:24,278 DEBUG ~ MyNewScore field is set to 44
+11:08:24,278 DEBUG ~ value of DemographicScore is 26
+11:08:24,278 DEBUG ~ value of BehaviorScore is 18
+11:08:24,278 DEBUG ~ New score is 44.000000
+11:08:24,278 DEBUG ~ About to sync 0 leads

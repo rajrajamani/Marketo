@@ -9,6 +9,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang.WordUtils;
+
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -50,13 +52,13 @@ public class CodeSandbox {
 	 * @param fieldNames
 	 * @return
 	 */
-	public List<LeadRecord> mktoCapitalizeField(List<LeadRecord> inflightList,
+	public List<LeadRecord> mktoProperCaseField(List<LeadRecord> inflightList,
 			String[] fieldNames) {
 		List<LeadRecord> retList = new ArrayList<LeadRecord>();
 		LeadRecord retLead = null;
 		for (LeadRecord lr : inflightList) {
 			retLead = null;
-			retLead = mktoCapitalizeLeadFields(lr, fieldNames, false);
+			retLead = mktoProperCaseLeadFields(lr, fieldNames, false);
 			if (retLead != null) {
 				retList.add(retLead);
 			}
@@ -64,7 +66,7 @@ public class CodeSandbox {
 		return retList;
 	}
 
-	public LeadRecord mktoCapitalizeLeadFields(LeadRecord leadRecord,
+	public LeadRecord mktoProperCaseLeadFields(LeadRecord leadRecord,
 			String[] fieldNames, boolean syncImmediate) {
 		if (leadRecord == null) {
 			return null;
@@ -78,15 +80,7 @@ public class CodeSandbox {
 			String fv = extractAttributeValue(leadRecord, fld);
 			String nfv = "";
 			if (fv != null) {
-				Character fch = fv.charAt(0);
-				String remainder = fv.substring(1);
-				if (fch != null) {
-					fch = Character.toUpperCase(fch);
-				}
-				if (remainder != null) {
-					remainder = remainder.toLowerCase();
-				}
-				nfv = fch + remainder;
+				nfv = WordUtils.capitalize(fv);
 				newAttrs.put(fld, nfv);
 				Logger.debug("Capitalizing %s to : %s", fld, nfv);
 				if (!fv.equals(nfv)) {
