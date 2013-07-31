@@ -6826,3 +6826,494 @@ select formulacam0_.id as id12_0_, formulacam0_.campaignURL as campaign2_12_0_, 
 	at org.hibernate.loader.Loader.loadEntity(Loader.java:2037)
 	... 22 more
 16:11:04,615 DEBUG ~ Finished sync-ing 8 leads
+09:17:44,734 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:17:45,260 WARN  ~ You're running Play! in DEV mode
+09:17:45,330 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:17:51,805 ERROR ~ 
+
+@6f5pdlblo
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Cannot start a JPA manager without a properly configured database): No datasource configured
+
+play.exceptions.JPAException: Cannot start a JPA manager without a properly configured database
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:115)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException: No datasource configured
+	... 6 more
+09:18:34,793 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:18:35,281 WARN  ~ You're running Play! in DEV mode
+09:18:35,347 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:18:39,010 ERROR ~ 
+
+@6f5pdo3hg
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Cannot start a JPA manager without a properly configured database): No datasource configured
+
+play.exceptions.JPAException: Cannot start a JPA manager without a properly configured database
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:115)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException: No datasource configured
+	... 6 more
+09:18:50,993 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:18:51,505 WARN  ~ You're running Play! in DEV mode
+09:18:51,571 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:18:53,829 ERROR ~ 
+
+@6f5pdopfl
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Cannot start a JPA manager without a properly configured database): No datasource configured
+
+play.exceptions.JPAException: Cannot start a JPA manager without a properly configured database
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:115)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException: No datasource configured
+	... 6 more
+09:19:50,495 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:19:51,010 WARN  ~ You're running Play! in DEV mode
+09:19:51,077 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:19:53,506 INFO  ~ Connected to jdbc:h2:~/db;MVCC=TRUE
+09:19:53,731 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:19:54,286 INFO  ~ Application '2waySMS' is now started !
+09:20:26,557 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:20:27,061 WARN  ~ You're running Play! in DEV mode
+09:20:27,130 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:20:32,143 ERROR ~ Cannot connected to the database : Wrong user name or password [28000-166]
+org.h2.jdbc.JdbcSQLException: Wrong user name or password [28000-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.get(DbException.java:135)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:301)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:146)
+	at org.h2.engine.Engine.createSession(Engine.java:121)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:305)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:110)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:94)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:109)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+09:20:32,893 ERROR ~ 
+
+@6f5pe4fph
+Internal Server Error (500) for request GET /
+
+Database error
+A database error occured : Cannot connected to the database, Wrong user name or password [28000-166]
+
+play.exceptions.DatabaseException: Cannot connected to the database, Wrong user name or password [28000-166]
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:161)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.h2.jdbc.JdbcSQLException: Wrong user name or password [28000-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.get(DbException.java:135)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:301)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:146)
+	at org.h2.engine.Engine.createSession(Engine.java:121)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:305)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:110)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:94)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:109)
+	... 5 more
+09:21:07,309 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:21:07,800 WARN  ~ You're running Play! in DEV mode
+09:21:07,873 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:21:11,220 ERROR ~ Cannot connected to the database : Wrong user name or password [28000-166]
+org.h2.jdbc.JdbcSQLException: Wrong user name or password [28000-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.get(DbException.java:135)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:301)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:146)
+	at org.h2.engine.Engine.createSession(Engine.java:121)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:305)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:110)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:94)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:109)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+09:21:11,892 ERROR ~ 
+
+@6f5pe6lkf
+Internal Server Error (500) for request GET /
+
+Database error
+A database error occured : Cannot connected to the database, Wrong user name or password [28000-166]
+
+play.exceptions.DatabaseException: Cannot connected to the database, Wrong user name or password [28000-166]
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:161)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.h2.jdbc.JdbcSQLException: Wrong user name or password [28000-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.get(DbException.java:135)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:301)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:146)
+	at org.h2.engine.Engine.createSession(Engine.java:121)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:305)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:110)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:94)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:109)
+	... 5 more
+09:21:49,818 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:21:50,305 WARN  ~ You're running Play! in DEV mode
+09:21:50,372 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:21:56,399 INFO  ~ Connected to jdbc:h2:~/db;MVCC=TRUE
+09:21:56,623 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:21:57,170 INFO  ~ Application '2waySMS' is now started !
+09:22:50,038 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:22:50,524 WARN  ~ You're running Play! in DEV mode
+09:22:50,589 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:22:54,421 INFO  ~ Connected to jdbc:h2:~/db;MVCC=TRUE
+09:22:54,635 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:22:55,199 INFO  ~ Application '2waySMS' is now started !
+09:24:13,571 INFO  ~ Connected to jdbc:h2:~/db/h2/play.h2.db;MVCC=TRUE
+09:24:13,584 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:24:24,833 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:24:25,317 WARN  ~ You're running Play! in DEV mode
+09:24:25,386 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:24:29,939 INFO  ~ Connected to jdbc:h2:~/db/h2/play.h2.db;MVCC=TRUE
+09:24:30,154 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:24:30,742 INFO  ~ Application '2waySMS' is now started !
+09:24:49,244 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+09:24:49,735 WARN  ~ You're running Play! in DEV mode
+09:24:49,801 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+09:25:06,835 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+09:25:07,050 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:25:07,611 INFO  ~ Application '2waySMS' is now started !
+09:25:29,408 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+09:25:29,446 INFO  ~ campaign[1] - Kicking off background task to fetch lead list
+09:25:31,494 INFO  ~ campaign[1] - Fetching leads from static list listOfLeads
+09:25:31,495 INFO  ~ campaign[1] - trying to fetch leads from list CustomFormula.listOfLeads
+09:25:31,499 DEBUG ~ campaign[1] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+09:25:32,955 DEBUG ~ campaign[1] - get multiple leads from list :listOfLeads
+09:25:46,107 INFO  ~ campaign[1] - Finished fetching leads from static list.  8 leads retrieved
+09:25:46,126 DEBUG ~ campaign[1] - In executeFormula for command set mktoProper(FirstName, LastName)
+09:25:47,084 DEBUG ~ campaign[1] - executing command mktoProper(FirstName, LastName)
+09:25:47,085 DEBUG ~ About to extract value of FirstName
+09:25:47,085 DEBUG ~ FirstName field is set to Norm
+09:25:47,085 DEBUG ~ Capitalizing FirstName to : Norm
+09:25:47,085 DEBUG ~ About to extract value of LastName
+09:25:47,085 DEBUG ~ LastName field is set to May
+09:25:47,085 DEBUG ~ Capitalizing LastName to : May
+09:25:47,085 DEBUG ~ About to extract value of FirstName
+09:25:47,085 DEBUG ~ FirstName field is set to Pat
+09:25:47,085 DEBUG ~ Capitalizing FirstName to : Pat
+09:25:47,085 DEBUG ~ About to extract value of LastName
+09:25:47,085 DEBUG ~ LastName field is set to Stumuller
+09:25:47,086 DEBUG ~ Capitalizing LastName to : Stumuller
+09:25:47,086 DEBUG ~ About to extract value of FirstName
+09:25:47,086 DEBUG ~ FirstName field is set to Andy
+09:25:47,086 DEBUG ~ Capitalizing FirstName to : Andy
+09:25:47,086 DEBUG ~ About to extract value of LastName
+09:25:47,086 DEBUG ~ LastName field is set to Young
+09:25:47,086 DEBUG ~ Capitalizing LastName to : Young
+09:25:47,086 DEBUG ~ About to extract value of FirstName
+09:25:47,086 DEBUG ~ FirstName field is set to Phyllis
+09:25:47,086 DEBUG ~ Capitalizing FirstName to : Phyllis
+09:25:47,086 DEBUG ~ About to extract value of LastName
+09:25:47,086 DEBUG ~ LastName field is set to Cotton
+09:25:47,086 DEBUG ~ Capitalizing LastName to : Cotton
+09:25:47,086 DEBUG ~ About to extract value of FirstName
+09:25:47,086 DEBUG ~ FirstName field is set to David
+09:25:47,086 DEBUG ~ Capitalizing FirstName to : David
+09:25:47,086 DEBUG ~ About to extract value of LastName
+09:25:47,086 DEBUG ~ LastName field is set to Monaco
+09:25:47,087 DEBUG ~ Capitalizing LastName to : Monaco
+09:25:47,087 DEBUG ~ About to extract value of FirstName
+09:25:47,087 DEBUG ~ FirstName field is set to Carolyn
+09:25:47,087 DEBUG ~ Capitalizing FirstName to : Carolyn
+09:25:47,087 DEBUG ~ About to extract value of LastName
+09:25:47,087 DEBUG ~ LastName field is set to Crenshaw
+09:25:47,087 DEBUG ~ Capitalizing LastName to : Crenshaw
+09:25:47,087 DEBUG ~ About to extract value of FirstName
+09:25:47,087 DEBUG ~ FirstName field is set to Jack
+09:25:47,087 DEBUG ~ Capitalizing FirstName to : Jack
+09:25:47,087 DEBUG ~ About to extract value of LastName
+09:25:47,087 DEBUG ~ LastName field is set to Rogers
+09:25:47,087 DEBUG ~ Capitalizing LastName to : Rogers
+09:25:47,087 DEBUG ~ About to extract value of FirstName
+09:25:47,087 DEBUG ~ FirstName field is set to Bill
+09:25:47,087 DEBUG ~ Capitalizing FirstName to : Bill
+09:25:47,087 DEBUG ~ About to extract value of LastName
+09:25:47,087 DEBUG ~ LastName field is set to Dadio jr
+09:25:47,087 DEBUG ~ Capitalizing LastName to : Dadio jr
+09:25:47,088 DEBUG ~ About to sync 0 leads
+09:27:49,656 ERROR ~ 
+
+@6f5pf3d2j
+Internal Server Error (500) for request GET /execFormulaStatus?campaignId=1
+
+Compilation error (In /app/jobs/SyncListAndExecCodeInSandbox.java around line 33)
+The file /app/jobs/SyncListAndExecCodeInSandbox.java could not be compiled. Error raised is : errMsg cannot be resolved to a variable
+
+play.exceptions.CompilationException: errMsg cannot be resolved to a variable
+	at play.classloading.ApplicationCompiler$2.acceptResult(ApplicationCompiler.java:246)
+	at org.eclipse.jdt.internal.compiler.Compiler.handleInternalException(Compiler.java:676)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:520)
+	at play.classloading.ApplicationCompiler.compile(ApplicationCompiler.java:282)
+	at play.classloading.ApplicationClasses$ApplicationClass.compile(ApplicationClasses.java:281)
+	at play.classloading.ApplicationClassloader.detectChanges(ApplicationClassloader.java:324)
+	at play.Play.detectChanges(Play.java:625)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+09:47:16,023 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:47:17,852 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+09:47:17,857 INFO  ~ campaign[2] - Kicking off background task to fetch lead list
+09:47:19,912 INFO  ~ campaign[2] - Fetching leads from static list listOfLeads
+09:47:19,912 INFO  ~ campaign[2] - trying to fetch leads from list CustomFormula.listOfLeads
+09:47:19,913 DEBUG ~ campaign[2] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+09:47:20,873 DEBUG ~ campaign[2] - get multiple leads from list :listOfLeads
+09:47:26,045 INFO  ~ campaign[2] - Finished fetching leads from static list.  8 leads retrieved
+09:47:26,050 DEBUG ~ campaign[2] - In executeFormula for command set mktoProper(FirstName, LastName)
+09:47:26,845 DEBUG ~ campaign[2] - executing command mktoProper(FirstName, LastName)
+09:47:26,845 DEBUG ~ About to extract value of FirstName
+09:47:26,846 DEBUG ~ FirstName field is set to Norm
+09:47:26,846 DEBUG ~ Capitalizing FirstName to : Norm
+09:47:26,846 DEBUG ~ About to extract value of LastName
+09:47:26,846 DEBUG ~ LastName field is set to May
+09:47:26,846 DEBUG ~ Capitalizing LastName to : May
+09:47:26,846 DEBUG ~ About to extract value of FirstName
+09:47:26,846 DEBUG ~ FirstName field is set to Pat
+09:47:26,846 DEBUG ~ Capitalizing FirstName to : Pat
+09:47:26,846 DEBUG ~ About to extract value of LastName
+09:47:26,846 DEBUG ~ LastName field is set to Stumuller
+09:47:26,846 DEBUG ~ Capitalizing LastName to : Stumuller
+09:47:26,846 DEBUG ~ About to extract value of FirstName
+09:47:26,846 DEBUG ~ FirstName field is set to Andy
+09:47:26,847 DEBUG ~ Capitalizing FirstName to : Andy
+09:47:26,847 DEBUG ~ About to extract value of LastName
+09:47:26,847 DEBUG ~ LastName field is set to Young
+09:47:26,847 DEBUG ~ Capitalizing LastName to : Young
+09:47:26,847 DEBUG ~ About to extract value of FirstName
+09:47:26,847 DEBUG ~ FirstName field is set to Phyllis
+09:47:26,847 DEBUG ~ Capitalizing FirstName to : Phyllis
+09:47:26,847 DEBUG ~ About to extract value of LastName
+09:47:26,847 DEBUG ~ LastName field is set to Cotton
+09:47:26,847 DEBUG ~ Capitalizing LastName to : Cotton
+09:47:26,847 DEBUG ~ About to extract value of FirstName
+09:47:26,847 DEBUG ~ FirstName field is set to David
+09:47:26,847 DEBUG ~ Capitalizing FirstName to : David
+09:47:26,847 DEBUG ~ About to extract value of LastName
+09:47:26,847 DEBUG ~ LastName field is set to Monaco
+09:47:26,847 DEBUG ~ Capitalizing LastName to : Monaco
+09:47:26,847 DEBUG ~ About to extract value of FirstName
+09:47:26,847 DEBUG ~ FirstName field is set to Carolyn
+09:47:26,847 DEBUG ~ Capitalizing FirstName to : Carolyn
+09:47:26,847 DEBUG ~ About to extract value of LastName
+09:47:26,848 DEBUG ~ LastName field is set to Crenshaw
+09:47:26,848 DEBUG ~ Capitalizing LastName to : Crenshaw
+09:47:26,848 DEBUG ~ About to extract value of FirstName
+09:47:26,848 DEBUG ~ FirstName field is set to Jack
+09:47:26,848 DEBUG ~ Capitalizing FirstName to : Jack
+09:47:26,848 DEBUG ~ About to extract value of LastName
+09:47:26,848 DEBUG ~ LastName field is set to Rogers
+09:47:26,848 DEBUG ~ Capitalizing LastName to : Rogers
+09:47:26,848 DEBUG ~ About to extract value of FirstName
+09:47:26,848 DEBUG ~ FirstName field is set to Bill
+09:47:26,848 DEBUG ~ Capitalizing FirstName to : Bill
+09:47:26,848 DEBUG ~ About to extract value of LastName
+09:47:26,848 DEBUG ~ LastName field is set to Dadio jr
+09:47:26,848 DEBUG ~ Capitalizing LastName to : Dadio jr
+09:47:26,848 DEBUG ~ About to sync 0 leads
+09:48:12,754 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+09:48:42,919 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+09:48:42,925 INFO  ~ campaign[3] - Kicking off background task to fetch lead list
+09:48:44,971 INFO  ~ campaign[3] - Fetching leads from static list listOfLeads
+09:48:44,973 INFO  ~ campaign[3] - trying to fetch leads from list CustomFormula.listOfLeads
+09:48:44,973 DEBUG ~ campaign[3] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+09:48:45,866 DEBUG ~ campaign[3] - get multiple leads from list :listOfLeads
+09:48:51,528 INFO  ~ campaign[3] - Finished fetching leads from static list.  8 leads retrieved
+09:48:51,531 DEBUG ~ campaign[3] - In executeFormula for command set mktoProper(FirstName, LastName)
+09:48:52,396 DEBUG ~ campaign[3] - executing command mktoProper(FirstName, LastName)
+09:48:52,397 DEBUG ~ About to extract value of FirstName
+09:48:52,397 DEBUG ~ FirstName field is set to Norm
+09:48:52,397 DEBUG ~ Capitalizing FirstName to : Norm
+09:48:52,397 DEBUG ~ About to extract value of LastName
+09:48:52,397 DEBUG ~ LastName field is set to May
+09:48:52,397 DEBUG ~ Capitalizing LastName to : May
+09:48:52,397 DEBUG ~ About to extract value of FirstName
+09:48:52,398 DEBUG ~ FirstName field is set to Pat
+09:48:52,398 DEBUG ~ Capitalizing FirstName to : Pat
+09:48:52,398 DEBUG ~ About to extract value of LastName
+09:48:52,398 DEBUG ~ LastName field is set to Stumuller
+09:48:52,398 DEBUG ~ Capitalizing LastName to : Stumuller
+09:48:52,398 DEBUG ~ About to extract value of FirstName
+09:48:52,398 DEBUG ~ FirstName field is set to Andy
+09:48:52,398 DEBUG ~ Capitalizing FirstName to : Andy
+09:48:52,398 DEBUG ~ About to extract value of LastName
+09:48:52,398 DEBUG ~ LastName field is set to Young
+09:48:52,398 DEBUG ~ Capitalizing LastName to : Young
+09:48:52,398 DEBUG ~ About to extract value of FirstName
+09:48:52,398 DEBUG ~ FirstName field is set to Phyllis
+09:48:52,398 DEBUG ~ Capitalizing FirstName to : Phyllis
+09:48:52,398 DEBUG ~ About to extract value of LastName
+09:48:52,398 DEBUG ~ LastName field is set to Cotton
+09:48:52,398 DEBUG ~ Capitalizing LastName to : Cotton
+09:48:52,398 DEBUG ~ About to extract value of FirstName
+09:48:52,398 DEBUG ~ FirstName field is set to David
+09:48:52,398 DEBUG ~ Capitalizing FirstName to : David
+09:48:52,399 DEBUG ~ About to extract value of LastName
+09:48:52,399 DEBUG ~ LastName field is set to Monaco
+09:48:52,399 DEBUG ~ Capitalizing LastName to : Monaco
+09:48:52,399 DEBUG ~ About to extract value of FirstName
+09:48:52,399 DEBUG ~ FirstName field is set to Carolyn
+09:48:52,399 DEBUG ~ Capitalizing FirstName to : Carolyn
+09:48:52,399 DEBUG ~ About to extract value of LastName
+09:48:52,399 DEBUG ~ LastName field is set to Crenshaw
+09:48:52,399 DEBUG ~ Capitalizing LastName to : Crenshaw
+09:48:52,399 DEBUG ~ About to extract value of FirstName
+09:48:52,399 DEBUG ~ FirstName field is set to Jack
+09:48:52,399 DEBUG ~ Capitalizing FirstName to : Jack
+09:48:52,399 DEBUG ~ About to extract value of LastName
+09:48:52,399 DEBUG ~ LastName field is set to Rogers
+09:48:52,399 DEBUG ~ Capitalizing LastName to : Rogers
+09:48:52,399 DEBUG ~ About to extract value of FirstName
+09:48:52,399 DEBUG ~ FirstName field is set to Bill
+09:48:52,399 DEBUG ~ Capitalizing FirstName to : Bill
+09:48:52,399 DEBUG ~ About to extract value of LastName
+09:48:52,399 DEBUG ~ LastName field is set to Dadio jr
+09:48:52,399 DEBUG ~ Capitalizing LastName to : Dadio jr
+09:48:52,400 DEBUG ~ About to sync 0 leads
+09:49:11,402 DEBUG ~ Read values from settings file : munchkinId[100-AEK-913]
+09:49:11,405 INFO  ~ campaign[4] - Kicking off background task to fetch lead list
+09:49:13,447 INFO  ~ campaign[4] - Fetching leads from static list listOfLeads
+09:49:13,449 INFO  ~ campaign[4] - trying to fetch leads from list CustomFormula.listOfLeads
+09:49:13,450 DEBUG ~ campaign[4] - making soap connection user:demo17_1_809934544BFABAE58E5D27 encKey:27272727aa munchId:100-AEK-913
+09:49:14,341 DEBUG ~ campaign[4] - get multiple leads from list :listOfLeads
+09:49:17,645 INFO  ~ campaign[4] - Finished fetching leads from static list.  8 leads retrieved
+09:49:17,647 DEBUG ~ campaign[4] - In executeFormula for command set mktoProper(FirstName, LastName)
+09:49:18,605 DEBUG ~ campaign[4] - executing command mktoProper(FirstName, LastName)
+09:49:18,605 DEBUG ~ About to extract value of FirstName
+09:49:18,605 DEBUG ~ FirstName field is set to Norm
+09:49:18,605 DEBUG ~ Capitalizing FirstName to : Norm
+09:49:18,605 DEBUG ~ About to extract value of LastName
+09:49:18,605 DEBUG ~ LastName field is set to May
+09:49:18,605 DEBUG ~ Capitalizing LastName to : May
+09:49:18,605 DEBUG ~ About to extract value of FirstName
+09:49:18,605 DEBUG ~ FirstName field is set to Pat
+09:49:18,605 DEBUG ~ Capitalizing FirstName to : Pat
+09:49:18,605 DEBUG ~ About to extract value of LastName
+09:49:18,605 DEBUG ~ LastName field is set to Stumuller
+09:49:18,606 DEBUG ~ Capitalizing LastName to : Stumuller
+09:49:18,606 DEBUG ~ About to extract value of FirstName
+09:49:18,606 DEBUG ~ FirstName field is set to Andy
+09:49:18,606 DEBUG ~ Capitalizing FirstName to : Andy
+09:49:18,606 DEBUG ~ About to extract value of LastName
+09:49:18,606 DEBUG ~ LastName field is set to Young
+09:49:18,606 DEBUG ~ Capitalizing LastName to : Young
+09:49:18,606 DEBUG ~ About to extract value of FirstName
+09:49:18,606 DEBUG ~ FirstName field is set to Phyllis
+09:49:18,606 DEBUG ~ Capitalizing FirstName to : Phyllis
+09:49:18,606 DEBUG ~ About to extract value of LastName
+09:49:18,606 DEBUG ~ LastName field is set to Cotton
+09:49:18,606 DEBUG ~ Capitalizing LastName to : Cotton
+09:49:18,606 DEBUG ~ About to extract value of FirstName
+09:49:18,606 DEBUG ~ FirstName field is set to David
+09:49:18,606 DEBUG ~ Capitalizing FirstName to : David
+09:49:18,606 DEBUG ~ About to extract value of LastName
+09:49:18,606 DEBUG ~ LastName field is set to Monaco
+09:49:18,606 DEBUG ~ Capitalizing LastName to : Monaco
+09:49:18,606 DEBUG ~ About to extract value of FirstName
+09:49:18,607 DEBUG ~ FirstName field is set to Carolyn
+09:49:18,607 DEBUG ~ Capitalizing FirstName to : Carolyn
+09:49:18,607 DEBUG ~ About to extract value of LastName
+09:49:18,607 DEBUG ~ LastName field is set to Crenshaw
+09:49:18,607 DEBUG ~ Capitalizing LastName to : Crenshaw
+09:49:18,607 DEBUG ~ About to extract value of FirstName
+09:49:18,607 DEBUG ~ FirstName field is set to Jack
+09:49:18,607 DEBUG ~ Capitalizing FirstName to : Jack
+09:49:18,607 DEBUG ~ About to extract value of LastName
+09:49:18,607 DEBUG ~ LastName field is set to Rogers
+09:49:18,607 DEBUG ~ Capitalizing LastName to : Rogers
+09:49:18,607 DEBUG ~ About to extract value of FirstName
+09:49:18,607 DEBUG ~ FirstName field is set to Bill
+09:49:18,607 DEBUG ~ Capitalizing FirstName to : Bill
+09:49:18,607 DEBUG ~ About to extract value of LastName
+09:49:18,607 DEBUG ~ LastName field is set to Dadio jr
+09:49:18,607 DEBUG ~ Capitalizing LastName to : Dadio jr
+09:49:18,608 DEBUG ~ About to sync 0 leads
+09:50:52,082 ERROR ~ 
+
+@6f5pf3d2k
+Internal Server Error (500) for request GET /execFormulaStatus?campaignId=4
+
+Compilation error (In /app/controllers/Application.java around line 175)
+The file /app/controllers/Application.java could not be compiled. Error raised is : The method processFormula() is undefined for the type Application
+
+play.exceptions.CompilationException: The method processFormula() is undefined for the type Application
+	at play.classloading.ApplicationCompiler$2.acceptResult(ApplicationCompiler.java:246)
+	at org.eclipse.jdt.internal.compiler.Compiler.handleInternalException(Compiler.java:676)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:520)
+	at play.classloading.ApplicationCompiler.compile(ApplicationCompiler.java:282)
+	at play.classloading.ApplicationClasses$ApplicationClass.compile(ApplicationClasses.java:281)
+	at play.classloading.ApplicationClassloader.detectChanges(ApplicationClassloader.java:324)
+	at play.Play.detectChanges(Play.java:625)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+10:03:40,445 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:03:40,951 WARN  ~ You're running Play! in DEV mode
+10:03:41,022 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:03:46,456 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+10:03:46,709 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:03:47,238 INFO  ~ Application '2waySMS' is now started !
+10:04:26,629 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234
+10:04:26,645 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv exists
+10:04:26,646 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
+10:04:33,435 DEBUG ~ Trying to create directory : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234
+10:04:33,435 DEBUG ~ Checking if file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv exists
+10:04:33,436 DEBUG ~ Writing 
+add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
+10:04:33,441 INFO  ~ campaign[1] was configured previously

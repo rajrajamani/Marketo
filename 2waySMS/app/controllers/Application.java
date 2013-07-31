@@ -161,32 +161,81 @@ public class Application extends Controller {
 
 			savedConfig(Constants.CAMPAIGN_SMS, sc.id);
 		} else if (url.endsWith("google_settings.html")) {
-			MarketoUtility mu = new MarketoUtility();
-			GoogleCampaign gc = (GoogleCampaign) mu.readSettings(url,
-					Constants.CAMPAIGN_GOOG);
-			// gc.munchkinAccountId = "1234";
-			// gc.save();
-
-			// addGCLID("1234", "idnum", "add", "hsd84jk", "marketo target",
-			// "null", "2013-06-21 12:40:03");
-
-			showConversionFiles(Constants.CAMPAIGN_GOOG, gc);
+			processGoogleCampaign(url);
 		} else if (url.endsWith("formula_settings.html")) {
-			MarketoUtility mu = new MarketoUtility();
-			FormulaCampaign fc = (FormulaCampaign) mu.readSettings(url,
-					Constants.CAMPAIGN_FORMULA);
-			fc.save();
-			Logger.info(
-					"campaign[%d] - Kicking off background task to fetch lead list",
-					fc.id);
-			new SyncListAndExecCodeInSandbox(fc).in(2);
-
-			execFormulaStatus(fc.id);
+			processFormula(url);
 
 		} else {
 			renderHtml("Campaign url must be sms_settings.html"
 					+ " or google_settings.html" + " or formula_settings.html");
 		}
+	}
+
+	private static void processGoogleCampaign(String url) {
+		GoogleCampaign gc = getGoogleCampaignFromUrl(url);
+
+		/*
+		 * For Testing gc.munchkinAccountId = "1234"; gc.save();
+		 * 
+		 * addGCLID("1234", "idnum", "add", "hsd84jk", "marketo target", "null",
+		 * "2013-06-21 12:40:03");
+		 */
+
+		showConversionFiles(Constants.CAMPAIGN_GOOG, gc);
+	}
+
+	private static GoogleCampaign getGoogleCampaignFromUrl(String url) {
+		MarketoUtility mu = new MarketoUtility();
+		GoogleCampaign gc = null;
+		List<GoogleCampaign> gcExisting = GoogleCampaign.find(
+				"campaignURL = ?", url).fetch();
+
+		if (gcExisting.size() == 1) {
+			gc = gcExisting.get(0);
+			Logger.info("campaign[%d] was configured previously", gc.id);
+		} else {
+			gc = (GoogleCampaign) mu.readSettings(url, Constants.CAMPAIGN_GOOG);
+			gc.save();
+		}
+		return gc;
+	}
+
+	private static GoogleCampaign getGoogleCampaignFromMunchkin(
+			String munchkinId) {
+		MarketoUtility mu = new MarketoUtility();
+		GoogleCampaign gc = null;
+		List<GoogleCampaign> gcExisting = GoogleCampaign.find("munchkinId = ?",
+				munchkinId).fetch();
+
+		if (gcExisting.size() == 1) {
+			gc = gcExisting.get(0);
+			Logger.info("campaign[%d] was configured previously", gc.id);
+		} else {
+			gc = new GoogleCampaign();
+			gc.munchkinId = munchkinId;
+			gc.numEntries = 0;
+			gc.save();
+		}
+		return gc;
+	}
+
+	private static void incrementCampaignCounter(String munchkinId) {
+		GoogleCampaign gc = getGoogleCampaignFromMunchkin(munchkinId);
+		gc.numEntries++;
+		gc.save();
+	}
+
+	private static void processFormula(String url) {
+		MarketoUtility mu = new MarketoUtility();
+		FormulaCampaign fc = (FormulaCampaign) mu.readSettings(url,
+				Constants.CAMPAIGN_FORMULA);
+		fc.save();
+		Logger.info(
+				"campaign[%d] - Kicking off background task to fetch lead list",
+				fc.id);
+		new SyncListAndExecCodeInSandbox(fc).in(2);
+
+		execFormulaStatus(fc.id);
 	}
 
 	public static void showConversionFiles(int campaignGoog, GoogleCampaign gc) {
@@ -223,10 +272,8 @@ public class Application extends Controller {
 		FormulaCampaign fc = FormulaCampaign.findById(campaignId);
 		List<FormulaCampaign> allCampaigns = new ArrayList<FormulaCampaign>();
 		if (fc != null) {
-			allCampaigns = FormulaCampaign.find(
-					"munchkinAccountId = ?",
-					fc.munchkinAccountId)
-					.fetch();
+			allCampaigns = FormulaCampaign.find("munchkinAccountId = ?",
+					fc.munchkinAccountId).fetch();
 		}
 		render(allCampaigns);
 	}
@@ -275,6 +322,7 @@ public class Application extends Controller {
 					+ convValue + "," + newDateString;
 			Logger.debug("Writing %s to file : %s ", payload, fileName);
 			appendToFile(fileName, payload);
+			incrementCampaignCounter(munchkinId);
 		} catch (IOException e) {
 			Logger.fatal("Unable to create directory/write to file : %s",
 					e.getMessage());

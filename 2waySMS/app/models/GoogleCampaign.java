@@ -17,15 +17,15 @@ public class GoogleCampaign extends Model {
 		campaignURL = ms.campaignURL;
 		munchkinId = ms.munchkinId;
 		timezone = ms.timezone;
+		numEntries = ms.numEntries;
 		
 	}
 
 	public GoogleCampaign() {
 	}
 
-	public static final int MAX_RULES = 25;
-
 	public String campaignURL; // provided by marketer
 	public String munchkinId; // from token
 	public String timezone;
+	public int numEntries;
 }
