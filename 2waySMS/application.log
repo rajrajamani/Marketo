@@ -7317,3 +7317,4 @@ add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : C:\Users\rrajam
 10:04:33,436 DEBUG ~ Writing 
 add,hsd84jk,marketo target,null,06/21/2013 12:40:03 PM to file : C:\Users\rrajamani\git\repos\2waySMS/public/google/1234/latest.csv 
 10:04:33,441 INFO  ~ campaign[1] was configured previously
+10:06:25,661 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
