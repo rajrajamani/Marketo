@@ -2,6 +2,7 @@ package jobs;
 
 import java.util.List;
 
+import common.Constants;
 import common.MarketoUtility;
 
 import models.Lead;
@@ -22,7 +23,12 @@ public class SyncListAndRunFirstCampaign extends Job {
 		MarketoUtility mu = new MarketoUtility();
 		Logger.info("campaign[%d] - Fetching leads from static list %s", sc.id,
 				sc.leadListWithPhoneNumbers);
-		List<Lead> leadList = mu.getLeadsFromStaticListForSms(sc);
+		String[] fields = new String[] { "Email", sc.phoneNumFieldApiName,
+				Constants.UNSUB_FIELD_NAME, Constants.COUNTRY_FIELD_NAME };
+
+		List<Lead> leadList = mu.fetchFromStaticListForSms(sc.soapUserId,
+				sc.soapEncKey, sc.munchkinAccountId, sc.id, sc.programName,
+				sc.leadListWithPhoneNumbers, fields, sc.phoneNumFieldApiName);
 		Logger.info(
 				"campaign[%d] - Finished fetching leads from static list %s",
 				sc.id, sc.leadListWithPhoneNumbers);

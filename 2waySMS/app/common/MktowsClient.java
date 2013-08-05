@@ -51,6 +51,7 @@ import com.marketo.mktows.wsdl.LeadActivityList;
 import com.marketo.mktows.wsdl.LeadChangeRecord;
 import com.marketo.mktows.wsdl.LeadKey;
 import com.marketo.mktows.wsdl.LeadKeyRef;
+import com.marketo.mktows.wsdl.LeadKeySelector;
 import com.marketo.mktows.wsdl.LeadRecord;
 import com.marketo.mktows.wsdl.LeadStatus;
 import com.marketo.mktows.wsdl.ListKey;
@@ -204,7 +205,7 @@ public class MktowsClient {
 
 		return MktowsClient.formatAsW3C(dt);
 	}
-	
+
 	public MktowsPort getProxy() {
 		return proxy;
 	}
@@ -674,18 +675,77 @@ public class MktowsClient {
 	}
 
 	/**
+	 * 
+	 * @param leadIds
+	 * @return
+	 * @throws MktowsClientException
+	 * @throws MktServiceException
+	 */
+	public List<LeadRecord> getMultipleLeads(List<String> leadEmailAddresses)
+			throws MktowsClientException, MktServiceException {
+
+		StreamPostionHolder posHolder = new StreamPostionHolder();
+		ParamsGetMultipleLeads params = MktowsUtil.objectFactory
+				.createParamsGetMultipleLeads();
+		List<LeadRecord> listLeadRecord = null;
+		// If the holder has a lead key, then don't initialize a new stream
+		// position.
+		Object lastPos = posHolder.getStreamPosition();
+		if (lastPos != null) {
+			params.setStreamPosition((String) lastPos);
+		} else {
+			LeadKeySelector leadKeySel = MktowsUtil.objectFactory
+					.createLeadKeySelector();
+
+			leadKeySel.setKeyType(LeadKeyRef.EMAIL);
+			ArrayOfString values = MktowsUtil.objectFactory
+					.createArrayOfString();
+			for (String email : leadEmailAddresses) {
+				values.getStringItem().add(email);
+			}
+			leadKeySel.setKeyValues(values);
+
+			params.setLeadSelector(leadKeySel);
+		}
+		try {
+			AuthenticationHeaderInfo authHdr = this
+					.createAuthenticationHeader();
+			MktowsPort soap = this.getSoapInterface();
+			SuccessGetMultipleLeads success = soap.getMultipleLeads(params,
+					authHdr);
+			ResultGetMultipleLeads result = success.getResult();
+			ArrayOfLeadRecord aoLeadRecord = result.getLeadRecordList();
+			if (aoLeadRecord != null) {
+				listLeadRecord = aoLeadRecord.getLeadRecord();
+			}
+			posHolder.setStreamPosition(result.getNewStreamPosition());
+		} catch (SOAPFaultException ex) {
+			SOAPFault fault = ex.getFault();
+			throw new MktServiceException(ex.getMessage() + ", caused by "
+					+ fault.getDetail().getTextContent(), ex);
+		} catch (WebServiceException ex) {
+			throw new MktowsClientException("Web service exception occurred: "
+					+ ex.getMessage(), ex);
+		}
+
+		return listLeadRecord;
+	}
+
+	/**
 	 * @param batchSize
 	 * @param lastUpdatedAt
 	 * @param posHolder
 	 * @return
 	 * @throws MktowsClientException
 	 */
-	public List<LeadRecord> getMultipleLeads(int batchSize,
+	public ResultGetMultipleLeads getMultipleLeads(int batchSize,
 			String staticListName, StreamPostionHolder posHolder,
-			List<String> leadAttrs) throws MktowsClientException,
-			MktServiceException {
+			List<LeadRecord> listLeadRecord, List<String> leadAttrs)
+			throws MktowsClientException, MktServiceException {
 
-		List<LeadRecord> listLeadRecord = null;
+		if (listLeadRecord == null) {
+			return null;
+		}
 		ParamsGetMultipleLeads params = MktowsUtil.objectFactory
 				.createParamsGetMultipleLeads();
 		// If the holder has a lead key, then don't initialize a new stream
@@ -715,9 +775,13 @@ public class MktowsClient {
 			ResultGetMultipleLeads result = success.getResult();
 			ArrayOfLeadRecord aoLeadRecord = result.getLeadRecordList();
 			if (aoLeadRecord != null) {
-				listLeadRecord = aoLeadRecord.getLeadRecord();
+				List<LeadRecord> retList = aoLeadRecord.getLeadRecord();
+				if (retList != null) {
+					listLeadRecord.addAll(retList);
+				}
 			}
 			posHolder.setStreamPosition(result.getNewStreamPosition());
+			return result;
 		} catch (SOAPFaultException ex) {
 			SOAPFault fault = ex.getFault();
 			throw new MktServiceException(ex.getMessage() + ", caused by "
@@ -727,7 +791,6 @@ public class MktowsClient {
 					+ ex.getMessage(), ex);
 		}
 
-		return listLeadRecord;
 	}
 
 	/**

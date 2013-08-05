@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javassist.CannotCompileException;
-import javassist.CtClass;
 import models.FormulaCampaign;
 import models.GoogleCampaign;
 import models.Lead;
@@ -32,6 +30,7 @@ import com.marketo.mktows.wsdl.Attrib;
 import com.marketo.mktows.wsdl.LeadKey;
 import com.marketo.mktows.wsdl.LeadKeyRef;
 import com.marketo.mktows.wsdl.LeadRecord;
+import com.marketo.mktows.wsdl.ResultGetMultipleLeads;
 import com.marketo.mktows.wsdl.ResultSyncLead;
 import com.twilio.sdk.TwilioRestException;
 
@@ -191,7 +190,8 @@ public class MarketoUtility {
 		StreamPostionHolder posHolder = new StreamPostionHolder();
 		List<String> leadAttrs = new ArrayList<String>();
 
-		List<LeadRecord> leadRecords = null;
+		List<LeadRecord> leadRecords = new ArrayList<LeadRecord>();
+		;
 
 		try {
 			MktowsClient client = makeSoapConnection(campaignId, soapUserId,
@@ -207,20 +207,23 @@ public class MarketoUtility {
 			}
 			Logger.debug("campaign[%d] - requesting attributes %s", campaignId,
 					listFields);
-			leadRecords = client.getMultipleLeads(Constants.BATCH_SIZE,
-					listName, posHolder, leadAttrs);
+			boolean tryAgain = false;
+			do {
+				tryAgain = false;
+				ResultGetMultipleLeads result = client.getMultipleLeads(
+						Constants.BATCH_SIZE, listName, posHolder, leadRecords,
+						leadAttrs);
+				if (result != null && result.getRemainingCount() > 0) {
+					Logger.debug(
+							"campaign[%d] - %d records remaining,  will try again",
+							campaignId, result.getRemainingCount());
+					tryAgain = true;
+				}
+
+			} while (tryAgain);
+			Logger.debug("campaign[%d] - returning total of %d records",
+					campaignId, leadRecords.size());
 			return leadRecords;
-			/*
-			 * for (LeadRecord item : leadRecords) { Lead newLead = new Lead();
-			 * newLead.munchkinId = munchkinAccountId; newLead.leadId =
-			 * item.getId(); newLead.email = item.getEmail();
-			 * Logger.debug("processing lead with id : %d", newLead.leadId);
-			 * 
-			 * newLead.save(); leadList.add(newLead); }
-			 * 
-			 * Logger.debug("campaign[%d] - retrieved and parsed %d leads",
-			 * campaignId, leadRecords.size());
-			 */
 		} catch (MktowsClientException e) {
 			Logger.error(
 					"campaign[%d] - Exception occurred while fetching leads from list: %s",
@@ -231,6 +234,90 @@ public class MarketoUtility {
 					e.getLongMessage());
 			return leadRecords;
 		}
+	}
+
+	/**
+	 * 
+	 * @param soapUserId
+	 * @param soapEncKey
+	 * @param munchkinAccountId
+	 * @param campaignId
+	 * @param programName
+	 * @param staticListName
+	 * @param fields
+	 * @param phoneNumFieldApiName
+	 * @return
+	 */
+	public List<Lead> fetchFromStaticListForSms(String soapUserId,
+			String soapEncKey, String munchkinAccountId, Long campaignId,
+			String programName, String staticListName, String[] fields,
+			String phoneNumFieldApiName) {
+		Logger.info("campaign[%d] - trying to fetch leads from list %s",
+				campaignId, staticListName);
+		List<LeadRecord> leadRecords = new ArrayList<LeadRecord>();
+		List<Lead> leadList = new ArrayList<Lead>();
+
+		leadRecords = fetchFromStaticList(soapUserId, soapEncKey,
+				munchkinAccountId, campaignId, programName, staticListName,
+				fields);
+		for (LeadRecord item : leadRecords) {
+			Lead newLead = new Lead();
+			newLead.munchkinId = munchkinAccountId;
+			newLead.leadId = item.getId();
+			newLead.email = item.getEmail();
+			Logger.debug("processing lead with id : %d", newLead.leadId);
+
+			Map<String, Object> attrMap = null;
+			ArrayOfAttribute aoAttribute = item.getLeadAttributeList();
+			if (aoAttribute != null) {
+				attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);
+				if (attrMap != null && !attrMap.isEmpty()) {
+					Set<String> keySet = attrMap.keySet();
+					if (keySet.contains(phoneNumFieldApiName)) {
+						newLead.phoneNumber = attrMap.get(phoneNumFieldApiName)
+								.toString();
+						Logger.debug("lead with id : %d has %s set to %s",
+								newLead.leadId, phoneNumFieldApiName,
+								newLead.phoneNumber);
+					}
+					if (keySet.contains(Constants.COUNTRY_FIELD_NAME)) {
+						newLead.country = attrMap.get(
+								Constants.COUNTRY_FIELD_NAME).toString();
+						Logger.debug("lead with id : %d has country %s",
+								newLead.leadId, newLead.country);
+					} else {
+						newLead.country = "USA";
+						Logger.debug(
+								"lead with id : %d does not have country.  Using USA",
+								newLead.leadId);
+					}
+					if (keySet.contains(Constants.UNSUB_FIELD_NAME)) {
+						String unsubValue = attrMap.get(
+								Constants.UNSUB_FIELD_NAME).toString();
+						if (unsubValue.equals("1")) {
+							newLead.unsubscribed = true;
+						} else {
+							// should never come here
+							newLead.unsubscribed = false;
+						}
+					} else {
+						newLead.unsubscribed = false;
+					}
+					Logger.debug(
+							"lead with id : %d has sms unsubscribed set to %s",
+							newLead.leadId,
+							String.valueOf(newLead.unsubscribed));
+				}
+			}
+			newLead.save();
+			leadList.add(newLead);
+		}
+		Logger.debug("campaign[%d] - retrieved and parsed %d leads",
+				campaignId, leadRecords.size());
+
+		Logger.debug("campaign[%d] - returning %d leads", campaignId,
+				leadList.size());
+		return leadList;
 	}
 
 	public ExecStatus executeFunctionInSandBox(FormulaCampaign fc) {
@@ -353,103 +440,6 @@ public class MarketoUtility {
 			csb.syncMultipleLeads(processedLeadList, true);
 		}
 		return new ExecStatus("All Done", processedLeadList.size());
-	}
-
-	public List<Lead> getLeadsFromStaticListForSms(SMSCampaign sc) {
-		Logger.info("campaign[%d] - trying to fetch leads from list %s", sc.id,
-				sc.leadListWithPhoneNumbers);
-		StreamPostionHolder posHolder = new StreamPostionHolder();
-		List<LeadRecord> leadRecords = null;
-		List<Lead> leadList = new ArrayList<Lead>();
-		List<String> leadAttrs = new ArrayList<String>();
-		leadAttrs.add("Email");
-		leadAttrs.add(sc.phoneNumFieldApiName);
-		leadAttrs.add(Constants.UNSUB_FIELD_NAME);
-		leadAttrs.add(Constants.COUNTRY_FIELD_NAME);
-
-		try {
-			MktowsClient client = makeSoapConnection(sc.id, sc.soapUserId,
-					sc.soapEncKey, sc.munchkinAccountId);
-			do {
-				Logger.debug("campaign[%d] - get multiple leads from list :%s",
-						sc.id, sc.leadListWithPhoneNumbers);
-				String listName = sc.programName + "."
-						+ sc.leadListWithPhoneNumbers;
-				leadRecords = client.getMultipleLeads(Constants.BATCH_SIZE,
-						listName, posHolder, leadAttrs);
-				for (LeadRecord item : leadRecords) {
-					Lead newLead = new Lead();
-					newLead.munchkinId = sc.munchkinAccountId;
-					newLead.leadId = item.getId();
-					newLead.email = item.getEmail();
-					Logger.debug("processing lead with id : %d", newLead.leadId);
-
-					Map<String, Object> attrMap = null;
-					ArrayOfAttribute aoAttribute = item.getLeadAttributeList();
-					if (aoAttribute != null) {
-						attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);
-						if (attrMap != null && !attrMap.isEmpty()) {
-							Set<String> keySet = attrMap.keySet();
-							if (keySet.contains(sc.phoneNumFieldApiName)) {
-								newLead.phoneNumber = attrMap.get(
-										sc.phoneNumFieldApiName).toString();
-								Logger.debug(
-										"lead with id : %d has %s set to %s",
-										newLead.leadId,
-										sc.phoneNumFieldApiName,
-										newLead.phoneNumber);
-							}
-							if (keySet.contains(Constants.COUNTRY_FIELD_NAME)) {
-								newLead.country = attrMap.get(
-										Constants.COUNTRY_FIELD_NAME)
-										.toString();
-								Logger.debug(
-										"lead with id : %d has country %s",
-										newLead.leadId, newLead.country);
-							} else {
-								newLead.country = "USA";
-								Logger.debug(
-										"lead with id : %d does not have country.  Using USA",
-										newLead.leadId);
-							}
-							if (keySet.contains(Constants.UNSUB_FIELD_NAME)) {
-								String unsubValue = attrMap.get(
-										Constants.UNSUB_FIELD_NAME).toString();
-								if (unsubValue.equals("1")) {
-									newLead.unsubscribed = true;
-								} else {
-									// should never come here
-									newLead.unsubscribed = false;
-								}
-							} else {
-								newLead.unsubscribed = false;
-							}
-							Logger.debug(
-									"lead with id : %d has sms unsubscribed set to %s",
-									newLead.leadId,
-									String.valueOf(newLead.unsubscribed));
-						}
-					}
-					newLead.save();
-					leadList.add(newLead);
-				}
-				Logger.debug("campaign[%d] - retrieved and parsed %d leads",
-						sc.id, leadRecords.size());
-			} while (leadRecords.size() != 0);
-
-			Logger.debug("campaign[%d] - returning %d leads", sc.id,
-					leadList.size());
-			return leadList;
-		} catch (MktowsClientException e) {
-			Logger.error(
-					"campaign[%d] - Exception occurred while fetching leads from list: %s",
-					sc.id, e.getMessage());
-			return leadList;
-		} catch (MktServiceException e) {
-			Logger.error("campaign[%d] - Exception occurred: %s", sc.id,
-					e.getLongMessage());
-			return leadList;
-		}
 	}
 
 	public ResultSyncLead createNewLead(SMSCampaign sc, String from) {

@@ -60,6 +60,7 @@ public class TestMktows {
 
 	public static final String MUNCH_ACCT_ID = "100-AEK-913";
 	public static final String HOST_NAME = "100-AEK-913.mktoapi.com";
+	//public static final String HOST_NAME = "localhost";
 	public static final String ACCESS_KEY = "demo17_1_809934544BFABAE58E5D27";
 	public static final String SECRET_KEY = "27272727aa";
 	public static final String TEST_CODE_SANDBOX = "System.out.println(\"Lead id is : \" + leadRecord.getEmail());  return leadRecord; ";
@@ -73,13 +74,14 @@ public class TestMktows {
 
 		TestMktows tester = new TestMktows();
 		// tester.testGetMultipleLeadsStaticList();
-		// tester.testGetLead();
+		//tester.testGetLead();
+		tester.testGetMultipleLeadsEmail();
 		// tester.testGetLeadActivity();
 		// tester.testGetLeadChanges();
 		// tester.testGetMObjects();
 		// tester.testListMObjects();
 		// tester.testDescMObjects();
-		tester.testRandomFunctionEval();
+		//tester.testRandomFunctionEval();
 		// tester.testCapitalizeName();
 	}
 
@@ -208,7 +210,7 @@ public class TestMktows {
 
 		List<LeadRecord> leadRecords = null;
 		try {
-			leadRecords = this.client.getLead(LeadKeyRef.IDNUM, "6");
+			leadRecords = this.client.getLead(LeadKeyRef.EMAIL, "rrajamani@marketo.com");
 		} catch (MktowsClientException e) {
 			System.out.println("Exception occurred: " + e.getMessage());
 			return;
@@ -552,6 +554,42 @@ public class TestMktows {
 			}
 		}
 	}
+	
+	public void testGetMultipleLeadsEmail() {
+		List<LeadRecord> leadRecords = null;
+		try {
+			List<String> emails = new ArrayList<String>();
+			emails.add("rrajamani@marketo.com");
+			emails.add("lboyle@uog.com");
+			leadRecords = this.client.getMultipleLeads(emails);
+		} catch (MktowsClientException e) {
+			System.out.println("Exception occurred: " + e.getMessage());
+			return;
+		} catch (MktServiceException e) {
+			System.out.println("Exception occurred: " + e.getLongMessage());
+			return;
+		}
+		if (leadRecords != null) {
+			Map<String, Object> attrMap = null;
+			for (LeadRecord item : leadRecords) {
+				System.out.println("Lead Id: " + item.getId() + ",  Email: "
+						+ item.getEmail());
+				ArrayOfAttribute aoAttribute = item.getLeadAttributeList();
+				if (aoAttribute != null) {
+					attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);
+					if (attrMap != null && !attrMap.isEmpty()) {
+						Set<String> keySet = attrMap.keySet();
+						for (String key : keySet) {
+							System.out
+									.println("    Attribute name: " + key
+											+ ", value: "
+											+ attrMap.get(key).toString());
+						}
+					}
+				}
+			}
+		}
+	}
 
 	public void testGetMultipleLeadsLastUpdatedAt() {
 
@@ -591,45 +629,6 @@ public class TestMktows {
 		}
 	}
 
-	public void testGetMultipleLeadsStaticList() {
-
-		StreamPostionHolder posHolder = new StreamPostionHolder();
-		List<LeadRecord> leadRecords = null;
-		try {
-			do {
-				leadRecords = this.client.getMultipleLeads(2,
-						"RajExportableProgram.listForTesting", posHolder, null);
-				System.out
-						.println("Retrieved " + leadRecords.size() + " leads");
-			} while (leadRecords.size() != 0);
-		} catch (MktowsClientException e) {
-			System.out.println("Exception occurred: " + e.getMessage());
-			return;
-		} catch (MktServiceException e) {
-			System.out.println("Exception occurred: " + e.getLongMessage());
-			return;
-		}
-		if (leadRecords != null) {
-			Map<String, Object> attrMap = null;
-			for (LeadRecord item : leadRecords) {
-				System.out.println("Lead Id: " + item.getId() + ",  Email: "
-						+ item.getEmail());
-				ArrayOfAttribute aoAttribute = item.getLeadAttributeList();
-				if (aoAttribute != null) {
-					attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);
-					if (attrMap != null && !attrMap.isEmpty()) {
-						Set<String> keySet = attrMap.keySet();
-						for (String key : keySet) {
-							System.out
-									.println("    Attribute name: " + key
-											+ ", value: "
-											+ attrMap.get(key).toString());
-						}
-					}
-				}
-			}
-		}
-	}
 
 	public void testGetMultipleLeadsUnsubscribedFlag() {
 
@@ -840,6 +839,46 @@ public class TestMktows {
 			System.out.println("Import is processing");
 		} else {
 			System.out.println("Import failed");
+		}
+	}
+
+	public void testGetMultipleLeadsStaticList() {
+	
+		StreamPostionHolder posHolder = new StreamPostionHolder();
+		List<LeadRecord> leadRecords = new ArrayList<LeadRecord>();
+		try {
+			do {
+				this.client.getMultipleLeads(2,
+						"RajExportableProgram.listForTesting", posHolder, leadRecords, null);
+				System.out
+						.println("Retrieved " + leadRecords.size() + " leads");
+			} while (leadRecords.size() != 0);
+		} catch (MktowsClientException e) {
+			System.out.println("Exception occurred: " + e.getMessage());
+			return;
+		} catch (MktServiceException e) {
+			System.out.println("Exception occurred: " + e.getLongMessage());
+			return;
+		}
+		if (leadRecords != null) {
+			Map<String, Object> attrMap = null;
+			for (LeadRecord item : leadRecords) {
+				System.out.println("Lead Id: " + item.getId() + ",  Email: "
+						+ item.getEmail());
+				ArrayOfAttribute aoAttribute = item.getLeadAttributeList();
+				if (aoAttribute != null) {
+					attrMap = MktowsUtil.getLeadAttributeMap(aoAttribute);
+					if (attrMap != null && !attrMap.isEmpty()) {
+						Set<String> keySet = attrMap.keySet();
+						for (String key : keySet) {
+							System.out
+									.println("    Attribute name: " + key
+											+ ", value: "
+											+ attrMap.get(key).toString());
+						}
+					}
+				}
+			}
 		}
 	}
 

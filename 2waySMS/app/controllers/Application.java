@@ -195,7 +195,9 @@ public class Application extends Controller {
 			Logger.info("campaign[%d] was configured previously", gc.id);
 		} else {
 			gc = (GoogleCampaign) mu.readSettings(url, Constants.CAMPAIGN_GOOG);
-			gc.save();
+			GoogleCampaign ngc = getGoogleCampaignFromMunchkin(gc.munchkinId);
+			ngc.campaignURL = url;
+			ngc.save();
 		}
 		return gc;
 	}
