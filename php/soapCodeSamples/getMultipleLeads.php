@@ -28,6 +28,8 @@ if ($debug) {
 }
 
 // Create Request
+/*  
+//Query by Email
 $leadSel = new stdClass();
 $leadSel->keyType = 'EMAIL';
 
@@ -43,6 +45,17 @@ $leadSelSoap = array("leadSelector" => $leadSel);
 // $params = array("paramsGetMultipleLeads" => $leadSelParams);
 
 $leadSelSoap = new SoapVar($leadSel, SOAP_ENC_OBJECT, "LeadKeySelector", "http://www.marketo.com/mktows/");
+*/
+
+// Query by Update time
+$leadSel = new stdClass();
+$leadSel->latestUpdatedAt = "2013-08-06T15:45:00-07:00";
+$leadSel->oldestUpdatedAt = "2013-08-06T12:00:00-07:00";
+
+$leadSelSoap = new stdClass();
+$leadSelSoap = array("leadSelector" => $leadSel);
+
+$leadSelSoap = new SoapVar($leadSel, SOAP_ENC_OBJECT, "LastUpdateAtSelector", "http://www.marketo.com/mktows/");
 
 $params = new  stdClass();
 $params->leadSelector = $leadSelSoap;
