@@ -28,29 +28,17 @@ if ($debug) {
 }
 
 // Create Request
-$leadSel = new stdClass();
-$leadSel->keyType = 'EMAIL';
+$params = new stdClass();
+$tag = new stdClass();
+$tag->type = "Content Channel";
+$tag->values=array("SEM", "Email");
 
-$keyValues = array("formtest1@marketo.com", "joe@marketo.com");
-$leadKeys = new stdClass();
-$leadKeys->stringItem = $keyValues;
-$leadSel->keyValues = $leadKeys;
-
-$leadSelSoap = new stdClass();
-$leadSelSoap = array("leadSelector" => $leadSel);
-
-// $leadSelParams = array("leadSelector" => $leadSelSoap, "batchSize" => 10, "streamPosition" => $startPosition);
-// $params = array("paramsGetMultipleLeads" => $leadSelParams);
-
-$leadSelSoap = new SoapVar($leadSel, SOAP_ENC_OBJECT, "LeadKeySelector", "http://www.marketo.com/mktows/");
-
-$params = new  stdClass();
-$params->leadSelector = $leadSelSoap;
-$params->batchSize = 100;
+$params->tagList=array($tag);
 
 $soapClient = new SoapClient($marketoSoapEndPoint ."?WSDL", $options);
 try {
-  $leads = $soapClient->__soapCall('getMultipleLeads', array($params), $options, $authHdr);
+  $leads = $soapClient->__soapCall('getTags', array($params), $options, $authHdr);
+  // 	  print_r($leads);
 }
 catch(Exception $ex) {
   var_dump($ex);

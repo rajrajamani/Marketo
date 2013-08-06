@@ -28,29 +28,39 @@ if ($debug) {
 }
 
 // Create Request
-$leadSel = new stdClass();
-$leadSel->keyType = 'EMAIL';
+$params = new stdClass();
 
-$keyValues = array("formtest1@marketo.com", "joe@marketo.com");
-$leadKeys = new stdClass();
-$leadKeys->stringItem = $keyValues;
-$leadSel->keyValues = $leadKeys;
+$mObj = new stdClass();
+$mObj->type = 'Program';
+$mObj->id="1970";
 
-$leadSelSoap = new stdClass();
-$leadSelSoap = array("leadSelector" => $leadSel);
+$attrib1 = new stdClass();
+$attrib1->name="Month";
+$attrib1->value="2013-06";
 
-// $leadSelParams = array("leadSelector" => $leadSelSoap, "batchSize" => 10, "streamPosition" => $startPosition);
-// $params = array("paramsGetMultipleLeads" => $leadSelParams);
+$attrib2 = new stdClass();
+$attrib2->name="Amount";
+$attrib2->value="2000";
 
-$leadSelSoap = new SoapVar($leadSel, SOAP_ENC_OBJECT, "LeadKeySelector", "http://www.marketo.com/mktows/");
+$attrib3 = new stdClass();
+$attrib3->name="Id";
+$attrib3->value="153";
 
-$params = new  stdClass();
-$params->leadSelector = $leadSelSoap;
-$params->batchSize = 100;
+$attribList = array ($attrib1, $attrib2, $attrib3);
 
+$costAttrib = new stdClass();
+$costAttrib->attrType="Cost";
+$costAttrib->attrList = $attribList;
+
+$mObj->typeAttribList= array($costAttrib);
+
+$params->mObjectList = array($mObj);
+$params->operation="UPDATE";
+    
 $soapClient = new SoapClient($marketoSoapEndPoint ."?WSDL", $options);
 try {
-  $leads = $soapClient->__soapCall('getMultipleLeads', array($params), $options, $authHdr);
+  $leads = $soapClient->__soapCall('syncMObjects', array($params), $options, $authHdr);
+  // 	  print_r($leads);
 }
 catch(Exception $ex) {
   var_dump($ex);

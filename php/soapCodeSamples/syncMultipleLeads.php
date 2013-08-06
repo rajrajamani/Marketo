@@ -28,29 +28,41 @@ if ($debug) {
 }
 
 // Create Request
-$leadSel = new stdClass();
-$leadSel->keyType = 'EMAIL';
+for ($i=1000; $i < 1002; ++$i)
+{
+  $uid = $i;
 
-$keyValues = array("formtest1@marketo.com", "joe@marketo.com");
-$leadKeys = new stdClass();
-$leadKeys->stringItem = $keyValues;
-$leadSel->keyValues = $leadKeys;
+  $attrs = array();
+  $attr1 = new stdClass();
+  $attr1->attrName = "Company";
+  $attr1->attrValue = "Marketo$uid";
+  $attr2 = new stdClass();
+  $attr2->attrName = "Phone";
+  $attr2->attrValue = "650-555-$uid";
 
-$leadSelSoap = new stdClass();
-$leadSelSoap = array("leadSelector" => $leadSel);
+  $attrs[] = $attr1;
+  $attrs[] = $attr2;
+  
+  $attrList = new stdClass();
+  $attrList->attribute = $attrs;
+  
+  $leadRec = new stdClass();
+  $leadRec->Email = 'em' . $uid . '@etestd.marketo.net';
+  $leadRec->leadAttributeList = $attrList;
 
-// $leadSelParams = array("leadSelector" => $leadSelSoap, "batchSize" => 10, "streamPosition" => $startPosition);
-// $params = array("paramsGetMultipleLeads" => $leadSelParams);
+  $leads[] = $leadRec;
+}
 
-$leadSelSoap = new SoapVar($leadSel, SOAP_ENC_OBJECT, "LeadKeySelector", "http://www.marketo.com/mktows/");
-
-$params = new  stdClass();
-$params->leadSelector = $leadSelSoap;
-$params->batchSize = 100;
+$leadRecordList = new stdClass();
+$leadRecordList->leadRecord = $leads;
+$params = new stdClass();
+$params->leadRecordList = $leadRecordList;
+$params->dedupEnabled = true;
 
 $soapClient = new SoapClient($marketoSoapEndPoint ."?WSDL", $options);
 try {
-  $leads = $soapClient->__soapCall('getMultipleLeads', array($params), $options, $authHdr);
+  $leads = $soapClient->__soapCall('syncMultipleLeads', array($params), $options, $authHdr);
+  // 	  print_r($leads);
 }
 catch(Exception $ex) {
   var_dump($ex);

@@ -28,29 +28,22 @@ if ($debug) {
 }
 
 // Create Request
-$leadSel = new stdClass();
-$leadSel->keyType = 'EMAIL';
+$params = new stdClass();
 
-$keyValues = array("formtest1@marketo.com", "joe@marketo.com");
-$leadKeys = new stdClass();
-$leadKeys->stringItem = $keyValues;
-$leadSel->keyValues = $leadKeys;
+$mObj1 = new stdClass();
+$mObj1->type="Opportunity";
+$mObj1->id = "4";
 
-$leadSelSoap = new stdClass();
-$leadSelSoap = array("leadSelector" => $leadSel);
+$mObj2 = new stdClass();
+$mObj2->type="Opportunity";
+$mObj2->id = "7";
 
-// $leadSelParams = array("leadSelector" => $leadSelSoap, "batchSize" => 10, "streamPosition" => $startPosition);
-// $params = array("paramsGetMultipleLeads" => $leadSelParams);
-
-$leadSelSoap = new SoapVar($leadSel, SOAP_ENC_OBJECT, "LeadKeySelector", "http://www.marketo.com/mktows/");
-
-$params = new  stdClass();
-$params->leadSelector = $leadSelSoap;
-$params->batchSize = 100;
+$params->mObjectList = array($mObj1, $mObj2);
 
 $soapClient = new SoapClient($marketoSoapEndPoint ."?WSDL", $options);
 try {
-  $leads = $soapClient->__soapCall('getMultipleLeads', array($params), $options, $authHdr);
+  $leads = $soapClient->__soapCall('deleteMObjects', array($params), $options, $authHdr);
+  // 	  print_r($leads);
 }
 catch(Exception $ex) {
   var_dump($ex);
