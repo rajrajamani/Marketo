@@ -203,7 +203,7 @@ public class MarketoUtility {
 			String listFields = "";
 			for (int i = 0; i < fields.length; i++) {
 				leadAttrs.add(fields[i].trim());
-				listFields = fields[i] + ",";
+				listFields += fields[i] + ",";
 			}
 			Logger.debug("campaign[%d] - requesting attributes %s", campaignId,
 					listFields);
@@ -320,7 +320,7 @@ public class MarketoUtility {
 		return leadList;
 	}
 
-	public ExecStatus executeFunctionInSandBox(FormulaCampaign fc) {
+	public ExecStatus executeFormula(FormulaCampaign fc) {
 		boolean syncMultiple = false;
 		Logger.debug("campaign[%d] - In executeFormula for command set %s",
 				fc.id, fc.formula);
@@ -392,8 +392,8 @@ public class MarketoUtility {
 		} else if (fc.formula.startsWith(Constants.FORMULA_GEOCODE_PHONE)) {
 			int length = Constants.FORMULA_GEOCODE_PHONE.length();
 			String[] vars = fc.formula.substring(length + 1).split("[(),]");
-			if (vars.length != 2) {
-				String errMsg = "Need the phone number and region field names,   Got "
+			if (vars.length != 3) {
+				String errMsg = "Need the phone number and city and region field names,   Got "
 						+ vars.length + " parameters";
 				Logger.error(errMsg);
 				return new ExecStatus(errMsg, 0);
@@ -403,7 +403,7 @@ public class MarketoUtility {
 					vars);
 
 			processedLeadList = csb.mktoGeocodePhone(inflightList,
-					vars[0].trim(), vars[1].trim());
+					vars[0].trim(), vars[1].trim(), vars[2].trim());
 			syncMultiple = true;
 
 		} else if (fc.formula.startsWith(Constants.FORMULA_PHONE_FORMAT)) {

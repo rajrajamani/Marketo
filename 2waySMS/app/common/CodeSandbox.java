@@ -235,12 +235,13 @@ public class CodeSandbox {
 	}
 
 	public List<LeadRecord> mktoGeocodePhone(List<LeadRecord> inflightList,
-			String phoneField, String regionField) {
+			String phoneField, String cityField, String regionField) {
 		List<LeadRecord> retList = new ArrayList<LeadRecord>();
 		LeadRecord retLead = null;
 		for (LeadRecord lr : inflightList) {
 			retLead = null;
-			retLead = mktoGeocodeLeadPhone(lr, false, phoneField, regionField);
+			retLead = mktoGeocodeLeadPhone(lr, false, phoneField, cityField,
+					regionField);
 			if (retLead != null) {
 				retList.add(retLead);
 			}
@@ -249,7 +250,8 @@ public class CodeSandbox {
 	}
 
 	private LeadRecord mktoGeocodeLeadPhone(LeadRecord leadRecord,
-			boolean syncImmediate, String phoneField, String regionField) {
+			boolean syncImmediate, String phoneField, String cityField,
+			String regionField) {
 		if (leadRecord == null) {
 			return null;
 		}
@@ -260,6 +262,7 @@ public class CodeSandbox {
 			Logger.debug("About to geolocate number in field %s", phoneField);
 			HashMap<String, String> newAttrs = new HashMap<String, String>();
 			String region = null;
+			String oldCity = extractAttributeValue(leadRecord, cityField);
 			String oldRegion = extractAttributeValue(leadRecord, regionField);
 			String pn = extractAttributeValue(leadRecord, phoneField);
 			Logger.debug("Phone number is %s", pn);
@@ -267,8 +270,37 @@ public class CodeSandbox {
 			region = geocoder.getDescriptionForNumber(phoneObj, Locale.ENGLISH);
 			Logger.debug("Region for phone %s is %s.  old region is %s", pn,
 					region, oldRegion);
-			if (!region.equals("") && !region.equals(oldRegion)) {
-				newAttrs.put(regionField, region);
+			if (!region.equals("")) {
+				if (region.contains(",")) {
+					String[] values = region.split(",");
+					String cityValue = values[0].trim();
+					String regValue = values[1].trim();
+					String regValueShort = RegionUtil.getStateShortCode(regValue);
+					if (regValueShort.equals("") || regValueShort == null) {
+						regValueShort = regValue;
+					}
+					if (oldCity == null || !oldCity.equalsIgnoreCase(cityValue)) {
+						Logger.debug("For Phone : %s, setting %s to %s", pn,
+								cityField, cityValue);
+						newAttrs.put(cityField, cityValue);
+					}
+					if (oldRegion == null || !oldRegion.equalsIgnoreCase(regValueShort)) {
+						Logger.debug("For Phone : %s, setting %s to %s", pn,
+								regionField, regValueShort);
+						newAttrs.put(regionField, regValueShort);
+					}
+				} else {
+					String regionCode = RegionUtil.getStateShortCode(region);
+					if (regionCode.equals("") || regionCode == null) {
+						regionCode = region;
+					}
+					if (!regionCode.equals(oldRegion)) {
+						Logger.debug("For Phone : %s, setting %s to %s", pn,
+								regionField, regionCode);
+						newAttrs.put(regionField, regionCode);
+					}
+				}
+							
 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord(
 						leadRecord.getId(), null, null, null, newAttrs);
 				if (syncImmediate) {

@@ -12,11 +12,11 @@ import common.Constants;
 import common.ExecStatus;
 import common.MarketoUtility;
 
-public class SyncListAndExecCodeInSandbox extends Job {
+public class SyncListAndExecFormula extends Job {
 
 	private FormulaCampaign fc;
 
-	public SyncListAndExecCodeInSandbox(FormulaCampaign fc) {
+	public SyncListAndExecFormula(FormulaCampaign fc) {
 		this.fc = fc;
 	}
 
@@ -36,7 +36,7 @@ public class SyncListAndExecCodeInSandbox extends Job {
 		// + "  %d leads retrieved", fc.id, leadList.size());
 		//
 
-		ExecStatus eStatus = mu.executeFunctionInSandBox(fc);
+		ExecStatus eStatus = mu.executeFormula(fc);
 
 		status = Constants.CAMPAIGN_STATUS_COMPLETED;
 		updateStatus(fc.id, eStatus, status);

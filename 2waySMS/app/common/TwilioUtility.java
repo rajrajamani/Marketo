@@ -54,7 +54,7 @@ public class TwilioUtility {
 		String e164FormattedPhoneNumber = to;
 		PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
 		try {
-			String countryCode = CountryUtil.getCountryCode(recipientCountry);
+			String countryCode = RegionUtil.getCountryCode(recipientCountry);
 			Logger.debug("Country code for country %s is %s.  ",
 					recipientCountry, countryCode);
 			PhoneNumber phoneNumber = phoneUtil.parse(to, countryCode);

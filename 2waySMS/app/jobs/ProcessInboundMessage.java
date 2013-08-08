@@ -11,7 +11,7 @@ import play.jobs.Job;
 
 import com.marketo.mktows.wsdl.ResultSyncLead;
 import common.Constants;
-import common.CountryUtil;
+import common.RegionUtil;
 import common.MarketoUtility;
 
 public class ProcessInboundMessage extends Job {
@@ -66,7 +66,7 @@ public class ProcessInboundMessage extends Job {
 				newLead.leadId = leadCreated.getLeadId();
 				newLead.unsubscribed = false;
 				if (fromCountry == null) {
-					newLead.country = CountryUtil.inferCountryFromPhoneNumber(from);
+					newLead.country = RegionUtil.inferCountryFromPhoneNumber(from);
 				} else {
 					newLead.country = fromCountry;
 				}

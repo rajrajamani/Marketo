@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import jobs.ProcessInboundMessage;
-import jobs.SyncListAndExecCodeInSandbox;
+import jobs.SyncListAndExecFormula;
 import jobs.SyncListAndRunFirstCampaign;
 import models.FormulaCampaign;
 import models.GoogleCampaign;
@@ -235,7 +235,7 @@ public class Application extends Controller {
 		Logger.info(
 				"campaign[%d] - Kicking off background task to fetch lead list",
 				fc.id);
-		new SyncListAndExecCodeInSandbox(fc).in(2);
+		new SyncListAndExecFormula(fc).in(2);
 
 		execFormulaStatus(fc.id);
 	}
