@@ -10,6 +10,7 @@ GET		/showConversionFiles					Application.showConversionFiles
 GET		/cancelCampaign							Application.cancelCampaign
 *       /addGCLID								Application.addGCLID
 GET		/execFormulaStatus						Application.execFormulaStatus
+*		/phoneQuery								Application.phoneQuery
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

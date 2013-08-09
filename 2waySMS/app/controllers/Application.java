@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import jobs.ProcessInboundMessage;
@@ -26,10 +27,16 @@ import play.Play;
 import play.mvc.Controller;
 import play.mvc.Router;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 import com.marketo.mktows.wsdl.ResultSyncLead;
 import com.twilio.sdk.resource.list.AccountList;
 import common.Constants;
 import common.MarketoUtility;
+import common.RegionUtil;
 import common.TwilioUtility;
 
 public class Application extends Controller {
@@ -333,6 +340,69 @@ public class Application extends Controller {
 			Logger.fatal("Unable to parse date : %s", e.getMessage());
 			e.printStackTrace();
 		}
+	}
+
+	public static void phoneQuery(String leadId, String phoneNum, String format) {
+		if (phoneNum == null || phoneNum.equals("")) {
+			renderText("{\"result\" : \"error\" }");
+		}
+
+		PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+		PhoneNumberOfflineGeocoder geocoder = PhoneNumberOfflineGeocoder
+				.getInstance();
+
+		String number = "";
+		PhoneNumber phoneObj;
+		try {
+			phoneObj = phoneUtil.parse(phoneNum, "US");
+			if (format.equalsIgnoreCase(Constants.PHONE_FORMAT_E164)) {
+				number = phoneUtil.format(phoneObj, PhoneNumberFormat.E164);
+			} else if (format
+					.equalsIgnoreCase(Constants.PHONE_FORMAT_INTERNATIONAL)) {
+				number = phoneUtil.format(phoneObj,
+						PhoneNumberFormat.INTERNATIONAL);
+			} else if (format.equalsIgnoreCase(Constants.PHONE_FORMAT_NATIONAL)) {
+				number = phoneUtil.format(phoneObj, PhoneNumberFormat.NATIONAL);
+			}
+
+			String city = "";
+			String state = "";
+			String region = "";
+			region = geocoder.getDescriptionForNumber(phoneObj, Locale.ENGLISH);
+			if (region != null && region.contains(",")) {
+				String[] values = region.split(",");
+				city = values[0].trim();
+				state = values[1].trim();
+			} else {
+				String regionCode = RegionUtil.getStateShortCode(region);
+				// Special handling for DC, US and Canada
+				if (regionCode.equals("US") || regionCode.equals("Canada")) {
+					// do not set city or state
+				} else if (regionCode.contains("D.C")
+						|| regionCode.contains("DC")) {
+					city = "Washington";
+					state = "DC";
+				} else {
+					state = regionCode;
+				}
+			}
+
+			String retVal = createJson(leadId, phoneNum, format, number, city,
+					state);
+			renderText(retVal);
+
+		} catch (NumberParseException e) {
+			renderText("{\"result\" : \"error - could not parse phone number\" }");
+		}
+
+	}
+
+	private static String createJson(String leadId, String phoneNum,
+			String format, String number, String city, String state) {
+		String retval = "{\"id\":\"" + leadId + "\",\"originalNum\":\"" + phoneNum
+				+ "\",\"format\":\"" + format + "\",\"formattedNum\":\"" + number
+				+ "\",\"city\":\"" + city + "\",\"state\":\"" + state + "\"}";
+		return retval;
 	}
 
 	private static void appendToFile(String fileName, String payload)
