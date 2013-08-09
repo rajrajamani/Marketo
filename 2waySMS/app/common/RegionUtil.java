@@ -126,5 +126,22 @@ public class RegionUtil {
 		statesList.put("Wisconsin", "WI");
 		statesList.put("Wyoming", "WY");
 
+		statesList.put("United States", "US");
+		statesList.put("Alberta", "AB");
+		statesList.put("British Columbia", "BC");
+		statesList.put("Manitoba", "MB");
+		statesList.put("New Brunswick", "NB");
+
+		statesList.put("Newfoundland and Labrador", "NL");
+		statesList.put("Northwest Territories", "NT");
+		statesList.put("Nova Scotia", "NS");
+		statesList.put("Nunavut", "NU");
+		statesList.put("Ontario", "ON");
+
+		statesList.put("Prince Edward Island", "PE");
+		statesList.put("Quebec", "QC");
+		statesList.put("Saskatchewan", "SK");
+		statesList.put("Yukon", "YT");
+
 	}
 }

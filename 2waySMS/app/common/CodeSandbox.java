@@ -275,7 +275,8 @@ public class CodeSandbox {
 					String[] values = region.split(",");
 					String cityValue = values[0].trim();
 					String regValue = values[1].trim();
-					String regValueShort = RegionUtil.getStateShortCode(regValue);
+					String regValueShort = RegionUtil
+							.getStateShortCode(regValue);
 					if (regValueShort.equals("") || regValueShort == null) {
 						regValueShort = regValue;
 					}
@@ -284,7 +285,8 @@ public class CodeSandbox {
 								cityField, cityValue);
 						newAttrs.put(cityField, cityValue);
 					}
-					if (oldRegion == null || !oldRegion.equalsIgnoreCase(regValueShort)) {
+					if (oldRegion == null
+							|| !oldRegion.equalsIgnoreCase(regValueShort)) {
 						Logger.debug("For Phone : %s, setting %s to %s", pn,
 								regionField, regValueShort);
 						newAttrs.put(regionField, regValueShort);
@@ -294,13 +296,22 @@ public class CodeSandbox {
 					if (regionCode.equals("") || regionCode == null) {
 						regionCode = region;
 					}
-					if (!regionCode.equals(oldRegion)) {
-						Logger.debug("For Phone : %s, setting %s to %s", pn,
-								regionField, regionCode);
-						newAttrs.put(regionField, regionCode);
+					if (!regionCode.equals(oldRegion)
+							&& !regionCode.equals("US")) {
+						if (regionCode.contains("D.C")
+								|| regionCode.contains("DC")) {
+							Logger.debug("For Phone : %s, setting Washington DC",
+									pn, cityField, regionCode);
+							newAttrs.put(cityField, "Washington");
+							newAttrs.put(regionField, "DC");
+						} else {
+							Logger.debug("For Phone : %s, setting %s to %s",
+									pn, regionField, regionCode);
+							newAttrs.put(regionField, regionCode);
+						}
 					}
 				}
-							
+
 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord(
 						leadRecord.getId(), null, null, null, newAttrs);
 				if (syncImmediate) {
