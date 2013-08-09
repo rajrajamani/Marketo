@@ -140,6 +140,7 @@ public class RegionUtil {
 
 		statesList.put("Prince Edward Island", "PE");
 		statesList.put("Quebec", "QC");
+		statesList.put("QuÃ©bec", "QC");
 		statesList.put("Saskatchewan", "SK");
 		statesList.put("Yukon", "YT");
 

@@ -295,26 +295,25 @@ public class CodeSandbox {
 					String regionCode = RegionUtil.getStateShortCode(region);
 					if (regionCode.equals("") || regionCode == null) {
 						regionCode = region;
-					}
-					if (!regionCode.equals(oldRegion)) {
-						if (regionCode.equals("US")) {
-							Logger.debug(
-									"For Phone : %s, clearing city and state because region=US",
-									pn, cityField, regionCode);
-							newAttrs.put(cityField, "");
-							newAttrs.put(regionField, "");
-						} else if (regionCode.contains("D.C")
-								|| regionCode.contains("DC")) {
-							Logger.debug(
-									"For Phone : %s, setting Washington DC",
-									pn, cityField, regionCode);
-							newAttrs.put(cityField, "Washington");
-							newAttrs.put(regionField, "DC");
-						} else {
-							Logger.debug("For Phone : %s, setting %s to %s",
-									pn, regionField, regionCode);
-							newAttrs.put(regionField, regionCode);
-						}
+					} 
+					//Special handling for DC, US and Canada
+					if (regionCode.equals("US")
+							|| regionCode.equals("Canada")) {
+						Logger.debug(
+								"For Phone : %s, clearing city and state because region=US",
+								pn, cityField, regionCode);
+						newAttrs.put(cityField, "");
+						newAttrs.put(regionField, "");
+					} else if (regionCode.contains("D.C")
+							|| regionCode.contains("DC")) {
+						Logger.debug("For Phone : %s, setting Washington DC",
+								pn, cityField, regionCode);
+						newAttrs.put(cityField, "Washington");
+						newAttrs.put(regionField, "DC");
+					} else if (!regionCode.equals(oldRegion)) {
+						Logger.debug("For Phone : %s, setting %s to %s", pn,
+								regionField, regionCode);
+						newAttrs.put(regionField, regionCode);
 					}
 				}
 				if (newAttrs.size() == 0) {
