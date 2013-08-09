@@ -296,8 +296,14 @@ public class CodeSandbox {
 					if (regionCode.equals("") || regionCode == null) {
 						regionCode = region;
 					}
-					if (!regionCode.equals(oldRegion)
-							&& !regionCode.equals("US")) {
+					if (!regionCode.equals(oldRegion)) {
+						if (regionCode.equals("US")) {
+							Logger.debug(
+									"For Phone : %s, clearing city and state because region=US",
+									pn, cityField, regionCode);
+							newAttrs.put(cityField, "");
+							newAttrs.put(regionField, "");
+						}
 						if (regionCode.contains("D.C")
 								|| regionCode.contains("DC")) {
 							Logger.debug(
