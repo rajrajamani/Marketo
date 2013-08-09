@@ -18,6 +18,7 @@ import jobs.SyncListAndExecFormula;
 import jobs.SyncListAndRunFirstCampaign;
 import models.FormulaCampaign;
 import models.GoogleCampaign;
+import models.PhoneQuery;
 import models.SMSCampaign;
 
 import org.apache.commons.io.FileUtils;
@@ -342,10 +343,16 @@ public class Application extends Controller {
 		}
 	}
 
-	public static void phoneQuery(String leadId, String phoneNum, String format) {
-		if (phoneNum == null || phoneNum.equals("")) {
-			renderText("{\"result\" : \"error\" }");
+	public static void phoneQuery(String munchkinId, String leadId,
+			String phoneNum, String format) {
+		if (munchkinId == null || phoneNum == null || munchkinId.equals("")
+				|| phoneNum.equals("")) {
+			renderText("{\"result\" : \"error - must provide munchkinId and phoneNumber\" }");
 		}
+		Logger.debug("received phone query for %s", phoneNum);
+		PhoneQuery pq = new PhoneQuery();
+		pq.munchkinId = munchkinId;
+		pq.phoneNum = phoneNum;
 
 		PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
 		PhoneNumberOfflineGeocoder geocoder = PhoneNumberOfflineGeocoder
@@ -356,12 +363,15 @@ public class Application extends Controller {
 		try {
 			phoneObj = phoneUtil.parse(phoneNum, "US");
 			if (format.equalsIgnoreCase(Constants.PHONE_FORMAT_E164)) {
+				pq.format = Constants.PHONE_FORMAT_E164;
 				number = phoneUtil.format(phoneObj, PhoneNumberFormat.E164);
 			} else if (format
 					.equalsIgnoreCase(Constants.PHONE_FORMAT_INTERNATIONAL)) {
+				pq.format = Constants.PHONE_FORMAT_INTERNATIONAL;
 				number = phoneUtil.format(phoneObj,
 						PhoneNumberFormat.INTERNATIONAL);
 			} else if (format.equalsIgnoreCase(Constants.PHONE_FORMAT_NATIONAL)) {
+				pq.format = Constants.PHONE_FORMAT_NATIONAL;
 				number = phoneUtil.format(phoneObj, PhoneNumberFormat.NATIONAL);
 			}
 
@@ -389,9 +399,16 @@ public class Application extends Controller {
 
 			String retVal = createJson(leadId, phoneNum, format, number, city,
 					state);
+			pq.formattedNum = number;
+			pq.city = city;
+			pq.state = state;
+			pq.save();
+
+			Logger.debug("phoneQuery returns :%s", retVal);
 			renderText(retVal);
 
 		} catch (NumberParseException e) {
+			Logger.debug("phoneQuery error");
 			renderText("{\"result\" : \"error - could not parse phone number\" }");
 		}
 
@@ -399,9 +416,10 @@ public class Application extends Controller {
 
 	private static String createJson(String leadId, String phoneNum,
 			String format, String number, String city, String state) {
-		String retval = "{\"id\":\"" + leadId + "\",\"originalNum\":\"" + phoneNum
-				+ "\",\"format\":\"" + format + "\",\"formattedNum\":\"" + number
-				+ "\",\"city\":\"" + city + "\",\"state\":\"" + state + "\"}";
+		String retval = "{\"id\":\"" + leadId + "\",\"originalNum\":\""
+				+ phoneNum + "\",\"format\":\"" + format
+				+ "\",\"formattedNum\":\"" + number + "\",\"city\":\"" + city
+				+ "\",\"state\":\"" + state + "\"}";
 		return retval;
 	}
 
