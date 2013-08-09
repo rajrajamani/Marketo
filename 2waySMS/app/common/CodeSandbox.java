@@ -300,7 +300,8 @@ public class CodeSandbox {
 							&& !regionCode.equals("US")) {
 						if (regionCode.contains("D.C")
 								|| regionCode.contains("DC")) {
-							Logger.debug("For Phone : %s, setting Washington DC",
+							Logger.debug(
+									"For Phone : %s, setting Washington DC",
 									pn, cityField, regionCode);
 							newAttrs.put(cityField, "Washington");
 							newAttrs.put(regionField, "DC");
@@ -312,7 +313,7 @@ public class CodeSandbox {
 					}
 				}
 				if (newAttrs.size() == 0) {
-					//No new attribs
+					Logger.debug("No new attribs for Phone : %s", pn);
 					return null;
 				}
 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord(
