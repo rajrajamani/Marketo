@@ -311,7 +311,10 @@ public class CodeSandbox {
 						}
 					}
 				}
-
+				if (newAttrs.size() == 0) {
+					//No new attribs
+					return null;
+				}
 				LeadRecord newLeadRecord = MktowsUtil.newLeadRecord(
 						leadRecord.getId(), null, null, null, newAttrs);
 				if (syncImmediate) {
