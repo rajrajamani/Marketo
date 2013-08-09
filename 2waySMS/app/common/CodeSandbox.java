@@ -303,8 +303,7 @@ public class CodeSandbox {
 									pn, cityField, regionCode);
 							newAttrs.put(cityField, "");
 							newAttrs.put(regionField, "");
-						}
-						if (regionCode.contains("D.C")
+						} else if (regionCode.contains("D.C")
 								|| regionCode.contains("DC")) {
 							Logger.debug(
 									"For Phone : %s, setting Washington DC",
