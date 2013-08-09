@@ -302,8 +302,8 @@ public class CodeSandbox {
 						Logger.debug(
 								"For Phone : %s, clearing city and state because region=US",
 								pn, cityField, regionCode);
-						newAttrs.put(cityField, "");
-						newAttrs.put(regionField, "");
+						newAttrs.put(cityField, "NULL");
+						newAttrs.put(regionField, "NULL");
 					} else if (regionCode.contains("D.C")
 							|| regionCode.contains("DC")) {
 						Logger.debug("For Phone : %s, setting Washington DC",
