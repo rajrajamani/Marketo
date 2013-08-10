@@ -361,6 +361,7 @@ public class Application extends Controller {
 		String number = "";
 		PhoneNumber phoneObj;
 		try {
+			
 			phoneObj = phoneUtil.parse(phoneNum, "US");
 			if (format.equalsIgnoreCase(Constants.PHONE_FORMAT_E164)) {
 				pq.format = Constants.PHONE_FORMAT_E164;
@@ -378,21 +379,22 @@ public class Application extends Controller {
 			String city = "";
 			String state = "";
 			String region = "";
+
 			region = geocoder.getDescriptionForNumber(phoneObj, Locale.ENGLISH);
 			if (region != null && region.contains(",")) {
 				String[] values = region.split(",");
 				city = values[0].trim();
 				state = values[1].trim();
 			} else {
-				String regionCode = RegionUtil.getStateShortCode(region);
 				// Special handling for DC, US and Canada
-				if (regionCode.equals("US") || regionCode.equals("Canada")) {
-					// do not set city or state
-				} else if (regionCode.contains("D.C")
-						|| regionCode.contains("DC")) {
+				if (region.equals("United States") || region.equals("Canada")) {
+					// do not set city or state					
+				} else if (region.contains("D.C")
+						|| region.contains("DC")) {
 					city = "Washington";
 					state = "DC";
 				} else {
+					String regionCode = RegionUtil.getStateShortCode(region);
 					state = regionCode;
 				}
 			}
