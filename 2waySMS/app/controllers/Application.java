@@ -31,6 +31,7 @@ import play.mvc.Router;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
+import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberType;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 import com.marketo.mktows.wsdl.ResultSyncLead;
@@ -361,7 +362,7 @@ public class Application extends Controller {
 		String number = "";
 		PhoneNumber phoneObj;
 		try {
-			
+
 			phoneObj = phoneUtil.parse(phoneNum, "US");
 			if (format.equalsIgnoreCase(Constants.PHONE_FORMAT_E164)) {
 				pq.format = Constants.PHONE_FORMAT_E164;
@@ -379,7 +380,6 @@ public class Application extends Controller {
 			String city = "";
 			String state = "";
 			String region = "";
-
 			region = geocoder.getDescriptionForNumber(phoneObj, Locale.ENGLISH);
 			if (region != null && region.contains(",")) {
 				String[] values = region.split(",");
@@ -388,9 +388,8 @@ public class Application extends Controller {
 			} else {
 				// Special handling for DC, US and Canada
 				if (region.equals("United States") || region.equals("Canada")) {
-					// do not set city or state					
-				} else if (region.contains("D.C")
-						|| region.contains("DC")) {
+					// do not set city or state
+				} else if (region.contains("D.C") || region.contains("DC")) {
 					city = "Washington";
 					state = "DC";
 				} else {
@@ -398,9 +397,13 @@ public class Application extends Controller {
 					state = regionCode;
 				}
 			}
+			
+			String phType = "";
 
+			PhoneNumberType type = phoneUtil.getNumberType(phoneObj);
+			phType = type.toString();
 			String retVal = createJson(leadId, phoneNum, format, number, city,
-					state);
+					state,phType);
 			pq.formattedNum = number;
 			pq.city = city;
 			pq.state = state;
@@ -417,11 +420,12 @@ public class Application extends Controller {
 	}
 
 	private static String createJson(String leadId, String phoneNum,
-			String format, String number, String city, String state) {
+			String format, String number, String city, String state,
+			String phType) {
 		String retval = "{\"id\":\"" + leadId + "\",\"originalNum\":\""
 				+ phoneNum + "\",\"format\":\"" + format
-				+ "\",\"formattedNum\":\"" + number + "\",\"city\":\"" + city
-				+ "\",\"state\":\"" + state + "\"}";
+				+ "\",\"formattedNum\":\"" + number + "\",\"type\":\"" + phType
+				+ "\",\"city\":\"" + city + "\",\"state\":\"" + state + "\"}";
 		return retval;
 	}
 
