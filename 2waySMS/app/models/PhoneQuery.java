@@ -20,6 +20,7 @@ public class PhoneQuery extends Model {
 	public String phoneNum; // provided by marketer
 	public String format;
 	public String munchkinId; // from token
+	public String leadId;
 	public String formattedNum;
 	public String city;
 	public String state;

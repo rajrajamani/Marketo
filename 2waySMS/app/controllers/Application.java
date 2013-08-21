@@ -16,6 +16,7 @@ import java.util.Map;
 import jobs.ProcessInboundMessage;
 import jobs.SyncListAndExecFormula;
 import jobs.SyncListAndRunFirstCampaign;
+import models.AddScores;
 import models.FormulaCampaign;
 import models.GoogleCampaign;
 import models.PhoneQuery;
@@ -361,9 +362,11 @@ public class Application extends Controller {
 
 	public static void phoneQuery(String munchkinId, String leadId,
 			String phoneNum, String format) {
-		if (munchkinId == null || phoneNum == null || munchkinId.equals("")
+		if (munchkinId == null || leadId == null || phoneNum == null
+				|| munchkinId.equals("") || leadId.equals("")
 				|| phoneNum.equals("")) {
-			renderText("{\"result\" : \"error - must provide munchkinId and phoneNumber\" }");
+			renderText("{\"result\" : \"error - must provide munchkinId, leadId"
+					+ " and phoneNumber\" }");
 		}
 		Logger.debug("received phone query for %s", phoneNum);
 		PhoneQuery pq = new PhoneQuery();
@@ -422,6 +425,7 @@ public class Application extends Controller {
 					state, phType);
 
 			pq.formattedNum = number;
+			pq.leadId = leadId;
 			pq.city = city;
 			pq.state = state;
 			pq.type = phType;
@@ -435,6 +439,33 @@ public class Application extends Controller {
 			renderText("{\"result\" : \"error - could not parse phone number\" }");
 		}
 
+	}
+
+	public static void addScores(String munchkinId, String leadId,
+			String score1, String score2) {
+		try {
+			if (munchkinId == null || leadId == null || munchkinId.equals("")
+					|| leadId.equals("")) {
+				renderText("{\"result\" : \"error - must provide munchkinId and leadId\" }");
+			}
+			int sc1 = Integer.valueOf(score1);
+			int sc2 = Integer.valueOf(score2);
+			int total = sc1 + sc2;
+
+			Logger.debug("Adding scores %d and %d", sc1, sc2);
+			AddScores as = new AddScores();
+			as.munchkinId = munchkinId;
+			as.leadId = leadId;
+			as.score1 = sc1;
+			as.score2 = sc2;
+			as.save();
+
+			renderJSON("{\"score1\":" + score1 + ",\"score2\":" + score2
+					+ ",\"total\":" + total + "}");
+		} catch (NumberFormatException ne) {
+			renderJSON("{\"error\": \"could not parse scores\"}");
+			throw ne;
+		}
 	}
 
 	private static String createJson(String leadId, String phoneNum,
@@ -461,20 +492,6 @@ public class Application extends Controller {
 				.getProperty("mkto.googFileHeader");
 		Logger.debug("Writing %s to file : %s ", googFileHeader, file.getPath());
 		FileUtils.writeStringToFile(file, googFileHeader);
-	}
-
-	public static void addScores(String score1, String score2) {
-		try {
-			int sc1 = Integer.valueOf(score1);
-			int sc2 = Integer.valueOf(score2);
-			int total = sc1 + sc2;
-
-			renderJSON("{\"score1\":" + score1 + ",\"score2\":" + score2
-					+ ",\"total\":" + total + "}");
-		} catch (NumberFormatException ne) {
-			renderJSON("{\"error\": \"could not parse scores\"}");
-			throw ne;
-		}
 	}
 
 	public static void cancelCampaign(String id) {
