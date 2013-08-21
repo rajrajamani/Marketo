@@ -23,100 +23,7 @@ import com.marketo.mktows.client.MktServiceException;
 import com.marketo.mktows.client.MktowsClientException;
 import com.marketo.mktows.client.MktowsUtil;
 import com.marketo.mktows.client.Signature;
-import com.marketo.mktows.wsdl.ActivityRecord;
-import com.marketo.mktows.wsdl.ActivityType;
-import com.marketo.mktows.wsdl.ActivityTypeFilter;
-import com.marketo.mktows.wsdl.ArrayOfActivityRecord;
-import com.marketo.mktows.wsdl.ArrayOfActivityType;
-import com.marketo.mktows.wsdl.ArrayOfAttrib;
-import com.marketo.mktows.wsdl.ArrayOfAttribute;
-import com.marketo.mktows.wsdl.ArrayOfCampaignRecord;
-import com.marketo.mktows.wsdl.ArrayOfCustomObj;
-import com.marketo.mktows.wsdl.ArrayOfLeadChangeRecord;
-import com.marketo.mktows.wsdl.ArrayOfLeadKey;
-import com.marketo.mktows.wsdl.ArrayOfLeadRecord;
-import com.marketo.mktows.wsdl.ArrayOfMObjAssociation;
-import com.marketo.mktows.wsdl.ArrayOfMObjCriteria;
-import com.marketo.mktows.wsdl.ArrayOfMObject;
-import com.marketo.mktows.wsdl.ArrayOfString;
-import com.marketo.mktows.wsdl.Attrib;
-import com.marketo.mktows.wsdl.Attribute;
-import com.marketo.mktows.wsdl.AuthenticationHeaderInfo;
-import com.marketo.mktows.wsdl.CampaignRecord;
-import com.marketo.mktows.wsdl.CustomObj;
-import com.marketo.mktows.wsdl.ImportToListModeEnum;
-import com.marketo.mktows.wsdl.ImportToListStatusEnum;
-import com.marketo.mktows.wsdl.LastUpdateAtSelector;
-import com.marketo.mktows.wsdl.LeadActivityList;
-import com.marketo.mktows.wsdl.LeadChangeRecord;
-import com.marketo.mktows.wsdl.LeadKey;
-import com.marketo.mktows.wsdl.LeadKeyRef;
-import com.marketo.mktows.wsdl.LeadKeySelector;
-import com.marketo.mktows.wsdl.LeadRecord;
-import com.marketo.mktows.wsdl.LeadStatus;
-import com.marketo.mktows.wsdl.ListKey;
-import com.marketo.mktows.wsdl.ListKeyType;
-import com.marketo.mktows.wsdl.ListOperationType;
-import com.marketo.mktows.wsdl.MObjAssociation;
-import com.marketo.mktows.wsdl.MObjCriteria;
-import com.marketo.mktows.wsdl.MObject;
-import com.marketo.mktows.wsdl.MergeStatus;
-import com.marketo.mktows.wsdl.MktMktowsApiService;
-import com.marketo.mktows.wsdl.MktowsPort;
-import com.marketo.mktows.wsdl.ObjectFactory;
-import com.marketo.mktows.wsdl.ParamsDescribeMObject;
-import com.marketo.mktows.wsdl.ParamsGetCampaignsForSource;
-import com.marketo.mktows.wsdl.ParamsGetImportToListStatus;
-import com.marketo.mktows.wsdl.ParamsGetLead;
-import com.marketo.mktows.wsdl.ParamsGetLeadActivity;
-import com.marketo.mktows.wsdl.ParamsGetLeadChanges;
-import com.marketo.mktows.wsdl.ParamsGetMObjects;
-import com.marketo.mktows.wsdl.ParamsGetMultipleLeads;
-import com.marketo.mktows.wsdl.ParamsImportToList;
-import com.marketo.mktows.wsdl.ParamsListMObjects;
-import com.marketo.mktows.wsdl.ParamsListOperation;
-import com.marketo.mktows.wsdl.ParamsMergeLeads;
-import com.marketo.mktows.wsdl.ParamsRequestCampaign;
-import com.marketo.mktows.wsdl.ParamsScheduleCampaign;
-import com.marketo.mktows.wsdl.ParamsSyncCustomObjects;
-import com.marketo.mktows.wsdl.ParamsSyncLead;
-import com.marketo.mktows.wsdl.ParamsSyncMultipleLeads;
-import com.marketo.mktows.wsdl.ReqCampSourceType;
-import com.marketo.mktows.wsdl.ResultGetCampaignsForSource;
-import com.marketo.mktows.wsdl.ResultGetImportToListStatus;
-import com.marketo.mktows.wsdl.ResultGetLead;
-import com.marketo.mktows.wsdl.ResultGetLeadChanges;
-import com.marketo.mktows.wsdl.ResultGetMObjects;
-import com.marketo.mktows.wsdl.ResultGetMultipleLeads;
-import com.marketo.mktows.wsdl.ResultImportToList;
-import com.marketo.mktows.wsdl.ResultListMObjects;
-import com.marketo.mktows.wsdl.ResultListOperation;
-import com.marketo.mktows.wsdl.ResultMergeLeads;
-import com.marketo.mktows.wsdl.ResultRequestCampaign;
-import com.marketo.mktows.wsdl.ResultScheduleCampaign;
-import com.marketo.mktows.wsdl.ResultSyncLead;
-import com.marketo.mktows.wsdl.StaticListSelector;
-import com.marketo.mktows.wsdl.StreamPosition;
-import com.marketo.mktows.wsdl.SuccessDescribeMObject;
-import com.marketo.mktows.wsdl.SuccessGetCampaignsForSource;
-import com.marketo.mktows.wsdl.SuccessGetImportToListStatus;
-import com.marketo.mktows.wsdl.SuccessGetLead;
-import com.marketo.mktows.wsdl.SuccessGetLeadActivity;
-import com.marketo.mktows.wsdl.SuccessGetLeadChanges;
-import com.marketo.mktows.wsdl.SuccessGetMObjects;
-import com.marketo.mktows.wsdl.SuccessGetMultipleLeads;
-import com.marketo.mktows.wsdl.SuccessImportToList;
-import com.marketo.mktows.wsdl.SuccessListMObjects;
-import com.marketo.mktows.wsdl.SuccessListOperation;
-import com.marketo.mktows.wsdl.SuccessMergeLeads;
-import com.marketo.mktows.wsdl.SuccessRequestCampaign;
-import com.marketo.mktows.wsdl.SuccessScheduleCampaign;
-import com.marketo.mktows.wsdl.SuccessSyncCustomObjects;
-import com.marketo.mktows.wsdl.SuccessSyncLead;
-import com.marketo.mktows.wsdl.SuccessSyncMultipleLeads;
-import com.marketo.mktows.wsdl.SyncCustomObjStatus;
-import com.marketo.mktows.wsdl.SyncOperationEnum;
-import com.marketo.mktows.wsdl.SyncStatus;
+import com.marketo.mktows.wsdl.*;
 
 /**
  * @author agha
@@ -497,6 +404,113 @@ public class MktowsClient {
 		}
 
 		return listChangeRecord;
+	}
+
+	public List<CustomObj> getCustomObjects(String objTypeName)
+			throws MktowsClientException, MktServiceException {
+		List<CustomObj> listCustomObjects = null;
+		ParamsGetCustomObjects params = MktowsUtil.objectFactory
+				.createParamsGetCustomObjects();
+		params.setObjTypeName(objTypeName);
+		ArrayOfAttribute attrList = MktowsUtil.objectFactory
+				.createArrayOfAttribute();
+		Attribute attrib = MktowsUtil.objectFactory.createAttribute();
+		attrib.setAttrName("MKTOID");
+		attrib.setAttrValue("1090177");
+		attrList.getAttribute().add(attrib);
+		params.setCustomObjKeyList(attrList);
+		try {
+			AuthenticationHeaderInfo authHdr = this
+					.createAuthenticationHeader();
+			MktowsPort soap = this.getSoapInterface();
+			SuccessGetCustomObjects success = soap.getCustomObjects(params,
+					authHdr);
+			ResultGetCustomObjects result = success.getResult();
+			ArrayOfCustomObj aoMObject = result.getCustomObjList();
+			if (aoMObject != null) {
+				listCustomObjects = aoMObject.getCustomObj();
+			}
+
+		} catch (SOAPFaultException ex) {
+			SOAPFault fault = ex.getFault();
+			throw new MktServiceException(ex.getMessage() + ", caused by "
+					+ fault.getDetail().getTextContent(), ex);
+		} catch (WebServiceException ex) {
+			throw new MktowsClientException("Web service exception occurred: "
+					+ ex.getMessage(), ex);
+		}
+		return listCustomObjects;
+	}
+
+	public List<SyncCustomObjStatus> syncCustomObject(String objTypeName)
+			throws MktowsClientException, MktServiceException {
+		List<SyncCustomObjStatus> listCustomObjects = null;
+		ParamsSyncCustomObjects params = MktowsUtil.objectFactory
+				.createParamsSyncCustomObjects();
+		params.setObjTypeName(objTypeName);
+		params.setOperation(SyncOperationEnum.INSERT);
+
+		ArrayOfCustomObj objArray = MktowsUtil.objectFactory
+				.createArrayOfCustomObj();
+		for (int i = 0; i < 5; i++) {
+			CustomObj obj = MktowsUtil.objectFactory.createCustomObj();
+			Attribute attrib = MktowsUtil.objectFactory.createAttribute();
+			attrib.setAttrName("MKTOID");
+			attrib.setAttrValue("1090177");
+			ArrayOfAttribute attribKeyArr = MktowsUtil.objectFactory
+					.createArrayOfAttribute();
+			attribKeyArr.getAttribute().add(attrib);
+
+			Attribute attrib2 = MktowsUtil.objectFactory.createAttribute();
+			attrib2.setAttrName("rid");
+			attrib2.setAttrValue("rid" + i);
+			attribKeyArr.getAttribute().add(attrib2);
+			obj.setCustomObjKeyList(attribKeyArr);
+			
+			ArrayOfAttribute attribCObjArr = MktowsUtil.objectFactory
+					.createArrayOfAttribute();
+			
+			Attribute attrib3 = MktowsUtil.objectFactory.createAttribute();
+			attrib3.setAttrName("city");
+			attrib3.setAttrValue("city" + i);
+			attribCObjArr.getAttribute().add(attrib3);
+
+			Attribute attrib4 = MktowsUtil.objectFactory.createAttribute();
+			attrib4.setAttrName("zip");
+			attrib4.setAttrValue("zip" + i);
+			attribCObjArr.getAttribute().add(attrib4);
+
+			Attribute attrib5 = MktowsUtil.objectFactory.createAttribute();
+			attrib5.setAttrName("state");
+			attrib5.setAttrValue("state" + i);
+			attribCObjArr.getAttribute().add(attrib5);
+
+			obj.setCustomObjAttributeList(attribCObjArr);
+			objArray.getCustomObj().add(obj);
+			params.setCustomObjList(objArray);
+		}
+		try {
+			AuthenticationHeaderInfo authHdr = this
+					.createAuthenticationHeader();
+			MktowsPort soap = this.getSoapInterface();
+			SuccessSyncCustomObjects success = soap.syncCustomObjects(params,
+					authHdr);
+			ResultSyncCustomObjects result = success.getResult();
+			ArrayOfSyncCustomObjStatus aoMObject = result
+					.getSyncCustomObjStatusList();
+			if (aoMObject != null) {
+				listCustomObjects = aoMObject.getSyncCustomObjStatus();
+			}
+
+		} catch (SOAPFaultException ex) {
+			SOAPFault fault = ex.getFault();
+			throw new MktServiceException(ex.getMessage() + ", caused by "
+					+ fault.getDetail().getTextContent(), ex);
+		} catch (WebServiceException ex) {
+			throw new MktowsClientException("Web service exception occurred: "
+					+ ex.getMessage(), ex);
+		}
+		return listCustomObjects;
 	}
 
 	public List<MObject> getMObjects(String type, Integer id,

@@ -23,4 +23,6 @@ public class PhoneQuery extends Model {
 	public String formattedNum;
 	public String city;
 	public String state;
+	public String country;
+	public String type;
 }

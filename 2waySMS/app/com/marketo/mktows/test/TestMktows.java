@@ -29,6 +29,7 @@ import com.marketo.mktows.wsdl.ArrayOfAttribute;
 import com.marketo.mktows.wsdl.Attrib;
 import com.marketo.mktows.wsdl.Attribute;
 import com.marketo.mktows.wsdl.CampaignRecord;
+import com.marketo.mktows.wsdl.CustomObj;
 import com.marketo.mktows.wsdl.ImportToListModeEnum;
 import com.marketo.mktows.wsdl.ImportToListStatusEnum;
 import com.marketo.mktows.wsdl.LeadChangeRecord;
@@ -43,6 +44,7 @@ import com.marketo.mktows.wsdl.MergeStatus;
 import com.marketo.mktows.wsdl.ParamsDescribeMObject;
 import com.marketo.mktows.wsdl.ResultSyncLead;
 import com.marketo.mktows.wsdl.SuccessDescribeMObject;
+import com.marketo.mktows.wsdl.SyncCustomObjStatus;
 import com.marketo.mktows.wsdl.SyncStatus;
 import common.CodeSandbox;
 import common.MktowsClient;
@@ -60,7 +62,7 @@ public class TestMktows {
 
 	public static final String MUNCH_ACCT_ID = "100-AEK-913";
 	public static final String HOST_NAME = "100-AEK-913.mktoapi.com";
-	//public static final String HOST_NAME = "localhost";
+	// public static final String HOST_NAME = "localhost";
 	public static final String ACCESS_KEY = "demo17_1_809934544BFABAE58E5D27";
 	public static final String SECRET_KEY = "27272727aa";
 	public static final String TEST_CODE_SANDBOX = "System.out.println(\"Lead id is : \" + leadRecord.getEmail());  return leadRecord; ";
@@ -74,15 +76,18 @@ public class TestMktows {
 
 		TestMktows tester = new TestMktows();
 		// tester.testGetMultipleLeadsStaticList();
-		//tester.testGetLead();
-		tester.testGetMultipleLeadsEmail();
+		// tester.testGetLead();
+		// tester.testGetMultipleLeadsEmail();
 		// tester.testGetLeadActivity();
 		// tester.testGetLeadChanges();
 		// tester.testGetMObjects();
 		// tester.testListMObjects();
 		// tester.testDescMObjects();
-		//tester.testRandomFunctionEval();
+		// tester.testRandomFunctionEval();
 		// tester.testCapitalizeName();
+		// tester.testGetCustomObjects();
+		// tester.testSyncCustomObjects();
+		tester.testMergeLeads();
 	}
 
 	private void testCapitalizeName() {
@@ -210,7 +215,8 @@ public class TestMktows {
 
 		List<LeadRecord> leadRecords = null;
 		try {
-			leadRecords = this.client.getLead(LeadKeyRef.EMAIL, "rrajamani@marketo.com");
+			leadRecords = this.client.getLead(LeadKeyRef.EMAIL,
+					"rrajamani@marketo.com");
 		} catch (MktowsClientException e) {
 			System.out.println("Exception occurred: " + e.getMessage());
 			return;
@@ -237,6 +243,41 @@ public class TestMktows {
 					}
 				}
 			}
+		}
+	}
+
+	public void testGetCustomObjects() {
+
+		List<CustomObj> listCustomObjects = null;
+		try {
+			listCustomObjects = this.client.getCustomObjects("Roadshow");
+		} catch (MktowsClientException e) {
+			System.out.println("Exception occurred: " + e.getMessage());
+			return;
+		} catch (MktServiceException e) {
+			System.out.println("Exception occurred: " + e.getLongMessage());
+			return;
+		}
+		for (CustomObj obj : listCustomObjects) {
+			System.out.println("CustomObject " + obj.getClass());
+		}
+	}
+
+	public void testSyncCustomObjects() {
+
+		List<SyncCustomObjStatus> listCustomObjects = null;
+		try {
+			listCustomObjects = this.client.syncCustomObject("Roadshow");
+		} catch (MktowsClientException e) {
+			System.out.println("Exception occurred: " + e.getMessage());
+			return;
+		} catch (MktServiceException e) {
+			System.out.println("Exception occurred: " + e.getLongMessage());
+			return;
+		}
+		for (SyncCustomObjStatus obj : listCustomObjects) {
+			System.out.println("CustomObject sync status - " + obj.getStatus()
+					+ obj.getError());
 		}
 	}
 
@@ -554,7 +595,7 @@ public class TestMktows {
 			}
 		}
 	}
-	
+
 	public void testGetMultipleLeadsEmail() {
 		List<LeadRecord> leadRecords = null;
 		try {
@@ -628,7 +669,6 @@ public class TestMktows {
 			}
 		}
 	}
-
 
 	public void testGetMultipleLeadsUnsubscribedFlag() {
 
@@ -754,18 +794,18 @@ public class TestMktows {
 		String ID_ATTR = "IDNUM"; // Lookup attribute name
 		// The winning lead
 		List<Attribute> winningLead = new ArrayList<Attribute>();
-		winningLead.add(MktowsUtil.newAttribute(ID_ATTR, "85"));
+		winningLead.add(MktowsUtil.newAttribute(ID_ATTR, "2"));
 
 		// The losing leads
 		List<List<Attribute>> losingLeadList = new ArrayList<List<Attribute>>();
 		List<Attribute> loser = new ArrayList<Attribute>();
 		// Lead 1
 		loser = new ArrayList<Attribute>();
-		loser.add(MktowsUtil.newAttribute(ID_ATTR, "75"));
+		loser.add(MktowsUtil.newAttribute(ID_ATTR, "11"));
 		losingLeadList.add(loser);
 		// Lead 2
 		loser = new ArrayList<Attribute>();
-		loser.add(MktowsUtil.newAttribute(ID_ATTR, "74"));
+		loser.add(MktowsUtil.newAttribute(ID_ATTR, "12"));
 		losingLeadList.add(loser);
 
 		MergeStatus status = null;
@@ -843,13 +883,14 @@ public class TestMktows {
 	}
 
 	public void testGetMultipleLeadsStaticList() {
-	
+
 		StreamPostionHolder posHolder = new StreamPostionHolder();
 		List<LeadRecord> leadRecords = new ArrayList<LeadRecord>();
 		try {
 			do {
 				this.client.getMultipleLeads(2,
-						"RajExportableProgram.listForTesting", posHolder, leadRecords, null);
+						"RajExportableProgram.listForTesting", posHolder,
+						leadRecords, null);
 				System.out
 						.println("Retrieved " + leadRecords.size() + " leads");
 			} while (leadRecords.size() != 0);

@@ -26,6 +26,9 @@ import org.apache.commons.io.FileUtils;
 import play.Logger;
 import play.Play;
 import play.mvc.Controller;
+import play.mvc.Http;
+import play.mvc.Http.Header;
+import play.mvc.Http.Request;
 import play.mvc.Router;
 
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -42,6 +45,18 @@ import common.RegionUtil;
 import common.TwilioUtility;
 
 public class Application extends Controller {
+
+	public static void showHeaders() {
+		Request req = request.get();
+		Map<String, Header> hdrs = req.headers;
+
+		String allValues = "";
+		for (String name : hdrs.keySet()) {
+			Header value = hdrs.get(name);
+			allValues += name + ":" + value.value() + "/\n";
+		}
+		renderText(allValues);
+	}
 
 	public static void index(String url) {
 
@@ -397,16 +412,19 @@ public class Application extends Controller {
 					state = regionCode;
 				}
 			}
-			
+
 			String phType = "";
 
 			PhoneNumberType type = phoneUtil.getNumberType(phoneObj);
 			phType = type.toString();
+
 			String retVal = createJson(leadId, phoneNum, format, number, city,
-					state,phType);
+					state, phType);
+
 			pq.formattedNum = number;
 			pq.city = city;
 			pq.state = state;
+			pq.type = phType;
 			pq.save();
 
 			Logger.debug("phoneQuery returns :%s", retVal);
@@ -443,6 +461,20 @@ public class Application extends Controller {
 				.getProperty("mkto.googFileHeader");
 		Logger.debug("Writing %s to file : %s ", googFileHeader, file.getPath());
 		FileUtils.writeStringToFile(file, googFileHeader);
+	}
+
+	public static void addScores(String score1, String score2) {
+		try {
+			int sc1 = Integer.valueOf(score1);
+			int sc2 = Integer.valueOf(score2);
+			int total = sc1 + sc2;
+
+			renderJSON("{\"score1\":" + score1 + ",\"score2\":" + score2
+					+ ",\"total\":" + total + "}");
+		} catch (NumberFormatException ne) {
+			renderJSON("{\"error\": \"could not parse scores\"}");
+			throw ne;
+		}
 	}
 
 	public static void cancelCampaign(String id) {
