@@ -418,7 +418,14 @@ public class MktowsClient {
 		attrib.setAttrName("MKTOID");
 		attrib.setAttrValue("1090177");
 		attrList.getAttribute().add(attrib);
+		
+		Attribute attrib2 = MktowsUtil.objectFactory.createAttribute();
+		attrib2.setAttrName("MKTOID");
+		attrib2.setAttrValue("65106");
+		attrList.getAttribute().add(attrib2);
+		
 		params.setCustomObjKeyList(attrList);
+		
 		try {
 			AuthenticationHeaderInfo authHdr = this
 					.createAuthenticationHeader();

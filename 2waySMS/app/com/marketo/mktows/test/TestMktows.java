@@ -85,9 +85,9 @@ public class TestMktows {
 		// tester.testDescMObjects();
 		// tester.testRandomFunctionEval();
 		// tester.testCapitalizeName();
-		// tester.testGetCustomObjects();
+		 tester.testGetCustomObjects();
 		// tester.testSyncCustomObjects();
-		tester.testMergeLeads();
+		//tester.testMergeLeads();
 	}
 
 	private void testCapitalizeName() {

@@ -6469,3 +6469,5 @@ Caused by: java.lang.NullPointerException
 07:07:24,133 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
 00:00:01,681 INFO  ~ Renaming google conversion files
 05:15:40,685 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:28:49,613 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:28:49,783 DEBUG ~ Adding scores 5 and 10

@@ -472,7 +472,7 @@ public class Application extends Controller {
 
 	private static String createJsonForAddScoreResponse(
 			java.lang.String string2, int sc1, int sc2, int total) {
-		return new String("{\"score1\":" + sc1 + ",\"score2\":" + sc2
+		return new String("{\"Score1\":" + sc1 + ",\"Score2\":" + sc2
 				+ ",\"total\":" + total + "}");
 	}
 
