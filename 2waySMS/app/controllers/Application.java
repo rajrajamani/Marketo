@@ -47,6 +47,8 @@ import common.TwilioUtility;
 
 public class Application extends Controller {
 
+	private static final String String = null;
+
 	public static void showHeaders() {
 		Request req = request.get();
 		Map<String, Header> hdrs = req.headers;
@@ -421,8 +423,8 @@ public class Application extends Controller {
 			PhoneNumberType type = phoneUtil.getNumberType(phoneObj);
 			phType = type.toString();
 
-			String retVal = createJson(leadId, phoneNum, format, number, city,
-					state, phType);
+			String retVal = createJsonForPhoneQueryResponse(leadId, phoneNum,
+					format, number, city, state, phType);
 
 			pq.formattedNum = number;
 			pq.leadId = leadId;
@@ -460,17 +462,23 @@ public class Application extends Controller {
 			as.score2 = sc2;
 			as.save();
 
-			renderJSON("{\"score1\":" + score1 + ",\"score2\":" + score2
-					+ ",\"total\":" + total + "}");
+			String resp = createJsonForAddScoreResponse(leadId, sc1, sc2, total);
+			renderJSON(resp);
 		} catch (NumberFormatException ne) {
 			renderJSON("{\"error\": \"could not parse scores\"}");
 			throw ne;
 		}
 	}
 
-	private static String createJson(String leadId, String phoneNum,
-			String format, String number, String city, String state,
-			String phType) {
+	private static String createJsonForAddScoreResponse(
+			java.lang.String string2, int sc1, int sc2, int total) {
+		return new String("{\"score1\":" + sc1 + ",\"score2\":" + sc2
+				+ ",\"total\":" + total + "}");
+	}
+
+	private static String createJsonForPhoneQueryResponse(String leadId,
+			String phoneNum, String format, String number, String city,
+			String state, String phType) {
 		String retval = "{\"id\":\"" + leadId + "\",\"originalNum\":\""
 				+ phoneNum + "\",\"format\":\"" + format
 				+ "\",\"formattedNum\":\"" + number + "\",\"type\":\"" + phType
