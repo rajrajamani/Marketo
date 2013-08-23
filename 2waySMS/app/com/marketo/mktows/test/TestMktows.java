@@ -76,7 +76,7 @@ public class TestMktows {
 
 		TestMktows tester = new TestMktows();
 		// tester.testGetMultipleLeadsStaticList();
-		// tester.testGetLead();
+		 tester.testGetLead();
 		// tester.testGetMultipleLeadsEmail();
 		// tester.testGetLeadActivity();
 		// tester.testGetLeadChanges();
@@ -85,7 +85,7 @@ public class TestMktows {
 		// tester.testDescMObjects();
 		// tester.testRandomFunctionEval();
 		// tester.testCapitalizeName();
-		 tester.testGetCustomObjects();
+		 //tester.testGetCustomObjects();
 		// tester.testSyncCustomObjects();
 		//tester.testMergeLeads();
 	}

@@ -27,7 +27,6 @@ import org.apache.commons.io.FileUtils;
 import play.Logger;
 import play.Play;
 import play.mvc.Controller;
-import play.mvc.Http;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
 import play.mvc.Router;
@@ -400,6 +399,7 @@ public class Application extends Controller {
 			String city = "";
 			String state = "";
 			String region = "";
+			String country = getCountryName(phoneUtil, phoneObj);
 			region = geocoder.getDescriptionForNumber(phoneObj, Locale.ENGLISH);
 			if (region != null && region.contains(",")) {
 				String[] values = region.split(",");
@@ -424,7 +424,7 @@ public class Application extends Controller {
 			phType = type.toString();
 
 			String retVal = createJsonForPhoneQueryResponse(leadId, phoneNum,
-					format, number, city, state, phType);
+					format, number, city, state, country, phType);
 
 			pq.formattedNum = number;
 			pq.leadId = leadId;
@@ -441,6 +441,19 @@ public class Application extends Controller {
 			renderText("{\"result\" : \"error - could not parse phone number\" }");
 		}
 
+	}
+
+	private static java.lang.String getCountryName(PhoneNumberUtil phoneUtil,
+			PhoneNumber number) {
+		String regionCode = phoneUtil.getRegionCodeForNumber(number);
+		return getRegionDisplayName(regionCode, Locale.ENGLISH);
+	}
+
+	private static java.lang.String getRegionDisplayName(
+			java.lang.String regionCode, Locale english) {
+		return (regionCode == null || regionCode.equals("ZZ") || regionCode
+				.equals(PhoneNumberUtil.REGION_CODE_FOR_NON_GEO_ENTITY)) ? ""
+				: new Locale("", regionCode).getDisplayCountry(Locale.ENGLISH);
 	}
 
 	public static void addScores(String munchkinId, String leadId,
@@ -478,10 +491,12 @@ public class Application extends Controller {
 
 	private static String createJsonForPhoneQueryResponse(String leadId,
 			String phoneNum, String format, String number, String city,
-			String state, String phType) {
+			String state, String country, String phType) {
+		String countryIso2 = RegionUtil.getCountryCode(country);
 		String retval = "{\"id\":\"" + leadId + "\",\"originalNum\":\""
 				+ phoneNum + "\",\"format\":\"" + format
 				+ "\",\"formattedNum\":\"" + number + "\",\"type\":\"" + phType
+				+ "\",\"country\":\"" + country + "\",\"countryIso2\":\"" + countryIso2
 				+ "\",\"city\":\"" + city + "\",\"state\":\"" + state + "\"}";
 		return retval;
 	}
