@@ -431,6 +431,7 @@ public class Application extends Controller {
 			pq.city = city;
 			pq.state = state;
 			pq.type = phType;
+			pq.country = country;
 			pq.save();
 
 			Logger.debug("phoneQuery returns :%s", retVal);
