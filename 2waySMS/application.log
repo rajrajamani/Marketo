@@ -6471,3 +6471,1000 @@ Caused by: java.lang.NullPointerException
 05:15:40,685 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
 12:28:49,613 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
 12:28:49,783 DEBUG ~ Adding scores 5 and 10
+08:20:56,342 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+08:20:57,510 WARN  ~ You're running Play! in DEV mode
+08:20:57,830 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+08:21:13,469 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+08:21:14,058 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+08:21:14,845 INFO  ~ Application '2waySMS' is now started !
+08:21:15,169 DEBUG ~ received phone query for (212) 609-2574
+08:21:15,272 DEBUG ~ phoneQuery returns :{"id":"123","originalNum":"(212) 609-2574","format":"International","formattedNum":"+1 212-609-2574","type":"FIXED_LINE_OR_MOBILE","country":"United States","city":"New York","state":"NY"}
+08:57:12,730 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+08:57:12,849 DEBUG ~ received phone query for (212) 609-2574
+08:57:13,034 ERROR ~ 
+
+@6fcahi727
+Internal Server Error (500) for request GET /phoneQuery?munchkinId=123&leadId=123&phoneNum=(212)%20609-2574&format=International
+
+Execution exception (In /app/common/RegionUtil.java around line 17)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at common.RegionUtil.getCountryCode(RegionUtil.java:17)
+	at controllers.Application.createJsonForPhoneQueryResponse(Application.java:495)
+	at controllers.Application.phoneQuery(Application.java:426)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+08:58:12,421 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+08:58:12,529 DEBUG ~ received phone query for (212) 609-2574
+08:58:12,534 DEBUG ~ phoneQuery returns :{"id":"123","originalNum":"(212) 609-2574","format":"International","formattedNum":"+1 212-609-2574","type":"FIXED_LINE_OR_MOBILE","country":"United States","countryIso2":"US","city":"New York","state":"NY"}
+09:04:20,709 DEBUG ~ received phone query for 6502650516
+09:04:20,713 DEBUG ~ phoneQuery returns :{"id":"123","originalNum":"6502650516","format":"International","formattedNum":"+1 650-265-0516","type":"FIXED_LINE_OR_MOBILE","country":"United States","countryIso2":"US","city":"","state":"CA"}
+09:04:31,269 DEBUG ~ received phone query for 914912534758
+09:04:31,276 DEBUG ~ phoneQuery returns :{"id":"123","originalNum":"914912534758","format":"International","formattedNum":"+1 914912534758","type":"UNKNOWN","country":"","countryIso2":"US","city":"","state":""}
+09:04:42,156 DEBUG ~ received phone query for  914912534758
+09:04:42,157 DEBUG ~ phoneQuery returns :{"id":"123","originalNum":" 914912534758","format":"International","formattedNum":"+1 914912534758","type":"UNKNOWN","country":"","countryIso2":"US","city":"","state":""}
+09:04:47,280 DEBUG ~ received phone query for  011914912534758
+09:04:47,284 DEBUG ~ phoneQuery returns :{"id":"123","originalNum":" 011914912534758","format":"International","formattedNum":"+91 491 253 4758","type":"FIXED_LINE","country":"India","countryIso2":"IN","city":"Palakkad","state":"Kerala"}
+09:05:05,644 DEBUG ~ received phone query for 914912534758
+09:05:05,645 DEBUG ~ phoneQuery returns :{"id":"123","originalNum":"914912534758","format":"International","formattedNum":"+1 914912534758","type":"UNKNOWN","country":"","countryIso2":"US","city":"","state":""}
+10:51:48,790 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+10:51:48,794 WARN  ~ Declaring modules in application.conf is deprecated. Use dependencies.yml instead (module.secure)
+10:51:48,876 INFO  ~ Module secure is available (C:\play-1.2.5\modules\secure)
+10:51:49,914 WARN  ~ You're running Play! in DEV mode
+10:51:50,154 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:52:24,146 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+10:52:25,468 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+10:52:27,227 INFO  ~ Application '2waySMS' is now started !
+10:55:32,173 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:13:39,537 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:13:40,116 WARN  ~ You're running Play! in DEV mode
+11:13:40,202 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:13:49,834 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+11:13:50,083 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:13:50,830 INFO  ~ Application '2waySMS' is now started !
+11:14:28,686 ERROR ~ Cannot include routes for module secure (not found)
+11:14:41,445 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:14:42,031 WARN  ~ You're running Play! in DEV mode
+11:14:42,123 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:14:48,790 ERROR ~ Cannot include routes for module secure (not found)
+11:14:53,072 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+11:14:53,379 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:14:54,164 INFO  ~ Application '2waySMS' is now started !
+11:15:32,661 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:15:32,665 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+11:15:33,361 WARN  ~ You're running Play! in DEV mode
+11:15:33,452 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:15:40,925 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+11:15:41,176 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:15:41,830 INFO  ~ Application '2waySMS' is now started !
+11:16:24,904 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+11:16:24,907 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+11:16:25,425 WARN  ~ You're running Play! in DEV mode
+11:16:25,496 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:16:32,356 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+11:16:32,591 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:16:33,197 INFO  ~ Application '2waySMS' is now started !
+11:22:51,143 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+11:55:27,850 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:28:24,784 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+12:28:24,787 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+12:28:25,353 WARN  ~ You're running Play! in DEV mode
+12:28:25,408 ERROR ~ Could not bind on port 9000
+12:28:40,590 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+12:28:40,595 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+12:28:41,132 WARN  ~ You're running Play! in DEV mode
+12:28:41,187 ERROR ~ Could not bind on port 9000
+12:29:28,023 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+12:29:28,027 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+12:29:28,542 WARN  ~ You're running Play! in DEV mode
+12:29:28,609 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+12:29:46,764 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+12:29:46,977 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+12:29:47,592 INFO  ~ Application '2waySMS' is now started !
+12:32:06,862 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:14:20,736 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:14:20,740 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+13:14:21,355 WARN  ~ You're running Play! in DEV mode
+13:14:21,423 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:14:28,096 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+13:14:28,319 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:14:28,953 INFO  ~ Application '2waySMS' is now started !
+13:14:47,224 ERROR ~ 
+
+@6fdf1ki27
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 73)
+VerifyError occured : Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+
+play.exceptions.JavaExecutionException: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.VerifyError: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+13:21:59,444 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:21:59,607 ERROR ~ 
+
+@6fdf1ki28
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 73)
+VerifyError occured : Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+
+play.exceptions.JavaExecutionException: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.VerifyError: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+13:22:11,688 ERROR ~ 
+
+@6fdf1ki29
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 73)
+VerifyError occured : Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+
+play.exceptions.JavaExecutionException: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.VerifyError: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+13:22:24,220 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:22:24,224 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+13:22:24,745 WARN  ~ You're running Play! in DEV mode
+13:22:24,814 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:22:32,896 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+13:22:33,109 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:22:33,731 INFO  ~ Application '2waySMS' is now started !
+13:22:38,934 ERROR ~ 
+
+@6fdf2leko
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 73)
+VerifyError occured : Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+
+play.exceptions.JavaExecutionException: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.VerifyError: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+13:24:21,974 ERROR ~ 
+
+@6fdf2lekp
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 73)
+VerifyError occured : Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+
+play.exceptions.JavaExecutionException: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.VerifyError: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+13:26:36,003 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:26:36,038 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+13:26:36,771 WARN  ~ You're running Play! in DEV mode
+13:26:37,005 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:27:19,124 ERROR ~ 
+
+@6fdf3bbof
+Internal Server Error (500) for request GET /
+
+Oops: UnsupportedClassVersionError
+An unexpected error occured caused by exception UnsupportedClassVersionError: DocViewerPlugin : Unsupported major.minor version 51.0
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.Invoker$Invocation.onException(Invoker.java:244)
+	at play.Invoker$Invocation.run(Invoker.java:286)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.UnsupportedClassVersionError: DocViewerPlugin : Unsupported major.minor version 51.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClassCond(Unknown Source)
+	at java.lang.ClassLoader.defineClass(Unknown Source)
+	at play.classloading.ApplicationClassloader.loadApplicationClass(ApplicationClassloader.java:154)
+	at play.classloading.ApplicationClassloader.loadClass(ApplicationClassloader.java:84)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at play.plugins.PluginCollection.reloadApplicationPlugins(PluginCollection.java:206)
+	at play.Play.start(Play.java:471)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	... 1 more
+13:27:44,741 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:27:44,744 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+13:27:45,254 WARN  ~ You're running Play! in DEV mode
+13:27:45,327 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:27:50,989 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+13:27:51,213 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:27:51,883 INFO  ~ Application '2waySMS' is now started !
+13:28:00,393 ERROR ~ 
+
+@6fdf3dm88
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 73)
+VerifyError occured : Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+
+play.exceptions.JavaExecutionException: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.VerifyError: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+13:28:30,537 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:28:30,541 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+13:28:31,084 WARN  ~ You're running Play! in DEV mode
+13:28:31,157 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:28:37,691 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+13:28:37,933 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:28:38,580 INFO  ~ Application '2waySMS' is now started !
+13:28:39,569 ERROR ~ 
+
+@6fdf3g17b
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 73)
+VerifyError occured : Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+
+play.exceptions.JavaExecutionException: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.VerifyError: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+13:29:00,627 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:29:00,632 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+13:29:01,134 WARN  ~ You're running Play! in DEV mode
+13:29:01,203 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:29:08,658 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+13:29:08,886 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:29:09,501 INFO  ~ Application '2waySMS' is now started !
+13:29:15,190 ERROR ~ 
+
+@6fdf3i2pd
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 73)
+VerifyError occured : Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+
+play.exceptions.JavaExecutionException: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.VerifyError: Expecting a stack map frame in method controllers.Secure$Security.authentify(Ljava/lang/String;Ljava/lang/String;)Z at offset 33
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+13:30:12,915 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+13:30:12,918 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+13:30:13,426 WARN  ~ You're running Play! in DEV mode
+13:30:13,493 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+13:30:27,717 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+13:30:27,976 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+13:30:28,568 INFO  ~ Application '2waySMS' is now started !
+13:32:00,850 DEBUG ~ User is ab@mkto.com
+13:32:00,850 DEBUG ~ received phone query for (212) 609-2574
+13:32:00,931 DEBUG ~ phoneQuery returns :{"id":"123","originalNum":"(212) 609-2574","format":"International","formattedNum":"+1 212-609-2574","type":"FIXED_LINE_OR_MOBILE","country":"United States","countryIso2":"US","city":"New York","state":"NY"}
+14:09:10,675 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:10:36,086 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+14:33:48,192 DEBUG ~ email:rrajamani@marketo.com; Pass:abcd
+14:33:57,426 DEBUG ~ email:rrajamani@marketo.com; Pass:123
+14:34:08,514 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:35:08,603 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:36:08,697 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:37:08,788 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:38:08,878 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:39:08,968 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:40:09,070 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:41:09,153 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:42:09,246 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:43:09,336 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:44:09,431 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:45:09,497 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:46:09,583 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:47:09,656 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:48:09,733 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:49:09,804 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:50:09,877 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:51:09,953 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:52:10,042 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:53:10,129 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:54:10,198 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:55:10,277 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:56:10,349 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:57:10,448 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:57:58,411 DEBUG ~ email:raj.rajamani@gmail.com; Pass:gm
+14:58:44,569 DEBUG ~ email:null; Pass:null
+14:59:05,543 DEBUG ~ email:null; Pass:null
+14:59:23,402 DEBUG ~ email:null; Pass:null
+14:59:24,208 DEBUG ~ email:null; Pass:null
+14:59:36,293 DEBUG ~ email:null; Pass:null
+15:00:36,421 DEBUG ~ email:null; Pass:null
+15:00:50,256 DEBUG ~ email:null; Pass:null
+15:00:51,412 DEBUG ~ email:null; Pass:null
+15:00:59,967 DEBUG ~ email:null; Pass:null
+15:01:00,617 DEBUG ~ email:null; Pass:null
+15:01:33,145 DEBUG ~ email:null; Pass:null
+15:02:33,236 DEBUG ~ email:null; Pass:null
+15:03:33,334 DEBUG ~ email:null; Pass:null
+15:04:33,426 DEBUG ~ email:null; Pass:null
+15:05:33,520 DEBUG ~ email:null; Pass:null
+15:06:33,593 DEBUG ~ email:null; Pass:null
+15:07:33,695 DEBUG ~ email:null; Pass:null
+15:08:33,818 DEBUG ~ email:null; Pass:null
+15:09:33,915 DEBUG ~ email:null; Pass:null
+15:10:34,011 DEBUG ~ email:null; Pass:null
+15:11:34,100 DEBUG ~ email:null; Pass:null
+15:12:34,193 DEBUG ~ email:null; Pass:null
+15:13:34,288 DEBUG ~ email:null; Pass:null
+15:14:34,382 DEBUG ~ email:null; Pass:null
+15:15:34,473 DEBUG ~ email:null; Pass:null
+15:16:34,566 DEBUG ~ email:null; Pass:null
+15:17:34,662 DEBUG ~ email:null; Pass:null
+15:18:34,760 DEBUG ~ email:null; Pass:null
+15:19:34,854 DEBUG ~ email:null; Pass:null
+15:20:34,936 DEBUG ~ email:null; Pass:null
+15:21:34,983 DEBUG ~ email:null; Pass:null
+15:22:35,068 DEBUG ~ email:null; Pass:null
+15:23:35,137 DEBUG ~ email:null; Pass:null
+15:24:35,205 DEBUG ~ email:null; Pass:null
+15:25:35,282 DEBUG ~ email:null; Pass:null
+15:26:35,380 DEBUG ~ email:null; Pass:null
+15:27:35,465 DEBUG ~ email:null; Pass:null
+15:28:35,547 DEBUG ~ email:null; Pass:null
+15:29:35,627 DEBUG ~ email:null; Pass:null
+15:30:35,719 DEBUG ~ email:null; Pass:null
+15:31:35,799 DEBUG ~ email:null; Pass:null
+15:32:35,869 DEBUG ~ email:null; Pass:null
+15:33:35,939 DEBUG ~ email:null; Pass:null
+15:34:36,026 DEBUG ~ email:null; Pass:null
+15:35:36,097 DEBUG ~ email:null; Pass:null
+15:36:36,202 DEBUG ~ email:null; Pass:null
+15:37:36,301 DEBUG ~ email:null; Pass:null
+15:38:36,393 DEBUG ~ email:null; Pass:null
+15:39:36,509 DEBUG ~ email:null; Pass:null
+15:40:36,607 DEBUG ~ email:null; Pass:null
+15:41:36,697 DEBUG ~ email:null; Pass:null
+15:49:14,717 DEBUG ~ email:null; Pass:null
+15:50:24,944 DEBUG ~ email:null; Pass:null
+15:51:25,140 DEBUG ~ email:null; Pass:null
+15:52:25,329 DEBUG ~ email:null; Pass:null
+15:53:25,518 DEBUG ~ email:null; Pass:null
+15:54:25,706 DEBUG ~ email:null; Pass:null
+15:54:44,735 DEBUG ~ email:null; Pass:null
+15:54:45,629 DEBUG ~ email:null; Pass:null
+15:55:37,829 DEBUG ~ email:null; Pass:null
+15:55:38,847 DEBUG ~ email:null; Pass:null
+15:55:56,924 DEBUG ~ email:null; Pass:null
+15:55:57,619 DEBUG ~ email:null; Pass:null
+15:57:06,334 DEBUG ~ email:null; Pass:null
+15:57:08,369 DEBUG ~ email:null; Pass:null
+15:57:16,665 DEBUG ~ email:null; Pass:null
+15:57:24,219 DEBUG ~ email:null; Pass:null
+15:57:32,358 DEBUG ~ email:null; Pass:null
+15:57:39,942 DEBUG ~ email:null; Pass:null
+15:59:47,565 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:06:16,656 DEBUG ~ email:null; Pass:null
+16:09:04,947 DEBUG ~ email:null; Pass:null
+16:10:00,926 DEBUG ~ email:null; Pass:null
+16:10:16,645 DEBUG ~ email:ab@mkto.com; Pass:123
+16:11:54,916 DEBUG ~ email:null; Pass:null
+16:12:08,300 DEBUG ~ email:null; Pass:null
+16:12:18,755 DEBUG ~ email:null; Pass:null
+16:13:05,385 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:13:05,390 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+16:13:05,904 WARN  ~ You're running Play! in DEV mode
+16:13:05,973 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:13:10,962 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+16:13:11,181 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:13:11,806 INFO  ~ Application '2waySMS' is now started !
+16:13:50,504 DEBUG ~ email:null; Pass:null
+16:14:00,280 DEBUG ~ email:ab@mkto.com; Pass:
+16:17:01,854 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:17:04,048 DEBUG ~ email:null; Pass:null
+16:17:04,603 ERROR ~ 
+
+@6fdfpiplg
+Internal Server Error (500) for request GET /registerUser
+
+Template not found (In /app/controllers/NonGatedApp.java around line 16)
+The template NonGatedApp/registerUser.html does not exist.
+
+play.exceptions.TemplateNotFoundException: Template not found : NonGatedApp/registerUser.html
+	at play.mvc.Controller.renderTemplate(Controller.java:668)
+	at play.mvc.Controller.renderTemplate(Controller.java:641)
+	at play.mvc.Controller.render(Controller.java:696)
+	at controllers.NonGatedApp.registerUser(NonGatedApp.java:16)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	at Invocation.HTTP Request(Play!)
+16:17:29,464 DEBUG ~ email:null; Pass:null
+16:17:29,539 ERROR ~ 
+
+@6fdfpiplj
+Internal Server Error (500) for request GET /registerUser
+
+No route found (In /app/views/NonGatedApp/registerUser.html around line 4)
+No route able to invoke action Application.registerUser was found.
+
+play.exceptions.NoRouteFoundException: No route found
+	at play.templates.BaseTemplate.throwException(BaseTemplate.java:82)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:257)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:202)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:24)
+	at play.mvc.Controller.renderTemplate(Controller.java:661)
+	at play.mvc.Controller.renderTemplate(Controller.java:641)
+	at play.mvc.Controller.render(Controller.java:696)
+	at controllers.NonGatedApp.registerUser(NonGatedApp.java:16)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	at Invocation.HTTP Request(Play!)
+16:17:44,915 DEBUG ~ email:null; Pass:null
+16:17:46,442 DEBUG ~ email:null; Pass:null
+16:18:10,890 DEBUG ~ email:null; Pass:null
+16:18:12,844 DEBUG ~ email:null; Pass:null
+16:18:18,449 DEBUG ~ email:ab@mkto.com; Pass:
+16:18:22,222 DEBUG ~ email:null; Pass:null
+16:25:49,656 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:25:49,659 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+16:25:50,169 WARN  ~ You're running Play! in DEV mode
+16:25:50,238 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:26:34,141 ERROR ~ Cannot connected to the database : Cannot change the setting "MVCC" when the database is already open; SQL statement:
+SET MVCC TRUE [90133-166]
+org.h2.jdbc.JdbcSQLException: Cannot change the setting "MVCC" when the database is already open; SQL statement:
+SET MVCC TRUE [90133-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.dml.Set.update(Set.java:286)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.engine.Engine.openSession(Engine.java:182)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:138)
+	at org.h2.engine.Engine.createSession(Engine.java:121)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:305)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:110)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:94)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:109)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+16:26:34,811 ERROR ~ 
+
+@6fdg0pb45
+Internal Server Error (500) for request GET /
+
+Database error
+A database error occured : Cannot connected to the database, Cannot change the setting "MVCC" when the database is already open; SQL statement: SET MVCC TRUE [90133-166]
+
+play.exceptions.DatabaseException: Cannot connected to the database, Cannot change the setting "MVCC" when the database is already open; SQL statement:
+SET MVCC TRUE [90133-166]
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:161)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:525)
+	at play.Play.start(Play.java:526)
+	at play.Play.detectChanges(Play.java:630)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.h2.jdbc.JdbcSQLException: Cannot change the setting "MVCC" when the database is already open; SQL statement:
+SET MVCC TRUE [90133-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.dml.Set.update(Set.java:286)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.engine.Engine.openSession(Engine.java:182)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:138)
+	at org.h2.engine.Engine.createSession(Engine.java:121)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:305)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:110)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:94)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:109)
+	... 5 more
+16:26:53,378 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:26:53,381 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+16:26:53,888 WARN  ~ You're running Play! in DEV mode
+16:26:53,955 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:26:59,899 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+16:27:00,123 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:27:00,730 INFO  ~ Application '2waySMS' is now started !
+16:27:08,905 DEBUG ~ mId:null; Pass:null
+16:27:09,084 ERROR ~ 
+
+@6fdg11ak0
+Internal Server Error (500) for request GET /registerUser
+
+Execution exception (In /app/controllers/NonGatedApp.java around line 17)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.libs.Crypto.passwordHash(Crypto.java:102)
+	at play.libs.Crypto.passwordHash(Crypto.java:89)
+	at controllers.NonGatedApp.registerUser(NonGatedApp.java:17)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:27:24,570 DEBUG ~ mId:null; Pass:null
+16:27:24,580 ERROR ~ 
+
+@6fdg11ak1
+Internal Server Error (500) for request GET /registerUser
+
+Execution exception (In /app/controllers/NonGatedApp.java around line 17)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.libs.Crypto.passwordHash(Crypto.java:102)
+	at play.libs.Crypto.passwordHash(Crypto.java:89)
+	at controllers.NonGatedApp.registerUser(NonGatedApp.java:17)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:27:57,660 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:28:08,277 DEBUG ~ mId:100-aek-913; Pass:123
+16:28:46,193 DEBUG ~ mId:100-aek-913; Pass:123
+16:32:26,558 DEBUG ~ mId:100-aek-913; Pass:123
+16:33:07,777 DEBUG ~ mId:100-aek-913; Pass:
+16:33:59,979 DEBUG ~ mId:; Pass:
+16:34:37,797 DEBUG ~ mId:100-aek-913; Pass:123
+16:34:57,410 DEBUG ~ mId:100-aek-913; Pass:123
+16:35:26,763 ERROR ~ 
+
+@6fdg11ak2
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:35:58,429 ERROR ~ 
+
+@6fdg11ak3
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:36:33,240 ERROR ~ 
+
+@6fdg11ak4
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:36:47,895 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:36:47,898 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+16:36:48,419 WARN  ~ You're running Play! in DEV mode
+16:36:48,486 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:36:57,586 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+16:36:57,925 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:36:58,515 INFO  ~ Application '2waySMS' is now started !
+16:36:59,656 ERROR ~ 
+
+@6fdg28p46
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:37:18,251 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:37:18,414 ERROR ~ 
+
+@6fdg28p47
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:37:33,334 DEBUG ~ mId:100-aek-913; Pass:123
+16:37:43,892 ERROR ~ 
+
+@6fdg28p48
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:38:38,126 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:38:38,359 ERROR ~ 
+
+@6fdg28p49
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:38:39,934 ERROR ~ 
+
+@6fdg28p4a
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:38:41,559 ERROR ~ 
+
+@6fdg28p4b
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:38:43,146 ERROR ~ 
+
+@6fdg28p4c
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:38:59,377 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:38:59,523 ERROR ~ 
+
+@6fdg28p4d
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:39:05,351 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:39:05,354 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+16:39:05,844 WARN  ~ You're running Play! in DEV mode
+16:39:05,912 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:39:14,581 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+16:39:14,809 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:39:15,459 INFO  ~ Application '2waySMS' is now started !
+16:39:16,525 ERROR ~ 
+
+@6fdg2gjje
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:41:25,132 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:41:25,315 ERROR ~ 
+
+@6fdg2gjjf
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:41:27,863 ERROR ~ 
+
+@6fdg2gjjg
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:41:42,509 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:41:42,512 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+16:41:43,028 WARN  ~ You're running Play! in DEV mode
+16:41:43,095 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:41:49,301 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+16:41:49,555 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:41:50,154 INFO  ~ Application '2waySMS' is now started !
+16:41:51,159 ERROR ~ 
+
+@6fdg2peec
+Internal Server Error (500) for request POST /login
+
+Execution exception (In {module:secure}/app/controllers/Secure.java around line 203)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:237)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at play.utils.Java.invokeStaticOrParent(Java.java:149)
+	at play.utils.Java.invokeChildOrStatic(Java.java:184)
+	at controllers.Secure$Security.invoke(Secure.java:203)
+	at controllers.Secure$Security.access$0(Secure.java:200)
+	at controllers.Secure.authenticate(Secure.java:73)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	... 1 more
+16:43:42,899 INFO  ~ Starting C:\Users\rrajamani\git\repos\2waySMS
+16:43:42,902 INFO  ~ Module secure is available (c:\play-1.2.5\modules\secure)
+16:43:43,405 WARN  ~ You're running Play! in DEV mode
+16:43:43,474 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+16:43:49,670 INFO  ~ Connected to jdbc:h2:~/db/h2/playProtected;MVCC=TRUE
+16:43:49,919 INFO  ~ JPA -> Adding package: com.marketo.mktows.wsdl
+16:43:50,502 INFO  ~ Application '2waySMS' is now started !
+16:44:08,755 DEBUG ~ mId:100-aek-913; Pass:234
+16:44:17,813 DEBUG ~ mId:100-aek-914; Pass:234

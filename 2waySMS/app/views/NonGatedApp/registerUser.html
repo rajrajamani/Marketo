@@ -1,0 +1,16 @@
+#{extends 'main.html' /} #{form @NonGatedApp.registerUser()}
+<input type="text" name="munchkinId" id="munchkinId"
+	placeholder="munchkinId" maxlength="50" size="25"
+	style="font-size: 30px" />
+<br />
+<input type="password" name="pw1" id="pw1" placeholder="Password"
+	maxlength="50" size="25" style="font-size: 30px" />
+<br />
+<input type="password" name="pw2" id="pw2"
+	placeholder="Re-enter Password" maxlength="50" size="25"
+	style="font-size: 30px" />
+<br />
+<input id="submit" type="submit" value="Register" />
+
+#{/form}
+

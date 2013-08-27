@@ -2,16 +2,26 @@
 		"http://www.w3.org/TR/2000/REC-xhtml1-200000126/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
-<meta http-equiv="refresh" content="60" >
+<link rel="stylesheet" type="text/css"
+	href="public/stylesheets/main.css">
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<script>
+jQuery(function(){ $("#submit").click(function(){
+$(".error").hide(); var hasError = false; var passwordVal =
+$("#pw1").val(); var checkVal = $("#pw2").val(); if
+(passwordVal == '') { $("#pw1").after('<span class="error">Please enter a password.</span>'); hasError = true; } else if (checkVal == '') {
+$("#pw2").after('<span class="error">Please re-enter your password.</span>'); hasError = true; } else if (passwordVal != checkVal ) {
+$("#pw2").after('<span class="error">Passwords do not match.</span>'); hasError = true; } if(hasError == true) {return false;} }); });
+</script>
 </head>
 <body id="bodyId" class="mktEditable facebook" align="center">
-	<div class="logo">
-		<h1>
-			<a href="http://www.marketo.com"><img
-				src="http://go.kokopop.com/rs/marketob2/images/logo_marketo_new.png" /></a>&nbsp;&nbsp;&nbsp;
-			Campaign Service
-		</h1>
+	<div id="top" class="logo"
+		style="width: 100%; height: 83px; color: white; font-size: 32px">
+		<a href="http://www.marketo.com"><img
+			style="vertical-align: middle;"
+			src="/public/images/marketo-logo-circle.png" /></a> Campaign Service
 	</div>
 
 	#{doLayout /}

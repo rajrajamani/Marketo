@@ -1,3 +1,8 @@
+#top {
+    background: #5a54a4;
+    font-family: 'Lucida grande', verdana, sans-serif;
+}
+
 table a:link {
 	color: #666;
 	font-weight: bold;

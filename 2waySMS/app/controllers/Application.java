@@ -21,6 +21,7 @@ import models.FormulaCampaign;
 import models.GoogleCampaign;
 import models.PhoneQuery;
 import models.SMSCampaign;
+import models.User;
 
 import org.apache.commons.io.FileUtils;
 
@@ -30,6 +31,7 @@ import play.mvc.Controller;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
 import play.mvc.Router;
+import play.mvc.With;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -44,6 +46,7 @@ import common.MarketoUtility;
 import common.RegionUtil;
 import common.TwilioUtility;
 
+@With(Secure.class)
 public class Application extends Controller {
 
 	private static final String String = null;
@@ -59,9 +62,8 @@ public class Application extends Controller {
 		}
 		renderText(allValues);
 	}
-
+	
 	public static void index(String url) {
-
 		if (url == null) {
 			render();
 		} else if (url.endsWith("sms_settings.html")) {
@@ -363,6 +365,10 @@ public class Application extends Controller {
 
 	public static void phoneQuery(String munchkinId, String leadId,
 			String phoneNum, String format) {
+		
+		String user = Security.connected();
+		Logger.debug("User is %s",user);
+		
 		if (munchkinId == null || leadId == null || phoneNum == null
 				|| munchkinId.equals("") || leadId.equals("")
 				|| phoneNum.equals("")) {

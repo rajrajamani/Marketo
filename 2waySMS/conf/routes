@@ -3,6 +3,10 @@
 # ~~~~
 
 # Home page
+GET 	/registerUser							NonGatedApp.registerUser
+
+*       /                                       module:secure
+
 GET     /                                       Application.index
 GET		/savedConfig							Application.savedConfig
 GET		/showConversionFiles					Application.showConversionFiles
@@ -21,3 +25,4 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+
