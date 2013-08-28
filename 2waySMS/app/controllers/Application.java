@@ -229,7 +229,7 @@ public class Application extends Controller {
 
 	public static void index(String url) {
 		String user = Security.connected();
-		String welcome = "Welcome to the Marketo Claps Service";
+		String welcome = "Welcome to the Marketo ClApps Service";
 		render(welcome);
 	}
 
