@@ -1,6 +1,18 @@
 package controllers;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import jobs.ProcessInboundMessage;
+
+import org.apache.commons.io.FileUtils;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -9,10 +21,13 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberType;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 import common.Constants;
+import common.MarketoUtility;
 import common.RegionUtil;
 
 import models.AddScores;
+import models.GoogleCampaign;
 import models.PhoneQuery;
+import models.SMSCampaign;
 import models.User;
 import play.Logger;
 import play.Play;
@@ -202,5 +217,132 @@ public class NonGatedApp extends Controller {
 		return retval;
 	}
 
-	
+	public static void smsCallback(String campaignId, String SmsSid,
+			String AccountSid, String From, String To, String Body,
+			String FromCountry) {
+		// look up application in database - if not present, ignore message
+		SMSCampaign sc = SMSCampaign.findById(Long.valueOf(campaignId));
+		if (sc == null) {
+			Logger.fatal("campaign[%s] does not exist", campaignId);
+			renderText("Sorry, we do not know anything about this campaign");
+		}
+		sc.numRecvd++;
+		sc.save();
+		Logger.debug(
+				"campaign [%s] received inbound sms from %s in country %s",
+				sc.id, From, FromCountry);
+		new ProcessInboundMessage(sc, AccountSid, From, Body, FromCountry)
+				.in(2);
+		renderHtml("I just received an SMS" + campaignId);
+	}
+
+	public static void addGCLID(String munchkinId, String leadId,
+			String action, String gclid, String convName, String convValue,
+			String convTime) {
+		// always write to the latest.csv file in the folder
+		String urlBase = Play.configuration.getProperty("mkto.googBaseDir");
+		String dirName = urlBase + munchkinId;
+		File dirFile = new File(dirName);
+		try {
+			Logger.debug("Trying to create directory : %s", dirName);
+			FileUtils.forceMkdir(dirFile);
+			String fileName = dirName + "/latest.csv";
+			Logger.debug("Checking if file : %s exists", fileName);
+			File latestFile = new File(fileName);
+			if (!latestFile.exists()) {
+				Logger.debug("About to create file : %s ", fileName);
+				createGoogleConversionFile(latestFile);
+			}
+			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+					.parse(convTime);
+			String newDateString = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a")
+					.format(date); // 9:00
+			String payload = "\n" + action + "," + gclid + "," + convName + ","
+					+ convValue + "," + newDateString;
+			Logger.debug("Writing %s to file : %s ", payload, fileName);
+			appendToFile(fileName, payload);
+			incrementCampaignCounter(munchkinId);
+		} catch (IOException e) {
+			Logger.fatal("Unable to create directory/write to file : %s",
+					e.getMessage());
+			e.printStackTrace();
+		} catch (ParseException e) {
+			Logger.fatal("Unable to parse date : %s", e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	private static void appendToFile(String fileName, String payload)
+			throws IOException {
+		FileWriter fileWriter = new FileWriter(fileName, true);
+		BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
+		bufferWriter.write(payload);
+		bufferWriter.close();
+	}
+
+	private static void createGoogleConversionFile(File file)
+			throws IOException {
+		String googFileHeader = Play.configuration
+				.getProperty("mkto.googFileHeader");
+		Logger.debug("Writing %s to file : %s ", googFileHeader, file.getPath());
+		FileUtils.writeStringToFile(file, googFileHeader);
+	}
+
+	private static void incrementCampaignCounter(String munchkinId) {
+		GoogleCampaign gc = getGoogleCampaignFromMunchkin(munchkinId);
+		gc.numEntries++;
+		gc.save();
+	}
+
+	protected static GoogleCampaign getGoogleCampaignFromUrl(String url) {
+		MarketoUtility mu = new MarketoUtility();
+		GoogleCampaign gc = null;
+		List<GoogleCampaign> gcExisting = GoogleCampaign.find(
+				"campaignURL = ?", url).fetch();
+
+		if (gcExisting.size() == 1) {
+			gc = gcExisting.get(0);
+			Logger.info("campaign[%d] was configured previously", gc.id);
+		} else {
+			gc = (GoogleCampaign) mu.readSettings(url, Constants.CAMPAIGN_GOOG);
+			GoogleCampaign ngc = getGoogleCampaignFromMunchkin(gc.munchkinId);
+			ngc.campaignURL = url;
+			ngc.save();
+		}
+		return gc;
+	}
+
+	protected static void processGoogleCampaign(String url) {
+		GoogleCampaign gc = getGoogleCampaignFromUrl(url);
+
+		/*
+		 * For Testing gc.munchkinAccountId = "1234"; gc.save();
+		 * 
+		 * addGCLID("1234", "idnum", "add", "hsd84jk", "marketo target", "null",
+		 * "2013-06-21 12:40:03");
+		 */
+
+		Application.showConversionFiles(gc.munchkinId);
+	}
+
+	private static GoogleCampaign getGoogleCampaignFromMunchkin(
+			String munchkinId) {
+		MarketoUtility mu = new MarketoUtility();
+		GoogleCampaign gc = null;
+		List<GoogleCampaign> gcExisting = GoogleCampaign.find("munchkinId = ?",
+				munchkinId).fetch();
+
+		if (gcExisting.size() == 1) {
+			gc = gcExisting.get(0);
+			Logger.info("campaign[%d] was configured previously", gc.id);
+		} else {
+			gc = new GoogleCampaign();
+			gc.munchkinId = munchkinId;
+			gc.numEntries = 0;
+			gc.save();
+		}
+		return gc;
+	}
+
+
 }
