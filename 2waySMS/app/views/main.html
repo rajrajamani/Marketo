@@ -4,27 +4,67 @@
 <head>
 <link rel="stylesheet" type="text/css"
 	href="public/stylesheets/main.css">
+
+	<link rel="stylesheet" href="public/stylesheets/normalize.css">
+		<link rel="stylesheet" href="public/stylesheets/foundation.css">
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
+
 
 	<script>
-jQuery(function(){ $("#submit").click(function(){
-$(".error").hide(); var hasError = false; var passwordVal =
-$("#pw1").val(); var checkVal = $("#pw2").val(); if
-(passwordVal == '') { $("#pw1").after('<span class="error">Please enter a password.</span>'); hasError = true; } else if (checkVal == '') {
-$("#pw2").after('<span class="error">Please re-enter your password.</span>'); hasError = true; } else if (passwordVal != checkVal ) {
-$("#pw2").after('<span class="error">Passwords do not match.</span>'); hasError = true; } if(hasError == true) {return false;} }); });
-</script>
+		jQuery(function() {
+			$("#submit")
+					.click(
+							function() {
+								$(".error").hide();
+								var hasError = false;
+								var passwordVal = $("#pw1").val();
+								var checkVal = $("#pw2").val();
+								if (passwordVal == '') {
+									$("#pw1")
+											.after(
+													'<span class="error">Please enter a password.</span>');
+									hasError = true;
+								} else if (checkVal == '') {
+									$("#pw2")
+											.after(
+													'<span class="error">Please re-enter your password.</span>');
+									hasError = true;
+								} else if (passwordVal != checkVal) {
+									$("#pw2")
+											.after(
+													'<span class="error">Passwords do not match.</span>');
+									hasError = true;
+								}
+								if (hasError == true) {
+									return false;
+								}
+							});
+		});
+
+		
+// 		var passhash = CryptoJS.MD5(password).toString();
+
+// 		$.post('/registerUser', {
+// 			username : username,
+// 			password : passhash
+// 		}, onLogin, 'json');
+		
+	</script>
 </head>
 <body id="bodyId" class="mktEditable facebook" align="center">
 	<div id="top" class="logo"
 		style="width: 100%; height: 83px; color: white; font-size: 32px">
 		<a href="http://www.marketo.com"><img
 			style="vertical-align: middle;"
-			src="/public/images/marketo-logo-circle.png" /></a> Campaign Service
+			src="/public/images/marketo-logo-circle.png" /></a> Claps (Cloud Apps)
 	</div>
 
 	#{doLayout /}
+
+
 
 </body>
 </html>

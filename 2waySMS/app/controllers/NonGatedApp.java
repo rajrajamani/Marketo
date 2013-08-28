@@ -9,10 +9,17 @@ import play.mvc.Controller;
 public class NonGatedApp extends Controller {
 
 	public static void registerUser(String munchkinId, String pw1, String pw2) {
-		if (munchkinId == null && pw1 == null && pw2 == null) {
-			render();
+		String currUser = Security.connected();
+		String placeholder = "";
+		if (currUser == null || "".equals(currUser)) {
+			placeholder = "Munchkin Id";
+		} else {
+			placeholder = currUser; 
 		}
-
+		if (munchkinId == null && pw1 == null && pw2 == null) {
+			render(placeholder);
+		} 
+		
 		Logger.debug("mId:%s; Pass:%s", munchkinId, pw1);
 		User user = User.find("byMunchkinId", munchkinId).first();
 		if (user != null) {
@@ -27,7 +34,8 @@ public class NonGatedApp extends Controller {
 			Application.index(null);
 		}
 
-		render();
+		//should never reach here
+		render(placeholder);
 	}
 
 }

@@ -72,11 +72,15 @@ public class MarketoUtility {
 					Logger.error("Unable to extract rules from json");
 					return null;
 				}
+				sc.munchkinAccountId = sc.munchkinAccountId == null ? null
+						: sc.munchkinAccountId.toLowerCase();
 				return sc;
 
 			case Constants.CAMPAIGN_GOOG:
 				gc = gson.fromJson(retVal, GoogleCampaign.class);
 				gc.munchkinId = StringEscapeUtils.unescapeHtml(gc.munchkinId);
+				gc.munchkinId = gc.munchkinId == null ? null
+						: gc.munchkinId.toLowerCase();
 				Logger.debug("Read values from settings file : munchkinId[%s]",
 						gc.munchkinId);
 				gc.campaignURL = targetUrl;
@@ -88,6 +92,8 @@ public class MarketoUtility {
 				fc.soapEncKey = StringEscapeUtils.unescapeHtml(fc.soapEncKey);
 				fc.munchkinAccountId = StringEscapeUtils
 						.unescapeHtml(fc.munchkinAccountId);
+				fc.munchkinAccountId = fc.munchkinAccountId == null ? null
+						: fc.munchkinAccountId.toLowerCase();
 				Logger.debug("Read values from settings file : munchkinId[%s]",
 						fc.munchkinAccountId);
 				fc.campaignURL = targetUrl;
@@ -264,7 +270,7 @@ public class MarketoUtility {
 			Lead newLead = new Lead();
 			newLead.munchkinId = munchkinAccountId;
 			newLead.leadId = item.getId();
-			newLead.email = item.getEmail();
+			// newLead.email = item.getEmail();
 			Logger.debug("processing lead with id : %d", newLead.leadId);
 
 			Map<String, Object> attrMap = null;

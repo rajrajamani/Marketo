@@ -1,0 +1,18 @@
+#{extends 'main.html' /} #{set title:'Blog Campaigns' /}
+#{upper-left-nav user:"${user}" /}
+<br>
+<div class="row">
+
+	<!-- Main Content Section -->
+	<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+	<div class="large-9 push-3 columns">
+
+	#{blog-side-nav /}
+	<p>Status comes here</p>
+	</div>
+			
+	#{nav user:"${user}" /} #{footer user:"${user}" /}
+
+</div>
+
+

@@ -1,6 +1,10 @@
-#{extends 'main.html' /} #{form @NonGatedApp.registerUser()}
+#{extends 'main.html' /} 
+
+<div class="row">
+<br><br>
+#{form @NonGatedApp.registerUser()}
 <input type="text" name="munchkinId" id="munchkinId"
-	placeholder="munchkinId" maxlength="50" size="25"
+	placeholder="${placeholder}" maxlength="50" size="25"
 	style="font-size: 30px" />
 <br />
 <input type="password" name="pw1" id="pw1" placeholder="Password"
@@ -14,3 +18,4 @@
 
 #{/form}
 
+</div>

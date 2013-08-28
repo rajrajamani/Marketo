@@ -8,14 +8,14 @@
 	<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
 	<div class="large-9 push-3 columns">
 
-<!-- 		<p> -->
-<!-- 			#{form @Application.index()} <input type="text" name="url" id="url" -->
-<!-- 				placeholder="URL of settings page." -->
-<!-- 				maxlength="200" size="100" style="font-size: 30px" /> <br /> <input -->
-<!-- 				type="submit" value="Submit" /> #{/form} -->
+		#{blog-side-nav user:"${user}" /}
+		<p>
+			#{form @Application.blogConfig()} <input type="text" name="url" id="url"
+				placeholder="URL of settings page."
+				maxlength="200" size="100" style="font-size: 30px" /> <br /> <input
+				type="submit" value="Submit" /> #{/form}
 
-<!-- 		</p> -->
-		<h1>${welcome}</h1>
+		</p>
 	</div>
 
 	#{nav user:"${user}" /}

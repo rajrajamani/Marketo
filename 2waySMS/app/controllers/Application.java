@@ -63,10 +63,11 @@ public class Application extends Controller {
 		renderText(allValues);
 	}
 	
-	public static void index(String url) {
+	public static void smsConfig(String url) {
+		String user = Security.connected();
 		if (url == null) {
-			render();
-		} else if (url.endsWith("sms_settings.html")) {
+			render(user);
+		} else  {
 			Logger.info("Looking up campaignURL %s", url);
 			// Check to see if this has been configured previously
 			List<SMSCampaign> msExisting = SMSCampaign.find(
@@ -80,7 +81,7 @@ public class Application extends Controller {
 				 * "This campaign has been configured previously for account :"
 				 * + ms.munchkinAccountId);
 				 */
-				savedConfig(Constants.CAMPAIGN_SMS, ms.id);
+				savedSmsConfig();
 			}
 
 			MarketoUtility mu = new MarketoUtility();
@@ -152,17 +153,7 @@ public class Application extends Controller {
 
 			// create Twilio application and save appId in database
 			try {
-				// Logger.info(
-				// "campaign[%d] - creating new SMS gateway application",
-				// sc.id, callBackurl);
-				// String appId =
-				// TwilioUtility.createApplication(sc.smsGatewayID,
-				// sc.smsGatewayPassword, "SMSSubscriber", callBackurl,
-				// "GET");
-				// sc.smsGatewayApplicationId = appId;
-				// Logger.info(
-				// "campaign[%d] - New SMS gateway application [%s] created successfully",
-				// sc.id, appId);
+
 				boolean setApp = TwilioUtility.setCallbackUrl(sc.smsGatewayID,
 						sc.smsGatewayPassword, callBackurl,
 						sc.smsGatewayPhoneNumber);
@@ -187,16 +178,45 @@ public class Application extends Controller {
 					sc.id);
 			new SyncListAndRunFirstCampaign(sc).in(2);
 
-			savedConfig(Constants.CAMPAIGN_SMS, sc.id);
-		} else if (url.endsWith("google_settings.html")) {
-			processGoogleCampaign(url);
-		} else if (url.endsWith("formula_settings.html")) {
-			processFormula(url);
-
-		} else {
-			renderHtml("Campaign url must be sms_settings.html"
-					+ " or google_settings.html" + " or formula_settings.html");
+			savedSmsConfig();
 		}
+	}
+	
+	public static void googleConfig(String url) {
+		String user = Security.connected();
+		if (url == null) {
+			render(user);
+		}  else {
+			processGoogleCampaign(url);
+		}
+	}
+
+	public static void formulaConfig(String url) {
+		String user = Security.connected();
+		if (url == null) {
+			render(user);
+		}  else {
+			processFormula(url);
+		}
+	}
+
+	public static void blogConfig(String url) {
+		String user = Security.connected();
+		if (url == null) {
+			render(user);
+		}  else {
+			blogThis(url);
+		}
+	}
+
+	private static void blogThis(java.lang.String url) {
+				
+	}
+
+	public static void index(String url) {
+		String user = Security.connected();
+		String welcome = "Welcome to the Marketo Claps Service";
+		render(welcome);
 	}
 
 	private static void processGoogleCampaign(String url) {
@@ -209,7 +229,7 @@ public class Application extends Controller {
 		 * "2013-06-21 12:40:03");
 		 */
 
-		showConversionFiles(Constants.CAMPAIGN_GOOG, gc);
+		showConversionFiles(gc.munchkinId);
 	}
 
 	private static GoogleCampaign getGoogleCampaignFromUrl(String url) {
@@ -265,47 +285,46 @@ public class Application extends Controller {
 				fc.id);
 		new SyncListAndExecFormula(fc).in(2);
 
-		execFormulaStatus(fc.id);
+		execFormulaStatus();
 	}
 
-	public static void showConversionFiles(int campaignGoog, GoogleCampaign gc) {
+	public static void showConversionFiles(String munchkinId) {
 		String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
 		String dirBase = Play.configuration.getProperty("mkto.googBaseDir");
-		String dirName = dirBase + gc.munchkinId;
+		String dirName = dirBase + munchkinId;
 		List<String> allConversionFiles = new ArrayList<String>();
 		File dirFile = new File(dirName);
 		File[] listOfFiles = dirFile.listFiles();
 		if (listOfFiles != null) {
 			for (File f : listOfFiles) {
-				String fqFileName = urlBase + "/public/google/" + gc.munchkinId
+				String fqFileName = urlBase + "/public/google/" + munchkinId
 						+ "/" + f.getName();
 				Logger.debug("File name is : %s", fqFileName);
 				allConversionFiles.add(fqFileName);
 			}
 		}
-		render(allConversionFiles);
+		String user = Security.connected();
+		render(user, allConversionFiles);
 	}
 
-	public static void savedConfig(int campaignType, Long campaignId) {
-		SMSCampaign sc = SMSCampaign.findById(campaignId);
-		List<SMSCampaign> allCampaigns = new ArrayList<SMSCampaign>();
-		if (sc != null) {
-			allCampaigns = SMSCampaign.find(
-					"munchkinAccountId = ? and status = ?",
-					sc.munchkinAccountId, Constants.CAMPAIGN_STATUS_ACTIVE)
-					.fetch();
-		}
-		render(allCampaigns);
+	public static void savedSmsConfig() {
+		String user = Security.connected();
+		List<SMSCampaign> allCampaigns = SMSCampaign.find(
+				"munchkinAccountId = ? and status = ?", user,
+				Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
+		render(user, allCampaigns);
 	}
 
-	public static void execFormulaStatus(Long campaignId) {
-		FormulaCampaign fc = FormulaCampaign.findById(campaignId);
-		List<FormulaCampaign> allCampaigns = new ArrayList<FormulaCampaign>();
-		if (fc != null) {
-			allCampaigns = FormulaCampaign.find("munchkinAccountId = ?",
-					fc.munchkinAccountId).fetch();
-		}
-		render(allCampaigns);
+	public static void execFormulaStatus() {
+		String user = Security.connected();
+		List<FormulaCampaign> allCampaigns = FormulaCampaign.find(
+				"munchkinAccountId = ?", user).fetch();
+		render(user, allCampaigns);
+	}
+
+	public static void blogStatus() {
+		String user = Security.connected();
+		render(user);
 	}
 
 	public static void smsCallback(String campaignId, String SmsSid,
@@ -365,10 +384,10 @@ public class Application extends Controller {
 
 	public static void phoneQuery(String munchkinId, String leadId,
 			String phoneNum, String format) {
-		
+
 		String user = Security.connected();
-		Logger.debug("User is %s",user);
-		
+		Logger.debug("User is %s", user);
+
 		if (munchkinId == null || leadId == null || phoneNum == null
 				|| munchkinId.equals("") || leadId.equals("")
 				|| phoneNum.equals("")) {
@@ -503,8 +522,9 @@ public class Application extends Controller {
 		String retval = "{\"id\":\"" + leadId + "\",\"originalNum\":\""
 				+ phoneNum + "\",\"format\":\"" + format
 				+ "\",\"formattedNum\":\"" + number + "\",\"type\":\"" + phType
-				+ "\",\"country\":\"" + country + "\",\"countryIso2\":\"" + countryIso2
-				+ "\",\"city\":\"" + city + "\",\"state\":\"" + state + "\"}";
+				+ "\",\"country\":\"" + country + "\",\"countryIso2\":\""
+				+ countryIso2 + "\",\"city\":\"" + city + "\",\"state\":\""
+				+ state + "\"}";
 		return retval;
 	}
 
