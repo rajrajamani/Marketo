@@ -235,7 +235,7 @@ public class Application extends Controller {
 	public static void showConversionFiles(String munchkinId) {
 		String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
 		String dirBase = Play.configuration.getProperty("mkto.googBaseDir");
-		String dirName = dirBase + munchkinId;
+		String dirName = dirBase + munchkinId.toUpperCase();
 		List<String> allConversionFiles = new ArrayList<String>();
 		File dirFile = new File(dirName);
 		File[] listOfFiles = dirFile.listFiles();
