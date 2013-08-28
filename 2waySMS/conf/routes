@@ -4,9 +4,11 @@
 
 # Home page
 GET 	/registerUser							NonGatedApp.registerUser
+*		/phoneQuery								NonGatedApp.phoneQuery
+*       /add									NonGatedApp.addScores
 
+#Everthing below this is password protected
 *       /                                       module:secure
-
 GET     /                                       Application.index
 GET		/smsConfig								Application.smsConfig
 GET		/savedSmsConfig							Application.savedSmsConfig
@@ -19,8 +21,6 @@ GET		/formulaConfig							Application.formulaConfig
 GET		/execFormulaStatus						Application.execFormulaStatus
 GET		/blogConfig								Application.blogConfig
 GET		/blogStatus								Application.blogStatus
-*		/phoneQuery								Application.phoneQuery
-*       /add									Application.addScores
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
