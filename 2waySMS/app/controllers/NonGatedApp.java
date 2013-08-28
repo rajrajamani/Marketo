@@ -241,7 +241,8 @@ public class NonGatedApp extends Controller {
 			String convTime) {
 		// always write to the latest.csv file in the folder
 		String urlBase = Play.configuration.getProperty("mkto.googBaseDir");
-		String dirName = urlBase + munchkinId;
+		//uppercase for backward compat
+		String dirName = urlBase + munchkinId.toUpperCase();
 		File dirFile = new File(dirName);
 		try {
 			Logger.debug("Trying to create directory : %s", dirName);
