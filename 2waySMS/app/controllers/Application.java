@@ -62,12 +62,12 @@ public class Application extends Controller {
 		}
 		renderText(allValues);
 	}
-	
+
 	public static void smsConfig(String url) {
 		String user = Security.connected();
 		if (url == null) {
 			render(user);
-		} else  {
+		} else {
 			Logger.info("Looking up campaignURL %s", url);
 			// Check to see if this has been configured previously
 			List<SMSCampaign> msExisting = SMSCampaign.find(
@@ -181,12 +181,12 @@ public class Application extends Controller {
 			savedSmsConfig();
 		}
 	}
-	
+
 	public static void googleConfig(String url) {
 		String user = Security.connected();
 		if (url == null) {
 			render(user);
-		}  else {
+		} else {
 			NonGatedApp.processGoogleCampaign(url);
 		}
 	}
@@ -195,7 +195,7 @@ public class Application extends Controller {
 		String user = Security.connected();
 		if (url == null) {
 			render(user);
-		}  else {
+		} else {
 			processFormula(url);
 		}
 	}
@@ -204,13 +204,13 @@ public class Application extends Controller {
 		String user = Security.connected();
 		if (url == null) {
 			render(user);
-		}  else {
+		} else {
 			blogThis(url);
 		}
 	}
 
 	private static void blogThis(java.lang.String url) {
-				
+
 	}
 
 	public static void index(String url) {
@@ -241,8 +241,8 @@ public class Application extends Controller {
 		File[] listOfFiles = dirFile.listFiles();
 		if (listOfFiles != null) {
 			for (File f : listOfFiles) {
-				String fqFileName = urlBase + "/public/google/" + munchkinId
-						+ "/" + f.getName();
+				String fqFileName = urlBase + "/public/google/"
+						+ munchkinId.toUpperCase() + "/" + f.getName();
 				Logger.debug("File name is : %s", fqFileName);
 				allConversionFiles.add(fqFileName);
 			}
