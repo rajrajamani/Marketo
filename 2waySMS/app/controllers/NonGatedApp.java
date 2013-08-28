@@ -48,18 +48,20 @@ public class NonGatedApp extends Controller {
 			render(placeholder);
 		}
 
+		if (munchkinId != null) {
+			munchkinId = munchkinId.trim();
+		}
 		Logger.debug("mId:%s; Pass:%s", munchkinId, pw1);
 		User user = User.find("byMunchkinId", munchkinId).first();
 		if (user != null) {
 			if (pw1 != null && user.password.equals(Crypto.passwordHash(pw1))) {
 				Application.index(null);
 			} else {
-				//Todo - ask for existing password and reset
+				// Todo - ask for existing password and reset
 				renderHtml("wrong password");
 			}
 		} else {
 			String encPw = Crypto.passwordHash(pw1);
-			munchkinId = munchkinId.trim();
 
 			User u1 = new User();
 			u1.munchkinId = munchkinId.toUpperCase();
@@ -242,7 +244,7 @@ public class NonGatedApp extends Controller {
 			String convTime) {
 		// always write to the latest.csv file in the folder
 		String urlBase = Play.configuration.getProperty("mkto.googBaseDir");
-		//uppercase for backward compat
+		// uppercase for backward compat
 		String dirName = urlBase + munchkinId.toUpperCase();
 		File dirFile = new File(dirName);
 		try {
@@ -332,6 +334,5 @@ public class NonGatedApp extends Controller {
 		}
 		return gc;
 	}
-
 
 }
