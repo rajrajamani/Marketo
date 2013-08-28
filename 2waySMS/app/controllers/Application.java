@@ -187,9 +187,23 @@ public class Application extends Controller {
 		if (url == null) {
 			render(user);
 		} else {
-			NonGatedApp.processGoogleCampaign(url);
+			processGoogleCampaign(url);
 		}
 	}
+
+	protected static void processGoogleCampaign(String url) {
+		GoogleCampaign gc = NonGatedApp.getGoogleCampaignFromUrl(url);
+
+		/*
+		 * For Testing gc.munchkinAccountId = "1234"; gc.save();
+		 * 
+		 * addGCLID("1234", "idnum", "add", "hsd84jk", "marketo target", "null",
+		 * "2013-06-21 12:40:03");
+		 */
+
+		Application.showConversionFiles();
+	}
+
 
 	public static void formulaConfig(String url) {
 		String user = Security.connected();
@@ -232,22 +246,22 @@ public class Application extends Controller {
 		execFormulaStatus();
 	}
 
-	public static void showConversionFiles(String munchkinId) {
+	public static void showConversionFiles() {
 		String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
 		String dirBase = Play.configuration.getProperty("mkto.googBaseDir");
-		String dirName = dirBase + munchkinId.toUpperCase();
+		String user = Security.connected();
+		String dirName = dirBase + user.toUpperCase();
 		List<String> allConversionFiles = new ArrayList<String>();
 		File dirFile = new File(dirName);
 		File[] listOfFiles = dirFile.listFiles();
 		if (listOfFiles != null) {
 			for (File f : listOfFiles) {
 				String fqFileName = urlBase + "/public/google/"
-						+ munchkinId.toUpperCase() + "/" + f.getName();
+						+ user.toUpperCase() + "/" + f.getName();
 				Logger.debug("File name is : %s", fqFileName);
 				allConversionFiles.add(fqFileName);
 			}
 		}
-		String user = Security.connected();
 		render(user, allConversionFiles);
 	}
 

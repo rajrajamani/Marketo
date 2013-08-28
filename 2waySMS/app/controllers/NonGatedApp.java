@@ -313,19 +313,6 @@ public class NonGatedApp extends Controller {
 		return gc;
 	}
 
-	protected static void processGoogleCampaign(String url) {
-		GoogleCampaign gc = getGoogleCampaignFromUrl(url);
-
-		/*
-		 * For Testing gc.munchkinAccountId = "1234"; gc.save();
-		 * 
-		 * addGCLID("1234", "idnum", "add", "hsd84jk", "marketo target", "null",
-		 * "2013-06-21 12:40:03");
-		 */
-
-		Application.showConversionFiles(gc.munchkinId);
-	}
-
 	private static GoogleCampaign getGoogleCampaignFromMunchkin(
 			String munchkinId) {
 		MarketoUtility mu = new MarketoUtility();
