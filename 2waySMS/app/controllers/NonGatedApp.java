@@ -59,9 +59,10 @@ public class NonGatedApp extends Controller {
 			}
 		} else {
 			String encPw = Crypto.passwordHash(pw1);
+			munchkinId = munchkinId.trim();
 
 			User u1 = new User();
-			u1.munchkinId = munchkinId.toLowerCase();
+			u1.munchkinId = munchkinId.toUpperCase();
 			u1.password = encPw;
 			u1.save();
 			Application.index(null);

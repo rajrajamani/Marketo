@@ -250,14 +250,14 @@ public class Application extends Controller {
 		String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
 		String dirBase = Play.configuration.getProperty("mkto.googBaseDir");
 		String user = Security.connected();
-		String dirName = dirBase + user.toUpperCase();
+		String dirName = dirBase + user;
 		List<String> allConversionFiles = new ArrayList<String>();
 		File dirFile = new File(dirName);
 		File[] listOfFiles = dirFile.listFiles();
 		if (listOfFiles != null) {
 			for (File f : listOfFiles) {
 				String fqFileName = urlBase + "/public/google/"
-						+ user.toUpperCase() + "/" + f.getName();
+						+ user + "/" + f.getName();
 				Logger.debug("File name is : %s", fqFileName);
 				allConversionFiles.add(fqFileName);
 			}
