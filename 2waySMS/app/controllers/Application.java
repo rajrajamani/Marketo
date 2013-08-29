@@ -1,49 +1,34 @@
 package controllers;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
-import jobs.ProcessInboundMessage;
 import jobs.SyncListAndExecFormula;
 import jobs.SyncListAndRunFirstCampaign;
-import models.AddScores;
+import models.BlogCampaign;
 import models.FormulaCampaign;
 import models.GoogleCampaign;
-import models.PhoneQuery;
 import models.SMSCampaign;
-import models.User;
-
-import org.apache.commons.io.FileUtils;
-
 import play.Logger;
 import play.Play;
+import play.data.validation.Match;
+import play.data.validation.Max;
+import play.data.validation.Min;
+import play.data.validation.Required;
+import play.data.validation.URL;
 import play.mvc.Controller;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
 import play.mvc.Router;
 import play.mvc.With;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
-import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberType;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
-import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 import com.marketo.mktows.wsdl.ResultSyncLead;
 import com.twilio.sdk.resource.list.AccountList;
 import common.Constants;
 import common.MarketoUtility;
-import common.RegionUtil;
 import common.TwilioUtility;
 
 @With(Secure.class)
@@ -204,7 +189,6 @@ public class Application extends Controller {
 		Application.showConversionFiles();
 	}
 
-
 	public static void formulaConfig(String url) {
 		String user = Security.connected();
 		if (url == null) {
@@ -214,16 +198,37 @@ public class Application extends Controller {
 		}
 	}
 
-	public static void blogConfig(String url) {
+	public static void blogConfig(
+			int init,
+			@URL @Required(message = "Must provide URL")  String url,
+			@Required(message = "Please pick the days on which you want to run this campaign") @Match(".*\\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\b") String days,
+			@Required(message = "Please pick the time when you wish to run the campaign") @Min(0) @Max(2359) String time,
+			@Required(message = "Which timezone are you running the campaign in?") String tz) {
+		if (init != 1 && validation.hasErrors()) {
+			String errMsg = "";
+			for (play.data.validation.Error error : validation.errors()) {
+				errMsg += error.message() + "<br/>";
+			}
+			renderHtml(errMsg);
+		}
+
 		String user = Security.connected();
 		if (url == null) {
 			render(user);
 		} else {
-			blogThis(url);
+			blogThis(url, days, time, tz);
 		}
 	}
 
-	private static void blogThis(java.lang.String url) {
+	private static void blogThis(String url, String days, String time, String tz) {
+		BlogCampaign bc = NonGatedApp.getBlogCampaignFromUrl(url);
+		bc.url = url;
+		bc.emailOnDays = days;
+		bc.emailAtTime = time;
+		bc.emailTZ = tz;
+		bc.status = Constants.CAMPAIGN_STATUS_ACTIVE;
+		bc.save();
+		Application.blogStatus();
 
 	}
 
@@ -256,8 +261,8 @@ public class Application extends Controller {
 		File[] listOfFiles = dirFile.listFiles();
 		if (listOfFiles != null) {
 			for (File f : listOfFiles) {
-				String fqFileName = urlBase + "/public/google/"
-						+ user + "/" + f.getName();
+				String fqFileName = urlBase + "/public/google/" + user + "/"
+						+ f.getName();
 				Logger.debug("File name is : %s", fqFileName);
 				allConversionFiles.add(fqFileName);
 			}

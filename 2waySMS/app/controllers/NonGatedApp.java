@@ -25,6 +25,7 @@ import common.MarketoUtility;
 import common.RegionUtil;
 
 import models.AddScores;
+import models.BlogCampaign;
 import models.GoogleCampaign;
 import models.PhoneQuery;
 import models.SMSCampaign;
@@ -333,6 +334,12 @@ public class NonGatedApp extends Controller {
 			gc.save();
 		}
 		return gc;
+	}
+
+	public static BlogCampaign getBlogCampaignFromUrl(java.lang.String url) {
+		MarketoUtility mu = new MarketoUtility();
+		BlogCampaign bc = (BlogCampaign) mu.readSettings(url, Constants.CAMPAIGN_BLOG);
+		return bc;
 	}
 
 }

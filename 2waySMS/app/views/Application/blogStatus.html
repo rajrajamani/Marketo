@@ -1,18 +1,10 @@
 #{extends 'main.html' /} #{set title:'Blog Campaigns' /}
-#{upper-left-nav user:"${user}" /}
-<br>
-<div class="row">
+#{top-new
+urlNew:"/blogConfig?init=1",urlResults:"/blogStatus"/}
 
-	<!-- Main Content Section -->
-	<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
-	<div class="large-9 push-3 columns">
+<p>Status comes here</p>
 
-	#{blog-side-nav /}
-	<p>Status comes here</p>
-	</div>
-			
-	#{nav user:"${user}" /} #{footer user:"${user}" /}
-
-</div>
-
+<script>
+	$(document).ready(function() {$("#blogdd").addClass("active");});
+</script>
 

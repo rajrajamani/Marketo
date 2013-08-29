@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import models.BlogCampaign;
 import models.FormulaCampaign;
 import models.GoogleCampaign;
 import models.Lead;
@@ -61,6 +62,7 @@ public class MarketoUtility {
 		SMSCampaign sc = null;
 		GoogleCampaign gc = null;
 		FormulaCampaign fc = null;
+		BlogCampaign bc = null;
 		try {
 			Gson gson = new GsonBuilder().create();
 			switch (campaignType) {
@@ -98,7 +100,19 @@ public class MarketoUtility {
 						fc.munchkinAccountId);
 				fc.campaignURL = targetUrl;
 				return fc;
-
+				
+			case Constants.CAMPAIGN_BLOG:
+				bc = gson.fromJson(retVal, BlogCampaign.class);
+				bc.soapUserId = StringEscapeUtils.unescapeHtml(bc.soapUserId);
+				bc.soapEncKey = StringEscapeUtils.unescapeHtml(bc.soapEncKey);
+				bc.munchkinAccountId = StringEscapeUtils
+						.unescapeHtml(bc.munchkinAccountId);
+				bc.munchkinAccountId = bc.munchkinAccountId == null ? null
+						: bc.munchkinAccountId.toUpperCase();
+				Logger.debug("Read values from settings file : munchkinId[%s]",
+						bc.munchkinAccountId);
+				bc.url = targetUrl;
+				return bc;
 			}
 
 		} catch (Exception e) {

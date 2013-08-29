@@ -1,21 +1,56 @@
 #{extends 'main.html' /} 
 
-<div class="row">
-<br><br>
 #{form @NonGatedApp.registerUser()}
 <input type="text" name="munchkinId" id="munchkinId"
 	placeholder="${placeholder}" maxlength="50" size="25"
-	style="font-size: 30px" />
+	style="font-size: 16px" />
 <br />
 <input type="password" name="pw1" id="pw1" placeholder="Password"
-	maxlength="50" size="25" style="font-size: 30px" />
+	maxlength="50" size="25" style="font-size: 16px" />
 <br />
 <input type="password" name="pw2" id="pw2"
 	placeholder="Re-enter Password" maxlength="50" size="25"
-	style="font-size: 30px" />
+	style="font-size: 16px" />
 <br />
 <input id="submit" type="submit" value="Register" />
 
 #{/form}
 
-</div>
+	<script>
+		jQuery(function() {
+			$("#submit")
+					.click(
+							function() {
+								$(".error").hide();
+								var hasError = false;
+								var munchVal = $("#munchkinId").val();
+								var passwordVal = $("#pw1").val();
+								var checkVal = $("#pw2").val();
+								if (munchVal == '') {
+									$("#munchkinId")
+											.after(
+													'<div class="alert-box alert">Please provide your munchkin Id</span>');
+									hasError = true;
+								} else if (passwordVal == '') {
+									$("#pw1")
+											.after(
+													'<div class="alert-box alert">Please enter a password.</span>');
+									hasError = true;
+								} else if (checkVal == '') {
+									$("#pw2")
+											.after(
+													'<div class="alert-box alert">Please re-enter your password.</span>');
+									hasError = true;
+								} else if (passwordVal != checkVal) {
+									$("#pw2")
+											.after(
+													'<div class="alert-box alert">Passwords do not match.</span>');
+									hasError = true;
+								}
+								if (hasError == true) {
+									return false;
+								}
+							});
+		});
+	</script>
+

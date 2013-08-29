@@ -1,25 +1,16 @@
-#{extends 'main.html' /}
+#{extends 'main.html' /} #{top-results
+urlNew:"/smsConfig",urlResults:"/savedSmsConfig"/}
 
-#{upper-left-nav user:"${user}" /}
+<!-- Main Content Section -->
+<p id="form">
+	#{form @Application.smsConfig()} <input type="text" name="url" id="url"
+		placeholder="URL of settings page." maxlength="200" size="100"
+		style="font-size: 16px" /> <br /> <input type="submit"
+		value="Submit" /> #{/form}
 
-<div class="row">
-
-	<!-- Main Content Section -->
-	<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
-	<div class="large-9 push-3 columns">
-
-		#{sms-side-nav user:"${user}" /}
-		<p>
-			#{form @Application.smsConfig()} <input type="text" name="url" id="url"
-				placeholder="URL of settings page."
-				maxlength="200" size="100" style="font-size: 30px" /> <br /> <input
-				type="submit" value="Submit" /> #{/form}
-
-		</p>
-	</div>
-
-	#{nav user:"${user}" /}
-	#{footer user:"${user}" /}
-</div>
+</p>
 
 
+<script>
+	$(document).ready(function() {$("#smsdd").addClass("active");});
+</script>

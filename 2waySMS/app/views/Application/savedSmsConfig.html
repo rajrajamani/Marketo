@@ -1,46 +1,34 @@
 #{extends 'main.html' /} #{set title:'SMS Campaigns' /}
-#{upper-left-nav user:"${user}" /}
-<br>
 
-<div class="row">
+#{top-new urlNew:"/smsConfig",urlResults:"/savedSmsConfig"/}
 
-	<!-- Main Content Section -->
-	<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
-	<div class="large-9 push-3 columns">
+<table class="center">
+	<thead>
+		<tr>
+			<th>Campaign Id</th>
+			<th>Campaign URL</th>
+			<th>Messages Sent</th>
+			<th>Messages Recvd</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
 
-		#{sms-side-nav user:"${user}" /}
+		%{ for (campaign in allCampaigns) { }%
+		<tr>
+			<td>${campaign.id}</td>
+			<td>${campaign.campaignURL}</td>
+			<td>${campaign.numSent}</td>
+			<td>${campaign.numRecvd}</td>
+			<td>${campaign.status} | <a
+				href="/cancelCampaign?id=${campaign.id}">Cancel</a></td>
+		</tr>
+		%{ } }%
 
-		<table class="center">
-			<thead>
-				<tr>
-					<th>Campaign Id</th>
-					<th>Campaign URL</th>
-					<th>Messages Sent</th>
-					<th>Messages Recvd</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>
+	</tbody>
+</table>
 
-				%{ for (campaign in allCampaigns) { }%
-				<tr>
-					<td>${campaign.id}</td>
-					<td>${campaign.campaignURL}</td>
-					<td>${campaign.numSent}</td>
-					<td>${campaign.numRecvd}</td>
-					<td>${campaign.status} | <a
-						href="/cancelCampaign?id=${campaign.id}">Cancel</a></td>
-				</tr>
-				%{ } }%
+<script>
+	$(document).ready(function() {$("#smsdd").addClass("active");});
+</script>
 
-			</tbody>
-		</table>
-
-
-	</div>
-
-	#{nav user:"${user}" /}
-	#{footer user:"${user}" /}
-</div>
-
-	

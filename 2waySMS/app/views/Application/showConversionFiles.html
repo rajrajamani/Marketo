@@ -1,31 +1,15 @@
 #{extends 'main.html' /} #{set title:'Conversion Files' /}
-#{upper-left-nav user:"${user}" /}
-<br>
-
-<div class="row">
-
-	<!-- Main Content Section -->
-	<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
-	<div class="large-9 push-3 columns">
-
-		<dl class="sub-nav">
-			<dt>Filter:</dt>
-			<dd class="active">
-				<a href="#">Results</a>
-			</dd>
-		</dl>
-
-		<ul class="side-nav left">
-			#{list items:allConversionFiles, as:'file' }
-			<li><a href="${file}" style="float: left">${file}</a><br></li>
-			#{/list}
-		</ul>
 
 
-	</div>
+<!-- Main Content Section -->
+<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
 
-	#{nav user:"${user}" /}
-	#{footer user:"${user}" /}
+<ul class="side-nav left">
+	#{list items:allConversionFiles, as:'file' }
+	<li><a href="${file}" style="float: left">${file}</a><br></li>
+	#{/list}
+</ul>
 
-</div>
-
+<script>
+	$(document).ready(function() {$("#googledd").addClass("active");});
+</script>

@@ -1,25 +1,38 @@
-#{extends 'main.html' /}
+#{extends 'main.html' /} 
+#{top-results
+urlNew:"/blogConfig",urlResults:"/blogStatus"/}
 
-#{upper-left-nav user:"${user}" /}
+<p>
 
+	#{form @Application.blogConfig()} <input type="text" name="url"
+		id="url" placeholder="URL of settings page." maxlength="200"
+		size="100" style="font-size: 16px" /> <br /> <input type="text"
+		name="days" id="days" placeholder="Mon, Wed, Fri" />
 <div class="row">
-
-	<!-- Main Content Section -->
-	<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
-	<div class="large-9 push-3 columns">
-
-		#{blog-side-nav user:"${user}" /}
-		<p>
-			#{form @Application.blogConfig()} <input type="text" name="url" id="url"
-				placeholder="URL of settings page."
-				maxlength="200" size="100" style="font-size: 30px" /> <br /> <input
-				type="submit" value="Submit" /> #{/form}
-
-		</p>
+	<div class="large-5 columns">
+		<input type="text" name="time" id="time"
+			placeholder="Time (in 24 hour format) - e.g, 1830" />
 	</div>
-
-	#{nav user:"${user}" /}
-	#{footer user:"${user}" /}
+	<div class="large-3 columns">
+		<select id="tz" name="tz">
+			<option value="PST">Pacific</option>
+			<option value="MST">Mountain</option>
+			<option value="CST">Central</option>
+			<option value="EST">East</option>
+		</select>
+	</div>
 </div>
 
+<script>
+	$('#datetime').datetimepicker();
+</script>
+<input type="submit" value="Submit" />
+</input>
+#{/form}
+</p>
+
+
+<script>
+	$(document).ready(function() {$("#blogdd").addClass("active");});
+</script>
 
