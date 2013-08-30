@@ -191,7 +191,7 @@ public class Application extends Controller {
 			map.put("campaignId", sc.id);
 			String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
 			String callBackurl = urlBase
-					+ Router.reverse("Application.smsCallback", map).url;
+					+ Router.reverse("NonGatedApp.smsCallback", map).url;
 			Logger.debug("campaign[%d] - callback URL is %s", sc.id,
 					callBackurl);
 
