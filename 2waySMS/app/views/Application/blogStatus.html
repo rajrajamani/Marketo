@@ -7,6 +7,7 @@ urlNew:"/blogConfig?init=1",urlResults:"/blogStatus"/}
 			<th>Campaign Id</th>
 			<th>Feed URL</th>
 			<th>Schedule</th>
+			<th>Status</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,7 +16,11 @@ urlNew:"/blogConfig?init=1",urlResults:"/blogStatus"/}
 		<tr>
 			<td>${campaign.id}</td>
 			<td>${campaign.blogUrl}</td>
-			<td>${campaign.emailOnDays} ${campaign.emailAtTime} ${campaign.emailTZ}</td>
+			<td>${campaign.emailOnDays} ${campaign.emailAtTime}
+				${campaign.emailTZ}</td>
+			<td>${campaign.status} | <a
+				href="/cancelCampaign?id=${campaign.id}&type=1004">Cancel</a></td>
+
 		</tr>
 		%{ } }%
 

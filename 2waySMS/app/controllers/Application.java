@@ -165,8 +165,8 @@ public class Application extends Controller {
 		bc.dateOfLastEmailedBlogPost = -1L;
 		bc.dateOfNextScheduledEmail = -1L;
 		bc.munchkinId = user.toUpperCase();
-		bc.userId = ((User) (User.find("munchkinId = ?", bc.munchkinId)
-				.fetch().get(0))).id;
+		bc.userId = ((User) (User.find("munchkinId = ?", bc.munchkinId).fetch()
+				.get(0))).id;
 		bc.save();
 		Application.blogStatus();
 
@@ -175,8 +175,8 @@ public class Application extends Controller {
 	public static void blogStatus() {
 		String user = Security.connected();
 		List<FormulaCampaign> allCampaigns = BlogCampaign.find(
-				"munchkinId = ? order by id desc", user.toUpperCase())
-				.fetch();
+				"munchkinId = ? and status = ? order by id desc",
+				user.toUpperCase(), "active").fetch();
 		render(user, allCampaigns);
 
 	}
@@ -382,16 +382,24 @@ public class Application extends Controller {
 		render(user, allCampaigns);
 	}
 
-	public static void cancelCampaign(String id) {
-		SMSCampaign sc = SMSCampaign.findById(Long.valueOf(id));
-		if (sc != null) {
-			Logger.info("About to cancel campaign [%s]", id);
+	public static void cancelCampaign(String id, int type) {
+
+		switch (type) {
+		case Constants.CAMPAIGN_SMS:
+			SMSCampaign sc = SMSCampaign.findById(Long.valueOf(id));
+			if (sc != null) {
+				Logger.info("About to cancel campaign [%s]", id);
+			}
+			sc.status = Constants.CAMPAIGN_STATUS_CANCELED;
+			sc.save();
+		case Constants.CAMPAIGN_BLOG:
+			BlogCampaign bc = BlogCampaign.findById(Long.valueOf(id));
+			if (bc != null) {
+				Logger.info("About to cancel campaign [%s]", id);
+			}
+			bc.status = Constants.CAMPAIGN_STATUS_CANCELED;
+			bc.save();
 		}
-		// TwilioUtility.deleteApplication(sc.smsGatewayID,
-		// sc.smsGatewayPassword,
-		// sc.smsGatewayApplicationId);
-		sc.status = Constants.CAMPAIGN_STATUS_CANCELED;
-		sc.save();
 		Logger.info("Canceled campaign [%s]", id);
 		renderHtml("Canceled campaign successfully");
 	}
