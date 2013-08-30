@@ -132,7 +132,13 @@ public class Application extends Controller {
 	public static void blogConfig(
 			int init,
 			@URL @Required(message = "Must provide URL") String url,
-			@Required(message = "Please pick the days on which you want to run this campaign") @Match(".*\\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\b") String days,
+			String mon,
+			String tue,
+			String wed,
+			String thu,
+			String fri,
+			String sat,
+			String sun,
 			@Required(message = "Please pick the time when you wish to run the campaign") @Min(0) @Max(2359) String time,
 			@Required(message = "Which timezone are you running the campaign in?") String tz) {
 		if (init != 1 && validation.hasErrors()) {
@@ -141,6 +147,34 @@ public class Application extends Controller {
 				errMsg += error.message() + "<br/>";
 			}
 			renderHtml(errMsg);
+		}
+		String days ="";
+		if ("Mon".equals(mon)) {
+			days = "Mon";
+		}
+
+		if ("Tue".equals(tue)) {
+			days += ",Tue";
+		}
+
+		if ("Wed".equals(wed)) {
+			days += ",Wed";
+		}
+
+		if ("Thu".equals(thu)) {
+			days += ",Thu";
+		}
+
+		if ("Fri".equals(fri)) {
+			days += ",Fri";
+		}
+
+		if ("Sat".equals(sat)) {
+			days += ",Sat";
+		}
+
+		if ("Sun".equals(sun)) {
+			days += ",Sun";
 		}
 
 		String user = Security.connected();

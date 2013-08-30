@@ -52,9 +52,16 @@ public class FetchActiveFeeds extends Job {
 			SyndEntry entry = (SyndEntry) feedIter.next();
 			if (counter == 0) {
 				latestPost = entry.getPublishedDate();
-				if (latestPost.getTime() <= bc.dateOfLastEmailedBlogPost) {
+				if (latestPost != null) {
+					if (latestPost.getTime() <= bc.dateOfLastEmailedBlogPost) {
+						Logger.debug(
+								"qItem[%d] - No new blog posts since last email",
+								qItem.id);
+						break;
+					}
+				} else {
 					Logger.debug(
-							"qItem[%d] - No new blog posts since last email",
+							"qItem[%d] - has no timestamp for individual posts",
 							qItem.id);
 					break;
 				}

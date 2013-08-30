@@ -5,8 +5,20 @@ urlNew:"/blogConfig",urlResults:"/blogStatus"/}
 
 	#{form @Application.blogConfig()} <input type="text" name="url"
 		id="url" placeholder="URL of settings page." maxlength="200"
-		size="100" style="font-size: 16px" /> <br /> <input type="text"
-		name="days" id="days" placeholder="Mon, Wed, Fri" />
+		size="100" style="font-size: 16px" />
+	<!-- 		<input type="text" -->
+	<!-- 		name="days" id="days" placeholder="Mon, Wed, Fri" /> -->
+<fieldset id="days">
+	<div class="eight columns">
+		<input type="checkbox" id="mon" name="mon" value="Mon">Mon <input
+			type="checkbox" id="tue" name="tue" value="Tue">Tue <input
+			type="checkbox" id="wed" name="wed" value="Wed">Wed <input
+			type="checkbox" id="thu" name="thu" value="Thu">Thu <input
+			type="checkbox" id="fri" vname="fri" value="Fri">Fri <input
+			type="checkbox" id="sat" name="sat" value="Sat">Sat <input
+			type="checkbox" id="sun" name="sun" value="Sun">Sun
+	</div>
+</fieldset>
 <div class="row">
 	<div class="five columns">
 		<input type="text" name="time" id="time"
@@ -35,7 +47,13 @@ urlNew:"/blogConfig",urlResults:"/blogStatus"/}
 							var hasError = false;
 
 							var urlVal = $("#url").val();
-							var daysVal = $("#days").val();
+							var monVal = $("#mon").is(':checked');
+							var tueVal = $("#tue").is(':checked');
+							var wedVal = $("#wed").is(':checked');
+							var thuVal = $("#thu").is(':checked');
+							var friVal = $("#fri").is(':checked');
+							var satVal = $("#sat").is(':checked');
+							var sunVal = $("#sun").is(':checked');
 							var timeVal = $("#time").val();
 
 							if (urlVal == '') {
@@ -43,7 +61,10 @@ urlNew:"/blogConfig",urlResults:"/blogStatus"/}
 										.after(
 												'<div class="alert-box alert">Please provide your Blog Digest Settings URL</span>');
 								hasError = true;
-							} else if (daysVal == '') {
+							} else if (monVal == false && tueVal == false
+									&& wedVal == false && thuVal == false
+									&& friVal == false && satVal == false
+									&& sunVal == false) {
 								$("#days")
 										.after(
 												'<div class="alert-box alert">Please enter the days you wish to send the digest</span>');
