@@ -95,7 +95,7 @@ public class MarketoUtility {
 				fc.munchkinAccountId = StringEscapeUtils
 						.unescapeHtml(fc.munchkinAccountId);
 				fc.munchkinAccountId = fc.munchkinAccountId == null ? null
-						: fc.munchkinAccountId.toLowerCase();
+						: fc.munchkinAccountId.toUpperCase();
 				Logger.debug("Read values from settings file : munchkinId[%s]",
 						fc.munchkinAccountId);
 				fc.campaignURL = targetUrl;
