@@ -107,11 +107,159 @@ public class Application extends Controller {
 		renderText(allValues);
 	}
 
-	public static void smsConfig(String url) {
+	public static void googleConfig(String url) {
 		String user = Security.connected();
 		if (url == null) {
 			render(user);
 		} else {
+			processGoogleCampaign(url);
+		}
+	}
+
+	protected static void processGoogleCampaign(String url) {
+		GoogleCampaign gc = NonGatedApp.getGoogleCampaignFromUrl(url);
+
+		/*
+		 * For Testing gc.munchkinAccountId = "1234"; gc.save();
+		 * 
+		 * addGCLID("1234", "idnum", "add", "hsd84jk", "marketo target", "null",
+		 * "2013-06-21 12:40:03");
+		 */
+
+		Application.showConversionFiles();
+	}
+
+	public static void blogConfig(
+			int init,
+			@URL @Required(message = "Must provide URL") String url,
+			@Required(message = "Please pick the days on which you want to run this campaign") @Match(".*\\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\b") String days,
+			@Required(message = "Please pick the time when you wish to run the campaign") @Min(0) @Max(2359) String time,
+			@Required(message = "Which timezone are you running the campaign in?") String tz) {
+		if (init != 1 && validation.hasErrors()) {
+			String errMsg = "";
+			for (play.data.validation.Error error : validation.errors()) {
+				errMsg += error.message() + "<br/>";
+			}
+			renderHtml(errMsg);
+		}
+
+		String user = Security.connected();
+		if (url == null) {
+			render(user);
+		} else {
+			blogThis(user, url, days, time, tz);
+		}
+	}
+
+	private static void blogThis(String user, String url, String days,
+			String time, String tz) {
+		BlogCampaign bc = NonGatedApp.getBlogCampaignFromUrl(url);
+		if (bc.blogUrl == null || "".equals(bc.blogUrl)) {
+			renderHtml("Invalid Settings URL");
+		}
+		bc.url = url;
+		bc.emailOnDays = days;
+		bc.emailAtTime = time;
+		bc.emailTZ = tz;
+		bc.status = Constants.CAMPAIGN_STATUS_ACTIVE;
+		bc.dateOfLastEmailedBlogPost = -1L;
+		bc.dateOfNextScheduledEmail = -1L;
+		bc.munchkinId = user.toUpperCase();
+		bc.userId = ((User) (User.find("munchkinId = ?", bc.munchkinId)
+				.fetch().get(0))).id;
+		bc.save();
+		Application.blogStatus();
+
+	}
+
+	public static void blogStatus() {
+		String user = Security.connected();
+		List<FormulaCampaign> allCampaigns = BlogCampaign.find(
+				"munchkinId = ? order by id desc", user.toUpperCase())
+				.fetch();
+		render(user, allCampaigns);
+
+	}
+
+	public static void index(String msg) {
+		String user = Security.connected();
+		if (msg == null || ("").equals(msg)) {
+			msg = "Welcome to the Marketo ClApps Service";
+		}
+		render(msg);
+	}
+
+	public static void formulaConfig(
+			@URL @Required(message = "Must provide URL") String url) {
+		String user = Security.connected();
+		if (url == null) {
+			render(user);
+		} else {
+			if (validation.hasErrors()) {
+				String errMsg = "";
+				for (play.data.validation.Error error : validation.errors()) {
+					errMsg += error.message() + "<br/>";
+				}
+				renderHtml(errMsg);
+			}
+
+			processFormula(url);
+		}
+	}
+
+	private static void processFormula(String url) {
+		MarketoUtility mu = new MarketoUtility();
+		FormulaCampaign fc = (FormulaCampaign) mu.readSettings(url,
+				Constants.CAMPAIGN_FORMULA);
+		fc.save();
+		Logger.info(
+				"campaign[%d] - Kicking off background task to fetch lead list",
+				fc.id);
+		new SyncListAndExecFormula(fc).in(2);
+
+		execFormulaStatus();
+	}
+
+	public static void execFormulaStatus() {
+		String user = Security.connected();
+		List<FormulaCampaign> allCampaigns = FormulaCampaign.find(
+				"munchkinAccountId = ? order by id desc", user.toUpperCase())
+				.fetch();
+		render(user, allCampaigns);
+	}
+
+	public static void showConversionFiles() {
+		String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
+		String dirBase = Play.configuration.getProperty("mkto.googBaseDir");
+		String user = Security.connected();
+		String dirName = dirBase + user;
+		List<String> allConversionFiles = new ArrayList<String>();
+		File dirFile = new File(dirName);
+		File[] listOfFiles = dirFile.listFiles();
+		if (listOfFiles != null) {
+			for (File f : listOfFiles) {
+				String fqFileName = urlBase + "/public/google/" + user + "/"
+						+ f.getName();
+				Logger.debug("File name is : %s", fqFileName);
+				allConversionFiles.add(fqFileName);
+			}
+		}
+		render(user, allConversionFiles);
+	}
+
+	public static void smsConfig(
+			@URL @Required(message = "Must provide URL") String url) {
+		String user = Security.connected();
+		if (url == null) {
+			render(user);
+		} else {
+			if (validation.hasErrors()) {
+				String errMsg = "";
+				for (play.data.validation.Error error : validation.errors()) {
+					errMsg += error.message() + "<br/>";
+				}
+				renderHtml(errMsg);
+			}
 			Logger.info("Looking up campaignURL %s", url);
 			// Check to see if this has been configured previously
 			List<SMSCampaign> msExisting = SMSCampaign.find(
@@ -181,7 +329,7 @@ public class Application extends Controller {
 						sc.smsGatewayID, sc.smsGatewayPassword);
 				renderText("Please setup the SMS gateway account and retry");
 			}
-
+			sc.munchkinAccountId = sc.munchkinAccountId.toUpperCase();
 			sc.status = Constants.CAMPAIGN_STATUS_ACTIVE;
 			sc.save();
 			Logger.debug("campaign[%d] has been saved", sc.id);
@@ -226,129 +374,12 @@ public class Application extends Controller {
 		}
 	}
 
-	public static void googleConfig(String url) {
-		String user = Security.connected();
-		if (url == null) {
-			render(user);
-		} else {
-			processGoogleCampaign(url);
-		}
-	}
-
-	protected static void processGoogleCampaign(String url) {
-		GoogleCampaign gc = NonGatedApp.getGoogleCampaignFromUrl(url);
-
-		/*
-		 * For Testing gc.munchkinAccountId = "1234"; gc.save();
-		 * 
-		 * addGCLID("1234", "idnum", "add", "hsd84jk", "marketo target", "null",
-		 * "2013-06-21 12:40:03");
-		 */
-
-		Application.showConversionFiles();
-	}
-
-	public static void formulaConfig(String url) {
-		String user = Security.connected();
-		if (url == null) {
-			render(user);
-		} else {
-			processFormula(url);
-		}
-	}
-
-	public static void blogConfig(
-			int init,
-			@URL @Required(message = "Must provide URL") String url,
-			@Required(message = "Please pick the days on which you want to run this campaign") @Match(".*\\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\b") String days,
-			@Required(message = "Please pick the time when you wish to run the campaign") @Min(0) @Max(2359) String time,
-			@Required(message = "Which timezone are you running the campaign in?") String tz) {
-		if (init != 1 && validation.hasErrors()) {
-			String errMsg = "";
-			for (play.data.validation.Error error : validation.errors()) {
-				errMsg += error.message() + "<br/>";
-			}
-			renderHtml(errMsg);
-		}
-
-		String user = Security.connected();
-		if (url == null) {
-			render(user);
-		} else {
-			blogThis(url, days, time, tz);
-		}
-	}
-
-	private static void blogThis(String url, String days, String time, String tz) {
-		BlogCampaign bc = NonGatedApp.getBlogCampaignFromUrl(url);
-		bc.url = url;
-		bc.emailOnDays = days;
-		bc.emailAtTime = time;
-		bc.emailTZ = tz;
-		bc.status = Constants.CAMPAIGN_STATUS_ACTIVE;
-		bc.save();
-		Application.blogStatus();
-
-	}
-
-	public static void index(String msg) {
-		String user = Security.connected();
-		if (msg==null || ("").equals(msg)) {
-			msg = "Welcome to the Marketo ClApps Service";
-		}
-		render(msg);
-	}
-
-	private static void processFormula(String url) {
-		MarketoUtility mu = new MarketoUtility();
-		FormulaCampaign fc = (FormulaCampaign) mu.readSettings(url,
-				Constants.CAMPAIGN_FORMULA);
-		fc.save();
-		Logger.info(
-				"campaign[%d] - Kicking off background task to fetch lead list",
-				fc.id);
-		new SyncListAndExecFormula(fc).in(2);
-
-		execFormulaStatus();
-	}
-
-	public static void showConversionFiles() {
-		String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
-		String dirBase = Play.configuration.getProperty("mkto.googBaseDir");
-		String user = Security.connected();
-		String dirName = dirBase + user;
-		List<String> allConversionFiles = new ArrayList<String>();
-		File dirFile = new File(dirName);
-		File[] listOfFiles = dirFile.listFiles();
-		if (listOfFiles != null) {
-			for (File f : listOfFiles) {
-				String fqFileName = urlBase + "/public/google/" + user + "/"
-						+ f.getName();
-				Logger.debug("File name is : %s", fqFileName);
-				allConversionFiles.add(fqFileName);
-			}
-		}
-		render(user, allConversionFiles);
-	}
-
 	public static void savedSmsConfig() {
 		String user = Security.connected();
 		List<SMSCampaign> allCampaigns = SMSCampaign.find(
-				"munchkinAccountId = ? and status = ?", user,
-				Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
+				"munchkinAccountId = ? and status = ? order by id desc",
+				user.toUpperCase(), Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
 		render(user, allCampaigns);
-	}
-
-	public static void execFormulaStatus() {
-		String user = Security.connected();
-		List<FormulaCampaign> allCampaigns = FormulaCampaign.find(
-				"munchkinAccountId = ?", user).fetch();
-		render(user, allCampaigns);
-	}
-
-	public static void blogStatus() {
-		String user = Security.connected();
-		render(user);
 	}
 
 	public static void cancelCampaign(String id) {

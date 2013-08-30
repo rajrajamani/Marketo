@@ -1,10 +1,30 @@
-#{extends 'main.html' /} #{set title:'Blog Campaigns' /}
-#{top-new
+#{extends 'main.html' /} #{set title:'Blog Campaigns' /} #{top-new
 urlNew:"/blogConfig?init=1",urlResults:"/blogStatus"/}
 
-<p>Status comes here</p>
+<table class="center">
+	<thead>
+		<tr>
+			<th>Campaign Id</th>
+			<th>Feed URL</th>
+			<th>Schedule</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		%{ for (campaign in allCampaigns) { }%
+		<tr>
+			<td>${campaign.id}</td>
+			<td>${campaign.blogUrl}</td>
+			<td>${campaign.emailOnDays} ${campaign.emailAtTime} ${campaign.emailTZ}</td>
+		</tr>
+		%{ } }%
+
+	</tbody>
+</table>
 
 <script>
-	$(document).ready(function() {$("#blogdd").addClass("active");});
+	$(document).ready(function() {
+		$("#blogdd").addClass("active");
+	});
 </script>
 

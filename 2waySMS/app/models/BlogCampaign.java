@@ -1,7 +1,13 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -14,10 +20,9 @@ public class BlogCampaign extends Model {
 	public String url;
 	public String blogUrl; // provided by marketer - the blog feed
 	public int maxPosts;
-	public String munchkinAccountId; // from token
-	public String soapEncKey;
-	public String soapUserId;
-
+	public Long userId;
+	public String munchkinId;
+	
 	public String leadList;
 	public String programName;
 	public String campaignName;
@@ -27,9 +32,13 @@ public class BlogCampaign extends Model {
 	public String emailTZ;
 	
 	public String status;
-	public String dateOfLastEmailedBlogPost;
+	public Long dateOfLastEmailedBlogPost;
+	public Long dateOfNextScheduledEmail;
+	
 	public int numSent;
 	public int numRecvd;
 
+	@OneToMany (cascade=CascadeType.ALL, mappedBy="bc", fetch=FetchType.EAGER)
+	public List<FeedFetchQueue> queue = new ArrayList<FeedFetchQueue>();
 
 }

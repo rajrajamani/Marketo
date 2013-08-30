@@ -2,10 +2,16 @@ package common;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import models.BlogCampaign;
 import models.FormulaCampaign;
@@ -13,6 +19,7 @@ import models.GoogleCampaign;
 import models.Lead;
 import models.Rule;
 import models.SMSCampaign;
+import models.User;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
@@ -81,8 +88,8 @@ public class MarketoUtility {
 			case Constants.CAMPAIGN_GOOG:
 				gc = gson.fromJson(retVal, GoogleCampaign.class);
 				gc.munchkinId = StringEscapeUtils.unescapeHtml(gc.munchkinId);
-				gc.munchkinId = gc.munchkinId == null ? null
-						: gc.munchkinId.toLowerCase();
+				gc.munchkinId = gc.munchkinId == null ? null : gc.munchkinId
+						.toLowerCase();
 				Logger.debug("Read values from settings file : munchkinId[%s]",
 						gc.munchkinId);
 				gc.campaignURL = targetUrl;
@@ -100,17 +107,11 @@ public class MarketoUtility {
 						fc.munchkinAccountId);
 				fc.campaignURL = targetUrl;
 				return fc;
-				
+
 			case Constants.CAMPAIGN_BLOG:
 				bc = gson.fromJson(retVal, BlogCampaign.class);
-				bc.soapUserId = StringEscapeUtils.unescapeHtml(bc.soapUserId);
-				bc.soapEncKey = StringEscapeUtils.unescapeHtml(bc.soapEncKey);
-				bc.munchkinAccountId = StringEscapeUtils
-						.unescapeHtml(bc.munchkinAccountId);
-				bc.munchkinAccountId = bc.munchkinAccountId == null ? null
-						: bc.munchkinAccountId.toUpperCase();
-				Logger.debug("Read values from settings file : munchkinId[%s]",
-						bc.munchkinAccountId);
+				Logger.debug("Read values from settings file : blog URL[%s]",
+						bc.blogUrl);
 				bc.url = targetUrl;
 				return bc;
 			}
@@ -548,6 +549,54 @@ public class MarketoUtility {
 			Logger.error("campaign[%d] - Failed to add lead %d to campaign %s",
 					sc.id, leadId, campaignName);
 		}
+	}
+
+	public boolean scheduleCampaign(User user, Date dt, BlogCampaign bc,
+			String tokenName, String body) {
+		// Request that lead(s) be added to the campaign
+		List<Attrib> tokenList = new ArrayList<Attrib>();
+		Attrib token = null;
+		token = MktowsUtil.objectFactory.createAttrib();
+		// token.setName("my.outboundSMSText");
+		token.setName(tokenName);
+		token.setValue(body);
+		tokenList.add(token);
+
+		boolean success = false;
+		try {
+			MktowsClient client = makeSoapConnection(bc.id, user.suid,
+					user.skey, user.munchkinId);
+			Logger.debug("campaign[%d] - calling scheduleCampaign prog:%s"
+					+ " campaign:%s token:%s", bc.id, bc.programName,
+					bc.campaignName, token.getName());
+			GregorianCalendar cal = new GregorianCalendar();
+			cal.setTime(dt);
+			XMLGregorianCalendar runAt = DatatypeFactory.newInstance()
+					.newXMLGregorianCalendar(cal);
+
+			success = client.scheduleCampaign(bc.programName, bc.campaignName,
+					runAt, tokenList);
+		} catch (MktowsClientException e) {
+			Logger.error("campaign[%d] - Exception occurred: %s", bc.id,
+					e.getMessage());
+			return false;
+		} catch (MktServiceException e) {
+			Logger.error("campaign[%d] - Exception occurred: %s", bc.id,
+					e.getLongMessage());
+			return false;
+		} catch (DatatypeConfigurationException e) {
+			Logger.error("campaign[%d] - Exception occurred: %s", bc.id,
+					e.getMessage());
+			return false;
+		}
+		if (success) {
+			Logger.info("campaign[%d] - Campaign has been scheduled", bc.id,
+					bc.campaignName);
+		} else {
+			Logger.error("campaign[%d] - Failed to schedule campaign", bc.id,
+					bc.campaignName);
+		}
+		return true;
 	}
 
 	public boolean setLeadUnsubscribed(SMSCampaign sc, Integer leadId,

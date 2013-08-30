@@ -21,12 +21,50 @@ urlNew:"/blogConfig",urlResults:"/blogStatus"/}
 		</select>
 	</div>
 </div>
-<input type="submit" value="Submit" />
+<input type="submit" id="submit" value="Submit" />
 #{/form}
 </p>
 
 
 <script>
+	jQuery(function() {
+		$("#submit")
+				.click(
+						function() {
+							$(".alert-box").hide();
+							var hasError = false;
+
+							var urlVal = $("#url").val();
+							var daysVal = $("#days").val();
+							var timeVal = $("#time").val();
+
+							if (urlVal == '') {
+								$("#url")
+										.after(
+												'<div class="alert-box alert">Please provide your Blog Digest Settings URL</span>');
+								hasError = true;
+							} else if (daysVal == '') {
+								$("#days")
+										.after(
+												'<div class="alert-box alert">Please enter the days you wish to send the digest</span>');
+								hasError = true;
+							} else if (timeVal == '') {
+								$("#time")
+										.after(
+												'<div class="alert-box alert">Please enter the time you wish to send the digest</span>');
+								hasError = true;
+							} else if (timeVal > 2359 || timeVal < 0) {
+								$("#time")
+										.after(
+												'<div class="alert-box alert">Please enter a time between 0000 and 2359 hours</span>');
+								hasError = true;
+							}
+							if (hasError == true) {
+								return false;
+							}
+						});
+	});
+
 	$(document).ready(function() {
 		$("#blogdd").addClass("active");
 	});
