@@ -1,5 +1,6 @@
 package jobs;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +12,8 @@ import play.Logger;
 import play.jobs.Every;
 import play.jobs.Job;
 
+import com.marketo.mktows.client.MktowsUtil;
+import com.marketo.mktows.wsdl.Attrib;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import common.Constants;
@@ -45,6 +48,7 @@ public class FetchActiveFeeds extends Job {
 		SyndFeed feed = FeedReader.fetch(bc.blogUrl);
 		int counter = 0;
 		String contents = "";
+		String subject = "";
 		java.util.Date latestPost = null;
 
 		for (Iterator feedIter = feed.getEntries().iterator(); feedIter
@@ -57,14 +61,22 @@ public class FetchActiveFeeds extends Job {
 						Logger.debug(
 								"qItem[%d] - No new blog posts since last email",
 								qItem.id);
+						qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
+						qItem.save();
 						break;
 					}
+
+					subject = entry.getTitle();
 				} else {
 					Logger.debug(
 							"qItem[%d] - has no timestamp for individual posts",
 							qItem.id);
+					qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
+					qItem.save();
 					break;
 				}
+			} else if (counter == 1) {
+				subject += " + more";
 			}
 
 			String uri = entry.getUri();
@@ -91,7 +103,7 @@ public class FetchActiveFeeds extends Job {
 						bc.id);
 
 			} else {
-				emailSent = sendEmail(user, bc, contents);
+				emailSent = sendEmail(user, bc, subject, contents);
 			}
 		}
 
@@ -99,21 +111,45 @@ public class FetchActiveFeeds extends Job {
 			qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
 			qItem.save();
 
-			if (latestPost != null) {
-				bc.dateOfLastEmailedBlogPost = latestPost.getTime();
-			}
 			bc.dateOfNextScheduledEmail = -1L;
 			bc.save();
+
+			if (latestPost != null) {
+				bc.dateOfLastEmailedBlogPost = latestPost.getTime();
+
+				List<BlogCampaign> allOtherCampaigns = BlogCampaign.find(
+						"blogUrl = ? ", bc.blogUrl).fetch();
+				for (BlogCampaign obc: allOtherCampaigns) {
+					obc.dateOfLastEmailedBlogPost = bc.dateOfLastEmailedBlogPost;
+					Logger.debug("Campaign[%d] - setting lastBlogPostTS to [%s]",
+							obc.id, obc.dateOfLastEmailedBlogPost);
+					obc.save();
+				}
+			}
 		}
 
 	}
 
-	private boolean sendEmail(User user, BlogCampaign bc, String contents) {
+	private boolean sendEmail(User user, BlogCampaign bc, String subject,
+			String content) {
 		boolean retVal = false;
 		MarketoUtility mu = new MarketoUtility();
 		Date dt = new Date();
 		Logger.debug("About to schedule email");
-		retVal = mu.scheduleCampaign(user, dt, bc, "my.content", contents);
+
+		List<Attrib> tokenList = new ArrayList<Attrib>();
+
+		Attrib token1 = MktowsUtil.objectFactory.createAttrib();
+		token1.setName("my.subject");
+		token1.setValue(subject);
+		tokenList.add(token1);
+
+		Attrib token2 = MktowsUtil.objectFactory.createAttrib();
+		token2.setName("my.content");
+		token2.setValue(content);
+		tokenList.add(token2);
+
+		retVal = mu.scheduleCampaign(user, dt, bc, tokenList);
 		return retVal;
 	}
 

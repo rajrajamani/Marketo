@@ -552,23 +552,14 @@ public class MarketoUtility {
 	}
 
 	public boolean scheduleCampaign(User user, Date dt, BlogCampaign bc,
-			String tokenName, String body) {
+			List<Attrib> tokenList) {
 		// Request that lead(s) be added to the campaign
-		List<Attrib> tokenList = new ArrayList<Attrib>();
-		Attrib token = null;
-		token = MktowsUtil.objectFactory.createAttrib();
-		// token.setName("my.outboundSMSText");
-		token.setName(tokenName);
-		token.setValue(body);
-		tokenList.add(token);
-
 		boolean success = false;
 		try {
 			MktowsClient client = makeSoapConnection(bc.id, user.suid,
 					user.skey, user.munchkinId);
 			Logger.debug("campaign[%d] - calling scheduleCampaign prog:%s"
-					+ " campaign:%s token:%s", bc.id, bc.programName,
-					bc.campaignName, token.getName());
+					+ " campaign:%s ", bc.id, bc.programName, bc.campaignName);
 			GregorianCalendar cal = new GregorianCalendar();
 			cal.setTime(dt);
 			XMLGregorianCalendar runAt = DatatypeFactory.newInstance()

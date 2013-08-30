@@ -158,27 +158,45 @@ public class Application extends Controller {
 			}
 
 			if ("Tue".equals(tue)) {
-				days += ",Tue";
+				if (!"".equals(days)) {
+					days +=",";
+				}
+				days += "Tue";
 			}
 
 			if ("Wed".equals(wed)) {
-				days += ",Wed";
+				if (!"".equals(days)) {
+					days +=",";
+				}
+				days += "Wed";
 			}
 
 			if ("Thu".equals(thu)) {
-				days += ",Thu";
+				if (!"".equals(days)) {
+					days +=",";
+				}
+				days += "Thu";
 			}
 
 			if ("Fri".equals(fri)) {
-				days += ",Fri";
+				if (!"".equals(days)) {
+					days +=",";
+				}
+				days += "Fri";
 			}
 
 			if ("Sat".equals(sat)) {
-				days += ",Sat";
+				if (!"".equals(days)) {
+					days +=",";
+				}
+				days += "Sat";
 			}
 
 			if ("Sun".equals(sun)) {
-				days += ",Sun";
+				if (!"".equals(days)) {
+					days +=",";
+				}
+				days += "Sun";
 			}
 
 			blogThis(user, url, days, time, tz);
