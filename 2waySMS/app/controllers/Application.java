@@ -12,6 +12,7 @@ import models.BlogCampaign;
 import models.FormulaCampaign;
 import models.GoogleCampaign;
 import models.SMSCampaign;
+import models.User;
 import play.Logger;
 import play.Play;
 import play.data.validation.Match;
@@ -19,6 +20,7 @@ import play.data.validation.Max;
 import play.data.validation.Min;
 import play.data.validation.Required;
 import play.data.validation.URL;
+import play.libs.Crypto;
 import play.mvc.Controller;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
@@ -35,6 +37,63 @@ import common.TwilioUtility;
 public class Application extends Controller {
 
 	private static final String String = null;
+
+	public static void changePassword(String munchkinId, String cpw,
+			String pw1, String pw2, String suid, String skey) {
+		String currUser = Security.connected();
+		String placeholder = "";
+		if (currUser == null || "".equals(currUser)) {
+			placeholder = "Munchkin Id";
+		} else {
+			placeholder = currUser;
+		}
+		if (munchkinId == null && cpw == null && pw1 == null && pw2 == null) {
+			render(placeholder);
+		}
+
+		if (munchkinId != null) {
+			munchkinId = munchkinId.trim();
+		}
+		Logger.debug(
+				"Change Password - mId:%s; Curr:%s, New:%s; SOAP uid:%s, SOAP key:%s",
+				munchkinId, cpw, pw1, suid, skey);
+		User user = User.find("byMunchkinId", munchkinId).first();
+		if (user != null) {
+			if (cpw != null && !cpw.equals("")
+					&& user.password.equals(Crypto.passwordHash(cpw))) {
+
+				if (!"".equals(pw1)) {
+					// Update password now
+					String msg = "Saved New Password ";
+					user.password = Crypto.passwordHash(pw1);
+					if (suid != null && !suid.equals("")) {
+						user.suid = suid.trim();
+						msg += "and SOAP credentials";
+					}
+					if (skey != null && !skey.equals("")) {
+						user.skey = skey.trim();
+					}
+					user.save();
+					Application.index(msg);
+				} else if (!("").equals(suid)) {
+					user.suid = suid.trim();
+					if (skey != null && !skey.equals("")) {
+						user.skey = skey.trim();
+					}
+					user.save();
+					Application.index("Saved SOAP credentials");
+				}
+			} else {
+				// Todo - ask for existing password and reset
+				Application.index("wrong password");
+			}
+		} else {
+			Application.index("No such user - please logout and try again");
+		}
+
+		// should never reach here
+		render(placeholder);
+	}
 
 	public static void showHeaders() {
 		Request req = request.get();
@@ -200,7 +259,7 @@ public class Application extends Controller {
 
 	public static void blogConfig(
 			int init,
-			@URL @Required(message = "Must provide URL")  String url,
+			@URL @Required(message = "Must provide URL") String url,
 			@Required(message = "Please pick the days on which you want to run this campaign") @Match(".*\\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\b") String days,
 			@Required(message = "Please pick the time when you wish to run the campaign") @Min(0) @Max(2359) String time,
 			@Required(message = "Which timezone are you running the campaign in?") String tz) {
@@ -232,10 +291,12 @@ public class Application extends Controller {
 
 	}
 
-	public static void index(String url) {
+	public static void index(String msg) {
 		String user = Security.connected();
-		String welcome = "Welcome to the Marketo ClApps Service";
-		render(welcome);
+		if (msg == null || msg.equals("")) {
+			msg = "Welcome to the Marketo ClApps Service";
+		}
+		render(msg);
 	}
 
 	private static void processFormula(String url) {

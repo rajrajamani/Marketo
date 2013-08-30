@@ -1,5 +1,4 @@
-#{extends 'main.html' /} 
-#{top-results
+#{extends 'main.html' /} #{top-results
 urlNew:"/blogConfig",urlResults:"/blogStatus"/}
 
 <p>
@@ -9,11 +8,11 @@ urlNew:"/blogConfig",urlResults:"/blogStatus"/}
 		size="100" style="font-size: 16px" /> <br /> <input type="text"
 		name="days" id="days" placeholder="Mon, Wed, Fri" />
 <div class="row">
-	<div class="large-5 columns">
+	<div class="five columns">
 		<input type="text" name="time" id="time"
 			placeholder="Time (in 24 hour format) - e.g, 1830" />
 	</div>
-	<div class="large-3 columns">
+	<div class="two columns pull-five">
 		<select id="tz" name="tz">
 			<option value="PST">Pacific</option>
 			<option value="MST">Mountain</option>
@@ -22,17 +21,14 @@ urlNew:"/blogConfig",urlResults:"/blogStatus"/}
 		</select>
 	</div>
 </div>
-
-<script>
-	$('#datetime').datetimepicker();
-</script>
 <input type="submit" value="Submit" />
-</input>
 #{/form}
 </p>
 
 
 <script>
-	$(document).ready(function() {$("#blogdd").addClass("active");});
+	$(document).ready(function() {
+		$("#blogdd").addClass("active");
+	});
 </script>
 

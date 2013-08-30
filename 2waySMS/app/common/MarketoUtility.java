@@ -75,7 +75,7 @@ public class MarketoUtility {
 					return null;
 				}
 				sc.munchkinAccountId = sc.munchkinAccountId == null ? null
-						: sc.munchkinAccountId.toLowerCase();
+						: sc.munchkinAccountId.toUpperCase();
 				return sc;
 
 			case Constants.CAMPAIGN_GOOG:
