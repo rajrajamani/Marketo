@@ -55,12 +55,7 @@ public class NonGatedApp extends Controller {
 		Logger.debug("mId:%s; Pass:%s", munchkinId, pw1);
 		User user = User.find("byMunchkinId", munchkinId).first();
 		if (user != null) {
-			if (pw1 != null && user.password.equals(Crypto.passwordHash(pw1))) {
-				Application.index(null);
-			} else {
-				// Todo - ask for existing password and reset
-				renderHtml("wrong password");
-			}
+			renderHtml("User already exists");
 		} else {
 			String encPw = Crypto.passwordHash(pw1);
 
@@ -68,7 +63,7 @@ public class NonGatedApp extends Controller {
 			u1.munchkinId = munchkinId.toUpperCase();
 			u1.password = encPw;
 			u1.save();
-			Application.index(null);
+			Application.index("Welcome " + u1.munchkinId);
 		}
 
 		// should never reach here

@@ -2,7 +2,4 @@
 # For example, for French create a messages.fr file
 #
 
-secure.title=Marketo ClApps Service
-secure.username=MunchkinId:
-secure.password=Password:
 secure.signin=Login

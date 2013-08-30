@@ -1,40 +1,59 @@
-#{extends 'Secure/layout.html' /}
+<head>
+<meta name="viewport" content="width=device-width" />
+<title>Marketo Cloud Apps</title>
 
-<div id="login">
-	
-	<h1>&{'secure.title'}</h1>
-		
-	#{form @authenticate()}
-		
-		#{if flash.error}
-			<p class="error">
-				&{flash.error}
-			</p>
+<!-- Included CSS Files (Uncompressed) -->
+<!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+
+<!-- Included CSS Files (Compressed) -->
+<link rel="stylesheet" href="/public/stylesheets/foundation.min.css">
+<link rel="stylesheet" href="/public/stylesheets/app.css">
+<link rel="stylesheet" type="text/css"
+	href="/public/stylesheets/main.css" />
+
+<script src="/public/javascripts/modernizr.foundation.js"></script>
+</head>
+<body>
+	<div class="row">
+		<div id="top" class="eight columns centered"
+			style="width: 100%; height: 83px; color: white; font-size: 32px">
+			<a href="http://www.marketo.com"><img
+				style="vertical-align: middle;"
+				src="/public/images/marketo-logo-circle.png" /></a> 
+		</div>
+	</div>
+
+
+	<div id="login" class="row">
+
+		<h1>&{'secure.title'}</h1>
+
+		#{form @authenticate()} #{if flash.error}
+		<div class="alert-box alert">&{flash.error}</div>
+		#{/if} #{if flash.success}
+		<div class="alert-box success">&{flash.success}</div>
 		#{/if}
-		#{if flash.success}
-			<p class="success">
-				&{flash.success}
-			</p>
-		#{/if}
-	
+
 		<p id="username-field">
-			<label for="username">&{'secure.username'}</label>
-			<input type="text" name="username" id="username" value="${flash.username}" />
+			<input type="text"
+				name="username" id="username" placeholder="Munchkin Id" value="${flash.username}" />
 		</p>
 		<p id="password-field">
-			<label for="password">&{'secure.password'}</label>
-			<input type="password" name="password" id="password" value="" />
+			<label for="password">&{'secure.password'}</label> <input
+				type="password" name="password" id="password" placeholder="Munchkin Id" value="" />
 		</p>
 		<p id="remember-field">
-			<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-			<label for="remember">&{'secure.remember'}</label>
+			<input type="checkbox" name="remember" id="remember" value="true"
+				${flash.remember ? 'checked="true" ' : ''} /> <label for="remember">&{'secure.remember'}</label>
 		</p>
 		<p id="signin-field">
-			<input type="submit" id="signin" value="&{'secure.signin'}" />
-			
-			<a href="/registerUser">Create New Account</a>
+			<input type="submit" id="signin" value="&{'secure.signin'}" /> <a
+				href="/registerUser">Create New Account</a>
 		</p>
-	#{/form}
-	
-	
-</div>
+		#{/form}
+
+
+	</div>
+</body>
