@@ -148,39 +148,39 @@ public class Application extends Controller {
 			}
 			renderHtml(errMsg);
 		}
-		String days ="";
-		if ("Mon".equals(mon)) {
-			days = "Mon";
-		}
-
-		if ("Tue".equals(tue)) {
-			days += ",Tue";
-		}
-
-		if ("Wed".equals(wed)) {
-			days += ",Wed";
-		}
-
-		if ("Thu".equals(thu)) {
-			days += ",Thu";
-		}
-
-		if ("Fri".equals(fri)) {
-			days += ",Fri";
-		}
-
-		if ("Sat".equals(sat)) {
-			days += ",Sat";
-		}
-
-		if ("Sun".equals(sun)) {
-			days += ",Sun";
-		}
-
 		String user = Security.connected();
 		if (url == null) {
 			render(user);
 		} else {
+			String days = "";
+			if ("Mon".equals(mon)) {
+				days = "Mon";
+			}
+
+			if ("Tue".equals(tue)) {
+				days += ",Tue";
+			}
+
+			if ("Wed".equals(wed)) {
+				days += ",Wed";
+			}
+
+			if ("Thu".equals(thu)) {
+				days += ",Thu";
+			}
+
+			if ("Fri".equals(fri)) {
+				days += ",Fri";
+			}
+
+			if ("Sat".equals(sat)) {
+				days += ",Sat";
+			}
+
+			if ("Sun".equals(sun)) {
+				days += ",Sun";
+			}
+
 			blogThis(user, url, days, time, tz);
 		}
 	}

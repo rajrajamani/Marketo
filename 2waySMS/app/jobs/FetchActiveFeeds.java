@@ -25,7 +25,7 @@ public class FetchActiveFeeds extends Job {
 		Long currTime = TimeUtil.getCurrTime();
 		List<FeedFetchQueue> qItems = FeedFetchQueue.find("status =  ? ",
 				Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
-		Logger.debug("Following blog are in fetch queue");
+		Logger.debug("Following blogs are in fetch queue");
 		for (FeedFetchQueue qItem : qItems) {
 			BlogCampaign bc = qItem.bc;
 			if (bc.dateOfNextScheduledEmail < currTime) {
