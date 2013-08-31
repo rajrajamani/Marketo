@@ -28,6 +28,8 @@ public class AddToFetchQueue extends Job {
 			String dW = TimeUtil.dayOfWeek(blog.emailTZ);
 			Logger.debug("Checking for blogs on : %s", dW);
 			if (blog.emailOnDays.contains(dW)) {
+				Logger.debug("Blog[%d] - emailAt:%s tz:%s", blog.id,
+						blog.emailAtTime, blog.emailTZ);
 				Long blogAt = TimeUtil.getTime(blog.emailAtTime, blog.emailTZ);
 				Logger.debug("Blog[%d] at : %d, current Time: %d", blog.id,
 						blogAt, currTime);

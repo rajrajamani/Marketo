@@ -13,7 +13,8 @@ public class TimeUtil {
 		// System.out.println(getTime("0200","MST"));
 		// System.out.println(getTime("0300","CST"));
 		// System.out.println(getTime("0400","EST"));
-		System.out.println(dayOfWeek("EST"));
+		//System.out.println(dayOfWeek("EST"));
+		System.out.println(getTime("2334","EST"));
 	}
 
 	public static Long getCurrTime() {
