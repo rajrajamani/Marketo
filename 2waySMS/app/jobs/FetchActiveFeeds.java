@@ -120,7 +120,8 @@ public class FetchActiveFeeds extends Job {
 				bc.dateOfLastEmailedBlogPost = latestPost.getTime();
 
 				List<BlogCampaign> allOtherCampaigns = BlogCampaign.find(
-						"blogUrl = ? and status = ?", bc.blogUrl,
+						"blogUrl = ? and leadList = ? and status = ?",
+						bc.blogUrl, bc.leadList,
 						Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
 				for (BlogCampaign obc : allOtherCampaigns) {
 					obc.dateOfLastEmailedBlogPost = bc.dateOfLastEmailedBlogPost;

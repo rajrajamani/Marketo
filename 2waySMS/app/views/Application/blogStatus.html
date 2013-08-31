@@ -15,7 +15,7 @@ urlNew:"/blogConfig?init=1",urlResults:"/blogStatus"/}
 		%{ for (campaign in allCampaigns) { }%
 		<tr >
 			<td class="two">${campaign.id}</td>
-			<td class="two">${campaign.blogUrl}</td>
+			<td class="two">${campaign.blogUrl} <b>Send to: </b>${campaign.leadList}</td>
 			<td class="two">${campaign.emailOnDays} ${campaign.emailAtTime}
 				${campaign.emailTZ}</td>
 			<td class="two">${campaign.status} | <a
