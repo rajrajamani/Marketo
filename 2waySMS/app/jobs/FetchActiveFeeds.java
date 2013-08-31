@@ -90,7 +90,7 @@ public class FetchActiveFeeds extends Job {
 		}
 
 		boolean emailSent = false;
-		if ("".equals(contents)) {
+		if ("".equals(contents) || contents == null) {
 			Logger.debug("No items match the feed");
 		} else {
 			Logger.debug("Contents of qitem[%d] - %s", qItem.id, contents);
