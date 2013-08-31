@@ -32,11 +32,11 @@ public class FetchActiveFeeds extends Job {
 		for (FeedFetchQueue qItem : qItems) {
 			BlogCampaign bc = qItem.bc;
 			if (bc.dateOfNextScheduledEmail < currTime) {
-				Logger.debug("qItem [%d] url[%s] is ready for processing",
-						qItem.id, bc.blogUrl);
+//				Logger.debug("qItem [%d] url[%s] is ready for processing",
+//						qItem.id, bc.blogUrl);
 				fetchAndEmail(qItem, bc, currTime);
 			} else {
-				Logger.debug("qItem [%d] url[%s] is active later today",
+				Logger.debug("qItem [%d] url[%s] will be fetched later today",
 						qItem.id, bc.blogUrl);
 			}
 		}
@@ -61,8 +61,6 @@ public class FetchActiveFeeds extends Job {
 						Logger.debug(
 								"qItem[%d] - No new blog posts since last email",
 								qItem.id);
-						qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
-						qItem.save();
 						break;
 					}
 
@@ -71,8 +69,6 @@ public class FetchActiveFeeds extends Job {
 					Logger.debug(
 							"qItem[%d] - has no timestamp for individual posts",
 							qItem.id);
-					qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
-					qItem.save();
 					break;
 				}
 			} else if (counter == 1) {
@@ -101,18 +97,12 @@ public class FetchActiveFeeds extends Job {
 				Logger.debug(
 						"Campaign[%d] - Cannot proceed without SOAP creds",
 						bc.id);
-				qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
-				qItem.save();
-
 			} else {
 				emailSent = sendEmail(user, bc, subject, contents);
 			}
 		}
 
 		if (emailSent) {
-			qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
-			qItem.save();
-
 			bc.dateOfNextScheduledEmail = -1L;
 			bc.save();
 
@@ -132,7 +122,9 @@ public class FetchActiveFeeds extends Job {
 				}
 			}
 		}
-
+		
+		qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
+		qItem.save();
 	}
 
 	private boolean sendEmail(User user, BlogCampaign bc, String subject,
