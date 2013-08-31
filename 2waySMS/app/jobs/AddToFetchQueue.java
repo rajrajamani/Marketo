@@ -27,6 +27,7 @@ public class AddToFetchQueue extends Job {
 				Constants.CAMPAIGN_STATUS_ACTIVE, currTime).fetch();
 		Logger.debug("Following blog campaigns are active, but unscheduled today");
 		for (BlogCampaign blog : blogs) {
+			Logger.debug("Checking for blogs on :" + dW);
 			if (blog.emailOnDays.contains(dW)) {
 				Long blogAt = TimeUtil.getTime(blog.emailAtTime, blog.emailTZ);
 				if (blogAt > currTime && blogAt < currPlus3) {
