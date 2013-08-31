@@ -76,10 +76,10 @@ public class TestMktows {
 
 		TestMktows tester = new TestMktows();
 		// tester.testGetMultipleLeadsStaticList();
-		 tester.testGetLead();
+		 //tester.testGetLead();
 		// tester.testGetMultipleLeadsEmail();
 		// tester.testGetLeadActivity();
-		// tester.testGetLeadChanges();
+		 tester.testGetLeadChanges();
 		// tester.testGetMObjects();
 		// tester.testListMObjects();
 		// tester.testDescMObjects();
@@ -550,13 +550,13 @@ public class TestMktows {
 		Calendar cal = new GregorianCalendar(2010, Calendar.MAY, 1, 0, 0, 0);
 		Date oldestCreatedAt = cal.getTime();
 		List<ActivityType> filter = new ArrayList<ActivityType>();
-		filter.add(ActivityType.VISIT_WEBPAGE);
+		//filter.add(ActivityType.VISIT_WEBPAGE);
 		filter.add(ActivityType.FILL_OUT_FORM);
-		filter.add(ActivityType.OPEN_EMAIL);
-		filter.add(ActivityType.OPEN_SALES_EMAIL);
-		filter.add(ActivityType.CLICK_EMAIL);
-		filter.add(ActivityType.CLICK_SALES_EMAIL);
-		filter.add(ActivityType.NEW_LEAD);
+		//filter.add(ActivityType.OPEN_EMAIL);
+		//filter.add(ActivityType.OPEN_SALES_EMAIL);
+		//filter.add(ActivityType.CLICK_EMAIL);
+		//filter.add(ActivityType.CLICK_SALES_EMAIL);
+		//filter.add(ActivityType.NEW_LEAD);
 		List<LeadChangeRecord> leadChangeRecords = null;
 		try {
 			leadChangeRecords = this.client.getLeadChanges(100, null,
