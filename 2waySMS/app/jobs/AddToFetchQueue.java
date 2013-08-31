@@ -12,7 +12,7 @@ import common.Constants;
 import common.TimeUtil;
 
 //@Every("15mn")
-@Every("3mn")
+@Every("1mn")
 public class AddToFetchQueue extends Job {
 
 	public void doJob() {
