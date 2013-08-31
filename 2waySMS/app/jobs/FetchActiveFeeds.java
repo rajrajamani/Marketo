@@ -32,8 +32,8 @@ public class FetchActiveFeeds extends Job {
 		for (FeedFetchQueue qItem : qItems) {
 			BlogCampaign bc = qItem.bc;
 			if (bc.dateOfNextScheduledEmail < currTime) {
-//				Logger.debug("qItem [%d] url[%s] is ready for processing",
-//						qItem.id, bc.blogUrl);
+				Logger.debug("qItem [%d] url[%s] is ready for processing",
+						qItem.id, bc.blogUrl);
 				fetchAndEmail(qItem, bc, currTime);
 			} else {
 				Logger.debug("qItem [%d] url[%s] will be fetched later today",
