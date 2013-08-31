@@ -103,6 +103,7 @@ public class FetchActiveFeeds extends Job {
 		}
 
 		if (emailSent) {
+			Logger.debug("blog[%d] - Setting dateOfNext=-1 ", bc.id);
 			bc.dateOfNextScheduledEmail = -1L;
 			bc.save();
 
@@ -123,6 +124,7 @@ public class FetchActiveFeeds extends Job {
 			}
 		}
 		
+		Logger.debug("Setting qitem[%d] to completed", qItem.id);
 		qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
 		qItem.save();
 	}
