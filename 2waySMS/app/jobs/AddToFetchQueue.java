@@ -12,13 +12,13 @@ import common.Constants;
 import common.TimeUtil;
 
 //@Every("15mn")
-@Every("1mn")
+@Every("30s")
 public class AddToFetchQueue extends Job {
 
 	public void doJob() {
 		Logger.info("Checking to see if any feeds are to be fetched");
 		Long currTime = TimeUtil.getCurrTime();
-		Long currPlus3 = currTime + 3 * 60 * 1000;
+		Long currPlus1 = currTime + 1 * 60 * 1000;
 
 		List<BlogCampaign> blogs = BlogCampaign.find(
 				"status =  ? and dateofnextscheduledemail < ?",
@@ -29,9 +29,9 @@ public class AddToFetchQueue extends Job {
 			Logger.debug("Checking for blogs on : %s", dW);
 			if (blog.emailOnDays.contains(dW)) {
 				Long blogAt = TimeUtil.getTime(blog.emailAtTime, blog.emailTZ);
-				Logger.debug("Blog[%d] at : %ld, current Time: %ld", blog.id,
+				Logger.debug("Blog[%d] at : %d, current Time: %d", blog.id,
 						blogAt, currTime);
-				if (blogAt > currTime && blogAt < currPlus3) {
+				if ((blogAt > currTime) && (blogAt < currPlus1)) {
 					Logger.debug("blog [%d] url[%s] is active soon", blog.id,
 							blog.blogUrl);
 					insertIntoFetchQueue(blog, blogAt);
