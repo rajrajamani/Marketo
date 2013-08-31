@@ -29,7 +29,8 @@ public class AddToFetchQueue extends Job {
 			Logger.debug("Checking for blogs on : %s", dW);
 			if (blog.emailOnDays.contains(dW)) {
 				Long blogAt = TimeUtil.getTime(blog.emailAtTime, blog.emailTZ);
-				Logger.debug("Blog[%d] at : %ld, current Time: %ld", blogAt, currTime);
+				Logger.debug("Blog[%d] at : %ld, current Time: %ld", blog.id,
+						blogAt, currTime);
 				if (blogAt > currTime && blogAt < currPlus3) {
 					Logger.debug("blog [%d] url[%s] is active soon", blog.id,
 							blog.blogUrl);
