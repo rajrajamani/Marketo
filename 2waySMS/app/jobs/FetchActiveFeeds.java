@@ -101,6 +101,8 @@ public class FetchActiveFeeds extends Job {
 				Logger.debug(
 						"Campaign[%d] - Cannot proceed without SOAP creds",
 						bc.id);
+				qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
+				qItem.save();
 
 			} else {
 				emailSent = sendEmail(user, bc, subject, contents);
