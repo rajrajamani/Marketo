@@ -26,7 +26,7 @@ public class AddToFetchQueue extends Job {
 		Logger.debug("Following blog campaigns are active, but unscheduled today");
 		for (BlogCampaign blog : blogs) {
 			String dW = TimeUtil.dayOfWeek(blog.emailTZ);
-			Logger.debug("Checking for blogs on :" + dW);
+			Logger.debug("Checking for blogs on : %s", dW);
 			if (blog.emailOnDays.contains(dW)) {
 				Long blogAt = TimeUtil.getTime(blog.emailAtTime, blog.emailTZ);
 				if (blogAt > currTime && blogAt < currPlus3) {
