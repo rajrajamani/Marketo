@@ -9,11 +9,11 @@ import java.util.TimeZone;
 public class TimeUtil {
 
 	public static void main(String[] args) {
-		 System.out.println(getTime("1000","PST"));
+//		 System.out.println(getTime("1000","PST"));
 		// System.out.println(getTime("0200","MST"));
 		// System.out.println(getTime("0300","CST"));
 		// System.out.println(getTime("0400","EST"));
-		System.out.println(dayOfWeek());
+		System.out.println(dayOfWeek("EST"));
 	}
 
 	public static Long getCurrTime() {
@@ -51,8 +51,9 @@ public class TimeUtil {
 		return tz;
 	}
 
-	public static String dayOfWeek() {
-		Calendar cal = Calendar.getInstance();
+	public static String dayOfWeek(String tz) {
+		TimeZone tzz = TimeZone.getTimeZone(tz);
+		Calendar cal = Calendar.getInstance(tzz);
 		Date dt = new Date();
 		int day = cal.get(Calendar.DAY_OF_WEEK);
 		switch (day) {

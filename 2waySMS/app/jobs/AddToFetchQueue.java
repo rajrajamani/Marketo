@@ -20,13 +20,12 @@ public class AddToFetchQueue extends Job {
 		Long currTime = TimeUtil.getCurrTime();
 		Long currPlus3 = currTime + 3 * 60 * 1000;
 
-		String dW = TimeUtil.dayOfWeek();
-
 		List<BlogCampaign> blogs = BlogCampaign.find(
 				"status =  ? and dateofnextscheduledemail < ?",
 				Constants.CAMPAIGN_STATUS_ACTIVE, currTime).fetch();
 		Logger.debug("Following blog campaigns are active, but unscheduled today");
 		for (BlogCampaign blog : blogs) {
+			String dW = TimeUtil.dayOfWeek(blog.emailTZ);
 			Logger.debug("Checking for blogs on :" + dW);
 			if (blog.emailOnDays.contains(dW)) {
 				Long blogAt = TimeUtil.getTime(blog.emailAtTime, blog.emailTZ);
