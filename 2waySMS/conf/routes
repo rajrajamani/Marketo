@@ -14,6 +14,7 @@ GET 	/registerUser							NonGatedApp.registerUser
 *       /                                       module:secure
 GET     /                                       Application.index
 GET		/changePassword							Application.changePassword
+GET		/statusMessage							Application.statusMessage
 GET		/smsConfig								Application.smsConfig
 GET		/savedSmsConfig							Application.savedSmsConfig
 GET		/googleConfig							Application.googleConfig

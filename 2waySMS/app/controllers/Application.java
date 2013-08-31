@@ -38,6 +38,16 @@ public class Application extends Controller {
 
 	private static final String String = null;
 
+	public static void statusMessage(String msg, boolean isError) {
+		String type = "";
+		if (isError) {
+			type = "alert";
+		} else {
+			type = "success";
+		}
+		render(msg, type);
+	}
+
 	public static void changePassword(String munchkinId, String cpw,
 			String pw1, String pw2, String suid, String skey) {
 		String currUser = Security.connected();
@@ -74,21 +84,21 @@ public class Application extends Controller {
 						user.skey = skey.trim();
 					}
 					user.save();
-					Application.index(msg);
+					statusMessage(msg,false);
 				} else if (!("").equals(suid)) {
 					user.suid = suid.trim();
 					if (skey != null && !skey.equals("")) {
 						user.skey = skey.trim();
 					}
 					user.save();
-					Application.index("Saved SOAP credentials");
+					statusMessage("Saved SOAP credentials",false);
 				}
 			} else {
 				// Todo - ask for existing password and reset
-				Application.index("wrong password");
+				statusMessage("wrong password",true);
 			}
 		} else {
-			Application.index("No such user - please logout and try again");
+			statusMessage("No such user - please logout and try again",true);
 		}
 
 		// should never reach here
@@ -144,9 +154,9 @@ public class Application extends Controller {
 		if (init != 1 && validation.hasErrors()) {
 			String errMsg = "";
 			for (play.data.validation.Error error : validation.errors()) {
-				errMsg += error.message() + "<br/>";
+				errMsg += error.message() ;
 			}
-			renderHtml(errMsg);
+			statusMessage(errMsg,true);
 		}
 		String user = Security.connected();
 		if (url == null) {
@@ -159,42 +169,42 @@ public class Application extends Controller {
 
 			if ("Tue".equals(tue)) {
 				if (!"".equals(days)) {
-					days +=",";
+					days += ",";
 				}
 				days += "Tue";
 			}
 
 			if ("Wed".equals(wed)) {
 				if (!"".equals(days)) {
-					days +=",";
+					days += ",";
 				}
 				days += "Wed";
 			}
 
 			if ("Thu".equals(thu)) {
 				if (!"".equals(days)) {
-					days +=",";
+					days += ",";
 				}
 				days += "Thu";
 			}
 
 			if ("Fri".equals(fri)) {
 				if (!"".equals(days)) {
-					days +=",";
+					days += ",";
 				}
 				days += "Fri";
 			}
 
 			if ("Sat".equals(sat)) {
 				if (!"".equals(days)) {
-					days +=",";
+					days += ",";
 				}
 				days += "Sat";
 			}
 
 			if ("Sun".equals(sun)) {
 				if (!"".equals(days)) {
-					days +=",";
+					days += ",";
 				}
 				days += "Sun";
 			}
@@ -207,7 +217,7 @@ public class Application extends Controller {
 			String time, String tz) {
 		BlogCampaign bc = NonGatedApp.getBlogCampaignFromUrl(url);
 		if (bc.blogUrl == null || "".equals(bc.blogUrl)) {
-			renderHtml("Invalid Settings URL");
+			statusMessage("Invalid Settings URL",true);
 		}
 		bc.url = url;
 		bc.emailOnDays = days;
@@ -250,9 +260,9 @@ public class Application extends Controller {
 			if (validation.hasErrors()) {
 				String errMsg = "";
 				for (play.data.validation.Error error : validation.errors()) {
-					errMsg += error.message() + "<br/>";
+					errMsg += error.message() ;
 				}
-				renderHtml(errMsg);
+				statusMessage(errMsg,true);
 			}
 
 			processFormula(url);
@@ -308,9 +318,9 @@ public class Application extends Controller {
 			if (validation.hasErrors()) {
 				String errMsg = "";
 				for (play.data.validation.Error error : validation.errors()) {
-					errMsg += error.message() + "<br/>";
+					errMsg += error.message() ;
 				}
-				renderHtml(errMsg);
+				statusMessage(errMsg,true);
 			}
 			Logger.info("Looking up campaignURL %s", url);
 			// Check to see if this has been configured previously
@@ -412,7 +422,7 @@ public class Application extends Controller {
 				Logger.fatal(
 						"campaign[%d] - Could not create a new SMS gateway application [%s]",
 						sc.id, e.getMessage());
-				renderHtml("Exception while creating Twilio Application for SMS callback");
+				statusMessage("Exception while creating Twilio Application for SMS callback",true);
 			}
 
 			// kick off background thread to do read the list and run outgoing
@@ -453,7 +463,7 @@ public class Application extends Controller {
 			bc.save();
 		}
 		Logger.info("Canceled campaign [%s]", id);
-		renderHtml("Canceled campaign successfully");
+		statusMessage("Canceled campaign successfully",false);
 	}
 
 }

@@ -1,24 +1,24 @@
 #{extends 'main.html' /} #{set title:'Blog Campaigns' /} #{top-new
 urlNew:"/blogConfig?init=1",urlResults:"/blogStatus"/}
 
-<table class="center">
+<table class="center " style="width:100%">
 	<thead>
-		<tr>
-			<th>Campaign Id</th>
-			<th>Feed URL</th>
-			<th>Schedule</th>
-			<th>Status</th>
+		<tr >
+			<th class="two"> Id</th>
+			<th class="two">Feed URL</th>
+			<th class="two" >Schedule</th>
+			<th class="two">Status</th>
 		</tr>
 	</thead>
 	<tbody>
 
 		%{ for (campaign in allCampaigns) { }%
-		<tr>
-			<td>${campaign.id}</td>
-			<td>${campaign.blogUrl}</td>
-			<td>${campaign.emailOnDays} ${campaign.emailAtTime}
+		<tr >
+			<td class="two">${campaign.id}</td>
+			<td class="two">${campaign.blogUrl}</td>
+			<td class="two">${campaign.emailOnDays} ${campaign.emailAtTime}
 				${campaign.emailTZ}</td>
-			<td>${campaign.status} | <a
+			<td class="two">${campaign.status} | <a
 				href="/cancelCampaign?id=${campaign.id}&type=1004">Cancel</a></td>
 
 		</tr>
