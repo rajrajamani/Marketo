@@ -48,7 +48,7 @@ public class FetchActiveFeeds extends Job {
 		SyndFeed feed = FeedReader.fetch(bc.blogUrl);
 		int counter = 0;
 		String contents = "";
-		String subject = "";
+		String subject = bc.subject;
 		java.util.Date latestPost = null;
 
 		for (Iterator feedIter = feed.getEntries().iterator(); feedIter
