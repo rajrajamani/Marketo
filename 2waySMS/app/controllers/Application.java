@@ -224,7 +224,7 @@ public class Application extends Controller {
 		bc.emailAtTime = time;
 		bc.emailTZ = tz;
 		bc.status = Constants.CAMPAIGN_STATUS_ACTIVE;
-		bc.dateOfLastEmailedBlogPost = -1L;
+		bc.dateOfLastEmailedBlogPost = getLatestBlogTimestamp(bc);
 		bc.dateOfNextScheduledEmail = -1L;
 		bc.munchkinId = user.toUpperCase();
 		bc.userId = ((User) (User.find("munchkinId = ?", bc.munchkinId).fetch()
@@ -232,6 +232,21 @@ public class Application extends Controller {
 		bc.save();
 		Application.blogStatus();
 
+	}
+
+	private static Long getLatestBlogTimestamp(BlogCampaign bc) {
+		List<BlogCampaign> allOtherCampaigns = BlogCampaign.find(
+				"blogUrl = ? and leadList = ? and status = ? "
+						+ "order by dateOfLastEmailedBlogPost desc",
+				bc.blogUrl, bc.leadList, Constants.CAMPAIGN_STATUS_ACTIVE)
+				.fetch();
+		Long lastTS = -1L;
+		if (allOtherCampaigns != null) {
+			BlogCampaign obc = allOtherCampaigns.get(0);
+			lastTS = obc.dateOfLastEmailedBlogPost;
+		}
+		Logger.debug("Other schedules exist.  Last Emailed TS = %d", lastTS);
+		return lastTS;
 	}
 
 	public static void blogStatus() {
@@ -396,7 +411,8 @@ public class Application extends Controller {
 			if (accounts == null || accounts.getTotal() == 0) {
 				Logger.info("No accounts set up with SMS gateway [%s:%s]",
 						sc.smsGatewayID, sc.smsGatewayPassword);
-				statusMessage("Please setup the SMS gateway account and retry", true);
+				statusMessage("Please setup the SMS gateway account and retry",
+						true);
 			}
 			sc.munchkinAccountId = sc.munchkinAccountId.toUpperCase();
 			sc.status = Constants.CAMPAIGN_STATUS_ACTIVE;
