@@ -22,6 +22,7 @@ public class BlogCampaign extends Model {
 	public int maxPosts;
 	public Long userId;
 	public String munchkinId;
+	public String subject;
 	
 	public String leadList;
 	public String programName;

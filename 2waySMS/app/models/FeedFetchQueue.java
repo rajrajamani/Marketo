@@ -16,8 +16,10 @@ public class FeedFetchQueue extends Model {
 
 	public String status;
 	
-	public int numSent;
-	public int numRecvd;
+	public int numItems;
+
+	@Column(length = 2000)
+	public String subject;
 
 	@Column(length = 2000)
 	public String content;

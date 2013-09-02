@@ -84,21 +84,21 @@ public class Application extends Controller {
 						user.skey = skey.trim();
 					}
 					user.save();
-					statusMessage(msg,false);
+					statusMessage(msg, false);
 				} else if (!("").equals(suid)) {
 					user.suid = suid.trim();
 					if (skey != null && !skey.equals("")) {
 						user.skey = skey.trim();
 					}
 					user.save();
-					statusMessage("Saved SOAP credentials",false);
+					statusMessage("Saved SOAP credentials", false);
 				}
 			} else {
 				// Todo - ask for existing password and reset
-				statusMessage("wrong password",true);
+				statusMessage("wrong password", true);
 			}
 		} else {
-			statusMessage("No such user - please logout and try again",true);
+			statusMessage("No such user - please logout and try again", true);
 		}
 
 		// should never reach here
@@ -154,9 +154,9 @@ public class Application extends Controller {
 		if (init != 1 && validation.hasErrors()) {
 			String errMsg = "";
 			for (play.data.validation.Error error : validation.errors()) {
-				errMsg += error.message() ;
+				errMsg += error.message();
 			}
-			statusMessage(errMsg,true);
+			statusMessage(errMsg, true);
 		}
 		String user = Security.connected();
 		if (url == null) {
@@ -217,7 +217,7 @@ public class Application extends Controller {
 			String time, String tz) {
 		BlogCampaign bc = NonGatedApp.getBlogCampaignFromUrl(url);
 		if (bc.blogUrl == null || "".equals(bc.blogUrl)) {
-			statusMessage("Invalid Settings URL",true);
+			statusMessage("Invalid Settings URL", true);
 		}
 		bc.url = url;
 		bc.emailOnDays = days;
@@ -260,9 +260,9 @@ public class Application extends Controller {
 			if (validation.hasErrors()) {
 				String errMsg = "";
 				for (play.data.validation.Error error : validation.errors()) {
-					errMsg += error.message() ;
+					errMsg += error.message();
 				}
-				statusMessage(errMsg,true);
+				statusMessage(errMsg, true);
 			}
 
 			processFormula(url);
@@ -318,9 +318,9 @@ public class Application extends Controller {
 			if (validation.hasErrors()) {
 				String errMsg = "";
 				for (play.data.validation.Error error : validation.errors()) {
-					errMsg += error.message() ;
+					errMsg += error.message();
 				}
-				statusMessage(errMsg,true);
+				statusMessage(errMsg, true);
 			}
 			Logger.info("Looking up campaignURL %s", url);
 			// Check to see if this has been configured previously
@@ -343,30 +343,36 @@ public class Application extends Controller {
 					Constants.CAMPAIGN_SMS);
 			if (sc == null) {
 				Logger.info("Unable to read settings from %s", url);
-				renderText("Unable to read settings from %s", url);
+				statusMessage("Unable to read settings from " + url, true);
 			} else if (sc.munchkinAccountId.equals("null")) {
 				Logger.info("campaign[%d] does not have a valid munchkin id",
 						sc.id);
-				renderText("Please provide the correct munchkin account id");
+				statusMessage("Please provide the correct munchkin account id",
+						true);
 			} else if (sc.smsGatewayID.equals("null")
 					|| sc.smsGatewayPassword.equals("null")) {
 				Logger.info(
 						"campaign[%d] does not have the sms Gateway id or password",
 						sc.id);
-				renderText("Please configure a valid twilio Account ID and Secret in your program my tokens");
+				statusMessage(
+						"Please configure a valid twilio Account ID and Secret in your program my tokens",
+						true);
 			} else if (sc.soapUserId.equals("null")
 					|| sc.soapEncKey.equals("null")) {
 				Logger.info(
 						"campaign[%d] does not have the Marketo soap credentials",
 						sc.id);
-				renderText("Please provide your Marketo soap credentials");
+				statusMessage("Please provide your Marketo soap credentials",
+						true);
 			} else if (sc.rules.size() == 0) {
 				Logger.info("campaign[%d] does not have any campaign rules",
 						sc.id);
-				renderText("Please provide rules for the SMS campaign");
+				statusMessage("Please provide rules for the SMS campaign", true);
 			} else if (sc.leadListWithPhoneNumbers.equals("null")) {
 				Logger.info("campaign[%d] does not lead list set", sc.id);
-				renderText("Please provide a static list from with leads whose phone numbers are known");
+				statusMessage(
+						"Please provide a static list from with leads whose phone numbers are known",
+						true);
 			} else if (sc.phoneNumFieldApiName.equals("null")) {
 				Logger.info(
 						"campaign[%d] does not have a phoneNumFieldApiName.  Using Phone instead",
@@ -379,7 +385,8 @@ public class Application extends Controller {
 				/* Insufficient - must make a call */
 				Logger.info("Cannot connect with soap credentials [%s:%s]",
 						sc.soapUserId, sc.soapEncKey);
-				renderText("The SOAP credentials you provided are invalid");
+				statusMessage("The SOAP credentials you provided are invalid",
+						true);
 			} else {
 				mu.deleteLead(sc, dummyLead);
 			}
@@ -389,7 +396,7 @@ public class Application extends Controller {
 			if (accounts == null || accounts.getTotal() == 0) {
 				Logger.info("No accounts set up with SMS gateway [%s:%s]",
 						sc.smsGatewayID, sc.smsGatewayPassword);
-				renderText("Please setup the SMS gateway account and retry");
+				statusMessage("Please setup the SMS gateway account and retry", true);
 			}
 			sc.munchkinAccountId = sc.munchkinAccountId.toUpperCase();
 			sc.status = Constants.CAMPAIGN_STATUS_ACTIVE;
@@ -422,7 +429,9 @@ public class Application extends Controller {
 				Logger.fatal(
 						"campaign[%d] - Could not create a new SMS gateway application [%s]",
 						sc.id, e.getMessage());
-				statusMessage("Exception while creating Twilio Application for SMS callback",true);
+				statusMessage(
+						"Exception while creating Twilio Application for SMS callback",
+						true);
 			}
 
 			// kick off background thread to do read the list and run outgoing
@@ -463,7 +472,7 @@ public class Application extends Controller {
 			bc.save();
 		}
 		Logger.info("Canceled campaign [%s]", id);
-		statusMessage("Canceled campaign successfully",false);
+		statusMessage("Canceled campaign successfully", false);
 	}
 
 }

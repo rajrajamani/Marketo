@@ -51,8 +51,7 @@ public class AddToFetchQueue extends Job {
 		FeedFetchQueue qItem = new FeedFetchQueue();
 		qItem.bc = blog;
 		qItem.status = Constants.CAMPAIGN_STATUS_ACTIVE;
-		qItem.numRecvd = 0;
-		qItem.numSent = 0;
+		qItem.numItems = 0;
 		qItem.save();
 
 		blog.queue.add(qItem);

@@ -64,7 +64,9 @@ public class FetchActiveFeeds extends Job {
 						break;
 					}
 
-					subject = entry.getTitle();
+					if ("Default".equals(bc.subject)) {
+						subject = entry.getTitle();
+					}
 				} else {
 					Logger.debug(
 							"qItem[%d] - has no timestamp for individual posts",
@@ -72,7 +74,9 @@ public class FetchActiveFeeds extends Job {
 					break;
 				}
 			} else if (counter == 1) {
-				subject += " + more";
+				if ("Default".equals(bc.subject)) {
+					subject += " + more";
+				}
 			}
 
 			String uri = entry.getUri();
@@ -99,6 +103,17 @@ public class FetchActiveFeeds extends Job {
 						bc.id);
 			} else {
 				emailSent = sendEmail(user, bc, subject, contents);
+				if (emailSent) {
+					qItem.numItems = counter;
+					
+					int sLen = subject.length();
+					sLen = (sLen > 2000) ? 2000 : sLen;
+					qItem.subject = subject.substring(0, sLen);
+					
+					int cLen = contents.length();
+					cLen = (cLen > 2000) ? 2000 : sLen;
+					qItem.content = contents.substring(0, cLen);
+				}
 			}
 		}
 
@@ -123,7 +138,7 @@ public class FetchActiveFeeds extends Job {
 				}
 			}
 		}
-		
+
 		Logger.debug("Setting qitem[%d] to completed", qItem.id);
 		qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
 		qItem.save();
