@@ -141,6 +141,7 @@ public class FetchActiveFeeds extends Job {
 
 		Logger.debug("Setting qitem[%d] to completed", qItem.id);
 		qItem.status = Constants.CAMPAIGN_STATUS_COMPLETED;
+		qItem.processedAt = TimeUtil.getCurrTime();
 		qItem.save();
 	}
 

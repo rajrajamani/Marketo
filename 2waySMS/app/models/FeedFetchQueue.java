@@ -24,4 +24,5 @@ public class FeedFetchQueue extends Model {
 	@Column(length = 2000)
 	public String content;
 
+	public Long processedAt;
 }
