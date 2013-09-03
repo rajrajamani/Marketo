@@ -93,6 +93,7 @@ public class FetchActiveFeeds extends Job {
 		if ("".equals(contents) || contents == null) {
 			Logger.debug("No items match the feed");
 		} else {
+			Logger.debug("Subject of qitem[%d] - %s", qItem.id, subject);
 			Logger.debug("Contents of qitem[%d] - %s", qItem.id, contents);
 			User user = User.findById(bc.userId);
 			if (user.munchkinId == null || "".equals(user.munchkinId)
