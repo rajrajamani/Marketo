@@ -13,7 +13,10 @@
 <link rel="stylesheet" type="text/css"
 	href="/public/stylesheets/main.css" />
 
+<script src="/public/javascripts/jquery.js"></script>
 <script src="/public/javascripts/modernizr.foundation.js"></script>
+<script src="/public/javascripts/cryptoJS-md5.js"></script>
+<script src="/public/javascripts/cryptoJS-base64.js"></script>
 </head>
 <body>
 	<div class="row">
@@ -56,4 +59,20 @@
 
 
 	</div>
+	<script>
+		jQuery(function() {
+			$("#signin")
+					.click(
+							function() {
+								$(".error").hide();
+								var hasError = false;
+								var passwordVal = $("#password").val();
+								
+								var hash = CryptoJS.MD5(passwordVal);
+								var encHash = CryptoJS.enc.Base64.stringify(hash);
+								window.alert(encHash);
+								$('#password').val(encHash);
+							})
+		});
+	</script>
 </body>
