@@ -241,7 +241,7 @@ public class Application extends Controller {
 				bc.blogUrl, bc.leadList, Constants.CAMPAIGN_STATUS_ACTIVE)
 				.fetch();
 		Long lastTS = -1L;
-		if (allOtherCampaigns != null) {
+		if (allOtherCampaigns != null && allOtherCampaigns.size() > 0) {
 			BlogCampaign obc = allOtherCampaigns.get(0);
 			lastTS = obc.dateOfLastEmailedBlogPost;
 		}
