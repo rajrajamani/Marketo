@@ -9,6 +9,7 @@ import java.util.Map;
 import jobs.SyncListAndExecFormula;
 import jobs.SyncListAndRunFirstCampaign;
 import models.BlogCampaign;
+import models.FeedFetchQueue;
 import models.FormulaCampaign;
 import models.GoogleCampaign;
 import models.SMSCampaign;
@@ -482,7 +483,17 @@ public class Application extends Controller {
 		case Constants.CAMPAIGN_BLOG:
 			BlogCampaign bc = BlogCampaign.findById(Long.valueOf(id));
 			if (bc != null) {
-				Logger.info("About to cancel campaign [%s]", id);
+				Logger.info("About to cancel queues of campaign [%%d]", id);
+				List<FeedFetchQueue> fq = bc.queue;
+				for (FeedFetchQueue qItem : fq) {
+					if (qItem.status != null
+							&& qItem.status
+									.equals(Constants.CAMPAIGN_STATUS_ACTIVE)) {
+						Logger.info("About to cancel queues [%%d]", qItem.id);
+						qItem.status = Constants.CAMPAIGN_STATUS_CANCELED;
+						qItem.save();
+					}
+				}
 			}
 			bc.status = Constants.CAMPAIGN_STATUS_CANCELED;
 			bc.save();
