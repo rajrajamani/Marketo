@@ -244,8 +244,8 @@ public class Application extends Controller {
 		if (allOtherCampaigns != null && allOtherCampaigns.size() > 0) {
 			BlogCampaign obc = allOtherCampaigns.get(0);
 			lastTS = obc.dateOfLastEmailedBlogPost;
+			Logger.debug("Other schedules exist.  Last Emailed TS = %d", lastTS);
 		}
-		Logger.debug("Other schedules exist.  Last Emailed TS = %d", lastTS);
 		return lastTS;
 	}
 
