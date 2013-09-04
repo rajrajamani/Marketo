@@ -262,7 +262,7 @@ public class Application extends Controller {
 	public static void index(String msg) {
 		String user = Security.connected();
 		if (msg == null || ("").equals(msg)) {
-			msg = "Welcome to the Marketo ClApps Service";
+			msg = "Welcome to Marketo Cloud Apps";
 		}
 		render(msg);
 	}
