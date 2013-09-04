@@ -52,7 +52,7 @@ public class NonGatedApp extends Controller {
 		if (munchkinId != null) {
 			munchkinId = munchkinId.trim();
 		}
-		Logger.debug("mId:%s; Pass:%s", munchkinId, pw1);
+		Logger.debug("mId:%s; Pass:%s", munchkinId, Crypto.passwordHash(pw1));
 		User user = User.find("byMunchkinId", munchkinId).first();
 		if (user != null) {
 			renderHtml("User already exists");

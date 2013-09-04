@@ -1,9 +1,11 @@
 package jobs;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TimeZone;
 
 import models.BlogCampaign;
 import models.FeedFetchQueue;
@@ -80,8 +82,15 @@ public class FetchActiveFeeds extends Job {
 			}
 
 			String uri = entry.getUri();
-			contents += "<h2>" + entry.getTitle() + "</h2>";
-			contents += "<h4>" + entry.getPublishedDate() + "</h4>";
+			contents += "<h2><a href=" + uri +">" + entry.getTitle() + "</a></h2>";
+			Date pubDate = entry.getPublishedDate();
+			if (pubDate != null) {
+				TimeZone tzz = TimeZone.getTimeZone(bc.emailTZ);
+				Calendar cal = Calendar.getInstance(tzz);
+				cal.setTime(pubDate);
+				Date dt = cal.getTime();
+				contents += "<h4>" + dt + "</h4>";
+			}
 			contents += "<p>" + entry.getDescription().getValue() + "</p>";
 			contents += "<a href=" + uri + ">" + uri + "</a>";
 			contents += "<br/>";
@@ -106,11 +115,11 @@ public class FetchActiveFeeds extends Job {
 				emailSent = sendEmail(user, bc, subject, contents);
 				if (emailSent) {
 					qItem.numItems = counter;
-					
+
 					int sLen = subject.length();
 					sLen = (sLen > 2000) ? 2000 : sLen;
 					qItem.subject = subject.substring(0, sLen);
-					
+
 					int cLen = contents.length();
 					cLen = (cLen > 2000) ? 2000 : sLen;
 					qItem.content = contents.substring(0, cLen);
