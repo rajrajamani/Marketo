@@ -1,5 +1,7 @@
 package jobs;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -82,15 +84,18 @@ public class FetchActiveFeeds extends Job {
 			}
 
 			String uri = entry.getUri();
-			contents += "<h2><a href=" + uri +">" + entry.getTitle() + "</a></h2>";
+			contents += "<h2><a href=" + uri + ">" + entry.getTitle()
+					+ "</a></h2>";
 			Date pubDate = entry.getPublishedDate();
 			if (pubDate != null) {
 				TimeZone tzz = TimeZone.getTimeZone(bc.emailTZ);
-				Calendar cal = Calendar.getInstance(tzz);
-				cal.setTime(pubDate);
-				Date dt = cal.getTime();
-				Logger.debug("qItem[%d] - Date in local timezone is %s", qItem.id, dt.toString());
-				contents += "<h4>" + dt + "</h4>";
+				DateFormat formatter = new SimpleDateFormat(
+						"dd MMMM yyyy hh:mm zzz");
+				formatter.setTimeZone(tzz);
+				String dt = formatter.format(pubDate);
+				Logger.debug("qItem[%d] - Date in local timezone is %s",
+						qItem.id, dt);
+				contents += "<h4>Posted:" + dt + "</h4>";
 			}
 			contents += "<p>" + entry.getDescription().getValue() + "</p>";
 			contents += "<a href=" + uri + ">" + uri + "</a>";
@@ -118,11 +123,11 @@ public class FetchActiveFeeds extends Job {
 					qItem.numItems = counter;
 
 					subject = subject != null ? subject : "Default";
-					int sLen = subject.length() ;
+					int sLen = subject.length();
 					sLen = (sLen > 2000) ? 2000 : sLen;
 					qItem.subject = subject.substring(0, sLen);
 
-					contents = contents != null ? contents :"";
+					contents = contents != null ? contents : "";
 					int cLen = contents.length();
 					cLen = (cLen > 2000) ? 2000 : sLen;
 					qItem.content = contents.substring(0, cLen);
