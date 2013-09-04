@@ -89,6 +89,7 @@ public class FetchActiveFeeds extends Job {
 				Calendar cal = Calendar.getInstance(tzz);
 				cal.setTime(pubDate);
 				Date dt = cal.getTime();
+				Logger.debug("qItem[%d] - Date in local timezone is %s", qItem.id, dt.toString());
 				contents += "<h4>" + dt + "</h4>";
 			}
 			contents += "<p>" + entry.getDescription().getValue() + "</p>";
