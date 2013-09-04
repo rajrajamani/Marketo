@@ -116,10 +116,12 @@ public class FetchActiveFeeds extends Job {
 				if (emailSent) {
 					qItem.numItems = counter;
 
-					int sLen = subject.length();
+					subject = subject != null ? subject : "Default";
+					int sLen = subject.length() ;
 					sLen = (sLen > 2000) ? 2000 : sLen;
 					qItem.subject = subject.substring(0, sLen);
 
+					contents = contents != null ? contents :"";
 					int cLen = contents.length();
 					cLen = (cLen > 2000) ? 2000 : sLen;
 					qItem.content = contents.substring(0, cLen);
