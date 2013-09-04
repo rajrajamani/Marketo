@@ -5,22 +5,22 @@
 <table class="center">
 	<thead>
 		<tr>
-			<th class="two">Id</th>
-			<th class="two">Campaign URL</th>
-			<th class="two">Messages Sent</th>
-			<th class="two">Messages Recvd</th>
-			<th class="two">Status</th>
+			<th >Id</th>
+			<th >Campaign URL</th>
+			<th >Messages Sent</th>
+			<th >Messages Recvd</th>
+			<th >Status</th>
 		</tr>
 	</thead>
 	<tbody>
 
 		%{ for (campaign in allCampaigns) { }%
 		<tr>
-			<td class="two">${campaign.id}</td>
-			<td class="two">${campaign.campaignURL}</td>
-			<td class="two">${campaign.numSent}</td>
-			<td class="two">${campaign.numRecvd}</td>
-			<td class="two">${campaign.status} | <a
+			<td >${campaign.id}</td>
+			<td >${campaign.campaignURL}</td>
+			<td >${campaign.numSent}</td>
+			<td >${campaign.numRecvd}</td>
+			<td >${campaign.status} | <a
 				href="/cancelCampaign?id=${campaign.id}&type=1001">Cancel</a></td>
 		</tr>
 		%{ } }%

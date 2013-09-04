@@ -1,25 +1,25 @@
 #{extends 'main.html' /} #{set title:'Formula Campaigns' /} #{top-new
 urlNew:"/formulaConfig",urlResults:"/execFormulaStatus"/}
 
-<table class="center">
+<table style="margin:0px">
 	<thead>
 		<tr>
-			<th class="two">Id</th>
-			<th class="two">Campaign Formula</th>
-			<th class="two">Status</th>
-			<th class="two">Status Message</th>
-			<th class="two">Number of Leads Synced</th>
+			<th>Id</th>
+			<th>Campaign Formula</th>
+			<th>Status</th>
+			<th>Status Message</th>
+			<th>Number of Leads Synced</th>
 		</tr>
 	</thead>
 	<tbody>
 
 		%{ for (campaign in allCampaigns) { }%
 		<tr>
-			<td class="two">${campaign.id}</td>
-			<td class="two">${campaign.formula}</td>
-			<td class="two">${campaign.status}</td>
-			<td class="two">${campaign.statusMessage}</td>
-			<td class="two">${campaign.numLeadsSynced}</td>
+			<td >${campaign.id}</td>
+			<td >${campaign.formula}</td>
+			<td >${campaign.status}</td>
+			<td >${campaign.statusMessage}</td>
+			<td >${campaign.numLeadsSynced}</td>
 		</tr>
 		%{ } }%
 
