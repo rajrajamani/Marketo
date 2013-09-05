@@ -53,15 +53,15 @@ public class FetchActiveFeeds extends Job {
 		int counter = 0;
 		String contents = "";
 		String subject = bc.subject;
-		java.util.Date latestPost = null;
+		Date latestPostTS = null;
 
 		for (Iterator feedIter = feed.getEntries().iterator(); feedIter
 				.hasNext() && counter < bc.maxPosts; counter++) {
 			SyndEntry entry = (SyndEntry) feedIter.next();
+			latestPostTS = entry.getPublishedDate();
 			if (counter == 0) {
-				latestPost = entry.getPublishedDate();
-				if (latestPost != null) {
-					if (latestPost.getTime() <= bc.dateOfLastEmailedBlogPost) {
+				if (latestPostTS != null) {
+					if (latestPostTS.getTime() <= bc.dateOfLastEmailedBlogPost) {
 						Logger.debug(
 								"qItem[%d] - No new blog posts since last email",
 								qItem.id);
@@ -77,31 +77,33 @@ public class FetchActiveFeeds extends Job {
 							qItem.id);
 					break;
 				}
-			} else if (counter == 1) {
+			} else if (counter == 1
+					&& (latestPostTS != null && (latestPostTS.getTime() > bc.dateOfLastEmailedBlogPost))) {
 				if ("Default".equals(bc.subject)) {
 					subject += " + more";
 				}
 			}
 
-			String uri = entry.getUri();
-			contents += "<h2><a href=" + uri + ">" + entry.getTitle()
-					+ "</a></h2>";
-			Date pubDate = entry.getPublishedDate();
-			if (pubDate != null) {
+			if (latestPostTS != null
+					&& (latestPostTS.getTime() > bc.dateOfLastEmailedBlogPost)) {
+				String uri = entry.getUri();
+				contents += "<h2><a href=" + uri + ">" + entry.getTitle()
+						+ "</a></h2>";
+
 				TimeZone tzz = TimeZone.getTimeZone(bc.emailTZ);
 				DateFormat formatter = new SimpleDateFormat(
 						"dd MMMM yyyy hh:mm zzz");
 				formatter.setTimeZone(tzz);
-				String dt = formatter.format(pubDate);
+				String dt = formatter.format(latestPostTS);
 				Logger.debug("qItem[%d] - Date in local timezone is %s",
 						qItem.id, dt);
 				contents += "<h4>Posted:" + dt + "</h4>";
+				contents += "<p>" + entry.getDescription().getValue() + "</p>";
+				contents += "<a href=" + uri + ">" + uri + "</a>";
+				contents += "<br/>";
+				Logger.debug("Entry [%d] : pub date [%s] ", counter,
+						latestPostTS);
 			}
-			contents += "<p>" + entry.getDescription().getValue() + "</p>";
-			contents += "<a href=" + uri + ">" + uri + "</a>";
-			contents += "<br/>";
-			Logger.debug("Entry [%d] : pub date [%s] ", counter,
-					entry.getPublishedDate());
 		}
 
 		boolean emailSent = false;
@@ -140,8 +142,8 @@ public class FetchActiveFeeds extends Job {
 			bc.dateOfNextScheduledEmail = -1L;
 			bc.save();
 
-			if (latestPost != null) {
-				bc.dateOfLastEmailedBlogPost = latestPost.getTime();
+			if (latestPostTS != null) {
+				bc.dateOfLastEmailedBlogPost = latestPostTS.getTime();
 
 				List<BlogCampaign> allOtherCampaigns = BlogCampaign.find(
 						"blogUrl = ? and leadList = ? and status = ?",
