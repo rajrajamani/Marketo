@@ -11,4 +11,6 @@ public class User extends Model {
 	public String munchkinId;
 	public String suid;
 	public String skey;
+	public String secret1;
+	public String secret2;
 }

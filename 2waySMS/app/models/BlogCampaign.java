@@ -23,6 +23,7 @@ public class BlogCampaign extends Model {
 	public Long userId;
 	public String munchkinId;
 	public String subject;
+	public String content;
 	
 	public String leadList;
 	public String programName;

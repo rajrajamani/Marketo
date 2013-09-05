@@ -6,9 +6,6 @@
 
 <link rel="stylesheet" href="/public/stylesheets/foundation.css"></link>
 
-<!--  script
-				src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script -->
-
 </head>
 
 <!DOCTYPE html>
@@ -34,23 +31,23 @@
   -->
 
 <!-- Included CSS Files (Compressed) -->
-<link rel="stylesheet" href="/public/stylesheets/foundation.min.css">
-	<link rel="stylesheet" href="/public/stylesheets/app.css">
-		<link rel="stylesheet" type="text/css"
-			href="/public/stylesheets/main.css" />
+<link rel="stylesheet" href="/public/stylesheets/foundation.min.css" />
+<link rel="stylesheet" href="/public/stylesheets/app.css" />
 
-		<script src="/public/javascripts/modernizr.foundation.js"></script>
+<!-- Included JS Files (Compressed) -->
+<script src="/public/javascripts/jquery.js"></script>
+<script src="/public/javascripts/foundation.min.js"></script>
+<script src="/public/javascripts/modernizr.foundation.js"></script>
+<script src="/public/javascripts/cryptoJS-md5.js"></script>
+<script src="/public/javascripts/cryptoJS-base64.js"></script>
+
+<!-- Initialize JS Plugins -->
+<script src="/public/javascripts/app.js"></script>
+
+
 </head>
 
 <body>
-
-	<!-- Included JS Files (Compressed) -->
-	<script src="/public/javascripts/jquery.js"></script>
-	<script src="/public/javascripts/foundation.min.js"></script>
-
-	<!-- Initialize JS Plugins -->
-	<script src="/public/javascripts/app.js"></script>
-
 
 	<div class="row">
 		<div id="top" class="eight columns centered"
@@ -62,59 +59,90 @@
 	</div>
 
 	<div class="row">
-		<div class="eight columns centered"><br></br>
+		<div class="eight columns centered">
+			<br></br> #{form @NonGatedApp.registerUser()} <input type="text"
+				name="munchkinId" id="munchkinId" placeholder="Munchkin Id"
+				maxlength="50" size="25" style="font-size: 16px" /> <br /> <input
+				type="password" name="pw1" id="pw1" placeholder="Password"
+				maxlength="50" size="25" style="font-size: 16px" /> <br /> <input
+				type="password" name="pw2" id="pw2" placeholder="Re-enter Password"
+				maxlength="50" size="25" style="font-size: 16px" /> <br /> <input
+				type="password" name="sec1" id="sec1"
+				placeholder="Secret 1 - Mother's Maiden Name" maxlength="50"
+				size="25" style="font-size: 16px" /> <br /> <input type="password"
+				name="sec2" id="sec2"
+				placeholder="Secret 2 - Make/Model of first vehicle" maxlength="50"
+				size="25" style="font-size: 16px" /> <br /> <input id="submit"
+				type="submit" value="Register" /> #{/form}
 
-#{form @NonGatedApp.registerUser()}
-<input type="text" name="munchkinId" id="munchkinId"
-	placeholder="Munchkin Id" maxlength="50" size="25"
-	style="font-size: 16px" />
-<br />
-<input type="password" name="pw1" id="pw1" placeholder="Password"
-	maxlength="50" size="25" style="font-size: 16px" />
-<br />
-<input type="password" name="pw2" id="pw2"
-	placeholder="Re-enter Password" maxlength="50" size="25"
-	style="font-size: 16px" />
-<br />
-<input id="submit" type="submit" value="Register" />
+			<script>
+				jQuery(function() {
+					$("#submit")
+							.click(
+									function() {
+										$(".alert-box").hide();
+										var hasError = false;
+										var munchVal = $("#munchkinId").val();
+										var passwordVal = $("#pw1").val();
+										var checkVal = $("#pw2").val();
+										var sec1Val = $("#sec1").val();
+										var sec2Val = $("#sec2").val();
 
-#{/form}
+										if (munchVal == '') {
+											$("#munchkinId")
+													.after(
+															'<div class="alert-box alert">Please provide your munchkin Id</span>');
+											hasError = true;
+										} else if (passwordVal == '') {
+											$("#pw1")
+													.after(
+															'<div class="alert-box alert">Please enter a password.</span>');
+											hasError = true;
+										} else if (checkVal == '') {
+											$("#pw2")
+													.after(
+															'<div class="alert-box alert">Please re-enter your password.</span>');
+											hasError = true;
+										} else if (passwordVal != checkVal) {
+											$("#pw2")
+													.after(
+															'<div class="alert-box alert">Passwords do not match.</span>');
+											hasError = true;
+										} else if (sec1Val == '') {
+											$("#sec1")
+													.after(
+															'<div class="alert-box alert">Password retrieval secrets are required</span>');
+											hasError = true;
+										} else if (sec2Val == '') {
+											$("#sec2")
+													.after(
+															'<div class="alert-box alert">Password retrieval secrets are required</span>');
+											hasError = true;
+										}
 
-	<script>
-		jQuery(function() {
-			$("#submit")
-					.click(
-							function() {
-								$(".error").hide();
-								var hasError = false;
-								var munchVal = $("#munchkinId").val();
-								var passwordVal = $("#pw1").val();
-								var checkVal = $("#pw2").val();
-								if (munchVal == '') {
-									$("#munchkinId")
-											.after(
-													'<div class="alert-box alert">Please provide your munchkin Id</span>');
-									hasError = true;
-								} else if (passwordVal == '') {
-									$("#pw1")
-											.after(
-													'<div class="alert-box alert">Please enter a password.</span>');
-									hasError = true;
-								} else if (checkVal == '') {
-									$("#pw2")
-											.after(
-													'<div class="alert-box alert">Please re-enter your password.</span>');
-									hasError = true;
-								} else if (passwordVal != checkVal) {
-									$("#pw2")
-											.after(
-													'<div class="alert-box alert">Passwords do not match.</span>');
-									hasError = true;
-								}
-								if (hasError == true) {
-									return false;
-								}
-							});
-		});
-	</script>
-</div></div></body></html>
+										if (hasError == true) {
+											return false;
+										}
+
+										var pwHash = CryptoJS.MD5(passwordVal);
+										var encPwHash = CryptoJS.enc.Base64.stringify(pwHash);
+										$('#pw1').val(encPwHash);
+										$('#pw2').val(encPwHash);
+
+										var sec1Hash = CryptoJS.MD5(sec1Val);
+										var encSec1Hash = CryptoJS.enc.Base64
+												.stringify(sec1Hash);
+										$('#sec1').val(encSec1Hash);
+
+										var sec2Hash = CryptoJS.MD5(sec2Val);
+										var encSec2Hash = CryptoJS.enc.Base64
+												.stringify(sec2Hash);
+										$('#sec2').val(encSec2Hash);
+
+									});
+				});
+			</script>
+		</div>
+	</div>
+</body>
+</html>

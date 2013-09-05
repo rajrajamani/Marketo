@@ -10,8 +10,6 @@
 <!-- Included CSS Files (Compressed) -->
 <link rel="stylesheet" href="/public/stylesheets/foundation.min.css">
 <link rel="stylesheet" href="/public/stylesheets/app.css">
-<link rel="stylesheet" type="text/css"
-	href="/public/stylesheets/main.css" />
 
 <script src="/public/javascripts/jquery.js"></script>
 <script src="/public/javascripts/modernizr.foundation.js"></script>
@@ -64,13 +62,9 @@
 			$("#signin")
 					.click(
 							function() {
-								$(".error").hide();
-								var hasError = false;
 								var passwordVal = $("#password").val();
-								
 								var hash = CryptoJS.MD5(passwordVal);
 								var encHash = CryptoJS.enc.Base64.stringify(hash);
-								
 								$('#password').val(encHash);
 							})
 		});

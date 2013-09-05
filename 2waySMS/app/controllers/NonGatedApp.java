@@ -37,7 +37,8 @@ import play.mvc.Controller;
 
 public class NonGatedApp extends Controller {
 
-	public static void registerUser(String munchkinId, String pw1, String pw2) {
+	public static void registerUser(String munchkinId, String pw1, String pw2,
+			String sec1, String sec2) {
 		String currUser = Security.connected();
 		String placeholder = "";
 		if (currUser == null || "".equals(currUser)) {
@@ -50,24 +51,39 @@ public class NonGatedApp extends Controller {
 		}
 
 		if (munchkinId != null) {
-			munchkinId = munchkinId.trim();
+			munchkinId = munchkinId.trim().toUpperCase();
 		}
-		Logger.debug("mId:%s; Pass:%s", munchkinId, Crypto.passwordHash(pw1));
+		
+		Logger.debug("mId:%s; Pass:%s", munchkinId, pw1);
 		User user = User.find("byMunchkinId", munchkinId).first();
 		if (user != null) {
-			renderHtml("User already exists");
+			statusMessage("User already exists", true);
+		} else if (!pw1.equals(pw2)) {
+			statusMessage("Passwords do not match", true);
+		} else if (sec1 == null || "".equals(sec1) || sec2 == null || "".equals(sec2)) {
+			statusMessage("Secrets have to be valid strings", true);
 		} else {
-			String encPw = Crypto.passwordHash(pw1);
-
 			User u1 = new User();
 			u1.munchkinId = munchkinId.toUpperCase();
-			u1.password = encPw;
+			u1.password = pw1;
+			u1.secret1 = sec1;
+			u1.secret2 = sec2;
 			u1.save();
 			Application.index("Welcome " + u1.munchkinId);
 		}
 
 		// should never reach here
 		render(placeholder);
+	}
+
+	public static void statusMessage(String msg, boolean isError) {
+		String type = "";
+		if (isError) {
+			type = "alert";
+		} else {
+			type = "success";
+		}
+		render(msg, type);
 	}
 
 	public static void phoneQuery(String munchkinId, String leadId,
@@ -333,7 +349,8 @@ public class NonGatedApp extends Controller {
 
 	public static BlogCampaign getBlogCampaignFromUrl(java.lang.String url) {
 		MarketoUtility mu = new MarketoUtility();
-		BlogCampaign bc = (BlogCampaign) mu.readSettings(url, Constants.CAMPAIGN_BLOG);
+		BlogCampaign bc = (BlogCampaign) mu.readSettings(url,
+				Constants.CAMPAIGN_BLOG);
 		return bc;
 	}
 

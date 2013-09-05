@@ -8,6 +8,7 @@ GET 	/registerUser							NonGatedApp.registerUser
 *       /add									NonGatedApp.addScores
 *       /addGCLID								NonGatedApp.addGCLID
 *       /smsCallback							NonGatedApp.smsCallback
+GET		/status									NonGatedApp.statusMessage
 
 
 #Everthing below this is password protected
