@@ -53,21 +53,22 @@ public class FetchActiveFeeds extends Job {
 		int counter = 0;
 		String contents = "";
 		String subject = bc.subject;
+		Date postTS = null;
 		Date latestPostTS = null;
 
 		for (Iterator feedIter = feed.getEntries().iterator(); feedIter
 				.hasNext() && counter < bc.maxPosts; counter++) {
 			SyndEntry entry = (SyndEntry) feedIter.next();
-			latestPostTS = entry.getPublishedDate();
+			postTS = entry.getPublishedDate();
 			if (counter == 0) {
-				if (latestPostTS != null) {
-					if (latestPostTS.getTime() <= bc.dateOfLastEmailedBlogPost) {
+				if (postTS != null) {
+					if (postTS.getTime() <= bc.dateOfLastEmailedBlogPost) {
 						Logger.debug(
 								"qItem[%d] - No new blog posts since last email",
 								qItem.id);
 						break;
 					}
-
+					latestPostTS = postTS;
 					if ("Default".equals(bc.subject)) {
 						subject = entry.getTitle();
 					}
@@ -78,14 +79,14 @@ public class FetchActiveFeeds extends Job {
 					break;
 				}
 			} else if (counter == 1
-					&& (latestPostTS != null && (latestPostTS.getTime() > bc.dateOfLastEmailedBlogPost))) {
+					&& (postTS != null && (postTS.getTime() > bc.dateOfLastEmailedBlogPost))) {
 				if ("Default".equals(bc.subject)) {
 					subject += " + more";
 				}
 			}
 
-			if (latestPostTS != null
-					&& (latestPostTS.getTime() > bc.dateOfLastEmailedBlogPost)) {
+			if (postTS != null
+					&& (postTS.getTime() > bc.dateOfLastEmailedBlogPost)) {
 				String uri = entry.getUri();
 				contents += "<h2><a href=" + uri + ">" + entry.getTitle()
 						+ "</a></h2>";
@@ -94,7 +95,7 @@ public class FetchActiveFeeds extends Job {
 				DateFormat formatter = new SimpleDateFormat(
 						"dd MMMM yyyy hh:mm zzz");
 				formatter.setTimeZone(tzz);
-				String dt = formatter.format(latestPostTS);
+				String dt = formatter.format(postTS);
 				Logger.debug("qItem[%d] - Date in local timezone is %s",
 						qItem.id, dt);
 				contents += "<h4>Posted:" + dt + "</h4>";
@@ -102,7 +103,7 @@ public class FetchActiveFeeds extends Job {
 				contents += "<a href=" + uri + ">" + uri + "</a>";
 				contents += "<br/>";
 				Logger.debug("Entry [%d] : pub date [%s] ", counter,
-						latestPostTS);
+						postTS);
 			}
 		}
 
