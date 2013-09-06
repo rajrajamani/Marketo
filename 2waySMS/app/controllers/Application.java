@@ -16,12 +16,11 @@ import models.SMSCampaign;
 import models.User;
 import play.Logger;
 import play.Play;
-import play.data.validation.Match;
 import play.data.validation.Max;
+import play.data.validation.MaxSize;
 import play.data.validation.Min;
 import play.data.validation.Required;
 import play.data.validation.URL;
-import play.libs.Crypto;
 import play.mvc.Controller;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
@@ -49,51 +48,81 @@ public class Application extends Controller {
 		render(msg, type);
 	}
 
-	public static void changePassword(String munchkinId, String cpw,
-			String pw1, String pw2, String suid, String skey) {
-		String currUser = Security.connected();
-		String placeholder = "";
-		if (currUser == null || "".equals(currUser)) {
-			placeholder = "Munchkin Id";
-		} else {
-			placeholder = currUser;
-		}
-		if (munchkinId == null && cpw == null && pw1 == null && pw2 == null) {
-			render(placeholder);
+	public static void changePassword(int init,
+			@Required @MaxSize(2000) String cpw,
+			@Required @MaxSize(2000) String pw1,
+			@Required @MaxSize(2000) String pw2) {
+
+		if (init != 1 && validation.hasErrors()) {
+			String errMsg = "";
+			for (play.data.validation.Error error : validation.errors()) {
+				errMsg += error.message();
+			}
+			statusMessage(errMsg, true);
 		}
 
-		if (munchkinId != null) {
-			munchkinId = munchkinId.trim();
+		String munchkinId = getMunchkinId();
+		if (init == 1) {
+			render(munchkinId);
 		}
-		Logger.debug(
-				"Change Password - mId:%s; Curr:%s, New:%s; SOAP uid:%s, SOAP key:%s",
-				munchkinId, cpw, pw1, suid, skey);
+
+		Logger.debug("Change Password - mId:%s; Curr:%s, New:%s", munchkinId,
+				cpw, pw1);
 		User user = User.find("byMunchkinId", munchkinId).first();
 		if (user != null) {
-			if (cpw != null && !cpw.equals("")
-					&& user.password.equals(Crypto.passwordHash(cpw))) {
+			if (cpw != null && !cpw.equals("") && user.password.equals(cpw)) {
 
 				if (!"".equals(pw1)) {
 					// Update password now
 					String msg = "Saved New Password ";
-					user.password = Crypto.passwordHash(pw1);
-					if (suid != null && !suid.equals("")) {
-						user.suid = suid.trim();
-						msg += "and SOAP credentials";
-					}
-					if (skey != null && !skey.equals("")) {
-						user.skey = skey.trim();
-					}
+					user.password = pw1;
 					user.save();
 					statusMessage(msg, false);
-				} else if (!("").equals(suid)) {
-					user.suid = suid.trim();
-					if (skey != null && !skey.equals("")) {
-						user.skey = skey.trim();
-					}
-					user.save();
-					statusMessage("Saved SOAP credentials", false);
+				} else {
+					statusMessage("Cannot set a blank password", true);
 				}
+			} else {
+				statusMessage("wrong password", true);
+			}
+		} else {
+			statusMessage("No such user - please logout and try again", true);
+		}
+
+		// should never reach here
+		render(munchkinId);
+	}
+
+	public static void soapSettings(int init,
+			@Required @MaxSize(2000) String cpw,
+			@Required @MaxSize(2000) String suid,
+			@Required @MaxSize(2000) String skey) {
+		if (init != 1 && validation.hasErrors()) {
+			String errMsg = "";
+			for (play.data.validation.Error error : validation.errors()) {
+				errMsg += error.message();
+			}
+			statusMessage(errMsg, true);
+		}
+
+		String munchkinId = getMunchkinId();
+		if (init == 1) {
+			User user = ((User) (User.find("munchkinId = ?", munchkinId)
+					.fetch().get(0)));
+			String suidVal = user.suid;
+			String skeyVal = user.skey;
+			render(munchkinId, suidVal, skeyVal);
+		}
+
+		Logger.debug("Change SOAP - mId:%s; Pass:%s, SOAP uid:%s, SOAP key:%s",
+				munchkinId, cpw, suid, skey);
+		User user = User.find("byMunchkinId", munchkinId).first();
+		if (user != null) {
+			if (cpw != null && !cpw.equals("") && user.password.equals(cpw)) {
+				String msg = "Saved SOAP credentials ";
+				user.suid = suid;
+				user.skey = skey;
+				user.save();
+				statusMessage(msg, false);
 			} else {
 				// Todo - ask for existing password and reset
 				statusMessage("wrong password", true);
@@ -103,7 +132,7 @@ public class Application extends Controller {
 		}
 
 		// should never reach here
-		render(placeholder);
+		render(munchkinId);
 	}
 
 	public static void showHeaders() {
@@ -119,7 +148,7 @@ public class Application extends Controller {
 	}
 
 	public static void googleConfig(String url) {
-		String user = Security.connected();
+		String user = getMunchkinId();
 		if (url == null) {
 			render(user);
 		} else {
@@ -159,7 +188,7 @@ public class Application extends Controller {
 			}
 			statusMessage(errMsg, true);
 		}
-		String user = Security.connected();
+		String user = getMunchkinId();
 		if (url == null) {
 			render(user);
 		} else {
@@ -251,7 +280,7 @@ public class Application extends Controller {
 	}
 
 	public static void blogStatus() {
-		String user = Security.connected();
+		String user = getMunchkinId();
 		List<FormulaCampaign> allCampaigns = BlogCampaign.find(
 				"munchkinId = ? and status = ? order by id desc",
 				user.toUpperCase(), "active").fetch();
@@ -260,7 +289,7 @@ public class Application extends Controller {
 	}
 
 	public static void index(String msg) {
-		String user = Security.connected();
+		String user = getMunchkinId();
 		if (msg == null || ("").equals(msg)) {
 			msg = "Welcome to Marketo Cloud Apps (Beta)";
 		}
@@ -269,7 +298,7 @@ public class Application extends Controller {
 
 	public static void formulaConfig(
 			@URL @Required(message = "Must provide URL") String url) {
-		String user = Security.connected();
+		String user = getMunchkinId();
 		if (url == null) {
 			render(user);
 		} else {
@@ -299,7 +328,7 @@ public class Application extends Controller {
 	}
 
 	public static void execFormulaStatus() {
-		String user = Security.connected();
+		String user = getMunchkinId();
 		List<FormulaCampaign> allCampaigns = FormulaCampaign.find(
 				"munchkinAccountId = ? order by id desc", user.toUpperCase())
 				.fetch();
@@ -309,7 +338,7 @@ public class Application extends Controller {
 	public static void showConversionFiles() {
 		String urlBase = Play.configuration.getProperty("mkto.serviceUrl");
 		String dirBase = Play.configuration.getProperty("mkto.googBaseDir");
-		String user = Security.connected();
+		String user = getMunchkinId();
 		String dirName = dirBase + user;
 		List<String> allConversionFiles = new ArrayList<String>();
 		File dirFile = new File(dirName);
@@ -327,7 +356,7 @@ public class Application extends Controller {
 
 	public static void smsConfig(
 			@URL @Required(message = "Must provide URL") String url) {
-		String user = Security.connected();
+		String user = getMunchkinId();
 		if (url == null) {
 			render(user);
 		} else {
@@ -463,7 +492,7 @@ public class Application extends Controller {
 	}
 
 	public static void savedSmsConfig() {
-		String user = Security.connected();
+		String user = getMunchkinId();
 		List<SMSCampaign> allCampaigns = SMSCampaign.find(
 				"munchkinAccountId = ? and status = ? order by id desc",
 				user.toUpperCase(), Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
@@ -502,4 +531,13 @@ public class Application extends Controller {
 		statusMessage("Canceled campaign successfully", false);
 	}
 
+	private static String getMunchkinId() {
+		String user = Security.connected();
+		if (user != null || "".equals(user)) {
+			return user.toUpperCase();
+		} else {
+			statusMessage("Unknown user - please logout and try again", true);
+			return null;
+		}
+	}
 }

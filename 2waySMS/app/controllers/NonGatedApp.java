@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,8 +13,21 @@ import java.util.List;
 import java.util.Locale;
 
 import jobs.ProcessInboundMessage;
+import models.AddScores;
+import models.BlogCampaign;
+import models.GoogleCampaign;
+import models.PhoneQuery;
+import models.SMSCampaign;
+import models.User;
 
 import org.apache.commons.io.FileUtils;
+
+import play.Logger;
+import play.Play;
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
+import play.libs.Crypto;
+import play.mvc.Controller;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -24,43 +39,26 @@ import common.Constants;
 import common.MarketoUtility;
 import common.RegionUtil;
 
-import models.AddScores;
-import models.BlogCampaign;
-import models.GoogleCampaign;
-import models.PhoneQuery;
-import models.SMSCampaign;
-import models.User;
-import play.Logger;
-import play.Play;
-import play.libs.Crypto;
-import play.mvc.Controller;
-
 public class NonGatedApp extends Controller {
 
 	public static void registerUser(String munchkinId, String pw1, String pw2,
 			String sec1, String sec2) {
-		String currUser = Security.connected();
-		String placeholder = "";
-		if (currUser == null || "".equals(currUser)) {
-			placeholder = "Munchkin Id";
-		} else {
-			placeholder = currUser;
-		}
 		if (munchkinId == null && pw1 == null && pw2 == null) {
-			render(placeholder);
+			render();
 		}
 
 		if (munchkinId != null) {
 			munchkinId = munchkinId.trim().toUpperCase();
 		}
-		
+
 		Logger.debug("mId:%s; Pass:%s", munchkinId, pw1);
 		User user = User.find("byMunchkinId", munchkinId).first();
 		if (user != null) {
 			statusMessage("User already exists", true);
 		} else if (!pw1.equals(pw2)) {
 			statusMessage("Passwords do not match", true);
-		} else if (sec1 == null || "".equals(sec1) || sec2 == null || "".equals(sec2)) {
+		} else if (sec1 == null || "".equals(sec1) || sec2 == null
+				|| "".equals(sec2)) {
 			statusMessage("Secrets have to be valid strings", true);
 		} else {
 			User u1 = new User();
@@ -73,7 +71,48 @@ public class NonGatedApp extends Controller {
 		}
 
 		// should never reach here
-		render(placeholder);
+		render();
+	}
+
+	public static void forgotPassword(int init, @Required String munchkinId,
+			@Required @MaxSize(2000) String sec1,
+			@Required @MaxSize(2000) String sec2) {
+		if (init == 1) {
+			render();
+		}
+
+		if (init != 1 && validation.hasErrors()) {
+			String errMsg = "";
+			for (play.data.validation.Error error : validation.errors()) {
+				errMsg += error.message();
+			}
+			statusMessage(errMsg, true);
+		}
+
+		if (munchkinId != null) {
+			munchkinId = munchkinId.trim().toUpperCase();
+		}
+
+		Logger.debug("mId:%s; Sec1:%s Sec2:%s", munchkinId, sec1, sec2);
+		User user = User.find("byMunchkinId", munchkinId).first();
+		if (user == null) {
+			statusMessage("Unknown User", true);
+		} else if (!sec1.equals(user.secret1) && !sec2.equals(user.secret2)) {
+			statusMessage("Secrets do not match", true);
+		} else {
+			SecureRandom random = new SecureRandom();
+			String newPass = new BigInteger(130, random).toString(32);
+			user.password = Crypto.passwordHash(newPass);
+			user.save();
+			Logger.debug("Reset password for user %s", munchkinId);
+			String msg = "Welcome - your new password is " + newPass;
+			statusMessage(msg, false);
+			// login(msg);
+			// Application.index("Welcome - your new password is " + newPass);
+		}
+
+		// should never reach here
+		render();
 	}
 
 	public static void statusMessage(String msg, boolean isError) {

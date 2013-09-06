@@ -4,6 +4,7 @@
 
 # Home page
 GET 	/registerUser							NonGatedApp.registerUser
+GET 	/fyp									NonGatedApp.forgotPassword
 *		/phoneQuery								NonGatedApp.phoneQuery
 *       /add									NonGatedApp.addScores
 *       /addGCLID								NonGatedApp.addGCLID
@@ -15,6 +16,7 @@ GET		/status									NonGatedApp.statusMessage
 *       /                                       module:secure
 GET     /                                       Application.index
 GET		/changePassword							Application.changePassword
+GET		/soapSettings							Application.soapSettings
 GET		/statusMessage							Application.statusMessage
 GET		/smsConfig								Application.smsConfig
 GET		/savedSmsConfig							Application.savedSmsConfig

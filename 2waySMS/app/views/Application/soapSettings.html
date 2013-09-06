@@ -1,0 +1,58 @@
+#{extends 'main.html' /} #{form @Application.soapSettings()}
+<input type="password" name="cpw" id="cpw"
+	placeholder="Current Password" maxlength="50" size="25"
+	style="font-size: 16px" />
+<br />
+<input type="text" name="suid" id="suid" placeholder="SOAP User ID"
+	value="${suidVal}" maxlength="2000" size="25" style="font-size: 16px" />
+<br />
+<input type="password" name="skey" id="skey" placeholder="SOAP Enc Key"
+	value="${skeyVal}" maxlength="2000" size="25" style="font-size: 16px" />
+<br />
+<input id="submit" type="submit" value="Register" />
+
+#{/form}
+
+<script>
+	jQuery(function() {
+		$("#submit")
+				.click(
+						function() {
+							$(".alert-box").hide();
+							var hasError = false;
+							var noSOAP = false;
+
+							var currPwVal = $("#cpw").val();
+							var suiVal = $("#suid").val();
+							var skeyVal = $("#skey").val();
+
+							if (currPwVal == '') {
+								$("#cpw")
+										.after(
+												'<div class="alert-box alert">Please enter your current password.</span>');
+								return false;
+							}
+
+							if (suiVal == '' || skeyVal == '') {
+								noSOAP = true;
+							}
+
+							if (noSOAP == true) {
+								$("#suid")
+										.after(
+												'<div class="alert-box alert">Please enter SOAP credentials.</span>');
+								return false;
+							}
+
+							var hash = CryptoJS.MD5(currPwVal);
+							var encHash = CryptoJS.enc.Base64.stringify(hash);
+							$('#cpw').val(encHash);
+
+							if (hasError == true) {
+								return false;
+							}
+
+						});
+	});
+</script>
+
