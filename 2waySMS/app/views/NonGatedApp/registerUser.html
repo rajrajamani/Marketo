@@ -54,7 +54,7 @@
 			style="width: 100%; height: 83px; color: white; font-size: 32px">
 			<a href="http://www.marketo.com"><img
 				style="vertical-align: middle;"
-				src="/public/images/marketo-logo-circle.png" /></a> Cloud Apps (Beta) 
+				src="/public/images/marketo-logo-circle.png" /></a> Cloud Apps (Beta)
 		</div>
 	</div>
 
@@ -72,8 +72,10 @@
 				size="25" style="font-size: 16px" /> <br /> <input type="password"
 				name="sec2" id="sec2"
 				placeholder="Secret 2 - Make/Model of first vehicle" maxlength="50"
-				size="25" style="font-size: 16px" /> <br /> <input id="submit"
-				type="submit" value="Register" /> #{/form}
+				size="25" style="font-size: 16px" /> <br /> <input type="checkbox"
+				id="eula" name="eula" value="true" checked>I have read and
+				accepted the <a href="/public/eula.html" target="_blank">terms of use</a></input> <br />
+			<input id="submit" type="submit" value="Register" /> #{/form}
 
 			<script>
 				jQuery(function() {
@@ -125,7 +127,8 @@
 										}
 
 										var pwHash = CryptoJS.MD5(passwordVal);
-										var encPwHash = CryptoJS.enc.Base64.stringify(pwHash);
+										var encPwHash = CryptoJS.enc.Base64
+												.stringify(pwHash);
 										$('#pw1').val(encPwHash);
 										$('#pw2').val(encPwHash);
 

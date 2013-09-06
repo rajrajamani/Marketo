@@ -19,4 +19,6 @@ public class User extends Model {
 	public String secret1;
 	@Column(length = 2000)
 	public String secret2;
+	
+	public Boolean eulaAccepted;
 }

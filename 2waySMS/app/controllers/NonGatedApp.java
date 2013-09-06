@@ -42,13 +42,17 @@ import common.RegionUtil;
 public class NonGatedApp extends Controller {
 
 	public static void registerUser(String munchkinId, String pw1, String pw2,
-			String sec1, String sec2) {
+			String sec1, String sec2, Boolean eula) {
 		if (munchkinId == null && pw1 == null && pw2 == null) {
 			render();
 		}
 
 		if (munchkinId != null) {
 			munchkinId = munchkinId.trim().toUpperCase();
+		}
+		
+		if (eula == null || eula != true) {
+			statusMessage("You must accept the terms of use", true);
 		}
 
 		Logger.debug("mId:%s; Pass:%s", munchkinId, pw1);
@@ -66,6 +70,7 @@ public class NonGatedApp extends Controller {
 			u1.password = pw1;
 			u1.secret1 = sec1;
 			u1.secret2 = sec2;
+			u1.eulaAccepted = eula;
 			u1.save();
 			Application.index("Welcome " + u1.munchkinId);
 		}
