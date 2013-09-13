@@ -21,4 +21,5 @@ public class User extends Model {
 	public String secret2;
 	
 	public Boolean eulaAccepted;
+	public Long eulaAcceptedTS;
 }

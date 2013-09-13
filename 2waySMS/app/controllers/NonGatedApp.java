@@ -71,6 +71,8 @@ public class NonGatedApp extends Controller {
 			u1.secret1 = sec1;
 			u1.secret2 = sec2;
 			u1.eulaAccepted = eula;
+			Date dt = new Date();
+			u1.eulaAcceptedTS = dt.getTime();
 			u1.save();
 			Application.index("Welcome " + u1.munchkinId);
 		}
