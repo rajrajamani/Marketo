@@ -102,8 +102,7 @@ public class FetchActiveFeeds extends Job {
 				contents += "<p>" + entry.getDescription().getValue() + "</p>";
 				contents += "<a href=" + uri + ">" + uri + "</a>";
 				contents += "<br/>";
-				Logger.debug("Entry [%d] : pub date [%s] ", counter,
-						postTS);
+				Logger.debug("Entry [%d] : pub date [%s] ", counter, postTS);
 			}
 		}
 
@@ -146,10 +145,10 @@ public class FetchActiveFeeds extends Job {
 			if (latestPostTS != null) {
 				bc.dateOfLastEmailedBlogPost = latestPostTS.getTime();
 
-				List<BlogCampaign> allOtherCampaigns = BlogCampaign.find(
-						"blogUrl = ? and leadList = ? and status = ?",
-						bc.blogUrl, bc.leadList,
-						Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
+				List<BlogCampaign> allOtherCampaigns = BlogCampaign
+						.find("blogUrl = ? and munchkinId = ? and leadList = ? and status = ?",
+								bc.blogUrl, bc.munchkinId, bc.leadList,
+								Constants.CAMPAIGN_STATUS_ACTIVE).fetch();
 				for (BlogCampaign obc : allOtherCampaigns) {
 					obc.dateOfLastEmailedBlogPost = bc.dateOfLastEmailedBlogPost;
 					Logger.debug(
