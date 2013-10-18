@@ -26,9 +26,11 @@ import com.marketo.mktows.client.MktowsUtil;
 import com.marketo.mktows.wsdl.ActivityRecord;
 import com.marketo.mktows.wsdl.ActivityType;
 import com.marketo.mktows.wsdl.ArrayOfAttribute;
+import com.marketo.mktows.wsdl.ArrayOfMObjCriteria;
 import com.marketo.mktows.wsdl.Attrib;
 import com.marketo.mktows.wsdl.Attribute;
 import com.marketo.mktows.wsdl.CampaignRecord;
+import com.marketo.mktows.wsdl.ComparisonEnum;
 import com.marketo.mktows.wsdl.CustomObj;
 import com.marketo.mktows.wsdl.ImportToListModeEnum;
 import com.marketo.mktows.wsdl.ImportToListStatusEnum;
@@ -41,9 +43,9 @@ import com.marketo.mktows.wsdl.LeadSyncStatus;
 import com.marketo.mktows.wsdl.MObjCriteria;
 import com.marketo.mktows.wsdl.MObject;
 import com.marketo.mktows.wsdl.MergeStatus;
-import com.marketo.mktows.wsdl.ParamsDescribeMObject;
+import com.marketo.mktows.wsdl.ParamsGetMObjects;
 import com.marketo.mktows.wsdl.ResultSyncLead;
-import com.marketo.mktows.wsdl.SuccessDescribeMObject;
+import com.marketo.mktows.wsdl.SuccessGetMObjects;
 import com.marketo.mktows.wsdl.SyncCustomObjStatus;
 import com.marketo.mktows.wsdl.SyncStatus;
 import common.CodeSandbox;
@@ -76,18 +78,20 @@ public class TestMktows {
 
 		TestMktows tester = new TestMktows();
 		// tester.testGetMultipleLeadsStaticList();
-		 //tester.testGetLead();
+		// tester.testGetLead();
 		// tester.testGetMultipleLeadsEmail();
 		// tester.testGetLeadActivity();
-		 tester.testGetLeadChanges();
+		// tester.testGetLeadChanges();
 		// tester.testGetMObjects();
 		// tester.testListMObjects();
 		// tester.testDescMObjects();
 		// tester.testRandomFunctionEval();
 		// tester.testCapitalizeName();
-		 //tester.testGetCustomObjects();
+		// tester.testGetCustomObjects();
 		// tester.testSyncCustomObjects();
-		//tester.testMergeLeads();
+		// tester.testMergeLeads();
+		// tester.testRequestCampaign();
+		tester.testGetMObjects();
 	}
 
 	private void testCapitalizeName() {
@@ -308,22 +312,36 @@ public class TestMktows {
 	}
 
 	public void testDescMObjects() {
-
-		List<MObjCriteria> listMObjCriteria = new ArrayList<MObjCriteria>();
-		ParamsDescribeMObject c = MktowsUtil.objectFactory
-				.createParamsDescribeMObject();
-		c.setObjectName("Opportunity");
-		// listMObjCriteria.add(c);
-		StreamPostionHolder posHolder = new StreamPostionHolder();
-		SuccessDescribeMObject listMObjects = null;
-		listMObjects = this.client.describeMObject(c);
+		
+        MObjCriteria criteria = new MObjCriteria();
+        criteria.setAttrName("Name");
+        criteria.setComparison(ComparisonEnum.NE);
+        criteria.setAttrValue("elizprogramtest");
+       
+        List<MObjCriteria> lmc = new ArrayList<MObjCriteria>();
+        lmc.add(criteria);
+        
+        try {
+			List<MObject> result = this.client.getMObjects("Program", null, null, lmc, null,null);
+			for(MObject obj: result) {
+				System.out.println("Name: " + obj.getAttribList().getAttrib().get(0));
+			}
+		} catch (MktowsClientException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MktServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+        
+        
 		System.out.println("Received DescMobj output");
 	}
 
 	public void testRequestCampaign() {
 
-		final String myCampName = "Product Seminar - Summer";
-		final String leadEmail = "scooby1@marketo.com";
+		final String myCampName = "Trigger This Campaign";
+		final String leadEmail = "djung@etestd.marketo.net";
 		// Find the available campaigns
 		List<CampaignRecord> campaignRecords = null;
 		try {
@@ -550,13 +568,13 @@ public class TestMktows {
 		Calendar cal = new GregorianCalendar(2010, Calendar.MAY, 1, 0, 0, 0);
 		Date oldestCreatedAt = cal.getTime();
 		List<ActivityType> filter = new ArrayList<ActivityType>();
-		//filter.add(ActivityType.VISIT_WEBPAGE);
+		// filter.add(ActivityType.VISIT_WEBPAGE);
 		filter.add(ActivityType.FILL_OUT_FORM);
-		//filter.add(ActivityType.OPEN_EMAIL);
-		//filter.add(ActivityType.OPEN_SALES_EMAIL);
-		//filter.add(ActivityType.CLICK_EMAIL);
-		//filter.add(ActivityType.CLICK_SALES_EMAIL);
-		//filter.add(ActivityType.NEW_LEAD);
+		// filter.add(ActivityType.OPEN_EMAIL);
+		// filter.add(ActivityType.OPEN_SALES_EMAIL);
+		// filter.add(ActivityType.CLICK_EMAIL);
+		// filter.add(ActivityType.CLICK_SALES_EMAIL);
+		// filter.add(ActivityType.NEW_LEAD);
 		List<LeadChangeRecord> leadChangeRecords = null;
 		try {
 			leadChangeRecords = this.client.getLeadChanges(100, null,

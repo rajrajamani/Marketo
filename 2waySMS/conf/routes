@@ -10,6 +10,7 @@ GET 	/fyp									NonGatedApp.forgotPassword
 *       /addGCLID								NonGatedApp.addGCLID
 *       /smsCallback							NonGatedApp.smsCallback
 GET		/status									NonGatedApp.statusMessage
+*       /addLead                                NonGatedApp.addLead
 
 
 #Everthing below this is password protected

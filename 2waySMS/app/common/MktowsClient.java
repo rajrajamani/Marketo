@@ -36,7 +36,7 @@ public class MktowsClient {
 	// final static public ReqCampSourceType CAMPAIGN_SOURCE_SALES =
 	// ReqCampSourceType.SALES;
 
-	public static final String API_VERSION = "2_1";
+	public static final String API_VERSION = "2_2";
 	public static final String W3C_DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
 
 	protected String mktowsUserId = null;

@@ -8,14 +8,17 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import jobs.ProcessInboundMessage;
+import jobs.RunFirstSMSRule;
 import models.AddScores;
 import models.BlogCampaign;
 import models.GoogleCampaign;
+import models.Lead;
 import models.PhoneQuery;
 import models.SMSCampaign;
 import models.User;
@@ -50,7 +53,7 @@ public class NonGatedApp extends Controller {
 		if (munchkinId != null) {
 			munchkinId = munchkinId.trim().toUpperCase();
 		}
-		
+
 		if (eula == null || eula != true) {
 			statusMessage("You must accept the terms of use", true);
 		}
@@ -254,9 +257,67 @@ public class NonGatedApp extends Controller {
 			String resp = createJsonForAddScoreResponse(leadId, sc1, sc2, total);
 			renderJSON(resp);
 		} catch (NumberFormatException ne) {
-			renderJSON("{\"error\": \"could not parse scores\"}");
+			renderJSON("{\"result\": \"error - could not parse scores\"}");
 			throw ne;
 		}
+	}
+
+	public static void addLead(String munchkinId, Long scId, String leadId,
+			String phoneNumber, String country, String unsub) {
+		try {
+			if (munchkinId == null || leadId == null || scId == null
+					|| munchkinId.equals("") || leadId.equals("")
+					|| "".equals(scId)) {
+				renderText("{\"result\" : \"error - must provide munchkinId, scId and leadId\" }");
+			}
+			if (phoneNumber == null) {
+				phoneNumber = "";
+			}
+			if (country == null) {
+				country = "";
+			}
+			boolean unsubscribed = true;
+			if (unsub == null || "".equals(unsub) || "0".equals(unsub)) {
+				unsubscribed = false;
+			}
+
+			Logger.debug("Adding new lead with id: %s to sub: %s", leadId,
+					munchkinId);
+			List<Lead> leadList = Lead.find("munchkinId = ? and leadId = ? ",
+					munchkinId, Integer.valueOf(leadId)).fetch();
+			if (leadList != null && leadList.size() > 0) {
+				Logger.debug(
+						"Lead with id:%s already exists.  Updating attributes",
+						leadId);
+				for (Lead ld : leadList) {
+					ld.phoneNumber = phoneNumber;
+					ld.country = country;
+					ld.unsubscribed = unsubscribed;
+					ld.save();
+				}
+			} else {
+				Logger.debug("Creating new lead with id:%s in sub:%s", leadId,
+						munchkinId);
+				Lead ld = new Lead();
+				ld.munchkinId = munchkinId;
+				ld.leadId = Integer.valueOf(leadId);
+				ld.country = country;
+				ld.phoneNumber = phoneNumber;
+				ld.unsubscribed = unsubscribed;
+				ld.save();
+				
+				Logger.debug("Run First SMS Rule for Lead:%s", leadId);
+				leadList = new ArrayList<Lead>();
+				leadList.add(ld);
+				new RunFirstSMSRule(scId, leadList).now();
+			}
+		} catch (NumberFormatException ne) {
+			renderJSON("{\"result\": \"error - could not parse LeadId\"}");
+			throw ne;
+		}
+		renderJSON("{\"result\": \"LeadId " + leadId
+				+ " has been added/updated \"}");
+
 	}
 
 	private static String createJsonForAddScoreResponse(

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import jobs.SyncListAndExecFormula;
-import jobs.SyncListAndRunFirstCampaign;
+import jobs.SyncListAndRunFirstSMSRule;
 import models.BlogCampaign;
 import models.FeedFetchQueue;
 import models.FormulaCampaign;
@@ -485,7 +485,7 @@ public class Application extends Controller {
 			Logger.info(
 					"campaign[%d] - Kicking off background task to fetch lead list",
 					sc.id);
-			new SyncListAndRunFirstCampaign(sc).in(2);
+			new SyncListAndRunFirstSMSRule(sc).in(2);
 
 			savedSmsConfig();
 		}
