@@ -285,6 +285,7 @@ public class NonGatedApp extends Controller {
 					munchkinId);
 			List<Lead> leadList = Lead.find("munchkinId = ? and leadId = ? ",
 					munchkinId, Integer.valueOf(leadId)).fetch();
+			Lead sendToLead = null;
 			if (leadList != null && leadList.size() > 0) {
 				Logger.debug(
 						"Lead with id:%s already exists.  Updating attributes",
@@ -294,6 +295,7 @@ public class NonGatedApp extends Controller {
 					ld.country = country;
 					ld.unsubscribed = unsubscribed;
 					ld.save();
+					sendToLead = ld;
 				}
 			} else {
 				Logger.debug("Creating new lead with id:%s in sub:%s", leadId,
@@ -305,12 +307,17 @@ public class NonGatedApp extends Controller {
 				ld.phoneNumber = phoneNumber;
 				ld.unsubscribed = unsubscribed;
 				ld.save();
-				
+				sendToLead = ld;
+
+			}
+
+			if (sendToLead != null) {
 				Logger.debug("Run First SMS Rule for Lead:%s", leadId);
 				leadList = new ArrayList<Lead>();
-				leadList.add(ld);
+				leadList.add(sendToLead);
 				new RunFirstSMSRule(scId, leadList).now();
 			}
+
 		} catch (NumberFormatException ne) {
 			renderJSON("{\"result\": \"error - could not parse LeadId\"}");
 			throw ne;
