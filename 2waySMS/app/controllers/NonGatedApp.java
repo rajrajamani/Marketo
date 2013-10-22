@@ -291,8 +291,8 @@ public class NonGatedApp extends Controller {
 						"Lead with id:%s already exists.  Updating attributes",
 						leadId);
 				for (Lead ld : leadList) {
-					ld.phoneNumber = phoneNumber;
-					ld.country = country;
+					ld.phoneNumber = phoneNumber.trim();
+					ld.country = country.trim();
 					ld.unsubscribed = unsubscribed;
 					ld.save();
 					sendToLead = ld;
@@ -303,8 +303,8 @@ public class NonGatedApp extends Controller {
 				Lead ld = new Lead();
 				ld.munchkinId = munchkinId;
 				ld.leadId = Integer.valueOf(leadId);
-				ld.country = country;
-				ld.phoneNumber = phoneNumber;
+				ld.country = country.trim();
+				ld.phoneNumber = phoneNumber.trim();
 				ld.unsubscribed = unsubscribed;
 				ld.save();
 				sendToLead = ld;

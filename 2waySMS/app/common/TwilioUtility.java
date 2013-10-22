@@ -67,7 +67,7 @@ public class TwilioUtility {
 		// Build a filter for the SmsList
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Body", payload);
-		params.put("To", to);
+		params.put("To", e164FormattedPhoneNumber);
 		params.put("From", from);
 		/* perform additional check on phone number to see if it can receive SMS */
 		params.put("ForceDelivery", "false");
