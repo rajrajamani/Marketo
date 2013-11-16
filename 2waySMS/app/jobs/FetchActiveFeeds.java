@@ -87,7 +87,7 @@ public class FetchActiveFeeds extends Job {
 
 			if (postTS != null
 					&& (postTS.getTime() > bc.dateOfLastEmailedBlogPost)) {
-				String uri = entry.getUri();
+				String uri = entry.getLink();
 				contents += "<h2><a href=" + uri + ">" + entry.getTitle()
 						+ "</a></h2>";
 
@@ -190,14 +190,14 @@ public class FetchActiveFeeds extends Job {
 
 	public static void main(String[] args) {
 		SyndFeed feed = FeedReader
-				.fetch("http://feeds.feedburner.com/modernb2bmarketing");
+				.fetch("http://pipes.yahoo.com/pipes/pipe.run?_id=d1941ed5d46a38e680643bc5c26ed811&_render=rss");
 
 		int counter = 0;
 		String contents = "";
 		for (Iterator feedIter = feed.getEntries().iterator(); feedIter
 				.hasNext() && counter < 3; counter++) {
 			SyndEntry entry = (SyndEntry) feedIter.next();
-			String uri = entry.getUri();
+			String uri = entry.getLink();
 			contents += "<h2>" + entry.getTitle() + "</h2>";
 			contents += "<h4>" + entry.getPublishedDate() + "</h4>";
 			contents += "<p>" + entry.getDescription().getValue() + "</p>";

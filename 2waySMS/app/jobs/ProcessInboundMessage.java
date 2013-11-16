@@ -157,6 +157,7 @@ public class ProcessInboundMessage extends Job {
 				int idx1 = rule.inRule.indexOf("(");
 				int idx2 = rule.inRule.indexOf(")");
 				String matchThis = rule.inRule.substring(idx1 + 1, idx2);
+				Logger.debug("Found keyword matches : %s", matchThis);
 				if (payload.equals(matchThis)) {
 					Logger.debug("campaign[%d] - %s Matched rule # %d:%s",
 							sc.id, payload, cnt++, rule.inRule);
