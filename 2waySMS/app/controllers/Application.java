@@ -509,6 +509,7 @@ public class Application extends Controller {
 			}
 			sc.status = Constants.CAMPAIGN_STATUS_CANCELED;
 			sc.save();
+			break;
 		case Constants.CAMPAIGN_BLOG:
 			BlogCampaign bc = BlogCampaign.findById(Long.valueOf(id));
 			if (bc != null) {
@@ -526,6 +527,7 @@ public class Application extends Controller {
 			}
 			bc.status = Constants.CAMPAIGN_STATUS_CANCELED;
 			bc.save();
+			break;
 		}
 		Logger.info("Canceled campaign [%s]", id);
 		statusMessage("Canceled campaign successfully", false);
