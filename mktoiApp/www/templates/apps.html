@@ -1,0 +1,20 @@
+		  <header class="bar bar-header bar-positive">
+			<h1 class="title">Applications</h1>
+		  </header>
+		  <content has-header="true">
+			<!-- our list and list items -->
+			<div class="list">
+   		    <div class="item item-divider">Lead Database</div>
+			<div ng-repeat="module in modules | filter:parent='top'">
+			    <a href="#/{{module.url}}" class="item item-avatar" ><img ng-src="{{module.imgUrl}}">  {{module.name}}</a>
+			</div>
+   		    <div class="item item-divider">Assets</div>
+			<div ng-repeat="module in modules | filter:parent='assets'">
+			    <a href="#/{{module.url}}" class="item item-avatar"><img ng-src="{{module.imgUrl}}">  {{module.name}}</a>
+			</div>
+   		    <div class="item item-divider">MSI</div>
+			<div ng-repeat="module in modules | filter:parent='msi'">
+			    <a href="#/{{module.url}}" class="item item-avatar"><img ng-src="{{module.imgUrl}}">  {{module.name}}</a>
+			</div>
+			</div>
+		  </content>		  

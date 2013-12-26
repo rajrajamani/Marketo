@@ -1,0 +1,68 @@
+		  <header class="bar bar-header bar-positive">
+			<title>Lead Database</title>
+			<!-- New Lead button-->
+		  <a class="button button-icon" href="#/home">
+			<i class="icon ion-arrow-left-c"></i>
+		  </a>						
+
+   	      <button class="button button-icon" ng-click="newLead()">
+			<i class="icon ion-compose"></i>
+		  </button>		
+		  </header>		  
+
+		  
+		  <content has-header="true">
+		  <!-- search capability -->
+		  <div class="item-input-inset">
+			<label class="item-input-wrapper">
+			  <i class="icon ion-ios7-search placeholder-icon"></i>
+			  <input ng-model="query" placeholder="Search">
+			</label>
+			<button class="button button-clear icon ion-arrow-right-c">
+			</button>
+		  </div>		  
+		  		  
+	        <!-- our list and list items -->
+			<ul class="leads">
+			<li class="thumbnail lead-listing" ng-repeat="lead in leads |filter:query">
+			<a class="item item-avatar" href="#/lead/{{lead.id}}"><img ng-src="{{lead.imgUrl}}"> {{lead.firstName}} {{lead.lastName}} ({{lead.email}})
+			</a>
+			</li>
+			</ul>
+		  </content>
+
+		<script id="new-lead.html" type="text/ng-template">
+
+		  <div class="modal">
+
+			<!-- Modal header bar -->
+			<header class="bar bar-header bar-secondary">
+			  <h1 class="title">Create New Lead</h1>
+			  <button class="button button-clear button-positive" ng-click="closeNewLead()">Cancel</button>
+			</header>
+
+			<!-- Modal content area -->
+			<content has-header="true">
+
+			  <form name="leadForm" ng-submit="createLead(lead)">
+				<div class="list">
+				  <label class="item item-input">
+					<input type="text" id="first" placeholder="First Name" ng-model="lead.first">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" id="last" placeholder="Last Name" ng-model="lead.last">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" id="email" placeholder="Email" ng-model="lead.email">
+				  </label>
+				</div>
+				<div class="padding">
+				  <button type="submit" class="button button-block button-positive">Create Lead</button>
+				</div>
+			  </form>
+
+			</content>
+
+		  </div>
+
+		</script>		

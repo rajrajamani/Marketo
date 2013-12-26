@@ -1,0 +1,29 @@
+		  <header class="bar bar-header bar-positive">
+			<!-- New Lead button-->
+		  <a class="button button-icon" href="#/home">
+			<i class="icon ion-arrow-left-c"></i>
+		  </a>						
+
+		  </header>		  
+
+		  <body ng-controller="LPCtrl">
+
+		  <content has-header="true">
+		  <!-- search capability -->
+		  <div class="item-input-inset">
+			<label class="item-input-wrapper">
+			  <i class="icon ion-ios7-search placeholder-icon"></i>
+			  <input ng-model="query" placeholder="LP Name">
+			</label>
+			<button class="button button-clear icon ion-arrow-right-c">
+			</button>
+		  </div>		  
+		  
+			<ul class="lps">
+			<li class="thumbnail lps-listing" ng-repeat="lp in lps.data |filter:query">
+			<a class="item item-avatar" href="#/lp/{{lp.id}}">{{lp.lpTemplate}}
+			</a>
+			</li>
+			</ul>
+		  </content>
+		  </body>

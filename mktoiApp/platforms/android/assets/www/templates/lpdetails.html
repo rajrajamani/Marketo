@@ -1,0 +1,23 @@
+		  <header class="bar bar-header bar-positive">
+			<!-- New Lead button-->
+		  <a class="button button-icon" href="#/lps">
+			<i class="icon ion-arrow-left-c"></i>
+		  </a>						
+
+		  </header>		  
+		  <body ng-controller="LPDetailCtrl">
+		  <content has-header="true">
+		    <div class="card">
+			 <div class="item item-divider">ID - {{lpId}}</div>
+			 <div class="item item-text-wrap">
+			<ul class="lps">		
+			<li class="thumbnail lps-listing" ng-repeat="lp in lps.data |filter:lpId">
+			 <span class="input-label">Name - </span>{{lp.lpTemplate}}<br>
+			 <span class="input-label">Program - </span>{{lp.lpProgram}}<br>
+			 <span class="input-label">Status - </span>{{lp.lpStatus}}
+			</li>
+			</ul>						 
+			 </div>
+			</div>
+		  </content>
+		  </body>
