@@ -21,9 +21,7 @@ public class LeadAPI {
 		Response response = Request.Get(url).execute();
 		Gson gson = new GsonBuilder().create();
 		String json = response.returnContent().asString();
-		Type collectionType = new TypeToken<LeadResponse>() {
-		}.getType();
-		LeadResponse attrMap = gson.fromJson(json, (Type) collectionType);
+		LeadResponse attrMap = gson.fromJson(json, LeadResponse.class);
 		if (attrMap.result.size() == 0) {
 			return null;
 		} else {
