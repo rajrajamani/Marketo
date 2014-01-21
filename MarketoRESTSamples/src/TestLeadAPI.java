@@ -9,45 +9,106 @@ public class TestLeadAPI {
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
 		try {
-			AuthToken at = IdentityServer.getAuthToken(Constants.CLIENT_ID,
+			AuthToken at = IdentityClient.getAuthToken(Constants.CLIENT_ID,
 					Constants.CLIENT_SECRET);
 
+			String fields[] = new String[] { "firstName", "lastName", "email",
+					"facebookId", "linkedinId", "twitterId" };
+
 			// Get Lead by Id
-			Lead ld1 = LeadAPI.getLeadById(at, 60);
+			System.out.println("TEST - get Lead by Id");
+			Lead ld1 = LeadAPI.getLeadById(at, 60, fields);
 			if (ld1 != null) {
 				ld1.printLeadAttributes();
 				String lastName = ld1.getLeadAttrib("lastName");
 				System.out.println(lastName);
 			}
-			
+			System.out.println("COMPLETED - get Lead by Id");
+
 			// Get Lead by Cookie
+			System.out.println("TEST - get Lead by Cookie");
 			Lead ld2 = LeadAPI.getLeadByCookie(at,
-					"token:_mch-marketo.com-1390324071622-56079");
+					"token:_mch-marketo.com-1390324071622-56079", fields);
 			if (ld2 != null) {
 				ld2.printLeadAttributes();
 			}
+			System.out.println("COMPLETED - get Lead by Cookie");
 
-			String fullCookie = "id:287-GTJ-838&token:_mch-marketo.com-1390325610448-75476";
-			fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
-			Lead ld3 = LeadAPI.getLeadByCookie(at, fullCookie);
+			System.out.println("TEST - get Lead by Cookie (Full)");
+			String fullCookie = "id:287-GTJ-838%26token:_mch-marketo.com-1390324071622-56079";
+			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
+			Lead ld3 = LeadAPI.getLeadByCookie(at, fullCookie, fields);
 			if (ld3 != null) {
 				ld3.printLeadAttributes();
 			}
+			System.out.println("TEST - get Lead by Cookie (Full)");
 
 			// Get Multiple Leads by Id
+			System.out.println("TEST - get Multiple Leads by Id");
 			int[] leadIds = { 17, 24 };
-			ArrayList<Lead> leads1 = LeadAPI.getMultipleLeadsById(at, leadIds);
+			ArrayList<Lead> leads1 = LeadAPI.getMultipleLeadsById(at, leadIds,
+					fields);
 			for (Lead lead : leads1) {
 				lead.printLeadAttributes();
 			}
+			System.out.println("COMPLETED - get Multiple Leads by Id");
 
 			// Get Multiple Leads by Email
+			System.out.println("TEST - get Multiple Leads by Email");
 			String[] emails = { "kmluce@gmail.com", "glen@marketo.com" };
 			ArrayList<Lead> leads2;
-			leads2 = LeadAPI.getMultipleLeadsByEmail(at, emails);
+			leads2 = LeadAPI.getMultipleLeadsByEmail(at, emails, fields);
 			for (Lead lead : leads2) {
 				lead.printLeadAttributes();
 			}
+			System.out.println("COMPLETED - get Multiple Leads by Id");
+
+			// Get Multiple Leads by Cookie
+			System.out.println("TEST - get Multiple Leads by Cookie");
+			String[] cks = new String[] {
+					"token:_mch-marketo.com-1390324071622-56079",
+					"id:287-GTJ-838%26token:_mch-marketo.com-1390324071622-56079" };
+			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
+			ArrayList<Lead> leads3;
+			leads3 = LeadAPI.getMultipleLeadsByCookie(at, cks, fields);
+			for (Lead lead : leads3) {
+				lead.printLeadAttributes();
+			}
+			System.out.println("Returned " + leads3.size() + " leads");
+			System.out.println("TEST - get Multiple Leads by Cookie");
+
+			// Get Multiple Leads by FacebookId
+			System.out.println("TEST - get Multiple Leads by FacebookId");
+			String[] fbIds = new String[] { "345" };
+			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
+			ArrayList<Lead> leads4;
+			leads4 = LeadAPI.getMultipleLeadsByFacebookId(at, fbIds, fields);
+			for (Lead lead : leads4) {
+				lead.printLeadAttributes();
+			}
+			System.out.println("TEST - get Multiple Leads by FacebookId");
+
+			// Get Multiple Leads by FacebookId
+			System.out.println("TEST - get Multiple Leads by LinkedinId");
+			String[] liIds = new String[] { "678", "91011" };
+			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
+			ArrayList<Lead> leads5;
+			leads5 = LeadAPI.getMultipleLeadsByLinkedinId(at, liIds, fields);
+			for (Lead lead : leads5) {
+				lead.printLeadAttributes();
+			}
+			System.out.println("TEST - get Multiple Leads by LinkedinId");
+
+			// Get Multiple Leads by FacebookId
+			System.out.println("TEST - get Multiple Leads by TwitterId");
+			String[] twIds = new String[] { "123" };
+			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
+			ArrayList<Lead> leads6;
+			leads6 = LeadAPI.getMultipleLeadsByTwitterId(at, twIds, fields);
+			for (Lead lead : leads6) {
+				lead.printLeadAttributes();
+			}
+			System.out.println("TEST - get Multiple Leads by TwitterId");
 
 		} catch (MarketoException e) {
 			System.out.println("REST Error.  Id:" + e.getRequestId());
@@ -55,5 +116,4 @@ public class TestLeadAPI {
 		}
 
 	}
-
 }

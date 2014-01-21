@@ -7,7 +7,7 @@ import org.apache.http.client.fluent.Response;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class IdentityServer {
+public class IdentityClient {
 
 	public static AuthToken getAuthToken(String clientId, String clientSecret)
 			throws ClientProtocolException, IOException {

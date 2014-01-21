@@ -14,10 +14,16 @@ import com.google.gson.GsonBuilder;
 
 public class LeadAPI {
 
-	public static Lead getLeadById(AuthToken at, int id)
+	public static Lead getLeadById(AuthToken at, int id, String[] fields)
 			throws ClientProtocolException, IOException, MarketoException {
 		String url = Constants.REST_SRVR + "/v1/lead/" + id
 				+ ".json?access_token=" + at.access_token;
+		if (fields != null) {
+			url += "&fields=";
+			for (String fld : fields) {
+				url += fld + ",";
+			}
+		}
 		Response response = Request.Get(url).execute();
 		Gson gson = new GsonBuilder().create();
 		String json = response.returnContent().asString();
@@ -35,10 +41,28 @@ public class LeadAPI {
 		}
 	}
 
-	public static Lead getLeadByCookie(AuthToken at, String cookie)
-			throws ClientProtocolException, IOException, MarketoException {
+	/**
+	 * Deprecated
+	 * 
+	 * @param at
+	 * @param cookie
+	 * @param fields
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws MarketoException
+	 */
+	public static Lead getLeadByCookie(AuthToken at, String cookie,
+			String[] fields) throws ClientProtocolException, IOException,
+			MarketoException {
 		String url = Constants.REST_SRVR + "/v1/lead/cookie.json?access_token="
 				+ at.access_token + "&value=" + cookie;
+		if (fields != null) {
+			url += "&fields=";
+			for (String fld : fields) {
+				url += fld + ",";
+			}
+		}
 		Response response = Request.Get(url).execute();
 		Gson gson = new GsonBuilder().create();
 		String json = response.returnContent().asString();
@@ -56,8 +80,9 @@ public class LeadAPI {
 		}
 	}
 
-	public static ArrayList<Lead> getMultipleLeadsById(AuthToken at, int[] ids)
-			throws ClientProtocolException, IOException, MarketoException {
+	public static ArrayList<Lead> getMultipleLeadsById(AuthToken at, int[] ids,
+			String[] fields) throws ClientProtocolException, IOException,
+			MarketoException {
 		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
 				+ at.access_token + "&filterType=id&filterValues=";
 		String idStr = "";
@@ -65,12 +90,12 @@ public class LeadAPI {
 			idStr += i + ",";
 		}
 		url += idStr;
-		return getMultipleLeads(url);
+		return getMultipleLeads(url, fields);
 	}
 
 	public static ArrayList<Lead> getMultipleLeadsByEmail(AuthToken at,
-			String[] emails) throws ClientProtocolException, IOException,
-			MarketoException {
+			String[] emails, String[] fields) throws ClientProtocolException,
+			IOException, MarketoException {
 		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
 				+ at.access_token + "&filterType=email&filterValues=";
 		String emailStr = "";
@@ -78,11 +103,69 @@ public class LeadAPI {
 			emailStr += email + ",";
 		}
 		url += emailStr;
-		return getMultipleLeads(url);
+		return getMultipleLeads(url, fields);
 	}
 
-	private static ArrayList<Lead> getMultipleLeads(String url)
+	public static ArrayList<Lead> getMultipleLeadsByCookie(AuthToken at,
+			String[] cookies, String[] fields) throws ClientProtocolException,
+			IOException, MarketoException {
+		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
+				+ at.access_token + "&filterType=cookie&filterValues=";
+		String ckStr = "";
+		for (String cookie : cookies) {
+			ckStr += cookie + ",";
+		}
+		url += ckStr;
+		return getMultipleLeads(url, fields);
+	}
+
+	public static ArrayList<Lead> getMultipleLeadsByFacebookId(AuthToken at,
+			String[] fbIds, String[] fields) throws ClientProtocolException,
+			IOException, MarketoException {
+		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
+				+ at.access_token + "&filterType=facebookId&filterValues=";
+		String fbStr = "";
+		for (String fbId : fbIds) {
+			fbStr += fbId + ",";
+		}
+		url += fbStr;
+		return getMultipleLeads(url, fields);
+	}
+
+	public static ArrayList<Lead> getMultipleLeadsByLinkedinId(AuthToken at,
+			String[] liIds, String[] fields) throws ClientProtocolException,
+			IOException, MarketoException {
+		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
+				+ at.access_token + "&filterType=linkedinId&filterValues=";
+		String liStr = "";
+		for (String liId : liIds) {
+			liStr += liId + ",";
+		}
+		url += liStr;
+		return getMultipleLeads(url, fields);
+	}
+
+	public static ArrayList<Lead> getMultipleLeadsByTwitterId(AuthToken at,
+			String[] twIds, String[] fields) throws ClientProtocolException,
+			IOException, MarketoException {
+		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
+				+ at.access_token + "&filterType=twitterId&filterValues=";
+		String twStr = "";
+		for (String twId : twIds) {
+			twStr += twId + ",";
+		}
+		url += twStr;
+		return getMultipleLeads(url, fields);
+	}
+
+	private static ArrayList<Lead> getMultipleLeads(String url, String[] fields)
 			throws ClientProtocolException, IOException, MarketoException {
+		if (fields != null) {
+			url += "&fields=";
+			for (String fld : fields) {
+				url += fld + ",";
+			}
+		}
 		Response response = Request.Get(url).execute();
 		Gson gson = new GsonBuilder().create();
 		String json = response.returnContent().asString();
@@ -104,5 +187,4 @@ public class LeadAPI {
 			return leadArr;
 		}
 	}
-
 }
