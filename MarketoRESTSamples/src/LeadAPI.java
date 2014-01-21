@@ -40,6 +40,23 @@ public class LeadAPI {
 			idStr += i + ",";
 		}
 		url += idStr;
+		return getMultipleLeads(url);
+	}
+
+	public static ArrayList<Lead> getMultipleLeadsByEmail(AuthToken at,
+			String[] emails) throws ClientProtocolException, IOException {
+		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
+				+ at.access_token + "&filterType=email&filterValues=";
+		String emailStr = "";
+		for (String email : emails) {
+			emailStr += email + ",";
+		}
+		url += emailStr;
+		return getMultipleLeads(url);
+	}
+
+	private static ArrayList<Lead> getMultipleLeads(String url)
+			throws ClientProtocolException, IOException {
 		Response response = Request.Get(url).execute();
 		Gson gson = new GsonBuilder().create();
 		String json = response.returnContent().asString();
@@ -69,11 +86,16 @@ public class LeadAPI {
 		 * System.out.println(lastName);
 		 */
 
-		int[] leadIds = { 17, 24 };
-		ArrayList<Lead> leads = getMultipleLeadsById(at, leadIds);
+		/*
+		 * int[] leadIds = { 17, 24 }; ArrayList<Lead> leads =
+		 * getMultipleLeadsById(at, leadIds); for (Lead lead : leads) {
+		 * lead.printLeadAttributes(); }
+		 */
+
+		String[] emails = { "kmluce@gmail.com", "glen@marketo.com" };
+		ArrayList<Lead> leads = getMultipleLeadsByEmail(at, emails);
 		for (Lead lead : leads) {
 			lead.printLeadAttributes();
 		}
-
 	}
 }
