@@ -1,6 +1,6 @@
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -9,15 +9,25 @@ public class TestLeadAPI {
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
 		try {
-			AuthToken at = IdentityClient.getAuthToken(Constants.CLIENT_ID,
-					Constants.CLIENT_SECRET);
+			Properties properties = new Properties();
+			properties.load(TestLeadAPI.class
+					.getResourceAsStream("/default.properties"));
+			String clientId = properties.getProperty("CLIENT_ID");
+			String clientSecret = properties.getProperty("CLIENT_SECRET");
+			String idSrvr = properties.getProperty("ID_SRVR");
+			String grantUri = properties.getProperty("GRANT_TOKEN_URI");
+			String restSrvr = properties.getProperty("REST_SRVR");
+
+			String url = idSrvr + grantUri;
+			AuthToken at = IdentityClient.getAuthToken(url, clientId,
+					clientSecret);
 
 			String fields[] = new String[] { "firstName", "lastName", "email",
 					"facebookId", "linkedinId", "twitterId" };
 
 			// Get Lead by Id
 			System.out.println("TEST - get Lead by Id");
-			Lead ld1 = LeadAPI.getLeadById(at, 60, fields);
+			Lead ld1 = LeadAPI.getLeadById(restSrvr, at, 60, fields);
 			if (ld1 != null) {
 				ld1.printLeadAttributes();
 				String lastName = ld1.getLeadAttrib("lastName");
@@ -27,7 +37,7 @@ public class TestLeadAPI {
 
 			// Get Lead by Cookie
 			System.out.println("TEST - get Lead by Cookie");
-			Lead ld2 = LeadAPI.getLeadByCookie(at,
+			Lead ld2 = LeadAPI.getLeadByCookie(restSrvr, at,
 					"token:_mch-marketo.com-1390324071622-56079", fields);
 			if (ld2 != null) {
 				ld2.printLeadAttributes();
@@ -37,7 +47,8 @@ public class TestLeadAPI {
 			System.out.println("TEST - get Lead by Cookie (Full)");
 			String fullCookie = "id:287-GTJ-838%26token:_mch-marketo.com-1390324071622-56079";
 			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
-			Lead ld3 = LeadAPI.getLeadByCookie(at, fullCookie, fields);
+			Lead ld3 = LeadAPI
+					.getLeadByCookie(restSrvr, at, fullCookie, fields);
 			if (ld3 != null) {
 				ld3.printLeadAttributes();
 			}
@@ -46,8 +57,8 @@ public class TestLeadAPI {
 			// Get Multiple Leads by Id
 			System.out.println("TEST - get Multiple Leads by Id");
 			int[] leadIds = { 17, 24 };
-			ArrayList<Lead> leads1 = LeadAPI.getMultipleLeadsById(at, leadIds,
-					fields);
+			ArrayList<Lead> leads1 = LeadAPI.getMultipleLeadsById(restSrvr, at,
+					leadIds, fields);
 			for (Lead lead : leads1) {
 				lead.printLeadAttributes();
 			}
@@ -57,7 +68,8 @@ public class TestLeadAPI {
 			System.out.println("TEST - get Multiple Leads by Email");
 			String[] emails = { "kmluce@gmail.com", "glen@marketo.com" };
 			ArrayList<Lead> leads2;
-			leads2 = LeadAPI.getMultipleLeadsByEmail(at, emails, fields);
+			leads2 = LeadAPI.getMultipleLeadsByEmail(restSrvr, at, emails,
+					fields);
 			for (Lead lead : leads2) {
 				lead.printLeadAttributes();
 			}
@@ -70,7 +82,8 @@ public class TestLeadAPI {
 					"id:287-GTJ-838%26token:_mch-marketo.com-1390324071622-56079" };
 			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
 			ArrayList<Lead> leads3;
-			leads3 = LeadAPI.getMultipleLeadsByCookie(at, cks, fields);
+			leads3 = LeadAPI
+					.getMultipleLeadsByCookie(restSrvr, at, cks, fields);
 			for (Lead lead : leads3) {
 				lead.printLeadAttributes();
 			}
@@ -82,7 +95,8 @@ public class TestLeadAPI {
 			String[] fbIds = new String[] { "345" };
 			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
 			ArrayList<Lead> leads4;
-			leads4 = LeadAPI.getMultipleLeadsByFacebookId(at, fbIds, fields);
+			leads4 = LeadAPI.getMultipleLeadsByFacebookId(restSrvr, at, fbIds,
+					fields);
 			for (Lead lead : leads4) {
 				lead.printLeadAttributes();
 			}
@@ -93,7 +107,8 @@ public class TestLeadAPI {
 			String[] liIds = new String[] { "678", "91011" };
 			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
 			ArrayList<Lead> leads5;
-			leads5 = LeadAPI.getMultipleLeadsByLinkedinId(at, liIds, fields);
+			leads5 = LeadAPI.getMultipleLeadsByLinkedinId(restSrvr, at, liIds,
+					fields);
 			for (Lead lead : leads5) {
 				lead.printLeadAttributes();
 			}
@@ -104,7 +119,8 @@ public class TestLeadAPI {
 			String[] twIds = new String[] { "123" };
 			// fullCookie = URLEncoder.encode(fullCookie, "ISO-8859-1");
 			ArrayList<Lead> leads6;
-			leads6 = LeadAPI.getMultipleLeadsByTwitterId(at, twIds, fields);
+			leads6 = LeadAPI.getMultipleLeadsByTwitterId(restSrvr, at, twIds,
+					fields);
 			for (Lead lead : leads6) {
 				lead.printLeadAttributes();
 			}

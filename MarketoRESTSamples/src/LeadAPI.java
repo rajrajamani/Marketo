@@ -1,7 +1,5 @@
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -14,10 +12,11 @@ import com.google.gson.GsonBuilder;
 
 public class LeadAPI {
 
-	public static Lead getLeadById(AuthToken at, int id, String[] fields)
-			throws ClientProtocolException, IOException, MarketoException {
-		String url = Constants.REST_SRVR + "/v1/lead/" + id
-				+ ".json?access_token=" + at.access_token;
+	public static Lead getLeadById(String urlBase, AuthToken at, int id,
+			String[] fields) throws ClientProtocolException, IOException,
+			MarketoException {
+		String url = urlBase + "/v1/lead/" + id + ".json?access_token="
+				+ at.access_token;
 		if (fields != null) {
 			url += "&fields=";
 			for (String fld : fields) {
@@ -52,10 +51,10 @@ public class LeadAPI {
 	 * @throws IOException
 	 * @throws MarketoException
 	 */
-	public static Lead getLeadByCookie(AuthToken at, String cookie,
-			String[] fields) throws ClientProtocolException, IOException,
-			MarketoException {
-		String url = Constants.REST_SRVR + "/v1/lead/cookie.json?access_token="
+	public static Lead getLeadByCookie(String urlBase, AuthToken at,
+			String cookie, String[] fields) throws ClientProtocolException,
+			IOException, MarketoException {
+		String url = urlBase + "/v1/lead/cookie.json?access_token="
 				+ at.access_token + "&value=" + cookie;
 		if (fields != null) {
 			url += "&fields=";
@@ -80,11 +79,11 @@ public class LeadAPI {
 		}
 	}
 
-	public static ArrayList<Lead> getMultipleLeadsById(AuthToken at, int[] ids,
-			String[] fields) throws ClientProtocolException, IOException,
-			MarketoException {
-		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
-				+ at.access_token + "&filterType=id&filterValues=";
+	public static ArrayList<Lead> getMultipleLeadsById(String urlBase,
+			AuthToken at, int[] ids, String[] fields)
+			throws ClientProtocolException, IOException, MarketoException {
+		String url = urlBase + "/v1/leads.json?access_token=" + at.access_token
+				+ "&filterType=id&filterValues=";
 		String idStr = "";
 		for (int i : ids) {
 			idStr += i + ",";
@@ -93,11 +92,11 @@ public class LeadAPI {
 		return getMultipleLeads(url, fields);
 	}
 
-	public static ArrayList<Lead> getMultipleLeadsByEmail(AuthToken at,
-			String[] emails, String[] fields) throws ClientProtocolException,
-			IOException, MarketoException {
-		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
-				+ at.access_token + "&filterType=email&filterValues=";
+	public static ArrayList<Lead> getMultipleLeadsByEmail(String urlBase,
+			AuthToken at, String[] emails, String[] fields)
+			throws ClientProtocolException, IOException, MarketoException {
+		String url = urlBase + "/v1/leads.json?access_token=" + at.access_token
+				+ "&filterType=email&filterValues=";
 		String emailStr = "";
 		for (String email : emails) {
 			emailStr += email + ",";
@@ -106,11 +105,11 @@ public class LeadAPI {
 		return getMultipleLeads(url, fields);
 	}
 
-	public static ArrayList<Lead> getMultipleLeadsByCookie(AuthToken at,
-			String[] cookies, String[] fields) throws ClientProtocolException,
-			IOException, MarketoException {
-		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
-				+ at.access_token + "&filterType=cookie&filterValues=";
+	public static ArrayList<Lead> getMultipleLeadsByCookie(String urlBase,
+			AuthToken at, String[] cookies, String[] fields)
+			throws ClientProtocolException, IOException, MarketoException {
+		String url = urlBase + "/v1/leads.json?access_token=" + at.access_token
+				+ "&filterType=cookie&filterValues=";
 		String ckStr = "";
 		for (String cookie : cookies) {
 			ckStr += cookie + ",";
@@ -119,11 +118,11 @@ public class LeadAPI {
 		return getMultipleLeads(url, fields);
 	}
 
-	public static ArrayList<Lead> getMultipleLeadsByFacebookId(AuthToken at,
-			String[] fbIds, String[] fields) throws ClientProtocolException,
-			IOException, MarketoException {
-		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
-				+ at.access_token + "&filterType=facebookId&filterValues=";
+	public static ArrayList<Lead> getMultipleLeadsByFacebookId(String urlBase,
+			AuthToken at, String[] fbIds, String[] fields)
+			throws ClientProtocolException, IOException, MarketoException {
+		String url = urlBase + "/v1/leads.json?access_token=" + at.access_token
+				+ "&filterType=facebookId&filterValues=";
 		String fbStr = "";
 		for (String fbId : fbIds) {
 			fbStr += fbId + ",";
@@ -132,11 +131,11 @@ public class LeadAPI {
 		return getMultipleLeads(url, fields);
 	}
 
-	public static ArrayList<Lead> getMultipleLeadsByLinkedinId(AuthToken at,
-			String[] liIds, String[] fields) throws ClientProtocolException,
-			IOException, MarketoException {
-		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
-				+ at.access_token + "&filterType=linkedinId&filterValues=";
+	public static ArrayList<Lead> getMultipleLeadsByLinkedinId(String urlBase,
+			AuthToken at, String[] liIds, String[] fields)
+			throws ClientProtocolException, IOException, MarketoException {
+		String url = urlBase + "/v1/leads.json?access_token=" + at.access_token
+				+ "&filterType=linkedinId&filterValues=";
 		String liStr = "";
 		for (String liId : liIds) {
 			liStr += liId + ",";
@@ -145,11 +144,11 @@ public class LeadAPI {
 		return getMultipleLeads(url, fields);
 	}
 
-	public static ArrayList<Lead> getMultipleLeadsByTwitterId(AuthToken at,
-			String[] twIds, String[] fields) throws ClientProtocolException,
-			IOException, MarketoException {
-		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
-				+ at.access_token + "&filterType=twitterId&filterValues=";
+	public static ArrayList<Lead> getMultipleLeadsByTwitterId(String urlBase,
+			AuthToken at, String[] twIds, String[] fields)
+			throws ClientProtocolException, IOException, MarketoException {
+		String url = urlBase + "/v1/leads.json?access_token=" + at.access_token
+				+ "&filterType=twitterId&filterValues=";
 		String twStr = "";
 		for (String twId : twIds) {
 			twStr += twId + ",";

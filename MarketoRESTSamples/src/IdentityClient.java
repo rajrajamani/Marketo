@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Properties;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
@@ -9,26 +10,26 @@ import com.google.gson.GsonBuilder;
 
 public class IdentityClient {
 
-	public static AuthToken getAuthToken(String clientId, String clientSecret)
-			throws ClientProtocolException, IOException {
+	public static AuthToken getAuthToken(String url, String clientId,
+			String clientSecret) throws ClientProtocolException, IOException {
+
 		Response response = Request.Get(
-				Constants.GRANT_TOKEN_URI + "&client_id=" + clientId
-						+ "&client_secret=" + clientSecret).execute();
+				url + "&client_id=" + clientId + "&client_secret="
+						+ clientSecret).execute();
 		Gson gson = new GsonBuilder().create();
 		AuthToken at = gson.fromJson(response.returnContent().asString(),
 				AuthToken.class);
 		return at;
 	}
 
-	public static TokenScope validateToken(AuthToken at)
+	public static TokenScope validateToken(String url, AuthToken at)
 			throws ClientProtocolException, IOException {
-		return validateToken(at.access_token);
+		return validateToken(url, at.access_token);
 	}
 
-	public static TokenScope validateToken(String access_token)
+	public static TokenScope validateToken(String url, String access_token)
 			throws ClientProtocolException, IOException {
-		Response response = Request.Get(
-				Constants.VALIDATE_TOKEN_URI + access_token).execute();
+		Response response = Request.Get(url + access_token).execute();
 		Gson gson = new GsonBuilder().create();
 		TokenScope ts = gson.fromJson(response.returnContent().asString(),
 				TokenScope.class);
@@ -37,10 +38,21 @@ public class IdentityClient {
 
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
-		AuthToken at = getAuthToken(Constants.CLIENT_ID,
-				Constants.CLIENT_SECRET);
+		Properties properties = new Properties();
+		properties.load(TestLeadAPI.class
+				.getResourceAsStream("/default.properties"));
+		String idSrvr = properties.getProperty("ID_SRVR");
+		String grantUri = properties.getProperty("GRANT_TOKEN_URI");
+		String clientId = properties.getProperty("CLIENT_ID");
+		String clientSecret = properties.getProperty("CLIENT_SECRET");
+
+		String url = idSrvr + grantUri;
+		AuthToken at = getAuthToken(url, clientId, clientSecret);
 		System.out.println(at.access_token);
-		TokenScope ts = validateToken(at);
+
+		String validateUri = properties.getProperty("VALIDATE_TOKEN_URI");
+		String url2 = idSrvr + validateUri;
+		TokenScope ts = validateToken(url2, at);
 		System.out.println(ts.timeToLive);
 	}
 }
