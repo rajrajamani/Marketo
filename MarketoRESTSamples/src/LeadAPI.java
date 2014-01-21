@@ -24,7 +24,7 @@ public class LeadAPI {
 		if (attrMap.result.size() == 0) {
 			return null;
 		} else {
-			//return the first one
+			// return the first one
 			Map<String, String> ldAsMap = attrMap.result.iterator().next();
 			Lead ld = new Lead(ldAsMap);
 			return ld;
@@ -33,12 +33,13 @@ public class LeadAPI {
 
 	public static ArrayList<Lead> getMultipleLeadsById(AuthToken at, int[] ids)
 			throws ClientProtocolException, IOException {
-		String url = Constants.REST_SRVR + "/v1/leads.json?access_token=" + at.access_token + "&filterType=id&filterValues=";
+		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
+				+ at.access_token + "&filterType=id&filterValues=";
 		String idStr = "";
 		for (int i : ids) {
 			idStr += i + ",";
 		}
-		url +=idStr;
+		url += idStr;
 		Response response = Request.Get(url).execute();
 		Gson gson = new GsonBuilder().create();
 		String json = response.returnContent().asString();
@@ -57,23 +58,22 @@ public class LeadAPI {
 			return leadArr;
 		}
 	}
+
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
 		AuthToken at = IdentityServer.getAuthToken(Constants.CLIENT_ID,
 				Constants.CLIENT_SECRET);
 		/*
-		Lead ld = getLeadById(at, 60);
-		ld.printLeadAttributes();
-		String lastName = ld.getLeadAttrib("lastName");
-		System.out.println(lastName);
-		*/
-		
-		int[] leadIds = {17,24};
+		 * Lead ld = getLeadById(at, 60); ld.printLeadAttributes(); String
+		 * lastName = ld.getLeadAttrib("lastName");
+		 * System.out.println(lastName);
+		 */
+
+		int[] leadIds = { 17, 24 };
 		ArrayList<Lead> leads = getMultipleLeadsById(at, leadIds);
 		for (Lead lead : leads) {
 			lead.printLeadAttributes();
 		}
-		
 
 	}
 }
