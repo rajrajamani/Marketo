@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -14,13 +15,37 @@ import com.google.gson.GsonBuilder;
 public class LeadAPI {
 
 	public static Lead getLeadById(AuthToken at, int id)
-			throws ClientProtocolException, IOException {
+			throws ClientProtocolException, IOException, MarketoException {
 		String url = Constants.REST_SRVR + "/v1/lead/" + id
 				+ ".json?access_token=" + at.access_token;
 		Response response = Request.Get(url).execute();
 		Gson gson = new GsonBuilder().create();
 		String json = response.returnContent().asString();
 		LeadResponse attrMap = gson.fromJson(json, LeadResponse.class);
+		if (attrMap.success != true) {
+			throw new MarketoException(attrMap.requestId);
+		}
+		if (attrMap.result.size() == 0) {
+			return null;
+		} else {
+			// return the first one
+			Map<String, String> ldAsMap = attrMap.result.iterator().next();
+			Lead ld = new Lead(ldAsMap);
+			return ld;
+		}
+	}
+
+	public static Lead getLeadByCookie(AuthToken at, String cookie)
+			throws ClientProtocolException, IOException, MarketoException {
+		String url = Constants.REST_SRVR + "/v1/lead/cookie.json?access_token="
+				+ at.access_token + "&value=" + cookie;
+		Response response = Request.Get(url).execute();
+		Gson gson = new GsonBuilder().create();
+		String json = response.returnContent().asString();
+		LeadResponse attrMap = gson.fromJson(json, LeadResponse.class);
+		if (attrMap.success != true) {
+			throw new MarketoException(attrMap.requestId);
+		}
 		if (attrMap.result.size() == 0) {
 			return null;
 		} else {
@@ -32,7 +57,7 @@ public class LeadAPI {
 	}
 
 	public static ArrayList<Lead> getMultipleLeadsById(AuthToken at, int[] ids)
-			throws ClientProtocolException, IOException {
+			throws ClientProtocolException, IOException, MarketoException {
 		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
 				+ at.access_token + "&filterType=id&filterValues=";
 		String idStr = "";
@@ -44,7 +69,8 @@ public class LeadAPI {
 	}
 
 	public static ArrayList<Lead> getMultipleLeadsByEmail(AuthToken at,
-			String[] emails) throws ClientProtocolException, IOException {
+			String[] emails) throws ClientProtocolException, IOException,
+			MarketoException {
 		String url = Constants.REST_SRVR + "/v1/leads.json?access_token="
 				+ at.access_token + "&filterType=email&filterValues=";
 		String emailStr = "";
@@ -56,11 +82,14 @@ public class LeadAPI {
 	}
 
 	private static ArrayList<Lead> getMultipleLeads(String url)
-			throws ClientProtocolException, IOException {
+			throws ClientProtocolException, IOException, MarketoException {
 		Response response = Request.Get(url).execute();
 		Gson gson = new GsonBuilder().create();
 		String json = response.returnContent().asString();
 		LeadResponse attrMap = gson.fromJson(json, LeadResponse.class);
+		if (attrMap.success != true) {
+			throw new MarketoException(attrMap.requestId);
+		}
 		if (attrMap.result.size() == 0) {
 			return null;
 		} else {
@@ -76,26 +105,4 @@ public class LeadAPI {
 		}
 	}
 
-	public static void main(String[] args) throws ClientProtocolException,
-			IOException {
-		AuthToken at = IdentityServer.getAuthToken(Constants.CLIENT_ID,
-				Constants.CLIENT_SECRET);
-		/*
-		 * Lead ld = getLeadById(at, 60); ld.printLeadAttributes(); String
-		 * lastName = ld.getLeadAttrib("lastName");
-		 * System.out.println(lastName);
-		 */
-
-		/*
-		 * int[] leadIds = { 17, 24 }; ArrayList<Lead> leads =
-		 * getMultipleLeadsById(at, leadIds); for (Lead lead : leads) {
-		 * lead.printLeadAttributes(); }
-		 */
-
-		String[] emails = { "kmluce@gmail.com", "glen@marketo.com" };
-		ArrayList<Lead> leads = getMultipleLeadsByEmail(at, emails);
-		for (Lead lead : leads) {
-			lead.printLeadAttributes();
-		}
-	}
 }
