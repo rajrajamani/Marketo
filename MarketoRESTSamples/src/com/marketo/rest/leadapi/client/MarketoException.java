@@ -1,3 +1,4 @@
+package com.marketo.rest.leadapi.client;
 
 public class MarketoException extends Exception {
 

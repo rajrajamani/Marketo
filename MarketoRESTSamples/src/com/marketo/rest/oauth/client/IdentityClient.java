@@ -1,3 +1,4 @@
+package com.marketo.rest.oauth.client;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -7,6 +8,7 @@ import org.apache.http.client.fluent.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.marketo.rest.leadapi.client.TestLeadAPI;
 
 public class IdentityClient {
 

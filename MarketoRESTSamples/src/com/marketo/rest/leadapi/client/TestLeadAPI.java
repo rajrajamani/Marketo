@@ -1,8 +1,13 @@
+package com.marketo.rest.leadapi.client;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import org.apache.http.client.ClientProtocolException;
+
+import com.marketo.rest.oauth.client.AuthToken;
+import com.marketo.rest.oauth.client.IdentityClient;
 
 public class TestLeadAPI {
 

@@ -1,3 +1,4 @@
+package com.marketo.rest.oauth.client;
 
 public class AuthToken {
 	public String access_token;
