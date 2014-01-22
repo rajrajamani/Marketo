@@ -25,7 +25,7 @@ public class TokenScope {
 		public String language;
 		public String locale;
 		public String timeZone;
-		public String apiOnlyUser;
+		public boolean apiOnlyUser;
 	};
 	public Info info; 
 	public Integer timeToLive;

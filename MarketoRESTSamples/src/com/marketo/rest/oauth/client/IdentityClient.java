@@ -8,7 +8,6 @@ import org.apache.http.client.fluent.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.marketo.rest.leadapi.client.TestLeadAPI;
 
 public class IdentityClient {
 
@@ -38,23 +37,4 @@ public class IdentityClient {
 		return ts;
 	}
 
-	public static void main(String[] args) throws ClientProtocolException,
-			IOException {
-		Properties properties = new Properties();
-		properties.load(TestLeadAPI.class
-				.getResourceAsStream("/default.properties"));
-		String idSrvr = properties.getProperty("ID_SRVR");
-		String grantUri = properties.getProperty("GRANT_TOKEN_URI");
-		String clientId = properties.getProperty("CLIENT_ID");
-		String clientSecret = properties.getProperty("CLIENT_SECRET");
-
-		String url = idSrvr + grantUri;
-		AuthToken at = getAuthToken(url, clientId, clientSecret);
-		System.out.println(at.access_token);
-
-		String validateUri = properties.getProperty("VALIDATE_TOKEN_URI");
-		String url2 = idSrvr + validateUri;
-		TokenScope ts = validateToken(url2, at);
-		System.out.println(ts.timeToLive);
-	}
 }
