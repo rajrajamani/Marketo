@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<testsuite failures="0" time="1.71" errors="0" skipped="0" tests="9" name="LeadAPITests">
+  <testcase classname="LeadAPITests" name="getLeadbyFullCookieTest" time="0.159">
+      </testcase>
+  <testcase classname="LeadAPITests" name="getLeadsbyFacebookIdTest" time="0.334">
+      </testcase>
+  <testcase classname="LeadAPITests" name="getLeadsbyLinkedInIdTest" time="0.143">
+      </testcase>
+  <testcase classname="LeadAPITests" name="getLeadsbyTwitterIdTest" time="0.277">
+      </testcase>
+  <testcase classname="LeadAPITests" name="getLeadbyIdTest" time="0.18">
+      </testcase>
+  <testcase classname="LeadAPITests" name="getLeadbyCookieTest" time="0.111">
+      </testcase>
+  <testcase classname="LeadAPITests" name="getLeadsbyIdTest" time="0.094">
+      </testcase>
+  <testcase classname="LeadAPITests" name="getLeadsbyEmailTest" time="0.154">
+      </testcase>
+  <testcase classname="LeadAPITests" name="getLeadsbyCookieTest" time="0.258">
+      </testcase>
+</testsuite>
