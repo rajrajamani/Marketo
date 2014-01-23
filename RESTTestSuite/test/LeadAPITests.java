@@ -4,11 +4,12 @@ import java.util.Collections;
 
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import play.Play;
 import play.test.FunctionalTest;
-import play.test.UnitTest;
 
 import com.marketo.rest.leadapi.client.Lead;
 import com.marketo.rest.leadapi.client.LeadAPI;
@@ -16,6 +17,7 @@ import com.marketo.rest.leadapi.client.MarketoException;
 import com.marketo.rest.oauth.client.AuthToken;
 import com.marketo.rest.oauth.client.IdentityClient;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LeadAPITests extends FunctionalTest {
 
 	private String clientId;
@@ -55,7 +57,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadbyIdTest() throws ClientProtocolException, IOException,
+	public void t00getLeadByIdTest() throws ClientProtocolException, IOException,
 			MarketoException {
 		// Get Lead by Id
 		Lead ld1 = LeadAPI.getLeadById(restSrvr, at,
@@ -68,7 +70,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadbyCookieTest() throws ClientProtocolException,
+	public void t01getLeadByCookieTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Lead by Cookie
 		Lead ld2 = LeadAPI.getLeadByCookie(restSrvr, at,
@@ -81,7 +83,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadbyFullCookieTest() throws ClientProtocolException,
+	public void t02getLeadByFullCookieTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		Lead ld3 = LeadAPI.getLeadByCookie(restSrvr, at, cookies[1], fields);
 		assertNotNull(ld3);
@@ -92,7 +94,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadsbyIdTest() throws ClientProtocolException, IOException,
+	public void t03getLeadsbyIdTest() throws ClientProtocolException, IOException,
 			MarketoException {
 		// Get Multiple Leads by Id
 		int[] lIds = { Integer.valueOf(leadIds[1]), Integer.valueOf(leadIds[2]) };
@@ -108,7 +110,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadsbyEmailTest() throws ClientProtocolException,
+	public void t04getLeadsbyEmailTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by Email
 		String[] emails = { "kmluce@gmail.com", "glen@marketo.com" };
@@ -124,7 +126,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadsbyCookieTest() throws ClientProtocolException,
+	public void t05getLeadsbyCookieTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by Cookie
 		ArrayList<Lead> leads3;
@@ -134,7 +136,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadsbyFacebookIdTest() throws ClientProtocolException,
+	public void t06getLeadsbyFacebookIdTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by FacebookId
 		ArrayList<Lead> leads;
@@ -149,7 +151,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadsbyLinkedInIdTest() throws ClientProtocolException,
+	public void t07getLeadsbyLinkedInIdTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by LinkedinId
 		ArrayList<Lead> leads;
@@ -160,7 +162,7 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void getLeadsbyTwitterIdTest() throws ClientProtocolException,
+	public void t08getLeadsbyTwitterIdTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by TwitterId
 		ArrayList<Lead> leads;

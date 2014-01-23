@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<testsuite failures="0" time="0.397" errors="0" skipped="0" tests="2" name="IdentityTests">
-  <testcase classname="IdentityTests" name="getAuthTokenTest" time="0.191">
+<testsuite failures="0" time="0.072" errors="0" skipped="0" tests="2" name="IdentityTests">
+  <testcase classname="IdentityTests" name="validateToken" time="0.048">
       </testcase>
-  <testcase classname="IdentityTests" name="validateToken" time="0.206">
+  <testcase classname="IdentityTests" name="getAuthTokenTest" time="0.024">
       </testcase>
 </testsuite>
