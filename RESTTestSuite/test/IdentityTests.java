@@ -5,13 +5,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import play.Play;
+import play.test.FunctionalTest;
 import play.test.UnitTest;
 
 import com.marketo.rest.oauth.client.AuthToken;
 import com.marketo.rest.oauth.client.IdentityClient;
 import com.marketo.rest.oauth.client.TokenScope;
 
-public class IdentityTests extends UnitTest {
+public class IdentityTests extends FunctionalTest {
 
 	private String idSrvr;
 	private String grantUri;

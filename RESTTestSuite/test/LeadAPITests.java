@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import play.Play;
+import play.test.FunctionalTest;
 import play.test.UnitTest;
 
 import com.marketo.rest.leadapi.client.Lead;
@@ -15,7 +16,7 @@ import com.marketo.rest.leadapi.client.MarketoException;
 import com.marketo.rest.oauth.client.AuthToken;
 import com.marketo.rest.oauth.client.IdentityClient;
 
-public class LeadAPITests extends UnitTest {
+public class LeadAPITests extends FunctionalTest {
 
 	private String clientId;
 	private String clientSecret;

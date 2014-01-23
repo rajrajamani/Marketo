@@ -72,7 +72,7 @@
 	<classpathentry kind="lib" path="C:/play-1.2.5/framework/lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="lib" path="C:/play-1.2.5/framework/lib/xmlpull-1.1.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/play-1.2.5/framework/lib/xstream-1.4.2.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/MarketoRESTSamples"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MarketoRESTSDK"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.6.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.3.jar"/>
 	<classpathentry kind="lib" path="lib/fluent-hc-4.3.2.jar"/>

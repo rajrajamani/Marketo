@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<testsuite failures="0" time="1.71" errors="0" skipped="0" tests="9" name="LeadAPITests">
-  <testcase classname="LeadAPITests" name="getLeadbyFullCookieTest" time="0.159">
+<testsuite failures="0" time="1.381" errors="0" skipped="0" tests="9" name="LeadAPITests">
+  <testcase classname="LeadAPITests" name="getLeadbyFullCookieTest" time="0.291">
       </testcase>
-  <testcase classname="LeadAPITests" name="getLeadsbyFacebookIdTest" time="0.334">
+  <testcase classname="LeadAPITests" name="getLeadsbyFacebookIdTest" time="0.338">
       </testcase>
-  <testcase classname="LeadAPITests" name="getLeadsbyLinkedInIdTest" time="0.143">
+  <testcase classname="LeadAPITests" name="getLeadsbyLinkedInIdTest" time="0.083">
       </testcase>
-  <testcase classname="LeadAPITests" name="getLeadsbyTwitterIdTest" time="0.277">
+  <testcase classname="LeadAPITests" name="getLeadsbyTwitterIdTest" time="0.103">
       </testcase>
-  <testcase classname="LeadAPITests" name="getLeadbyIdTest" time="0.18">
+  <testcase classname="LeadAPITests" name="getLeadbyIdTest" time="0.068">
       </testcase>
-  <testcase classname="LeadAPITests" name="getLeadbyCookieTest" time="0.111">
+  <testcase classname="LeadAPITests" name="getLeadbyCookieTest" time="0.203">
       </testcase>
-  <testcase classname="LeadAPITests" name="getLeadsbyIdTest" time="0.094">
+  <testcase classname="LeadAPITests" name="getLeadsbyIdTest" time="0.069">
       </testcase>
-  <testcase classname="LeadAPITests" name="getLeadsbyEmailTest" time="0.154">
+  <testcase classname="LeadAPITests" name="getLeadsbyEmailTest" time="0.175">
       </testcase>
-  <testcase classname="LeadAPITests" name="getLeadsbyCookieTest" time="0.258">
+  <testcase classname="LeadAPITests" name="getLeadsbyCookieTest" time="0.051">
       </testcase>
 </testsuite>
