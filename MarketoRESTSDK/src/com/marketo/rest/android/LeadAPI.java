@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.http.client.ClientProtocolException;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.marketo.rest.leadapi.client.Lead;
@@ -19,48 +21,6 @@ public class LeadAPI {
 			String[] fields) throws IOException, MarketoException {
 		String url = urlBase + "/v1/lead/" + id + ".json?access_token="
 				+ at.access_token;
-		if (fields != null) {
-			url += "&fields=";
-			for (String fld : fields) {
-				url += fld + ",";
-			}
-		}
-		String response = HttpClient.readGetResponse(url);
-		if (response == null) {
-			return null;
-		}
-		Gson gson = new GsonBuilder().create();
-		String json = response;
-		LeadResponse attrMap = gson.fromJson(json, LeadResponse.class);
-		if (attrMap.success != true) {
-			throw new MarketoException(attrMap.requestId, attrMap.errors);
-		}
-		if (attrMap.result.size() == 0) {
-			return null;
-		} else {
-			// return the first one
-			Map<String, String> ldAsMap = attrMap.result.iterator().next();
-			Lead ld = new Lead(ldAsMap);
-			return ld;
-		}
-	}
-
-	/**
-	 * Deprecated
-	 * 
-	 * @param at
-	 * @param cookie
-	 * @param fields
-	 * @return
-	 * @throws ClientProtocolException
-	 * @throws IOException
-	 * @throws MarketoException
-	 */
-	public static Lead getLeadByCookie(String urlBase, AuthToken at,
-			String cookie, String[] fields) throws IOException,
-			MarketoException {
-		String url = urlBase + "/v1/lead/cookie.json?access_token="
-				+ at.access_token + "&value=" + cookie;
 		if (fields != null) {
 			url += "&fields=";
 			for (String fld : fields) {

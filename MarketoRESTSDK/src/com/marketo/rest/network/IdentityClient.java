@@ -1,6 +1,6 @@
-package com.marketo.rest.oauth.client;
+package com.marketo.rest.network;
+
 import java.io.IOException;
-import java.util.Properties;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
@@ -8,10 +8,14 @@ import org.apache.http.client.fluent.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.marketo.rest.base.IdentityClientBase;
+import com.marketo.rest.oauth.client.AuthToken;
+import com.marketo.rest.oauth.client.TokenScope;
 
-public class IdentityClient {
+public class IdentityClient extends IdentityClientBase {
 
-	public static AuthToken getAuthToken(String url, String clientId,
+	@Override
+	public AuthToken getAuthToken(String url, String clientId,
 			String clientSecret) throws ClientProtocolException, IOException {
 
 		Response response = Request.Get(
@@ -23,12 +27,26 @@ public class IdentityClient {
 		return at;
 	}
 
-	public static TokenScope validateToken(String url, AuthToken at)
+	public AuthToken getAuthTokenForUser(String url, String clientId,
+			String clientSecret, String user, String pass)
+			throws ClientProtocolException, IOException {
+
+		String urlWithParams = url + "&client_id=" + clientId
+				+ "&client_secret=" + clientSecret + "&username=" + user
+				+ "&password=" + pass;
+		Response response = Request.Get(urlWithParams).execute();
+		Gson gson = new GsonBuilder().create();
+		AuthToken at = gson.fromJson(response.returnContent().asString(),
+				AuthToken.class);
+		return at;
+	}
+
+	public TokenScope validateToken(String url, AuthToken at)
 			throws ClientProtocolException, IOException {
 		return validateToken(url, at.access_token);
 	}
 
-	public static TokenScope validateToken(String url, String access_token)
+	public TokenScope validateToken(String url, String access_token)
 			throws ClientProtocolException, IOException {
 		Response response = Request.Get(url + access_token).execute();
 		Gson gson = new GsonBuilder().create();
@@ -37,4 +55,14 @@ public class IdentityClient {
 		return ts;
 	}
 
+	protected IdentityClient() {
+		
+	}
+	
+	public static IdentityClientBase getInstance() {
+		if (instance == null) {
+			instance = new IdentityClient();
+		} 
+		return instance;
+	}
 }

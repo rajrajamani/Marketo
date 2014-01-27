@@ -1,7 +1,6 @@
 package com.marketo.rest.leadapi.client;
-import java.util.HashMap;
-import java.util.Map;
 
+import java.util.Map;
 
 public class Lead {
 
@@ -10,7 +9,7 @@ public class Lead {
 	public Lead(Map<String, String> map) {
 		attrMap = map;
 	}
-	
+
 	public String getLeadAttrib(String key) {
 		if (attrMap.containsKey(key)) {
 			return attrMap.get(key);
@@ -18,7 +17,11 @@ public class Lead {
 			return null;
 		}
 	}
-	
+
+	public Map<String, String> getAllAttributes() {
+		return attrMap;
+	}
+
 	public void printLeadAttributes() {
 		for (Map.Entry<String, String> entry : attrMap.entrySet()) {
 			System.out.println(entry.getKey() + "/" + entry.getValue());

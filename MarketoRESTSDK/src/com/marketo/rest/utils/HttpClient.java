@@ -28,7 +28,7 @@ public class HttpClient {
 				// ignore
 			}
 		}
-		return null;
+		return response;
 	}
 
 	public static String readGetResponse(String urlStr) throws IOException {
