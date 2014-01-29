@@ -1,6 +1,10 @@
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Before;
@@ -11,7 +15,10 @@ import org.junit.runners.MethodSorters;
 import play.Play;
 import play.test.FunctionalTest;
 
+import com.marketo.rest.base.LeadAPIBase;
 import com.marketo.rest.leadapi.client.Lead;
+import com.marketo.rest.leadapi.client.LeadRequest;
+import com.marketo.rest.leadapi.client.LeadResponse;
 import com.marketo.rest.leadapi.client.MarketoException;
 import com.marketo.rest.network.IdentityClient;
 import com.marketo.rest.network.LeadAPI;
@@ -33,8 +40,8 @@ public class LeadAPITests extends FunctionalTest {
 	private String[] twIds;
 	private String[] fbIds;
 	private String[] liIds;
-	private LeadAPI networkClient;
-	private com.marketo.rest.android.LeadAPI androidClient;
+	private LeadAPIBase[] restClients;
+	private String listId;
 
 	@Before
 	public void setUp() throws ClientProtocolException, IOException {
@@ -49,12 +56,15 @@ public class LeadAPITests extends FunctionalTest {
 		twIds = Play.configuration.getProperty("TW_IDS").split(",");
 		fbIds = Play.configuration.getProperty("FB_IDS").split(",");
 		liIds = Play.configuration.getProperty("LI_IDS").split(",");
+		listId = Play.configuration.getProperty("LISTID");
 
-		networkClient = LibFactory.getInstance().getNetworkLeadAPI();
-		androidClient = LibFactory.getInstance().getAndroidLeadAPI();
+		restClients = new LeadAPIBase[1];
+		restClients[0] = com.marketo.rest.network.LeadAPI.getInstance();
+		// restClients[1] = com.marketo.rest.android.LeadAPI.getInstance();
 
 		url = idSrvr + grantUri;
-		at = IdentityClient.getAuthToken(url, clientId, clientSecret);
+		at = IdentityClient.getInstance().getAuthToken(url, clientId,
+				clientSecret);
 
 		fields = new String[] { "firstName", "lastName", "email", "facebookId",
 				"linkedinId", "twitterId" };
@@ -67,20 +77,15 @@ public class LeadAPITests extends FunctionalTest {
 		// Get Lead by Id
 		Lead ld1;
 		try {
-			ld1 = networkClient.getLeadById(restSrvr, at,
-					Integer.valueOf(leadIds[0]), fields);
-			assertNotNull(ld1);
-			if (ld1 != null) {
-				String lastName = ld1.getLeadAttrib("lastName");
-				assertEquals(lastName, "Wugsy24");
-			}
-			ld1 = null;
-			ld1 = androidClient.getLeadById(restSrvr, at,
-					Integer.valueOf(leadIds[0]), fields);
-			assertNotNull(ld1);
-			if (ld1 != null) {
-				String lastName = ld1.getLeadAttrib("lastName");
-				assertEquals(lastName, "Wugsy24");
+			for (LeadAPIBase lbc : restClients) {
+				ld1 = null;
+				ld1 = lbc.getLeadById(restSrvr, at,
+						Integer.valueOf(leadIds[0]), fields);
+				assertNotNull(ld1);
+				if (ld1 != null) {
+					String lastName = ld1.getLeadAttrib("lastName");
+					assertEquals(lastName, "Wugsy24");
+				}
 			}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
@@ -92,65 +97,22 @@ public class LeadAPITests extends FunctionalTest {
 	}
 
 	@Test
-	public void t01getLeadByCookieTest() throws ClientProtocolException,
-			IOException, MarketoException {
-		// Get Lead by Cookie
-		Lead ld2;
-		ld2 = networkClient.getLeadByCookie(restSrvr, at, cookies[0], fields);
-		assertNotNull(ld2);
-		if (ld2 != null) {
-			String firstName = ld2.getLeadAttrib("firstName");
-			assertEquals(firstName, "abra");
-		}
-		ld2 = null;
-		ld2 = androidClient.getLeadByCookie(restSrvr, at, cookies[0], fields);
-		assertNotNull(ld2);
-		if (ld2 != null) {
-			String firstName = ld2.getLeadAttrib("firstName");
-			assertEquals(firstName, "abra");
-		}
-	}
-
-	@Test
-	public void t02getLeadByFullCookieTest() throws ClientProtocolException,
-			IOException, MarketoException {
-		Lead ld3;
-		ld3 = networkClient.getLeadByCookie(restSrvr, at, cookies[1], fields);
-		assertNotNull(ld3);
-		if (ld3 != null) {
-			String email = ld3.getLeadAttrib("email");
-			assertEquals(email, "abra@dabra.com");
-		}
-		ld3 = androidClient.getLeadByCookie(restSrvr, at, cookies[1], fields);
-		assertNotNull(ld3);
-		if (ld3 != null) {
-			String email = ld3.getLeadAttrib("email");
-			assertEquals(email, "abra@dabra.com");
-		}
-	}
-
-	@Test
 	public void t03getLeadsbyIdTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by Id
 		int[] lIds = { Integer.valueOf(leadIds[1]), Integer.valueOf(leadIds[2]) };
-		ArrayList<Lead> leads1;
-		leads1 = networkClient.getMultipleLeadsById(restSrvr, at, lIds, fields);
-		assertNotNull(leads1);
-		int i = 1;
-		for (Lead lead : leads1) {
-			String id = lead.getLeadAttrib("id");
-			assertEquals(id, leadIds[i]);
-			i++;
-		}
-		leads1 = null;
-		leads1 = androidClient.getMultipleLeadsById(restSrvr, at, lIds, fields);
-		assertNotNull(leads1);
-		i = 1;
-		for (Lead lead : leads1) {
-			String id = lead.getLeadAttrib("id");
-			assertEquals(id, leadIds[i]);
-			i++;
+		for (LeadAPIBase lbc : restClients) {
+			LeadResponse lr = null;
+			ArrayList<Lead> leads1 = null;
+			lr = lbc.getMultipleLeadsById(restSrvr, at, lIds, fields);
+			leads1 = lr.getLeads();
+			assertNotNull(leads1);
+			int i = 1;
+			for (Lead lead : leads1) {
+				String id = lead.getLeadAttrib("id");
+				assertEquals(id, leadIds[i]);
+				i++;
+			}
 		}
 	}
 
@@ -160,26 +122,17 @@ public class LeadAPITests extends FunctionalTest {
 		try {
 			// Get Multiple Leads by Email
 			String[] emails = { "kmluce@gmail.com", "glen@marketo.com" };
-			ArrayList<Lead> leads2;
-			leads2 = networkClient.getMultipleLeadsByEmail(restSrvr, at,
-					emails, fields);
-			assertNotNull(leads2);
-			ArrayList<String> results = new ArrayList<String>();
-			for (Lead lead : leads2) {
-				results.add(lead.getLeadAttrib("email"));
+			for (LeadAPIBase lbc : restClients) {
+				LeadResponse lr = null;
+				lr = lbc.getMultipleLeadsByEmail(restSrvr, at, emails, fields);
+				assertNotNull(lr.getLeads());
+				ArrayList<String> results = new ArrayList<String>();
+				for (Lead lead : lr.getLeads()) {
+					results.add(lead.getLeadAttrib("email"));
+				}
+				Collections.sort(results.subList(1, results.size()));
+				this.assertArrayEquals(emails, results.toArray());
 			}
-			Collections.sort(results.subList(1, results.size()));
-			this.assertArrayEquals(emails, results.toArray());
-			leads2 = null;
-			leads2 = androidClient.getMultipleLeadsByEmail(restSrvr, at,
-					emails, fields);
-			assertNotNull(leads2);
-			results = new ArrayList<String>();
-			for (Lead lead : leads2) {
-				results.add(lead.getLeadAttrib("email"));
-			}
-			Collections.sort(results.subList(1, results.size()));
-			this.assertArrayEquals(emails, results.toArray());
 		} catch (MarketoException e) {
 			fail(e.getErrorsAsString());
 		}
@@ -189,74 +142,143 @@ public class LeadAPITests extends FunctionalTest {
 	public void t05getLeadsbyCookieTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by Cookie
-		ArrayList<Lead> leads3;
-		leads3 = networkClient.getMultipleLeadsByCookie(restSrvr, at, cookies,
-				fields);
-		assertNotNull(leads3);
-		assertEquals(leads3.size(), 1);
-		leads3 = null;
-		leads3 = androidClient.getMultipleLeadsByCookie(restSrvr, at, cookies,
-				fields);
-		assertNotNull(leads3);
-		assertEquals(leads3.size(), 1);
+		for (LeadAPIBase lbc : restClients) {
+			LeadResponse lr = null;
+			lr = lbc.getMultipleLeadsByCookie(restSrvr, at, cookies, fields);
+			ArrayList<Lead> leads = lr.getLeads();
+			assertNotNull(leads);
+			assertEquals(leads.size(), 1);
+		}
 	}
 
 	@Test
 	public void t06getLeadsbyFacebookIdTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by FacebookId
-		ArrayList<Lead> leads;
-		leads = networkClient.getMultipleLeadsByFacebookId(restSrvr, at, fbIds,
-				fields);
-		assertNotNull(leads);
-		ArrayList<String> leadsRes = new ArrayList<String>();
-		;
-		for (Lead lead : leads) {
-			leadsRes.add(lead.getLeadAttrib("facebookId"));
+		for (LeadAPIBase lbc : restClients) {
+			LeadResponse lr = null;
+			lr = lbc.getMultipleLeadsByFacebookId(restSrvr, at, fbIds, fields);
+			ArrayList<Lead> leads = lr.getLeads();
+			assertNotNull(leads);
+			ArrayList<String> leadsRes = new ArrayList<String>();
+
+			for (Lead lead : leads) {
+				leadsRes.add(lead.getLeadAttrib("facebookId"));
+			}
+			this.assertArrayEquals(fbIds, leadsRes.toArray());
 		}
-		this.assertArrayEquals(fbIds, leadsRes.toArray());
-		leads = null;
-		leads = androidClient.getMultipleLeadsByFacebookId(restSrvr, at, fbIds,
-				fields);
-		assertNotNull(leads);
-		leadsRes = new ArrayList<String>();
-		;
-		for (Lead lead : leads) {
-			leadsRes.add(lead.getLeadAttrib("facebookId"));
-		}
-		this.assertArrayEquals(fbIds, leadsRes.toArray());
 	}
 
 	@Test
 	public void t07getLeadsbyLinkedInIdTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by LinkedinId
-		ArrayList<Lead> leads;
-		leads = networkClient.getMultipleLeadsByLinkedinId(restSrvr, at, liIds,
-				fields);
-		assertNotNull(leads);
-		assertEquals(leads.size(), 2);
-		leads = null;
-		leads = androidClient.getMultipleLeadsByLinkedinId(restSrvr, at, liIds,
-				fields);
-		assertNotNull(leads);
-		assertEquals(leads.size(), 2);
+		for (LeadAPIBase lbc : restClients) {
+			LeadResponse lr = null;
+			lr = lbc.getMultipleLeadsByLinkedinId(restSrvr, at, liIds, fields);
+			ArrayList<Lead> leads = lr.getLeads();
+			assertNotNull(leads);
+			assertEquals(leads.size(), 2);
+		}
 	}
 
 	@Test
 	public void t08getLeadsbyTwitterIdTest() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads by TwitterId
-		ArrayList<Lead> leads;
-		leads = networkClient
-				.getMultipleLeadsByTwitterId(restSrvr, at, twIds, fields);
-		assertNotNull(leads);
-		assertEquals(leads.size(), 2);
-		leads = null;
-		leads = androidClient
-				.getMultipleLeadsByTwitterId(restSrvr, at, twIds, fields);
-		assertNotNull(leads);
-		assertEquals(leads.size(), 2);
+		for (LeadAPIBase lbc : restClients) {
+			LeadResponse lr = null;
+			lr = lbc.getMultipleLeadsByTwitterId(restSrvr, at, twIds, fields);
+			ArrayList<Lead> leads = lr.getLeads();
+			assertNotNull(leads);
+			assertEquals(leads.size(), 2);
+		}
+	}
+
+	// @Test
+	public void t09getLeadsFromList() throws ClientProtocolException,
+			IOException, MarketoException {
+		// Get Multiple Leads from List
+		int lid = Integer.valueOf(listId);
+		for (LeadAPIBase lbc : restClients) {
+
+			LeadResponse lr = null;
+			ArrayList<Lead> leads = null;
+			int batchSize = 299;
+			int retSz = 0;
+			int total = 0;
+			String next = null;
+			do {
+				lr = lbc.getMultipleLeadsFromStaticList(restSrvr, at, lid,
+						batchSize, next, fields);
+				if (lr != null) {
+					leads = lr.getLeads();
+					if (leads != null) {
+						next = lr.nextPageToken;
+					}
+				}
+				assertNotNull(leads);
+				retSz = leads.size();
+				total += retSz;
+				assertTrue(retSz <= batchSize);
+				System.out.println("Retrieved : " + retSz
+						+ " leads from list :" + listId);
+				System.out.println("Retrieved total: " + total
+						+ " leads from list :" + listId);
+				try {
+					/*
+					 * Without this, we will hit peak limit and fail when
+					 * pulling from large lists
+					 */
+					Thread.sleep(225);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} while (retSz > 0);
+			System.out.println("Retrieved total: " + total
+					+ " leads from list :" + listId);
+		}
+	}
+
+	@Test
+	public void t10syncLeadsCreateOnly() throws ClientProtocolException,
+			IOException, MarketoException {
+		ArrayList<Lead> createLeads = createLeads(100);
+		for (LeadAPIBase lbc : restClients) {
+
+			ArrayList<Lead> leads = null;
+			LeadResponse lr = null;
+			LeadRequest lreq = new LeadRequest(LeadRequest.CREATE_ONLY,
+					"email", createLeads);
+			System.out.println(lreq.getJsonString());
+
+			lr = lbc.syncMultipleLeads(restSrvr, at, lreq);
+			leads = lr.getLeads();
+			assertNotNull(leads);
+			for (Lead ld : leads) {
+				ld.printLeadAttributes();
+			}
+		}
+	}
+
+	private ArrayList<Lead> createLeads(int batchSize) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+		Date date = new Date();
+		String prefix = dateFormat.format(date);
+		ArrayList<Lead> leads = new ArrayList<Lead>();
+
+		for (int i = 0; i < batchSize; i++) {
+			String em = prefix + i + "@mktoapitesting.com";
+			int leadScore = i;
+			HashMap<String, String> attrMap = new HashMap<String, String>();
+			attrMap.put("email", em);
+			attrMap.put("leadScore", String.valueOf(leadScore));
+			Lead ld = new Lead(attrMap);
+			leads.add(ld);
+		}
+
+		return leads;
 	}
 
 }

@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<testsuite failures="0" time="1.421" errors="0" skipped="0" tests="9" name="LeadAPITests">
-  <testcase classname="LeadAPITests" name="t00getLeadByIdTest" time="0.226">
+<testsuite failures="0" time="25.526" errors="0" skipped="0" tests="8" name="LeadAPITests">
+  <testcase classname="LeadAPITests" name="t00getLeadByIdTest" time="5.043">
       </testcase>
-  <testcase classname="LeadAPITests" name="t01getLeadByCookieTest" time="0.194">
+  <testcase classname="LeadAPITests" name="t03getLeadsbyIdTest" time="10.999">
       </testcase>
-  <testcase classname="LeadAPITests" name="t02getLeadByFullCookieTest" time="0.163">
+  <testcase classname="LeadAPITests" name="t04getLeadsbyEmailTest" time="0.184">
       </testcase>
-  <testcase classname="LeadAPITests" name="t03getLeadsbyIdTest" time="0.149">
+  <testcase classname="LeadAPITests" name="t05getLeadsbyCookieTest" time="0.141">
       </testcase>
-  <testcase classname="LeadAPITests" name="t04getLeadsbyEmailTest" time="0.186">
+  <testcase classname="LeadAPITests" name="t06getLeadsbyFacebookIdTest" time="0.134">
       </testcase>
-  <testcase classname="LeadAPITests" name="t05getLeadsbyCookieTest" time="0.114">
+  <testcase classname="LeadAPITests" name="t07getLeadsbyLinkedInIdTest" time="0.12">
       </testcase>
-  <testcase classname="LeadAPITests" name="t06getLeadsbyFacebookIdTest" time="0.143">
+  <testcase classname="LeadAPITests" name="t08getLeadsbyTwitterIdTest" time="0.137">
       </testcase>
-  <testcase classname="LeadAPITests" name="t07getLeadsbyLinkedInIdTest" time="0.113">
-      </testcase>
-  <testcase classname="LeadAPITests" name="t08getLeadsbyTwitterIdTest" time="0.133">
+  <testcase classname="LeadAPITests" name="t10syncLeadsCreateOnly" time="8.768">
       </testcase>
 </testsuite>

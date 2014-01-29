@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<testsuite failures="0" time="0.541" errors="0" skipped="0" tests="5" name="IdentityTests">
-  <testcase classname="IdentityTests" name="t00getAuthTokenTest" time="0.112">
+<testsuite failures="0" time="1.07" errors="0" skipped="0" tests="5" name="IdentityTests">
+  <testcase classname="IdentityTests" name="t00getAuthTokenTest" time="0.441">
       </testcase>
-  <testcase classname="IdentityTests" name="t01validateToken" time="0.164">
+  <testcase classname="IdentityTests" name="t01validateToken" time="0.246">
       </testcase>
-  <testcase classname="IdentityTests" name="t02invalidToken" time="0.128">
+  <testcase classname="IdentityTests" name="t02invalidToken" time="0.183">
       </testcase>
-  <testcase classname="IdentityTests" name="t03getAuthTokenForUserTest" time="0.078">
+  <testcase classname="IdentityTests" name="t03getAuthTokenForUserTest" time="0.11">
       </testcase>
-  <testcase classname="IdentityTests" name="t04getAuthTokenForUserInvalidTest" time="0.059">
+  <testcase classname="IdentityTests" name="t04getAuthTokenForUserInvalidTest" time="0.09">
       </testcase>
 </testsuite>

@@ -9,6 +9,7 @@ import org.junit.runners.MethodSorters;
 import play.Play;
 import play.test.FunctionalTest;
 
+import com.marketo.rest.base.IdentityClientBase;
 import com.marketo.rest.network.IdentityClient;
 import com.marketo.rest.oauth.client.AuthToken;
 import com.marketo.rest.oauth.client.TokenScope;
@@ -27,8 +28,7 @@ public class IdentityTests extends FunctionalTest {
 	private String userUri;
 	private String uclientId;
 	private String uclientSecret;
-	private IdentityClient networkIdClient;
-	private com.marketo.rest.android.IdentityClient androidIdClient;
+	private IdentityClientBase[] idClients;
 
 	@Before
 	public void setUp() {
@@ -44,8 +44,10 @@ public class IdentityTests extends FunctionalTest {
 		user = Play.configuration.getProperty("USER");
 		pass = Play.configuration.getProperty("PASS");
 
-		networkIdClient = LibFactory.getInstance().getNetworkIdentityClient();
-		androidIdClient = LibFactory.getInstance().getAndroidIdentityClient();
+		idClients = new IdentityClientBase[2];
+
+		idClients[0] = com.marketo.rest.network.IdentityClient.getInstance();
+		idClients[1] = com.marketo.rest.android.IdentityClient.getInstance();
 	}
 
 	@Test
@@ -53,11 +55,11 @@ public class IdentityTests extends FunctionalTest {
 		String url = idSrvr + grantUri;
 		AuthToken at;
 		try {
-			at = networkIdClient.getAuthToken(url, clientId, clientSecret);
-			assertNotNull(at.access_token);
-			at = null;
-			at = androidIdClient.getAuthToken(url, clientId, clientSecret);
-			assertNotNull(at.access_token);
+			for (IdentityClientBase idb : idClients) {
+				at = null;
+				at = idb.getAuthToken(url, clientId, clientSecret);
+				assertNotNull(at.access_token);
+			}
 		} catch (ClientProtocolException e) {
 			fail("Client Exception");
 		} catch (IOException e) {
@@ -70,13 +72,12 @@ public class IdentityTests extends FunctionalTest {
 		String url = idSrvr + userUri;
 		AuthToken at;
 		try {
-			at = networkIdClient.getAuthTokenForUser(url, uclientId,
-					uclientSecret, user, pass);
-			assertNotNull(at.access_token);
-			at = null;
-			at = androidIdClient.getAuthTokenForUser(url, uclientId,
-					uclientSecret, user, pass);
-			assertNotNull(at.access_token);
+			for (IdentityClientBase idb : idClients) {
+				at = null;
+				at = idb.getAuthTokenForUser(url, uclientId, uclientSecret,
+						user, pass);
+				assertNotNull(at.access_token);
+			}
 		} catch (ClientProtocolException e) {
 			fail("Client Exception");
 		} catch (IOException e) {
@@ -88,23 +89,17 @@ public class IdentityTests extends FunctionalTest {
 	public void t04getAuthTokenForUserInvalidTest() {
 		String url = idSrvr + userUri;
 		AuthToken at;
-		try {
-			at = networkIdClient.getAuthTokenForUser(url, uclientId,
-					uclientSecret, user, pass + "123");
-		} catch (ClientProtocolException e) {
-			assertTrue(true);
-		} catch (IOException e) {
-			fail("IO Exception");
+		for (IdentityClientBase idb : idClients) {
+			at = null;
+			try {
+				at = idb.getAuthTokenForUser(url, uclientId, uclientSecret,
+						user, pass + "123");
+			} catch (ClientProtocolException e) {
+				assertTrue(true);
+			} catch (IOException e) {
+				fail("IO Exception");
+			}
 		}
-		try {
-			at = androidIdClient.getAuthTokenForUser(url, uclientId,
-					uclientSecret, user, pass + "123");
-		} catch (ClientProtocolException e) {
-			assertTrue(true);
-		} catch (IOException e) {
-			fail("IO Exception");
-		}
-
 	}
 
 	@Test
@@ -113,17 +108,14 @@ public class IdentityTests extends FunctionalTest {
 		String url2 = idSrvr + validateUri;
 
 		try {
-			AuthToken at = networkIdClient.getAuthToken(url, clientId,
-					clientSecret);
-			at.access_token = "0x447";
-			TokenScope ts = networkIdClient.validateToken(url2, at);
-			assertFalse(ts.isValid);
-			at = null;
-			ts = null;
-			at = androidIdClient.getAuthToken(url, clientId, clientSecret);
-			at.access_token = "0x447";
-			ts = androidIdClient.validateToken(url2, at);
-			assertFalse(ts.isValid);
+			for (IdentityClientBase idb : idClients) {
+				AuthToken at = null;
+				TokenScope ts = null;
+				at = idb.getAuthToken(url, clientId, clientSecret);
+				at.access_token = "0x447";
+				ts = idb.validateToken(url2, at);
+				assertFalse(ts.isValid);
+			}
 		} catch (ClientProtocolException e) {
 			fail("Client Exception");
 		} catch (IOException e) {
@@ -137,22 +129,17 @@ public class IdentityTests extends FunctionalTest {
 		String url2 = idSrvr + validateUri;
 
 		try {
-			AuthToken at = networkIdClient.getAuthToken(url, clientId,
-					clientSecret);
-			TokenScope ts = networkIdClient.validateToken(url2, at);
-			assertTrue(ts.isValid);
-			assertEquals(ts.userId, "apiuser@marketo.com");
-			assertEquals(ts.info.munchkinId, munchkinId);
-			assertTrue(ts.info.apiOnlyUser);
-			at = null;
-			ts = null;
-			at = androidIdClient.getAuthToken(url, clientId, clientSecret);
-			ts = androidIdClient.validateToken(url2, at);
-			assertTrue(ts.isValid);
-			assertEquals(ts.userId, "apiuser@marketo.com");
-			assertEquals(ts.info.munchkinId, munchkinId);
-			assertTrue(ts.info.apiOnlyUser);
+			for (IdentityClientBase idb : idClients) {
+				AuthToken at = null;
+				TokenScope ts = null;
 
+				at = idb.getAuthToken(url, clientId, clientSecret);
+				ts = idb.validateToken(url2, at);
+				assertTrue(ts.isValid);
+				assertEquals(ts.userId, "apiuser@marketo.com");
+				assertEquals(ts.info.munchkinId, munchkinId);
+				assertTrue(ts.info.apiOnlyUser);
+			}
 		} catch (ClientProtocolException e) {
 			fail("Client Exception");
 		} catch (IOException e) {
