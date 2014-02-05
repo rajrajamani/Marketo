@@ -14,17 +14,18 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
-public class TutListProvider extends ContentProvider {
+public class LeadListProvider extends ContentProvider {
 
     private LeadListDatabase mDB;
 
     private static final String AUTHORITY = "com.mamlambo.tutorial.tutlist.data.TutListProvider";
-    public static final int TUTORIALS = 100;
-    public static final int TUTORIAL_ID = 110;
+//    private static final String AUTHORITY = "com.marketo.leadexplorer.data.LeadListProvider";
+    public static final int LEADS = 100;
+    public static final int LEAD_ID = 110;
 
-    private static final String TUTORIALS_BASE_PATH = "tutorials";
+    private static final String LEADS_BASE_PATH = "leads";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
-            + "/" + TUTORIALS_BASE_PATH);
+            + "/" + LEADS_BASE_PATH);
 
     public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
             + "/mt-tutorial";
@@ -34,10 +35,10 @@ public class TutListProvider extends ContentProvider {
     private static final UriMatcher sURIMatcher = new UriMatcher(
             UriMatcher.NO_MATCH);
 
-    private static final String DEBUG_TAG = "TutListProvider";
+    private static final String DEBUG_TAG = "Marketo";
     static {
-        sURIMatcher.addURI(AUTHORITY, TUTORIALS_BASE_PATH, TUTORIALS);
-        sURIMatcher.addURI(AUTHORITY, TUTORIALS_BASE_PATH + "/#", TUTORIAL_ID);
+        sURIMatcher.addURI(AUTHORITY, LEADS_BASE_PATH, LEADS);
+        sURIMatcher.addURI(AUTHORITY, LEADS_BASE_PATH + "/#", LEAD_ID);
     }
 
     @Override
@@ -55,11 +56,11 @@ public class TutListProvider extends ContentProvider {
 
         int uriType = sURIMatcher.match(uri);
         switch (uriType) {
-        case TUTORIAL_ID:
+        case LEAD_ID:
             queryBuilder.appendWhere(LeadListDatabase.ID + "="
                     + uri.getLastPathSegment());
             break;
-        case TUTORIALS:
+        case LEADS:
             // no filter
             break;
         default:
@@ -78,11 +79,11 @@ public class TutListProvider extends ContentProvider {
         SQLiteDatabase sqlDB = mDB.getWritableDatabase();
         int rowsAffected = 0;
         switch (uriType) {
-        case TUTORIALS:
+        case LEADS:
             rowsAffected = sqlDB.delete(LeadListDatabase.TABLE_LEADS,
                     selection, selectionArgs);
             break;
-        case TUTORIAL_ID:
+        case LEAD_ID:
             String id = uri.getLastPathSegment();
             if (TextUtils.isEmpty(selection)) {
                 rowsAffected = sqlDB.delete(LeadListDatabase.TABLE_LEADS,
@@ -104,9 +105,9 @@ public class TutListProvider extends ContentProvider {
     public String getType(Uri uri) {
         int uriType = sURIMatcher.match(uri);
         switch (uriType) {
-        case TUTORIALS:
+        case LEADS:
             return CONTENT_TYPE;
-        case TUTORIAL_ID:
+        case LEAD_ID:
             return CONTENT_ITEM_TYPE;
         default:
             return null;
@@ -116,7 +117,7 @@ public class TutListProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         int uriType = sURIMatcher.match(uri);
-        if (uriType != TUTORIALS) {
+        if (uriType != LEADS) {
             throw new IllegalArgumentException("Invalid URI for insert");
         }
         SQLiteDatabase sqlDB = mDB.getWritableDatabase();
@@ -145,7 +146,7 @@ public class TutListProvider extends ContentProvider {
         int rowsAffected;
 
         switch (uriType) {
-        case TUTORIAL_ID:
+        case LEAD_ID:
             String id = uri.getLastPathSegment();
             StringBuilder modSelection = new StringBuilder(LeadListDatabase.ID
                     + "=" + id);
@@ -157,7 +158,7 @@ public class TutListProvider extends ContentProvider {
             rowsAffected = sqlDB.update(LeadListDatabase.TABLE_LEADS,
                     values, modSelection.toString(), null);
             break;
-        case TUTORIALS:
+        case LEADS:
             rowsAffected = sqlDB.update(LeadListDatabase.TABLE_LEADS,
                     values, selection, selectionArgs);
             break;

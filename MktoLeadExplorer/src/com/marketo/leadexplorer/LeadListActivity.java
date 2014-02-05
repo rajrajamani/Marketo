@@ -1,32 +1,50 @@
 package com.marketo.leadexplorer;
 
-import com.mamlambo.tutorial.tutlist.R;
-
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class TutListActivity extends FragmentActivity implements
-        TutListFragment.OnTutSelectedListener {
+public class LeadListActivity extends FragmentActivity implements
+		LeadListFragment.OnLeadSelectedListener {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.tutlist_fragment);
-    }
+	private String mAccessToken;
 
-    public void onTutSelected(String tutUrl) {
-        TutViewerFragment viewer = (TutViewerFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.tutview_fragment);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.leadlist_fragment);
+		Bundle bundle = getIntent().getExtras();
+		if (bundle == null) {
+			// Hardcode access token for testing
+			mAccessToken = "2bef9d76-f11b-4e2f-91b0-03ade3de11dd:int";
+		}
+		if (bundle.getString("accessToken") != null) {
+			mAccessToken = bundle.getString("accessToken");
+			Log.e("Marketo", "LeadList recieved access token: " + mAccessToken);
+		} else {
+			Log.e("Marketo", "No access tokens available");
+		}
+	}
 
-        if (viewer == null || !viewer.isInLayout()) {
-            Intent showContent = new Intent(getApplicationContext(),
-                    TutViewerActivity.class);
-            showContent.setData(Uri.parse(tutUrl));
-            startActivity(showContent);
-        } else {
-            viewer.updateUrl(tutUrl);
-        }
-    }
+	public void onLeadSelected(String leadUrl) {
+		LeadViewerFragment viewer = (LeadViewerFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.leadview_fragment);
+
+		if (viewer == null || !viewer.isInLayout()) {
+			Intent showContent = new Intent(getApplicationContext(),
+					LeadViewerActivity.class);
+			showContent.setData(Uri.parse(leadUrl));
+			showContent.putExtra("accessToken", mAccessToken);
+			startActivity(showContent);
+		} else {
+			viewer.updateUrl(leadUrl);
+		}
+	}
 }

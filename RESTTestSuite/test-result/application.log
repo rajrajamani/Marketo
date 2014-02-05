@@ -1,5 +1,5 @@
-28 Jan 2014 10:18:04,339 INFO  ~ Starting C:\Users\rrajamani\workspace\RESTTestSuite
-28 Jan 2014 10:18:04,803 WARN  ~ You're running Play! in DEV mode
-28 Jan 2014 10:18:04,872 INFO  ~ Listening for HTTP on port 9001 (Waiting a first request to start) ...
-28 Jan 2014 10:18:07,614 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
-28 Jan 2014 10:18:07,632 INFO  ~ Application 'RESTTestSuite' is now started !
+30 Jan 2014 11:00:43,066 INFO  ~ Starting C:\Users\rrajamani\workspace\RESTTestSuite
+30 Jan 2014 11:00:43,559 WARN  ~ You're running Play! in DEV mode
+30 Jan 2014 11:00:43,628 INFO  ~ Listening for HTTP on port 9001 (Waiting a first request to start) ...
+30 Jan 2014 11:00:55,278 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+30 Jan 2014 11:00:55,293 INFO  ~ Application 'RESTTestSuite' is now started !

@@ -1,13 +1,13 @@
 package com.marketo.leadexplorer.data;
 
-import com.mamlambo.tutorial.tutlist.R;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-public class TutListSharedPrefs {
-    public final static String PREFS_NAME = "tutlist_prefs";
+import com.marketo.leadexplorer.R;
+
+public class LeadListSharedPrefs {
+    public final static String PREFS_NAME = "leadlist_prefs";
 
     public static boolean getBackgroundUpdateFlag(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);

@@ -4,16 +4,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
-import com.mamlambo.tutorial.tutlist.R;
-import com.marketo.leadexplorer.data.TutListSharedPrefs;
+import com.marketo.leadexplorer.R;
+import com.marketo.leadexplorer.data.LeadListSharedPrefs;
 
-public class TutListPreferencesActivity extends PreferenceActivity {
+public class LeadListPreferencesActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getPreferenceManager().setSharedPreferencesName(
-                TutListSharedPrefs.PREFS_NAME);
+                LeadListSharedPrefs.PREFS_NAME);
         addPreferencesFromResource(R.xml.prefs);
     }
 
@@ -21,7 +21,7 @@ public class TutListPreferencesActivity extends PreferenceActivity {
     protected void onPause() {
         super.onPause();
         Context context = getApplicationContext();
-        if (TutListSharedPrefs.getBackgroundUpdateFlag(getApplicationContext())) {
+        if (LeadListSharedPrefs.getBackgroundUpdateFlag(getApplicationContext())) {
 //            setRecurringAlarm(context);
         } else {
 //            cancelRecurringAlarm(context);

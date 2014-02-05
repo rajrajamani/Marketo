@@ -1,9 +1,47 @@
+angular.module('mkto', ['ionic', 'ngRoute', 'ngAnimate',  'http-auth-interceptor', 'login'])
 
-angular.module('mkto', ['ionic', 'ngRoute', 'ngAnimate'])
-
-.controller('MktoCtrl', function($scope, Modal, $routeParams) {
-
+  /**
+   * This directive will find itself inside HTML as a class,
+   * and will remove that class, so CSS will remove loading image and show app content.
+   * It is also responsible for showing/hiding login form.
+   */
+  .directive('authDemoApplication', function() {
+    return {
+      restrict: 'C',
+      link: function(scope, elem, attrs) {
+        //once Angular is started, remove class:
+        elem.removeClass('waiting-for-angular');
+        
+        var login = elem.find('#login-holder');
+        var main = elem.find('#content');
+        
+        login.hide();
+        
+        scope.$on('event:auth-loginRequired', function() {
+          login.slideDown('slow', function() {
+            main.hide();
+          });
+        });
+        scope.$on('event:auth-loginConfirmed', function() {
+          main.show();
+          login.slideUp();
+        });
+      }
+    }
+  })
+  
+.controller('MktoCtrl', function($scope, Modal, $routeParams, $http) {
+  $scope.publicContent = [];
+  $scope.restrictedContent = [];
   $scope.leadId = $routeParams.leadId;
+  
+  $scope.restrictedAction = function() {
+    $http.post('data/protected', $scope.restrictedData).success(function(response) {
+     // this piece of code will not be executed until user is authenticated
+      $scope.restrictedContent.push(response);
+    });
+   }
+  
   $scope.leads = [
     { id: 12, firstName: 'Raj' , lastName: 'Rajamani', email:'raj@mkto', imgUrl:'http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/2/000/03c/0e3/010f950.jpg'},
     { id: 23, firstName: 'Shaun', lastName: 'Klopfenstein', email:'sklop@mkto', imgUrl:'http://m.c.lnkd.licdn.com/media/p/6/000/1ee/17b/30e7016.jpg' },
@@ -22,7 +60,6 @@ angular.module('mkto', ['ionic', 'ngRoute', 'ngAnimate'])
     { parent: 'assets',name: 'Emails', url:'emails', imgUrl:'http://placehold.it/40/ffffcc&text=emails' },
     { parent: 'assets',name: 'Smart Campaigns', url:'scs', imgUrl:'http://placehold.it/40/990033&text=SCs' }
   ];
-
 
   
   // Create and load the Modal
@@ -64,6 +101,15 @@ angular.module('mkto', ['ionic', 'ngRoute', 'ngAnimate'])
   });
 })
 
+.config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    'self',
+    // Allow loading from our assets domain.  Notice the difference between * and **.
+    'https://app*.marketo.com/**']);
+ 
+})
+
 .controller('LPDetailCtrl', function($scope, $routeParams, $http) {
  $scope.lpId = $routeParams.lpId;
  $http.get('data/lps.json').success(function(data) {
@@ -73,10 +119,7 @@ angular.module('mkto', ['ionic', 'ngRoute', 'ngAnimate'])
 
 
 .config(function($routeProvider) {
-
-  // Set up the initial routes that our app will respond to.
-  // These are then tied up to our nav router which animates and
-  // updates a navigation bar
+  
   $routeProvider.when('/home', {
     templateUrl: 'templates/apps.html',
     controller: 'MktoCtrl'

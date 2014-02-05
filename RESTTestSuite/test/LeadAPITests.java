@@ -195,7 +195,7 @@ public class LeadAPITests extends FunctionalTest {
 		}
 	}
 
-	// @Test
+	@Test
 	public void t09getLeadsFromList() throws ClientProtocolException,
 			IOException, MarketoException {
 		// Get Multiple Leads from List
@@ -213,18 +213,22 @@ public class LeadAPITests extends FunctionalTest {
 						batchSize, next, fields);
 				if (lr != null) {
 					leads = lr.getLeads();
-					if (leads != null) {
+					if (leads != null && !leads.isEmpty()) {
 						next = lr.nextPageToken;
+						retSz = leads.size();
+						total += retSz;
+					} else {
+						retSz = 0;
+						break;
 					}
 				}
 				assertNotNull(leads);
-				retSz = leads.size();
-				total += retSz;
 				assertTrue(retSz <= batchSize);
 				System.out.println("Retrieved : " + retSz
 						+ " leads from list :" + listId);
 				System.out.println("Retrieved total: " + total
 						+ " leads from list :" + listId);
+				leads = null;
 				try {
 					/*
 					 * Without this, we will hit peak limit and fail when

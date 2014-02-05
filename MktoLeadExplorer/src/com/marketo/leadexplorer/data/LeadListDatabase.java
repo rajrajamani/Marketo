@@ -15,20 +15,19 @@ public class LeadListDatabase extends SQLiteOpenHelper {
 	public static final String COL_MID = "mktoId";
 	public static final String COL_FN = "fn";
 	public static final String COL_LN = "ln";
-	public static final String COL_EMAIL = "email";
+	public static final String COL_EMAIL = "em";
 	public static final String COL_FB_URL = "fburl";
 	public static final String COL_LI_URL = "liurl";
 	public static final String COL_SCORE = "score";
 
-	private static final String CREATE_TABLE_leads = "CREATE TABLE "
+	private static final String CREATE_TABLE_LEADS = "CREATE TABLE "
 			+ TABLE_LEADS + " (" + ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_MID
 			+ " INTEGER UNIQUE NOT NULL, " + COL_FN + " TEXT, " + COL_LN
 			+ " TEXT, " + COL_EMAIL + " TEXT, " + COL_FB_URL + " TEXT, "
 			+ COL_LI_URL + " TEXT, " + COL_SCORE + " INTEGER " + ");";
-	// + " INTEGER NOT NULL DEFAULT (strftime('%s','now'))" + ");";
 
-	private static final String DB_SCHEMA = CREATE_TABLE_leads;
+	private static final String DB_SCHEMA = CREATE_TABLE_LEADS;
 
 	public LeadListDatabase(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -66,15 +65,15 @@ public class LeadListDatabase extends SQLiteOpenHelper {
 	 *            The open database
 	 */
 	private void seedData(SQLiteDatabase db) {
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (1, 'John', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (2, 'Jane', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (3, 'Mark', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (4, 'Shaun', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (5, 'Glen', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (6, 'Rajiv', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (7, 'Raj', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (8, 'James', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
-		db.execSQL("insert into leads (mktoId,fn,ln,email,fburl,liurl,score) values (9, 'Miky', 'Doe', 'jdoe@mk.com', 'www.fb.com', 'www.li.com',5)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (1, 'Phil', 'Fernandez', 'pmf@mk.com', null, 'http://m.c.lnkd.licdn.com/media/p/3/000/006/059/31a002e.jpg',5)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (2, 'Jane', 'Doe', 'jdoe@mk.com', null,null,5)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (3, 'Mark', 'Doe', 'jdoe@mk.com', null,null,5)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (4, 'Shaun', 'Klopfenstein', 'shaun@mk.com', null, 'http://m.c.lnkd.licdn.com/media/p/6/000/1ee/17b/30e7016.jpg',5)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (5, 'Glen', 'Lipka', 'glen@mk.com', null, 'http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/182/34e/1ae3653.jpg',5)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (6, 'Rajiv', 'Doe', 'jdoe@mk.com', null,null,5)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (7, 'Raj', 'Rajamani', 'jdoe@mk.com', null, 'http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/2/000/03c/0e3/010f950.jpg',7)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (8, 'James', 'Doe', 'jdoe@mk.com', null,null,5)");
+		db.execSQL("insert into leads (mktoId,fn,ln,em,fburl,liurl,score) values (9, 'Miky', 'Doe', 'jdoe@mk.com', null,null,5)");
 		
 	}
 }

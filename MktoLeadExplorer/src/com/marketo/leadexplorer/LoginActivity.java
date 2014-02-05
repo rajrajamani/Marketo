@@ -1,25 +1,27 @@
 package com.marketo.leadexplorer;
 
-import com.mamlambo.tutorial.tutlist.R;
-import com.mamlambo.tutorial.tutlist.R.id;
-import com.mamlambo.tutorial.tutlist.R.layout;
-import com.mamlambo.tutorial.tutlist.R.menu;
-import com.mamlambo.tutorial.tutlist.R.string;
+import java.io.IOException;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.marketo.leadexplorer.R;
+import com.marketo.rest.android.IdentityClient;
+import com.marketo.rest.oauth.client.AuthToken;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -54,6 +56,8 @@ public class LoginActivity extends Activity {
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
 
+	public AuthToken mAuthToken;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,7 +72,6 @@ public class LoginActivity extends Activity {
 		mPasswordView = (EditText) findViewById(R.id.password);
 		mPasswordView
 				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
 					public boolean onEditorAction(TextView textView, int id,
 							KeyEvent keyEvent) {
 						if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -85,7 +88,6 @@ public class LoginActivity extends Activity {
 
 		findViewById(R.id.sign_in_button).setOnClickListener(
 				new View.OnClickListener() {
-					@Override
 					public void onClick(View view) {
 						attemptLogin();
 					}
@@ -123,10 +125,6 @@ public class LoginActivity extends Activity {
 		// Check for a valid password.
 		if (TextUtils.isEmpty(mPassword)) {
 			mPasswordView.setError(getString(R.string.error_field_required));
-			focusView = mPasswordView;
-			cancel = true;
-		} else if (mPassword.length() < 4) {
-			mPasswordView.setError(getString(R.string.error_invalid_password));
 			focusView = mPasswordView;
 			cancel = true;
 		}
@@ -202,26 +200,27 @@ public class LoginActivity extends Activity {
 	 * the user.
 	 */
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
 
 			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
+
+				mAuthToken = IdentityClient.getAuthTokenForUser(
+						getString(R.string.idUrl),
+						getString(R.string.clientId),
+						getString(R.string.clientSecret), mEmail, mPassword);
+				if (mAuthToken == null || mAuthToken.access_token == null) {
+					Log.e("Marketo", "Login Failed");
+					return false;
+				}
+			} catch (IOException e) {
+				Log.e("Marketo", "Login Failed");
 				return false;
 			}
 
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
-			}
-
-			// TODO: register the new account here.
+			Log.i("Marketo", "Login Successful");
 			return true;
 		}
 
@@ -231,6 +230,13 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
+				Intent leadMaster = new Intent(getApplicationContext(), LeadListActivity.class);
+				 
+                //Sending data to another Activity
+				leadMaster.putExtra("accessToken", mAuthToken.access_token);
+ 
+                Log.d("Marketo", "Switching to Lead Master");
+                startActivity(leadMaster);
 				finish();
 			} else {
 				mPasswordView

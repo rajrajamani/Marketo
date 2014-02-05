@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mamlambo.tutorial.tutlist"    
-    android:versionName="1.4.84"
-    android:versionCode="11">
-    
-	<uses-sdk
+    package="com.marketo.leadexplorer"
+    android:versionCode="10"
+    android:versionName="1.0" >
+
+    <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="18" />
-    
-	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    
-	<application
-        android:icon="@drawable/icon"
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
+    <application
         android:debuggable="true"
-        android:label="@string/app_name">
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
         <activity
-            android:name="com.marketo.leadexplorer.TutListActivity"
-            android:label="@string/app_name">
+            android:name="com.marketo.leadexplorer.LeadListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.marketo.leadexplorer.LeadViewerActivity"
+            android:label="Lead Viewer" />
+        <activity android:name="com.marketo.leadexplorer.LeadListPreferencesActivity" />
+
+        <provider
+            android:name="com.marketo.leadexplorer.data.LeadListProvider"
+            android:authorities="com.mamlambo.tutorial.tutlist.data.TutListProvider"
+            android:multiprocess="true" >
+        </provider>
+
+        <activity
+            android:name="com.marketo.leadexplorer.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
             <intent-filter>
-                <action
-                    android:name="android.intent.action.MAIN" />
-                <category
-                    android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.marketo.leadexplorer.TutViewerActivity"
-            android:label="Tutorial Viewer" />
-        <activity
-            android:name="com.marketo.leadexplorer.TutListPreferencesActivity" />
-        <provider
-            android:authorities="com.mamlambo.tutorial.tutlist.data.TutListProvider"
-            android:multiprocess="true"
-            android:name="com.marketo.leadexplorer.data.TutListProvider"></provider>
+            android:name="com.marketo.leadexplorer.LeadSearchActivity"
+            android:label="@string/title_activity_lead_search" >
+        </activity>
     </application>
+
 </manifest>

@@ -5,17 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
     <fragment
-        android:name="com.marketo.leadexplorer.TutListFragment"
+        android:name="com.marketo.leadexplorer.LeadListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/tutlist_fragment"
+        android:id="@+id/leadlist_fragment"
         android:layout_weight="45">
     </fragment>
     <fragment
-        android:name="com.marketo.leadexplorer.TutViewerFragment"
+        android:name="com.marketo.leadexplorer.LeadViewerFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/tutview_fragment"
+        android:id="@+id/leadview_fragment"
         android:layout_weight="55">
     </fragment>
 </LinearLayout>
