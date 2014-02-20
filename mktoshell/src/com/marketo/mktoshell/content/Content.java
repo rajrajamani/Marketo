@@ -27,10 +27,17 @@ public class Content {
 
 	static {
 		// Add 3 sample items.
-		addItem(new ContentItem(Constants.WEB_VIEW, "1", "Marketo Website", "This is a test of item 1", "http://www.marketo.com"));
-		addItem(new ContentItem(Constants.TXT_VIEW, "2", "Text view", "Some other content", "http://www.google.com"));
-		addItem(new ContentItem(Constants.WEB_VIEW, "3", "NYT Website", "alternatively, show this", "http://www.nyt.com"));
-		addItem(new ContentItem(Constants.MAP_VIEW, "4", "Map View", "Set lat/long", ""));
+		addItem(new ContentItem(Constants.WEB_VIEW, "1", "Marketo Sweeps",
+				"This is a test of item 1", "http://iancode.info/mkto/sweeps.html", -1, -1));
+		addItem(new ContentItem(Constants.TXT_VIEW, "2", "Text view",
+				"Some other content", "http://www.google.com", -1, -1));
+		addItem(new ContentItem(Constants.WEB_VIEW, "3", "NYT Website",
+				"alternatively, show this", "http://www.nyt.com", -1, -1));
+		addItem(new ContentItem(Constants.MAP_VIEW, "4", "Map View",
+				"Our conf center", null, 37.32, -122.04));
+		addItem(new ContentItem(Constants.VDO_VIEW, "5", "Video View",
+				"Summit 2013 highlights",
+				"http://www.youtube.com/watch?v=1m8cYxjSwas", -1, -1));
 	}
 
 	private static void addItem(ContentItem item) {
@@ -47,13 +54,18 @@ public class Content {
 		public String label;
 		public String content;
 		public String url;
+		public double lattitude;
+		public double longitude;
 
-		public ContentItem(int type, String id, String label, String content, String url) {
+		public ContentItem(int type, String id, String label, String content,
+				String url, double lattitude, double longitude) {
 			this.type = type;
 			this.id = id;
 			this.label = label;
 			this.content = content;
 			this.url = url;
+			this.lattitude = lattitude;
+			this.longitude = longitude;
 		}
 
 		@Override

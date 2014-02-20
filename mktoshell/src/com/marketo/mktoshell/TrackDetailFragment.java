@@ -1,6 +1,9 @@
 package com.marketo.mktoshell;
 
+import java.util.concurrent.ExecutionException;
+
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,15 +13,19 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.marketo.mktoshell.common.Constants;
+import com.marketo.mktoshell.common.GetYoutubeData;
+import com.marketo.mktoshell.common.YoutubeCallBackInfo;
 import com.marketo.mktoshell.content.Content;
 
 /**
@@ -69,62 +76,108 @@ public class TrackDetailFragment extends Fragment {
 		case Constants.WEB_VIEW:
 			rootView = inflater.inflate(R.layout.fragment_track_detail_html,
 					container, false);
+			setWebView(rootView);
 			break;
 		case Constants.MAP_VIEW:
 			rootView = inflater.inflate(R.layout.fragment_track_detail_map,
 					container, false);
+			setMapView(rootView, savedInstanceState);
 			break;
+		case Constants.VDO_VIEW:
+			rootView = inflater.inflate(R.layout.fragment_track_detail_vdo,
+					container, false);
+			YoutubeCallBackInfo ytCInfo = new YoutubeCallBackInfo(this, rootView, mItem);
+			try {
+				String url = new GetYoutubeData().execute(ytCInfo).get();
+				setVdoView(rootView, url);
+			} catch (InterruptedException e) {
+				Log.e("mktoshell", "Interrupted call while finding youtube url");
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				Log.e("mktoshell", "Execution error while playing youtube video");
+				e.printStackTrace();
+			}
+			break;
+		case Constants.CONT_VIEW:
+			rootView = inflater.inflate(R.layout.fragment_track_detail_cont,
+					container, false);
+			setContentView(rootView);
+			break;
+			
 		case Constants.TXT_VIEW:
 		default:
 			rootView = inflater.inflate(R.layout.fragment_track_detail,
 					container, false);
+			((TextView) rootView.findViewById(R.id.track_detail))
+			.setText(mItem.content);
+
 			break;
 		}
 
-		// Show the dummy content as text in a TextView.
-		if (mItem != null) {
-			if (mItem.type == Constants.WEB_VIEW) {
-				WebView wv = (WebView) rootView
-						.findViewById(R.id.track_detail_html);
-				if (wvClient == null) {
-					wvClient = new WebViewClient();
-				}
-				wv.setWebViewClient(wvClient);
-				wv.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-				wv.loadUrl(mItem.url);
-			} else if (mItem.type == Constants.TXT_VIEW) {
-				((TextView) rootView.findViewById(R.id.track_detail))
-						.setText(mItem.content);
-			} else if (mItem.type == Constants.MAP_VIEW) {
-				// super.onCreateView(inflater, container, savedInstanceState);
-				Context ctx = this.getActivity();
-				MapsInitializer.initialize(ctx);
-
-//				View v = inflater.inflate(R.layout.fragment_track_detail_map,
-//						container, false);
-
-				// Gets the MapView from the XML layout and creates it
-				mapView = (MapView) rootView.findViewById(R.id.track_detail_map);
-				mapView.onCreate(savedInstanceState);
-
-				GoogleMap map = mapView.getMap();
-
-				if (map != null) {
-					map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-					map.getUiSettings().setMyLocationButtonEnabled(false);
-					//map.setMyLocationEnabled(true);
-					map.moveCamera(CameraUpdateFactory
-							.newLatLngZoom(new LatLng(-34.397, 150.644), 10));
-					map.animateCamera(CameraUpdateFactory.zoomIn());
-					
-					Log.i("mktoShell", "Updated map camera pos");
-				} else {
-					Log.d("mktoShell", "failed to grab map object from view");
-				}
-			}
-
-		}
 		return rootView;
+	}
+
+	private void setContentView(View rootView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setVdoView(View rootView, String url) {
+		VideoView vw = (VideoView) rootView
+				.findViewById(R.id.track_detail_vdo);
+		
+		vw.setVideoURI(Uri.parse(url));
+        MediaController mc = new MediaController(this.getActivity());
+        vw.setMediaController(mc);
+        vw.requestFocus();
+        vw.start();          
+        mc.show();
+        
+//		Uri uri = Uri.parse(url);
+//		vw.setVideoPath(url);
+//		vw.start();
+	}
+	
+
+	private void setMapView(View rootView, Bundle savedInstanceState) {
+		Context ctx = this.getActivity();
+		MapsInitializer.initialize(ctx);
+
+		// Gets the MapView from the XML layout and creates it
+		mapView = (MapView) rootView
+				.findViewById(R.id.track_detail_map);
+		mapView.onCreate(savedInstanceState);
+
+		GoogleMap map = mapView.getMap();
+
+		if (map != null) {
+			map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+			map.getUiSettings().setMyLocationButtonEnabled(false);
+			// map.setMyLocationEnabled(true);
+
+			LatLng pos = new LatLng(mItem.lattitude, mItem.longitude);
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+					pos, 15));
+			map.addMarker(new MarkerOptions()
+					.position(pos).title(mItem.content));
+
+			Log.i("mktoShell", "Updated map camera pos");
+		} else {
+			Log.d("mktoShell", "failed to grab map object from view");
+		}		
+	}
+
+	private void setWebView(View rootView) {
+		WebView wv = (WebView) rootView
+				.findViewById(R.id.track_detail_html);
+		if (wvClient == null) {
+			wvClient = new WebViewClient();
+		}
+		wv.setWebViewClient(wvClient);
+		wv.getSettings().setDomStorageEnabled(true);
+		wv.getSettings().setJavaScriptEnabled(true);
+		wv.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+		wv.loadUrl(mItem.url);
 	}
 
 	@Override

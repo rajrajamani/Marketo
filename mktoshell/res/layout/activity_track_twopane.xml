@@ -17,8 +17,7 @@
     that replace the single-pane version of the layout with
     this two-pane version.
 
-    For more on layout aliases, see:
-    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+
     -->
 
     <fragment
@@ -34,5 +33,18 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3" />
+
+<!--     <ImageView -->
+<!--         android:id="@+id/ad_ticker" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginRight="15dp" -->
+<!--         android:clickable="false" -->
+<!--         android:contentDescription="@string/ad_ticker" -->
+<!--         android:paddingLeft="20dip" -->
+<!--         android:paddingTop="25dp" -->
+<!--         android:scaleType="center" -->
+<!--         android:src="@drawable/ads" -->
+<!--         android:visibility="invisible" /> -->
 
 </LinearLayout>
