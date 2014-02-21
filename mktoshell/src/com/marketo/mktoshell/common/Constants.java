@@ -6,7 +6,7 @@ public class Constants {
 	public static final int VDO_VIEW = 1003;  //wip - have to use youtube apis
 	public static final int MAP_VIEW = 1004;  //done - map
 	public static final int CAL_VIEW = 1005;
-	public static final int SOC_APP_VIEW = 1006; // done - thru html
+	public static final int SOC_APP_VIEW = 1006; // done - thru html.  not perfect, but good for storytelling
 	public static final int SOC_POST_VIEW = 1007;
 	public static final int AD_VIEW = 1008;
 	public static final int CONT_VIEW = 1009;

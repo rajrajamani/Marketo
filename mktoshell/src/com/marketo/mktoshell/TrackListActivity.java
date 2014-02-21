@@ -2,7 +2,11 @@ package com.marketo.mktoshell;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
+import com.google.android.youtube.player.YouTubeBaseActivity;
+
+
+
 
 /**
  * An activity representing a list of Tracks. This activity has different
@@ -19,7 +23,7 @@ import android.support.v4.app.FragmentActivity;
  * This activity also implements the required
  * {@link TrackListFragment.Callbacks} interface to listen for item selections.
  */
-public class TrackListActivity extends FragmentActivity implements
+public class TrackListActivity extends YouTubeBaseActivity implements
 		TrackListFragment.Callbacks {
 
 	/**
@@ -42,7 +46,7 @@ public class TrackListActivity extends FragmentActivity implements
 
 			// In two-pane mode, list items should be given the
 			// 'activated' state when touched.
-			((TrackListFragment) getSupportFragmentManager().findFragmentById(
+			((TrackListFragment) getFragmentManager().findFragmentById(
 					R.id.track_list)).setActivateOnItemClick(true);
 		}
 
@@ -63,7 +67,7 @@ public class TrackListActivity extends FragmentActivity implements
 			arguments.putString(TrackDetailFragment.ARG_ITEM_ID, id);
 			TrackDetailFragment fragment = new TrackDetailFragment();
 			fragment.setArguments(arguments);
-			getSupportFragmentManager().beginTransaction()
+			getFragmentManager().beginTransaction()
 					.replace(R.id.track_detail_container, fragment).commit();
 
 		} else {

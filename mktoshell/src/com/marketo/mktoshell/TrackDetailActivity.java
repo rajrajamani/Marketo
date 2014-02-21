@@ -41,7 +41,7 @@ public class TrackDetailActivity extends FragmentActivity {
 					.getStringExtra(TrackDetailFragment.ARG_ITEM_ID));
 			TrackDetailFragment fragment = new TrackDetailFragment();
 			fragment.setArguments(arguments);
-			getSupportFragmentManager().beginTransaction()
+			getFragmentManager().beginTransaction()
 					.add(R.id.track_detail_container, fragment).commit();
 		}
 	}

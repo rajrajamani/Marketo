@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -20,7 +21,8 @@ import android.util.Log;
 
 import com.marketo.mktoshell.TrackDetailFragment;
 
-public class GetYoutubeData extends AsyncTask<YoutubeCallBackInfo, Integer, String> {
+public class GetYoutubeData extends
+		AsyncTask<YoutubeCallBackInfo, Integer, String> {
 
 	public static String getUrlVideoRTSP(String urlYoutube) {
 		try {
@@ -62,7 +64,7 @@ public class GetYoutubeData extends AsyncTask<YoutubeCallBackInfo, Integer, Stri
 
 	}
 
-	protected static String extractYoutubeId(String url)
+	public static String extractYoutubeId(String url)
 			throws MalformedURLException {
 		String id = null;
 		try {
@@ -86,19 +88,23 @@ public class GetYoutubeData extends AsyncTask<YoutubeCallBackInfo, Integer, Stri
 		return id;
 	}
 
-	private String videoUrl;
+	private String videoId = null;
 	private YoutubeCallBackInfo frag;
 
 	@Override
 	protected String doInBackground(YoutubeCallBackInfo... callback) {
 		frag = callback[0];
-		videoUrl = getUrlVideoRTSP(frag.mItem.url);
-		return videoUrl;
+		try {
+			videoId = extractYoutubeId(frag.mItem.url);
+		} catch (MalformedURLException e) {
+			Log.e("Exception", e.toString());
+		}
+		return videoId;
 	}
-	
-//	 @Override
-//	    protected void onPostExecute(String result) {
-//	        frag.track.setVdoView(frag.rootView, videoUrl);
-//	    }
+
+	// @Override
+	// protected void onPostExecute(String result) {
+	// frag.track.setVdoView(frag.rootView, videoUrl);
+	// }
 
 }
