@@ -29,6 +29,7 @@ import com.marketo.mktoshell.common.Constants;
 import com.marketo.mktoshell.common.GetYoutubeData;
 import com.marketo.mktoshell.common.YoutubeCallBackInfo;
 import com.marketo.mktoshell.content.Content;
+import com.marketo.mktoshell.content.Content.ContentItem;
 
 /**
  * A fragment representing a single Track detail screen. This fragment is either
@@ -121,7 +122,7 @@ public class TrackDetailFragment extends Fragment implements
 					container, false);
 			((TextView) rootView.findViewById(R.id.track_detail))
 					.setText(mItem.content);
-
+			
 			break;
 		}
 
@@ -136,20 +137,11 @@ public class TrackDetailFragment extends Fragment implements
 	private void setVdoView(View rootView, String id) {
 		YouTubePlayerView vw = (YouTubePlayerView) rootView
 				.findViewById(R.id.fragment_track_detail_vdo);
-
-		// YouTubePlayerSupportFragment ysf = (YouTubePlayerSupportFragment)
-		// getFragmentManager()
-		// .findFragmentById(R.id.yt_fragment);
-		//
 		if (YPlayer == null) {
 			vw.initialize(YOUTUBE_KEY, this);
 		} else {
 			YPlayer.cueVideo(id);
 		}
-
-		// Uri uri = Uri.parse(url);
-		// vw.setVideoPath(url);
-		// vw.start();
 	}
 
 	private void setMapView(View rootView, Bundle savedInstanceState) {

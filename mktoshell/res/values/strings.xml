@@ -4,5 +4,5 @@
     <string name="app_name" translatable="false">mktoshell</string>
     <string name="title_track_detail" translatable="false">Track Detail</string>
     <string name="ad_ticker">ads go here</string>
-
+	<string name="reset">Reset App</string>
 </resources>

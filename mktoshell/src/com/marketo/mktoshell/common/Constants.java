@@ -3,7 +3,7 @@ package com.marketo.mktoshell.common;
 public class Constants {
 	public static final int TXT_VIEW = 1001;  //useless
 	public static final int WEB_VIEW = 1002;  //done - need to make sure we cache/load
-	public static final int VDO_VIEW = 1003;  //wip - have to use youtube apis
+	public static final int VDO_VIEW = 1003;  //done
 	public static final int MAP_VIEW = 1004;  //done - map
 	public static final int CAL_VIEW = 1005;
 	public static final int SOC_APP_VIEW = 1006; // done - thru html.  not perfect, but good for storytelling

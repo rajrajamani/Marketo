@@ -2,11 +2,13 @@ package com.marketo.mktoshell;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
-
-
-
+import com.marketo.mktoshell.content.Content;
 
 /**
  * An activity representing a list of Tracks. This activity has different
@@ -32,10 +34,48 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 	 */
 	private boolean mTwoPane;
 
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main_menu, menu);
+	    return true;
+	}
+	
+    /**
+     * Event Handling for Individual menu item selected
+     * Identify single menu item by it's id
+     * */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+         
+        switch (item.getItemId())
+        {
+        case R.id.menu_reset:
+            // Single menu item is selected do something
+            // Ex: launching new activity/screen or show alert message
+            Toast.makeText(TrackListActivity.this, "Reset is Selected", Toast.LENGTH_SHORT).show();
+            resetApp();
+            return true;
+ 
+ 
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }    
+ 
+
+	
+	private void resetApp() {
+		Content.removeAllButWelcomeItem();
+		((TrackListFragment) getFragmentManager().findFragmentById(
+				R.id.track_list)).getListView().requestLayout();
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_track_list);
+
 
 		if (findViewById(R.id.track_detail_container) != null) {
 			// The detail container view will be present only in the

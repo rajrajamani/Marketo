@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.marketo.mktoshell.common.Constants;
 import com.marketo.mktoshell.content.Content;
+import com.marketo.mktoshell.content.Content.ContentItem;
 
 /**
  * A list fragment representing a list of Tracks. This fragment also supports
@@ -65,6 +67,10 @@ public class TrackListFragment extends ListFragment {
 	 */
 	public TrackListFragment() {
 	}
+	
+	public void refreshLayout() {
+		this.getListView().requestLayout();
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -113,6 +119,11 @@ public class TrackListFragment extends ListFragment {
 	public void onListItemClick(ListView listView, View view, int position,
 			long id) {
 		super.onListItemClick(listView, view, position, id);
+		
+//		Dynamically add items to the left pane without breakage
+//		Content.addMenuItem(new ContentItem(Constants.MAP_VIEW, "4", "Map View",
+//				"Our conf center", null, 37.32, -122.04));
+//		this.getListView().requestLayout();
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
