@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -41,6 +42,8 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 	 */
 	private boolean mTwoPane;
 
+	private final String HARDCODED_APP_DEFN = "http://ec2-54-184-105-127.us-west-2.compute.amazonaws.com:9000/public/contentitems.json";
+
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_menu, menu);
@@ -68,7 +71,7 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 			// Ex: launching new activity/screen or show alert message
 			Toast.makeText(TrackListActivity.this, "Refresh is Selected",
 					Toast.LENGTH_SHORT).show();
-			refreshApp();
+			refreshApp(HARDCODED_APP_DEFN);
 			return true;
 
 		default:
@@ -76,12 +79,9 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 		}
 	}
 
-	private void refreshApp() {
+	private void refreshApp(String url) {
 		try {
-			AppDefinition apps = new GetAppDefinition()
-					.execute(
-							"http://ec2-54-184-105-127.us-west-2.compute.amazonaws.com:9000/public/contentitems.json")
-					.get();
+			AppDefinition apps = new GetAppDefinition().execute(url).get();
 			for (ContentItem item : apps.items) {
 				Content.addMenuItem(item);
 			}
@@ -120,6 +120,16 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 		}
 
 		// TODO: If exposing deep links into your app, handle intents here.
+		// Get the intent that started this activity
+		Intent intent = getIntent();
+		if (intent != null) {
+			Uri url = intent.getData();
+			if (url != null) {
+				String path = url.getPath();
+				Log.i("mktoshell: Received intent from external app %s", path);
+				refreshApp("http:/" + path);
+			}
+		}
 	}
 
 	/**
