@@ -82,7 +82,7 @@ public class TrackDetailFragment extends Fragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = null;
-		switch (mItem.type) {
+		switch (Integer.valueOf(mItem.type)) {
 		case Constants.WEB_VIEW:
 			rootView = inflater.inflate(R.layout.fragment_track_detail_html,
 					container, false);
@@ -122,7 +122,7 @@ public class TrackDetailFragment extends Fragment implements
 					container, false);
 			((TextView) rootView.findViewById(R.id.track_detail))
 					.setText(mItem.content);
-			
+
 			break;
 		}
 
@@ -159,7 +159,8 @@ public class TrackDetailFragment extends Fragment implements
 			map.getUiSettings().setMyLocationButtonEnabled(false);
 			// map.setMyLocationEnabled(true);
 
-			LatLng pos = new LatLng(mItem.lattitude, mItem.longitude);
+			LatLng pos = new LatLng(Double.valueOf(mItem.lattitude),
+					Double.valueOf(mItem.longitude));
 			map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 15));
 			map.addMarker(new MarkerOptions().position(pos)
 					.title(mItem.content));

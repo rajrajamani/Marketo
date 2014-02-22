@@ -28,18 +28,18 @@ public class Content {
 
 	static {
 		// Add 3 sample items.
-		addMenuItem(new ContentItem(Constants.TXT_VIEW, "1", "Welcome",
-				"Some other content", "http://www.google.com", -1, -1));
-		addMenuItem(new ContentItem(Constants.WEB_VIEW, "2", "Marketo Sweeps",
-				"This is a test of item 1",
-				"http://iancode.info/mkto/sweeps.html", -1, -1));
-		addMenuItem(new ContentItem(Constants.WEB_VIEW, "3", "NYT Website",
-				"alternatively, show this", "http://www.nyt.com", -1, -1));
-		addMenuItem(new ContentItem(Constants.MAP_VIEW, "4", "Map View",
-				"Our conf center", null, 37.32, -122.04));
-		addMenuItem(new ContentItem(Constants.VDO_VIEW, "5", "Video View",
-				"Summit 2013 highlights",
-				"http://www.youtube.com/watch?v=1m8cYxjSwas", -1, -1));
+		addMenuItem(new ContentItem(String.valueOf(Constants.TXT_VIEW), "1", "Welcome",
+				"This is a Proof of Concept app", null, null, null));
+		addMenuItem(new ContentItem(String.valueOf(Constants.WEB_VIEW), "2", "Marketo Sweeps",
+				null,
+				"http://iancode.info/mkto/sweeps.html", null, null));
+		addMenuItem(new ContentItem(String.valueOf(Constants.WEB_VIEW), "3", "NYT Website",
+				null, "http://www.nyt.com", null, null));
+		addMenuItem(new ContentItem(String.valueOf(Constants.MAP_VIEW), "4", "Map View",
+				null, null, "37.32", "-122.04"));
+		addMenuItem(new ContentItem(String.valueOf(Constants.VDO_VIEW), "5", 
+				"Summit 2013 highlights",null,
+				"http://www.youtube.com/watch?v=1m8cYxjSwas", null, null));
 	}
 
 	public static void addMenuItem(ContentItem item) {
@@ -75,16 +75,16 @@ public class Content {
 	 * A dummy item representing a piece of content.
 	 */
 	public static class ContentItem {
-		public int type;
+		public String type;
 		public String id;
 		public String label;
 		public String content;
 		public String url;
-		public double lattitude;
-		public double longitude;
+		public String lattitude;
+		public String longitude;
 
-		public ContentItem(int type, String id, String label, String content,
-				String url, double lattitude, double longitude) {
+		public ContentItem(String type, String id, String label, String content,
+				String url, String lattitude, String longitude) {
 			this.type = type;
 			this.id = id;
 			this.label = label;
