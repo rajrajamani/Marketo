@@ -17,4 +17,11 @@ public class Constants {
 	//https://twitter.com/intent/tweet?hashtags=stackoverflow%2Cexample%2Cyoussefusf&original_referer=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F6208363%2Fsharing-a-url-with-a-query-string-on-twitter&text=Im+Sharing+on+Twitter&url=http%3A%2F%2Fstackoverflow.com%2Fusers%2F2943186%2Fyoussef-subehi
 	//FB share
 	//http://www.facebook.com/share.php?u=http%3A%2F%2Fmoney.cnn.com%2F2014%2F02%2F19%2Ftechnology%2Fsocial%2Ffacebook-whatsapp%2Findex.html&title=Facebook%20buys%20WhatsApp%20for%20%2419%20billion
+	
+	public static final int ACTION_TYPE_STORE = 10001;
+	public static final int ACTION_TYPE_READ = 10002;
+	public static final String APP_DEF_FILE = "apps";
+	public final static String HARDCODED_APP_DEFN_URL = "http://ec2-54-184-105-127.us-west-2.compute.amazonaws.com:9000/public/contentitems.json";
+
+	
 }

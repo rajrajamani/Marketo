@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,7 +30,6 @@ import com.marketo.mktoshell.common.Constants;
 import com.marketo.mktoshell.common.GetYoutubeData;
 import com.marketo.mktoshell.common.YoutubeCallBackInfo;
 import com.marketo.mktoshell.content.Content;
-import com.marketo.mktoshell.content.Content.ContentItem;
 
 /**
  * A fragment representing a single Track detail screen. This fragment is either
@@ -74,6 +74,10 @@ public class TrackDetailFragment extends Fragment implements
 			// Load the dummy content specified by the fragment
 			// arguments. In a real-world scenario, use a Loader
 			// to load content from a content provider.
+//			ListView lv = ((TrackListFragment) getFragmentManager()
+//					.findFragmentById(R.id.track_list)).getListView();
+//			lv.requestLayout();
+
 			mItem = Content.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 		}
 	}

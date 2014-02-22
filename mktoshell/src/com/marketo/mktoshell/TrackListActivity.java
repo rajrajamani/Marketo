@@ -1,6 +1,5 @@
 package com.marketo.mktoshell;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import android.content.Intent;
@@ -10,10 +9,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.marketo.mktoshell.common.AppDefinition;
+import com.marketo.mktoshell.common.AppDefinitionFileStorage;
+import com.marketo.mktoshell.common.Constants;
 import com.marketo.mktoshell.common.GetAppDefinition;
 import com.marketo.mktoshell.content.Content;
 import com.marketo.mktoshell.content.Content.ContentItem;
@@ -42,8 +44,6 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 	 */
 	private boolean mTwoPane;
 
-	private final String HARDCODED_APP_DEFN = "http://ec2-54-184-105-127.us-west-2.compute.amazonaws.com:9000/public/contentitems.json";
-
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_menu, menu);
@@ -71,7 +71,7 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 			// Ex: launching new activity/screen or show alert message
 			Toast.makeText(TrackListActivity.this, "Refresh is Selected",
 					Toast.LENGTH_SHORT).show();
-			refreshApp(HARDCODED_APP_DEFN);
+			refreshApp(Constants.HARDCODED_APP_DEFN_URL);
 			return true;
 
 		default:
@@ -85,8 +85,11 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 			for (ContentItem item : apps.items) {
 				Content.addMenuItem(item);
 			}
-			((TrackListFragment) getFragmentManager().findFragmentById(
-					R.id.track_list)).getListView().requestLayout();
+			ListView lv = ((TrackListFragment) getFragmentManager()
+					.findFragmentById(R.id.track_list)).getListView();
+			AppDefinition storedApps = new AppDefinitionFileStorage(this)
+					.execute(Constants.ACTION_TYPE_STORE).get();
+			lv.requestLayout();
 		} catch (InterruptedException e) {
 			Log.e("mktoshell", "Unable to retrieve app definition");
 		} catch (ExecutionException e) {
@@ -97,8 +100,17 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 
 	private void resetApp() {
 		Content.removeAllButWelcomeItem();
-		((TrackListFragment) getFragmentManager().findFragmentById(
-				R.id.track_list)).getListView().requestLayout();
+		ListView lv = ((TrackListFragment) getFragmentManager()
+				.findFragmentById(R.id.track_list)).getListView();
+		try {
+			AppDefinition apps = new AppDefinitionFileStorage(this)
+					.execute(Constants.ACTION_TYPE_STORE).get();
+		} catch (InterruptedException e) {
+			Log.e("mktoshell", "Unable to retrieve app definition");
+		} catch (ExecutionException e) {
+			Log.e("mktoshell", "Unable to retrieve app definition");
+		}
+		lv.requestLayout();
 	}
 
 	@Override

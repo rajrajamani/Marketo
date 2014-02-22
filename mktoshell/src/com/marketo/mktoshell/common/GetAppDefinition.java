@@ -41,9 +41,4 @@ public class GetAppDefinition extends AsyncTask<String, Integer, AppDefinition> 
 		return appDef;
 	}
 
-	// @Override
-	// protected void onPostExecute(String result) {
-	// frag.track.setVdoView(frag.rootView, videoUrl);
-	// }
-
 }

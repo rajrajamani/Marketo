@@ -1,15 +1,13 @@
 package com.marketo.mktoshell;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.app.ListFragment;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.marketo.mktoshell.common.Constants;
 import com.marketo.mktoshell.content.Content;
-import com.marketo.mktoshell.content.Content.ContentItem;
 
 /**
  * A list fragment representing a list of Tracks. This fragment also supports
@@ -67,7 +65,7 @@ public class TrackListFragment extends ListFragment {
 	 */
 	public TrackListFragment() {
 	}
-	
+
 	public void refreshLayout() {
 		this.getListView().requestLayout();
 	}
@@ -76,7 +74,8 @@ public class TrackListFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// TODO: replace with a real list adapter.
+		Content.initializeOnLoad(this.getActivity());
+
 		setListAdapter(new ArrayAdapter<Content.ContentItem>(getActivity(),
 				android.R.layout.simple_list_item_activated_1,
 				android.R.id.text1, Content.ITEMS));
@@ -119,11 +118,12 @@ public class TrackListFragment extends ListFragment {
 	public void onListItemClick(ListView listView, View view, int position,
 			long id) {
 		super.onListItemClick(listView, view, position, id);
-		
-//		Dynamically add items to the left pane without breakage
-//		Content.addMenuItem(new ContentItem(Constants.MAP_VIEW, "4", "Map View",
-//				"Our conf center", null, 37.32, -122.04));
-//		this.getListView().requestLayout();
+
+		// Dynamically add items to the left pane without breakage
+		// Content.addMenuItem(new ContentItem(Constants.MAP_VIEW, "4",
+		// "Map View",
+		// "Our conf center", null, 37.32, -122.04));
+		// this.getListView().requestLayout();
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
