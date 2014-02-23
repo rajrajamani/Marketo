@@ -55,15 +55,15 @@ public class Content {
 
 	public static void addMenuItem(ContentItem item) {
 		ITEMS.add(item);
-		ITEM_MAP.put(item.id, item);
+		ITEM_MAP.put(item.label, item);
 	}
 
-	public static void removeMenuItem(String id) {
+	public static void removeMenuItem(String lbl) {
 		ContentItem ciVal = null;
 		Iterator<ContentItem> it = ITEMS.iterator();
 		while (it.hasNext()) {
 			ciVal = it.next();
-			if (ciVal.id.equals(id)) {
+			if (ciVal.label.equals(lbl)) {
 				ITEM_MAP.remove(ciVal);
 				it.remove();
 			}
@@ -75,8 +75,8 @@ public class Content {
 		Iterator<ContentItem> it = ITEMS.iterator();
 		while (it.hasNext()) {
 			ciVal = it.next();
-			if (!ciVal.id.equals("1")) {
-				ITEM_MAP.remove(ciVal.id);
+			if (!ciVal.label.equalsIgnoreCase("Welcome")) {
+				ITEM_MAP.remove(ciVal.label);
 				it.remove();
 			}
 		}
@@ -106,17 +106,17 @@ public class Content {
 	 */
 	public static class ContentItem {
 		public String type;
-		public String id;
+		//public String id;
 		public String label;
 		public String content;
 		public String url;
 		public String lattitude;
 		public String longitude;
 
-		public ContentItem(String type, String id, String label,
+		public ContentItem(String type, String label,
 				String content, String url, String lattitude, String longitude) {
 			this.type = type;
-			this.id = id;
+			//this.id = id;
 			this.label = label;
 			this.content = content;
 			this.url = url;
