@@ -58,6 +58,18 @@ public class Content {
 		ITEM_MAP.put(item.label, item);
 	}
 
+	public static void removeItemsWithSameUUID(String uuid) {
+		ContentItem ciVal = null;
+		Iterator<ContentItem> it = ITEMS.iterator();
+		while (it.hasNext()) {
+			ciVal = it.next();
+			if (ciVal.uuid != null && uuid.equals(ciVal.uuid)) {
+				ITEM_MAP.remove(ciVal);
+				it.remove();
+			}
+		}
+	}
+
 	public static void removeMenuItem(String lbl) {
 		ContentItem ciVal = null;
 		Iterator<ContentItem> it = ITEMS.iterator();
@@ -106,17 +118,17 @@ public class Content {
 	 */
 	public static class ContentItem {
 		public String type;
-		//public String id;
+		public String uuid;
 		public String label;
 		public String content;
 		public String url;
 		public String lattitude;
 		public String longitude;
 
-		public ContentItem(String type, String label,
-				String content, String url, String lattitude, String longitude) {
+		public ContentItem(String type, String label, String content,
+				String url, String lattitude, String longitude) {
 			this.type = type;
-			//this.id = id;
+			// this.id = id;
 			this.label = label;
 			this.content = content;
 			this.url = url;
@@ -139,17 +151,17 @@ public class Content {
 	private static void initialize(AppDefinition apps) {
 		// clear everything first
 		ITEMS.removeAll(ITEMS);
-//		Iterator<ContentItem> it = ITEMS.iterator();
-//		while (it.hasNext()) {
-//			it.remove();
-//		}
+		// Iterator<ContentItem> it = ITEMS.iterator();
+		// while (it.hasNext()) {
+		// it.remove();
+		// }
 
 		Iterator<ContentItem> storedIt = apps.items.iterator();
 		while (storedIt.hasNext()) {
 			ContentItem item = storedIt.next();
 			addMenuItem(item);
 		}
-		
+
 	}
 
 	public static void initializeOnLoad(Context ctx) {

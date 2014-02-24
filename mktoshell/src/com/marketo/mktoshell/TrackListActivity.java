@@ -82,7 +82,11 @@ public class TrackListActivity extends YouTubeBaseActivity implements
 	private void refreshApp(String url) {
 		try {
 			AppDefinition apps = new GetAppDefinition().execute(url).get();
+			int i = 0;
 			for (ContentItem item : apps.items) {
+				if (i++ == 0) {
+					Content.removeItemsWithSameUUID(item.uuid);
+				}
 				Content.addMenuItem(item);
 			}
 			ListView lv = ((TrackListFragment) getFragmentManager()
